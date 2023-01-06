@@ -1,0 +1,63 @@
+---
+title: "Study protocol: Production of Arenavirus and Hantavirus host-pathogen database."
+author:
+  - name: "David Simons"
+    url: https://www.dsimons.org
+    affiliation: The Royal Veterinary College, London, UK
+    affiliation_url: https://www.rvc.ac.uk
+    orcid_id: 0000-0001-9655-1656
+date: "`r Sys.Date()`"
+categories:
+  - Arenavirus
+  - Hantavirus
+---
+
+``` {r setup, include = FALSE}
+
+if (!require("pacman")) install.packages("pacman")
+pkgs =
+  c("here",
+    "tidyverse",
+    "DT"
+  )
+
+pacman::p_load(pkgs, character.only = T)
+
+```
+
+
+# Motivation
+
+# Introduction
+
+# Project aims
+
+# Method
+
+## Search strategy
+
+An initial search was run on NCBI Pubmed 2023-01-06.
+
+  1. rodent* - 165,513
+  2. arenavir* - 2,367
+  3. hantavir*.mp. - 4,022
+  4. 2 OR 3 - 6,308
+  5. 1 AND 4 - 1,842
+
+Citations were downloaded as a text file and imported into `R` for processing. Deduplication by Pubmed ID resulted in 1821 distinct citations.
+
+``` {r search-results}
+
+search_date <- "2023-01-06"
+
+articles <- read_rds(here("data", "search", paste0("citations_", search_date, ".rds")))
+
+articles
+
+```
+
+An initial search of the returned citations was conducted to identify ten studies to trial data extraction. 
+
+## Data extraction
+
+## Data formatting
