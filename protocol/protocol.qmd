@@ -7,6 +7,12 @@ author:
     affiliation_url: https://www.rvc.ac.uk
     orcid_id: 0000-0001-9655-1656
 date: "`r Sys.Date()`"
+format: 
+  html: 
+    toc: true
+    toc-location: left
+    code-fold: true
+    code-summary: "Code"
 categories:
   - Arenavirus
   - Hantavirus
@@ -15,10 +21,14 @@ categories:
 ``` {r setup, include = FALSE}
 
 if (!require("pacman")) install.packages("pacman")
+
 pkgs =
-  c("here",
+  c("colorspace",
+    "here",
+    "htmltools",
+    "leaflet",
     "tidyverse",
-    "DT"
+    "sf"
   )
 
 pacman::p_load(pkgs, character.only = T)
@@ -56,8 +66,129 @@ articles
 
 ```
 
-An initial search of the returned citations was conducted to identify ten studies to trial data extraction. 
+An initial search of the returned citations was conducted to identify nine studies to trial data extraction. 
 
 ## Data extraction
 
-## Data formatting
+Information about the included study is extracted in a `descriptive` sheet.
+
+| Column name | Description |
+| ---- | :-------- |
+| study_id | A unique identifier for the included study |
+| pubmed_id | The pubmed ID of the included study (if available) |
+| DOI | The digital object identifier of the study (if available), if a DOI is not available a weblink to a persistent page for the reference will be included |
+| first_author_surname | The first authors surname |
+| title | The title of the manuscript, report or book section |
+| journal | The name of the journal, report or book |
+| year | The year of publication |
+| study_design | A free text entry succinctly describing the study design for the rodents or pathogens |
+| sampling_effort | A free text entry to capture the effort of sampling, ideally in trap nights for rodent studies |
+| data_access | Whether study data is available in complete form or whether summarise data only are available |
+| linked_manuscripts | The DOI or weblink to other studies including the same dataset either in its entirety or a subset, this will be used to attempt to de-duplicate data |
+
+: Study information extraction sheet {#tbl-description}
+
+Rodent data is extracted in a `rodent` sheet. This will include information on the timing of data collection, the location of data collected, the small mammal species detected either as detection/non-detection or number detected. For studies not reporting the detection of an individual species at a location that has been detected at other locations the species will be entered as not-detected at that location.
+
+| Column name | Description |
+| ---- | :-------- |
+| rodent_record_id | A unique identifier for the rodent species, at a specific location or timepoint reported by the study dependent on the level of aggregation reported in the study |
+| study_id | A unique identifier to link a study to the `descriptive` sheet entry for that study |
+| date | The period in which data collection of rodent samples occurred, this will be extracted at the highest temporal resolution provided |
+| genus | The genus of the small-mammal as reported in the study |
+| species | The species of the small-mammal as reported in the study |
+| location | The location of sampling effort, depending on how data are presented in the study this will match to the coordinates given for trapping effort. i.e. if trapping is aggregated at village level, village names will be used |
+| country | Country where trapping occurred, for multinational studies where numbers are not disaggregated by country, all countries will be included |
+| habitat_type | High level habitat type will be recorded here at the scale for which trapping is recorded |
+| coordinate_resolution | The description of coordinate levels provided in the study, i.e. aggregated at study site or study region |
+| latitude | Latitude will be converted from coordinates presented to EPSG:4326 |
+| longitude | Longitude will be converted from coordinates presented to EPSG:4326 |
+| number | The number of detected individuals, for capture-mark-recapture studies the number of distinct individuals will be entered. For studies not explicitly reporting non-detection, values of 0 for a species or genus will be entered if it is detected elsewhere in the study |
+
+: Rodent information extraction sheet {#tbl-rodent}
+
+Pathogen assays are extracted in the `pathogen` sheet. This includes information on the host the sample originated from, the pathogen family and species being assayed for and the method of the assay. For studies conducting multiple assays on the same samples for different pathogens additional records will be added for each assay. Similarly, if antibody and direct detection for the same pathogen on the same samples is performed additional records will be added. 
+
+| Column name | Description |
+| ---- | :-------- |
+| pathogen_record_id | A unique identifier for the group of samples from the same rodent species, at a specific location or timepoint, tested for the same pathogen using the same method |
+| study_id | A unique identifier to link a study to the `descriptive` sheet entry for that study |
+| date | The period in which data collection of rodent samples occurred, this will be extracted at the highest temporal resolution provided |
+| host_genus | The genus of the small-mammal from which the sample originated as reported in the study |
+| host_species | The species of the small-mammal from which the sample originated as reported in the study |
+| location | The location of sampling effort, depending on how data are presented in the study this will match to the coordinates given for trapping effort. i.e. if trapping is aggregated at village level, village names will be used |
+| country | Country where trapping occurred, for multinational studies where numbers are not disaggregated by country, all countries will be included |
+| habitat_type | High level habitat type will be recorded here at the scale for which trapping is recorded |
+| coordinate_resolution | The description of coordinate levels provided in the study, i.e. aggregated at study site or study region |
+| latitude | Latitude will be converted from coordinates presented to EPSG:4326 |
+| longitude | Longitude will be converted from coordinates presented to EPSG:4326 |
+| pathogen_family | The family of virus being assayed for (i.e. Arenaviridae or Hantaviridae) |
+| pathogen_species | The species of virus being assayed for if a specific test is being used. For assays unable to differentiate between multiple viral species `Multiple` will be entered |
+| detection_method | Whether the assay is attempting to detect antibody, direct detection of virus (i.e. pcr), or other |
+| number_tested | The number of distinct samples tested |
+| number_negative | The number of reported negative samples |
+| number_positive | The number of reported positive samples |
+| number_inconclusive | The number of samples with inconclusive results |
+
+: Pathogen information extraction sheet {#tbl-pathogen}
+
+If studies include linkage to complete or partial sequences of viruses archived in NCBI they will be lined through the `pathogen_sequences` sheet. 
+
+| Column name | Description |
+| ---- | :-------- |
+| sequence_record_id | A unique identifier for the sequence record |
+| study_id | A unique identifier to link a study to the `descriptive` sheet entry for that study |
+| host_genus | The genus of the small-mammal from which the sample originated as reported in the study |
+| host_species | The species of the small-mammal from which the sample originated as reported in the study |
+| pathogen_species | The species of the pathogen |
+| accession_number | The accession number for each record archived by the study |
+
+: Pathogen sequences extraction sheet {#tbl-sequence}
+
+## Data processing
+
+Raw data will be downloaded from Google Sheets using the `googledrive` API in `R`, with date stamped files stored locally. Data will be imported into `R` for processing, cleaning and formatting to produce a dataset suitable for further analysis.
+
+# Outputs
+
+## Data visualisation
+
+An `RShiny` web-based application will be produced to visualise the database and support future analysis.
+
+An example of a map produce from rodent sampling data included in the initial 9 studies is shown below.
+
+```{r leaflet-rodents, warning = FALSE}
+
+combined_data <- read_rds(here("data", "raw_data", paste0(search_date, "_data.rds")))
+
+
+project_crs <- "EPSG:4326"
+
+rodent_locations <- combined_data$rodent %>%
+  select(species, latitude, longitude, number) %>%
+  mutate(number = as.numeric(number)) %>%
+  drop_na(number) %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = project_crs) %>%
+  group_by(geometry, species) %>%
+  mutate(number = sum(number)) %>%
+  ungroup() %>%
+  distinct() %>%
+  rowwise() %>%
+  mutate(labels = HTML(paste0("Species: ", species, "<br>", "Number detected: ", number)))
+
+pal <- colorFactor(diverging_hcl(n = length(sort(unique(rodent_locations$species))), palette = "Berlin"),
+                   domain = sort(unique(rodent_locations$species)))
+
+leaflet(data = rodent_locations) %>%
+  addTiles() %>%
+  addCircleMarkers(radius = ~ifelse(sqrt(number) == 0, 1, sqrt(number)),
+                   color = ~pal(species),
+                   stroke = FALSE,
+                   fillOpacity = 0.8,
+                   clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = TRUE,
+                                                         spiderLegPolylineOptions = list(length = 6)),
+                   label = ~labels,
+                   popup = ~labels)
+
+```
+
