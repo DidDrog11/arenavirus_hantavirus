@@ -29,10 +29,14 @@ if(length(list.files(here("data", "raw_data"), pattern = paste0(search_date, "_d
   sequence_data <- read_xlsx(path = here("data", "raw_data", paste0(search_date, "_data.xlsx")),
                              sheet = "pathogen_sequences")
   
+  zoonosis_status <- read_xlsx(path = here("data", "raw_data", paste0(search_date, "_data.xlsx")),
+                                            sheet = "known_zoonoses")
+  
   combined_data <- list(studies = included_studies,
                         rodent = rodent_data,
                         pathogen = pathogen_data,
-                        sequence = sequence_data)
+                        sequence = sequence_data,
+                        zoonoses = zoonosis_status)
   
   write_rds(combined_data, here("data", "raw_data", paste0(search_date, "_data.rds")))
   
