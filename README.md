@@ -11,3 +11,5 @@ This project will provide an additional source of data for researchers across th
 ## Useful resources
 
 https://www.bv-brc.org/ - BACTERIAL AND VIRAL BIOINFORMATICS RESOURCE CENTER
+https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/ - NCBI VIRUS
+https://www.neonscience.org/ - NEON
