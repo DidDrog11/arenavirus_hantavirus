@@ -26,7 +26,7 @@ Data from studies meeting inclusion criteria will be abstracted into a Google sh
    
    <summary>Descriptive sheet :books:</summary>
 
-This sheet will conatin the general information about included studies. Data contributing to the dataset will have a single row, if there are studies which are complementary and the data has been pooled from the same sampling activity additional articles will be contained in the `linked_manuscripts` field. 
+This sheet will contain the general information about included studies. Data contributing to the dataset will have a single row, if there are studies which are complementary and the data has been pooled from the same sampling activity additional articles will be contained in the `linked_manuscripts` field. 
 
 | Variable name | Description | Values | DWC term link |
 | --- | -- | -- | -- |
