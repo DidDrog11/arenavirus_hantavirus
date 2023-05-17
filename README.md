@@ -141,3 +141,8 @@ All included pathogens will be designated as known or not-known zoonoses. Curren
 | disease_reference | A link, prefereably a DOI to an article demonstrating whether this pathogen is classed as a zoonosis | string |
 
 </details>
+
+# RShiny Application :computer:
+
+A companion application is being developed to display the contained information. This interactive application will allow the dataset to be explored, subset and downloaded for subsequent reuse.
+
