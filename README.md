@@ -144,5 +144,5 @@ All included pathogens will be designated as known or not-known zoonoses. Curren
 
 # RShiny Application :computer:
 
-A companion application is being developed to display the contained information. This interactive application will allow the dataset to be explored, subset and downloaded for subsequent reuse.
+A companion application is being developed to display the contained information. This interactive application will allow the dataset to be explored, subset and downloaded for subsequent reuse. This is being developed in a separate Github project called [arenavirus_hantavirus_app](https://github.com/DidDrog11/arenavirus_hantavirus_app)
 
