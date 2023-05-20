@@ -18,6 +18,10 @@ https://www.bv-brc.org/ - BACTERIAL AND VIRAL BIOINFORMATICS RESOURCE CENTER
 https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/ - NCBI VIRUS   
 https://www.neonscience.org/ - NEON 
 
+# RShiny Application :computer:
+
+A companion application is being developed to display the contained information. This interactive application will allow the dataset to be explored, subset and downloaded for subsequent reuse. This is being developed in a separate Github project called [arenavirus_hantavirus_app](https://github.com/DidDrog11/arenavirus_hantavirus_app). A draft of the application based on a pilot of 9 studies is available, hosted on [Shinyapp.io](https://diddrog11.shinyapps.io/arenavirus_hantavirus_app/)
+
 # Data abstraction
 
 Data from studies meeting inclusion criteria will be abstracted into a Google sheet. The current version (v2) is available at the following [link](https://docs.google.com/spreadsheets/d/14eW_YwSP6EWWuDrnsvDX-vwTi-7KnVyRdYL8FDqYivk/edit?usp=sharing), the sheet can be commented on but not modified. Five sheets have been created to capture the required data. Column titles where appropriate have been harmonised to the [Darwin Core Terms](https://dwc.tdwg.org/terms/) for subsequent submission to the [Global Biodiversity Information Facility](https://www.gbif.org/publishing-data) database. The column names, accepted values and DWC reference (where applicable), are shown below.
@@ -142,7 +146,5 @@ All included pathogens will be designated as known or not-known zoonoses. Curren
 
 </details>
 
-# RShiny Application :computer:
 
-A companion application is being developed to display the contained information. This interactive application will allow the dataset to be explored, subset and downloaded for subsequent reuse. This is being developed in a separate Github project called [arenavirus_hantavirus_app](https://github.com/DidDrog11/arenavirus_hantavirus_app).
 
