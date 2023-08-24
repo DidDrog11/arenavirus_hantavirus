@@ -24,7 +24,7 @@ if(length(list.files(here("data", "search"), pattern = search_date)) >= 1) {
   
   pubmed_records <- fetch_pubmed_data(pubmed_search, format = "xml")
   articles_list <- articles_to_list(pubmed_data = here("data", "search", paste0("citations_", search_date, "01.txt")))
-  articles_df <- lapply(articles_list, article_to_df, autofill = TRUE, max_chars = 50) %>%
+  articles_df <- lapply(articles_list, article_to_df, autofill = TRUE, max_chars = 1500) %>%
     bind_rows()
   
   deduplicated <- articles_df %>%

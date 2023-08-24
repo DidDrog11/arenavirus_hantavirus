@@ -81,6 +81,17 @@ articles
 
 An initial search of the returned citations was conducted to identify nine studies to trial data extraction. 
 
+### Inclusion criteria
+
+Studies were included if they contained information on:
+
+  1. Rodent sampling, through direct or indirect detection of microorganisms in the Arenaviridae and Hantaviridae families AND
+  2. Information on the trapping location of rodents sampled
+
+Studies were excluded if they did not contain information on the rodent source of the sample for direct or indirect detection of Arenaviridae or Hantaviridae. Studies reporting experimental infections and human infections were also excluded.
+  
+Direct detection was defined as PCR or culture of virus and indirect detection was defined as detection of antibodies against a Arenaviridae or Hantaviridae.
+
 ## Data extraction
 
 ### Included studies
