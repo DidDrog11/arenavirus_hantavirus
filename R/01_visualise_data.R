@@ -15,17 +15,17 @@ project_crs <- "EPSG:4326"
 
 # Rodents -----------------------------------------------------------------
 
-rodent_locations <- combined_data$rodent %>%
-  select(genus, species, latitude, longitude, number) %>%
-  mutate(number = as.numeric(number)) %>%
+rodent_locations <- combined_data$host %>%
+  select(genus, scientificName, decimalLatitude, decimalLongitude, individualCount) %>%
+  mutate(number = as.numeric(individualCount)) %>%
   drop_na(number) %>%
-  st_as_sf(coords = c("longitude", "latitude"), crs = project_crs) %>%
-  group_by(geometry, species) %>%
-  mutate(number = sum(number)) %>%
+  st_as_sf(coords = c("decimalLongitude", "decimalLatitude"), crs = project_crs) %>%
+  group_by(geometry, scientificName) %>%
+  mutate(number = sum(number, na.rm = TRUE)) %>%
   ungroup() %>%
   distinct() %>%
   rowwise() %>%
-  mutate(labels = HTML(paste0("Species: ", species, "<br>", "Number detected: ", number)))
+  mutate(labels = HTML(paste0("Species: ", scientificName, "<br>", "Number detected: ", number)))
 
 pal <- colorFactor(diverging_hcl(n = length(sort(unique(rodent_locations$genus))), palette = "Berlin"),
                    domain = sort(unique(rodent_locations$genus)))

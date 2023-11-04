@@ -1,0 +1,148 @@
+---
+title: "Study pre-registration: ArHa - A systematic review of rodent-associated Arenaviruses and Hantaviruses and analysis of global sampling effort and taxanomic biases."
+author:
+  - name: "David Simons"
+    url: https://www.dsimons.org
+    orcid: 0000-0001-9655-1656
+    affiliations:
+    - id: psu
+      name: Pennsylvania State University
+      city: State College
+      state: PA
+      country: USA
+      url: https://www.psu.edu
+    corresponding: true
+  - name: "Ricardo Rivero"
+    url: https://scholar.google.com/citations?hl=es&user=tz01w90AAAAJ&view_op=list_works&sortby=pubdate
+    orcid: 0000-0003-2284-3335
+    affiliations:
+    - id: wsu
+      name: Washington State University
+      city: Spokane
+      state: WA
+      country: USA
+      url: https://www.wsu.edu
+  - name: "Sagan Friant"
+    url: https://www.saganfriant.com/
+    orcid: 0000-0003-1664-5180
+    affiliations:
+      - ref: psu
+  - name: "Stephanie Seifert"
+    url: https://labs.wsu.edu/mezap/
+    orcid: 0000-0002-4397-6156
+    affiliations:
+      - ref: wsu
+date: "2023-10-30"
+format: 
+  html: 
+    toc: true
+    toc-location: left
+    code-fold: true
+    code-summary: "Code"
+    page-layout: full
+crossref:
+  fig-title: '**Figure**'
+categories:
+  - Arenavirus
+  - Hantavirus
+---
+
+## Background
+
+Rodents are global hosts of zoonotic pathogens and potential hosts of novel pathogens of epidemic potential. Existing efforts to catalogue host-pathogen associations in these species are limited by global datasets which lack temporal and geographic specificity. Current research is hindered by spatial-, host taxa- and temporal biases within these datasets that are challenging to quantify. Recent work within the Verena consortium has synthesised publicly available data on Alpha- and Beta-coronaviruses in bats which provides a template for this work to be expanded to rodents. In this proposal, I outline a project to expand on a database produced during my PhD studies on rodent-pathogen associations in West Africa to a global scale and incorporating additional virus-host features which will support future hypothesis-testing. The database produced will provide a novel and accessible resource to explore a range of questions at a global scale about rodents and their pathogens. The produced data will be deposited within the Global Biodiversity Information Facility to support wider re-use as they continue to expand their GBIF health programme.
+
+The project is proposed to be limited to two important, globally distributed, rodent-associated virus families in the order Bunyavirales, Hantaviridae and Arenaviridae, which contain several known zoonoses. These viruses have similarities in genomic architecture, segmented and negative sense, which allow us to ask questions about viral evolution, geography and niche-overlap. A literature search of peer-reviewed and pre-printed articles, alongside ecological reports and “grey” literature will be conducted with data extraction. Extracted data will contain information on host presence, the number of individuals identified, trapping or sampling effort, temporo-spatial information, and results from pathogen assays. Where possible, database records will be associated with pathogen sequences stored on repositories including GenBank and pathogenesis studies from experimental challenges in laboratory models. An initial search and data extraction from a sample of studies have been conducted to construct the database aligned to Darwin Core Terms and to pilot data abstraction steps (see this repository). We will use these data to test the hypothesis that niche overlap facilitates viral reassortment between species and that reassortment is more likely to be detected between closely related viruses.
+
+Recombination is dampened in negative sense RNA viruses relative to positive sense RNA viruses which undergo homologous recombination. The segmented genomic architecture of Bunyavirales allows for reassortment of viral genomic segments that facilitates rapid acquisition of mutations that may contribute to host breadth, replication dynamics, transmission and stability, or pathogenesis. Viral reassortment is driven by both ecological factors (e.g. host overlap) and molecular compatibility (e.g. coinfection of a single cell with two virus particles, functional compatibility of reassorted segments). Using a Bayesian stochastic search variable selection and GLM framework implemented in BEAST v2, we will determine the relative contributions of ecological, geographic, and molecular factors contributing to cross-species transmission and reassortment in rodent-associated arenaviruses and hantaviruses. We will perform co-phylogenetic analysis on available pathogen and host sequences to investigate adaptation of these viruses to rodent hosts.
+
+## Research questions
+
+### Primary research questions
+
+How many arenaviridae and hantaviridae have been detected in small-mammal hosts globally?
+
+Is there evidence of spatial, temporal or taxanomic biases in current sampling for arenaviridae or hantaviridae in small-mammal hosts?
+
+### Secondary research questions
+
+Is there evidence for host-pathogen co-evolution in arenaviruses or hantaviruses that have been well sampled?
+
+Does incorporating sampling biases in phylogenetic analysis improve models of pathogen host-switching or radiation?
+
+### Expectations/Hypotheses
+
+It is expected that arenaviruses and hantaviruses will be detected in all regions where sampling has been conducted.
+
+It is expected that sampling effort will be greatest in areas with known zoonotic arenaviruses and hantaviruses and in areas where host species distributions overlap areas with high human population density.
+
+## Study design
+
+### Setting and population of interest
+
+Meta-analysis - A systematic review of published studies
+
+Blinding - No blinding is involved in this study. However, for the subset of citations and articles double screened against inclusion and exclusion criteria, individuals will be blinded to decisions of other team members. Similarly, for the subset of included articles where data extraction is repeated, individuals will be blinded to the data extracted by other team members.
+
+### Search strategy
+
+Databases - PubMed, Web of Science, BioOne, bioRxiv, ecoevoRxiv, medRxiv
+
+Grey literature
+
+Inclusion criteria
+
+Exclusion criteria
+
+Query strings
+
+Variables of interest
+
+Procedures to contact authors
+
+De-duplication
+
+Screening
+
+Screening reliability and reconciliation
+
+Software
+
+### Data extraction
+
+Entities to extract
+
+Extraction reliability and reconciliation
+
+Data management and sharing
+
+### Synthesis and quality assessment
+
+Planned data transformations
+
+Missing data
+
+Data validation
+
+Quality assessment
+
+### Analysis plan
+
+Descriptive analysis
+
+Measures, including specification of predictors, outcome variables, moderators, mediators and covariates
+
+Statistical analysis
+
+Inference criteria
+
+Exploratory analysis
+
+Limitations
+
+## Other
+
+Funding
+
+Conflicts of interest
+
+Ethical approval

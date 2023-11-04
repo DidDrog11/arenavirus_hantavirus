@@ -85,10 +85,11 @@ An initial search of the returned citations was conducted to identify nine studi
 
 Studies were included if they contained information on:
 
-  1. Rodent sampling, through direct or indirect detection of microorganisms in the Arenaviridae and Hantaviridae families AND
-  2. Information on the trapping location of rodents sampled
+  1. Rodent OR Shrew sampling AND
+  2. Direct or indirect detection of microorganisms in the Arenaviridae and Hantaviridae families AND
+  3. Information on the trapping location of host species sampled
 
-Studies were excluded if they did not contain information on the rodent source of the sample for direct or indirect detection of Arenaviridae or Hantaviridae. Studies reporting experimental infections and human infections were also excluded.
+Studies were excluded if they did not contain information on the host species of the sample for direct or indirect detection of Arenaviridae or Hantaviridae. Studies reporting experimental infections or solely human infections were also excluded. Studies reported as abstract or conference proceedings were also excluded if they did not provide sufficient description of the method of animal sampling or microorganism detection.
   
 Direct detection was defined as PCR or culture of virus and indirect detection was defined as detection of antibodies against a Arenaviridae or Hantaviridae.
 
