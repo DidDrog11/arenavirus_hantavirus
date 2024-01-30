@@ -18,7 +18,7 @@ project_crs <- "EPSG:4326"
 rodent_locations <- combined_data$host %>%
   select(genus, scientificName, decimalLatitude, decimalLongitude, individualCount) %>%
   mutate(number = as.numeric(individualCount)) %>%
-  drop_na(number) %>%
+  drop_na(number, decimalLongitude, decimalLatitude) %>%
   st_as_sf(coords = c("decimalLongitude", "decimalLatitude"), crs = project_crs) %>%
   group_by(geometry, scientificName) %>%
   mutate(number = sum(number, na.rm = TRUE)) %>%
