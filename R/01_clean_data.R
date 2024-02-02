@@ -1,5 +1,14 @@
 source(here::here("R", "00_load_data.R"))
 
+
+# Clean citation sheet ----------------------------------------------------
+combined_data$citations <- combined_data$citations %>%
+  left_join(combined_data$studies %>%
+              select(study_id, full_text_id), by = "full_text_id") %>%
+  relocate(study_id, .before = 1)
+
+
+# Clean Pathogen sheet ----------------------------------------------------
 virus_names <- tibble(virus = sort(unique(combined_data$pathogen$scientificName))) %>%
   mutate(virus_clean = case_when(str_detect(tolower(virus), "andes") ~ "Andes orthohantavirus",
                                  str_detect(tolower(virus), "araraqua") ~ "Araraquara orthohantavirus",
@@ -26,8 +35,6 @@ virus_names <- tibble(virus = sort(unique(combined_data$pathogen$scientificName)
 assay_clean <- tibble(assay = sort(unique(combined_data$pathogen$identificationRemarks))) %>%
   mutate(assay_clean = case_when(str_detect(tolower(assay), "elisa|antibody|antigen|ifa|immuno|serology") ~ "Serology",
                                  str_detect(tolower(assay), "pcr") ~ "PCR"))
-
-# Clean Pathogen sheet ----------------------------------------------------
 
 combined_data$pathogen <- combined_data$pathogen %>%
   mutate(host_genus = str_to_sentence(host_genus),
