@@ -1,0 +1,1476 @@
+event_date	genus	species	name	lat	lon	MNA	MNI	traps
+1994-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	11	0	300
+1994-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	19	0	300
+1994-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	22	2	300
+1994-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	16	0	300
+1995-05-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	1	0	300
+1995-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	5	1	300
+1995-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	2	0	300
+1995-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	4	0	300
+1995-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	1	0	300
+1995-10-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	2	0	300
+1996-05-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	5	4	300
+1996-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	2	0	300
+1996-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	8	0	300
+1996-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	7	0	300
+1996-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	8	0	300
+1996-10-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	7	0	300
+1997-05-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	5	0	300
+1997-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	2	0	300
+1997-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	3	0	300
+1997-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	4	0	300
+1997-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	11	0	300
+1997-10-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	11	0	300
+1998-05-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	4	0	300
+1998-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	5	0	300
+1998-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	5	0	300
+1998-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	6	0	300
+1998-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	8	0	300
+1999-05-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	8	0	300
+1999-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	6	0	300
+1999-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	7	0	300
+1999-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	11	0	300
+1999-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	15	0	300
+1999-10-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	6	0	300
+2000-05-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	5	0	300
+2000-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	12	0	300
+2000-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	10	0	300
+2000-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	13	0	300
+2000-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	13	0	300
+2000-10-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	12	1	300
+2001-05-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	3	0	300
+2001-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	6	2	300
+2001-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	4	0	300
+2001-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	2	0	300
+2001-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	2	0	300
+2001-10-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	1	0	300
+2002-05-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	6	0	300
+2002-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	11	0	300
+2002-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	9	0	300
+2002-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	12	0	300
+2002-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	8	0	300
+2002-10-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	9	0	300
+2003-05-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	13	1	300
+2003-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	7	1	300
+2003-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	12	1	300
+2003-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	23	1	300
+2003-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	27	4	300
+2003-10-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	29	3	300
+2004-05-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	14	1	300
+2004-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	3	1	300
+2004-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	7	1	300
+2004-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	8	1	300
+2004-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	15	1	300
+2004-10-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	1	0	300
+2005-05-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	8	0	300
+2005-06-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	6	0	300
+2005-07-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	8	0	300
+2005-08-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	17	1	300
+2005-09-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	15	1	300
+2005-10-01	Peromyscus	Peromyscus maniculatus	CMR 18, Montana	47.623	-108.5813333	12	1	300
+1994-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	39	4	300
+1994-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	51	3	300
+1994-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	38	0	300
+1994-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	36	0	300
+1994-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	30	0	300
+1994-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	21	0	300
+1994-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	36	1	300
+1995-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	25	0	300
+1995-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	27	0	300
+1995-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	32	0	300
+1995-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	32	1	300
+1995-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	33	2	300
+1995-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	27	1	300
+1995-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	15	1	300
+1995-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	17	1	300
+1995-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	12	0	300
+1995-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	10	1	300
+1995-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	16	0	300
+1995-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	16	1	300
+1996-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	14	0	300
+1996-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	28	0	300
+1996-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	18	0	300
+1996-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	24	0	300
+1996-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	28	0	300
+1996-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	29	0	300
+1996-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	25	0	300
+1996-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	37	0	300
+1996-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	37	0	300
+1996-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	23	0	300
+1996-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	9	0	300
+1996-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	9	0	300
+1997-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	11	0	300
+1997-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	11	0	300
+1997-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	28	4	300
+1997-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	20	4	300
+1997-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	24	7	300
+1997-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	23	4	300
+1997-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	18	2	300
+1997-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	20	2	300
+1997-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	17	2	300
+1997-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	24	3	300
+1997-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	21	2	300
+1997-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	36	2	300
+1998-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	38	1	300
+1998-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	29	0	300
+1998-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	22	1	300
+1998-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	34	1	300
+1998-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	36	3	300
+1998-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	35	1	300
+1998-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	29	2	300
+1998-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	30	1	300
+1998-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	27	1	300
+1998-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	29	1	300
+1998-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	20	0	300
+1998-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	11	0	300
+1999-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	11	0	300
+1999-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	23	0	300
+1999-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	15	0	300
+1999-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	18	0	300
+1999-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	23	2	300
+1999-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	16	2	300
+1999-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	18	1	300
+1999-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	17	0	300
+1999-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	18	0	300
+1999-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	12	0	300
+1999-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	13	0	300
+1999-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	16	0	300
+2000-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	10	0	300
+2000-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	10	0	300
+2000-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	12	0	300
+2000-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	8	0	300
+2000-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	14	1	300
+2000-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	12	0	300
+2000-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	19	0	300
+2000-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	14	0	300
+2000-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	21	0	300
+2000-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	18	0	300
+2000-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	6	0	300
+2000-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	6	0	300
+2001-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	5	0	300
+2001-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	3	0	300
+2001-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	9	0	300
+2001-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	6	0	300
+2001-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	9	0	300
+2001-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	10	0	300
+2001-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	11	0	300
+2001-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	13	0	300
+2001-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	17	0	300
+2001-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	20	0	300
+2001-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	11	0	300
+2001-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	11	0	300
+2002-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	16	1	300
+2002-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	23	1	300
+2002-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	29	1	300
+2002-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	35	1	300
+2002-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	38	1	300
+2002-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	42	1	300
+2002-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	50	1	300
+2002-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	73	2	300
+2002-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	92	2	300
+2002-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	62	1	300
+2002-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	79	2	300
+2002-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	74	3	300
+2003-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	101	8	300
+2003-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	87	8	300
+2003-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	83	10	300
+2003-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	97	11	300
+2003-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	70	10	300
+2003-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	61	12	300
+2003-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	66	6	300
+2003-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	57	2	300
+2003-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	33	2	300
+2003-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	45	3	300
+2003-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	16	0	300
+2003-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	24	0	300
+2004-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	4	1	300
+2004-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	9	0	300
+2004-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	21	1	300
+2004-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	12	1	300
+2004-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	12	3	300
+2004-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	16	2	300
+2004-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	11	2	300
+2004-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	7	2	300
+2004-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	9	1	300
+2004-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	10	1	300
+2004-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	9	1	300
+2004-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	8	1	300
+2005-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	10	1	300
+2005-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	12	2	300
+2005-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	29	1	300
+2005-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	21	3	300
+2005-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	22	3	300
+2005-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	27	3	300
+2005-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	15	1	300
+2005-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	31	1	300
+2005-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	24	1	300
+2005-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	26	0	300
+2005-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	35	0	300
+2006-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	42	0	300
+2006-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	37	0	300
+2006-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	42	1	300
+2006-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	24	1	300
+2006-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	23	1	300
+2006-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	26	0	300
+2006-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	30	0	300
+2006-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	28	0	300
+2006-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	30	0	300
+2006-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	43	0	300
+2006-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	15	0	300
+2006-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	15	0	300
+2007-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	14	0	300
+2007-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	17	2	300
+2007-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	19	4	300
+2007-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	22	5	300
+2007-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	13	3	300
+2007-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	11	1	300
+2007-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	23	2	300
+2007-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	30	2	300
+2007-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	29	3	300
+2007-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	34	4	300
+2008-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	18	2	300
+2008-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	20	2	300
+2008-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	25	2	300
+2008-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	18	1	300
+2008-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	17	1	300
+2008-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	15	0	300
+2008-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	11	1	300
+2008-08-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	15	1	300
+2008-09-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	20	1	300
+2008-10-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	44	0	300
+2008-11-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	62	1	300
+2008-12-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	22	0	300
+2009-01-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	22	0	300
+2009-02-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	26	0	300
+2009-03-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	29	0	300
+2009-04-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	17	0	300
+2009-05-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	15	0	300
+2009-06-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	13	0	300
+2009-07-01	Peromyscus	Peromyscus maniculatus	Cascade 11, Montana	46.98972222	-111.5844444	20	0	300
+1994-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	12	0	300
+1994-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	15	4	300
+1994-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	27	1	300
+1994-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	8	1	300
+1995-05-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	4	0	300
+1995-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	4	0	300
+1995-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	2	0	300
+1995-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	4	0	300
+1995-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	6	0	300
+1995-10-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	1	0	300
+1996-05-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	6	0	300
+1996-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	4	0	300
+1996-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	9	0	300
+1996-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	11	0	300
+1996-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	10	0	300
+1996-10-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	10	0	300
+1997-05-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	6	2	300
+1997-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	4	0	300
+1997-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	6	1	300
+1997-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	11	2	300
+1997-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	10	1	300
+1997-10-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	13	1	300
+1998-05-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	9	2	300
+1998-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	6	1	300
+1998-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	4	0	300
+1998-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	2	0	300
+1998-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	4	0	300
+1998-10-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	7	0	300
+1999-05-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	12	2	300
+1999-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	13	1	300
+1999-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	8	0	300
+1999-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	16	0	300
+1999-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	8	0	300
+1999-10-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	16	1	300
+2000-05-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	20	10	300
+2000-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	32	11	300
+2000-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	19	2	300
+2000-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	20	1	300
+2000-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	6	0	300
+2000-10-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	9	1	300
+2001-05-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	3	1	300
+2001-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	10	4	300
+2001-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	4	1	300
+2001-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	5	2	300
+2001-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	7	1	300
+2001-10-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	5	0	300
+2002-05-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	27	7	300
+2002-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	11	2	300
+2002-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	7	1	300
+2002-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	4	1	300
+2002-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	12	2	300
+2002-10-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	10	6	300
+2003-05-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	13	8	300
+2003-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	16	5	300
+2003-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	18	6	300
+2003-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	14	5	300
+2003-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	16	3	300
+2003-10-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	15	1	300
+2004-05-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	2	1	300
+2004-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	8	1	300
+2004-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	12	1	300
+2004-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	8	1	300
+2004-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	19	0	300
+2004-10-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	19	1	300
+2005-05-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	10	0	300
+2005-06-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	19	5	300
+2005-07-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	8	1	300
+2005-08-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	4	3	300
+2005-09-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	12	5	300
+2005-10-01	Peromyscus	Peromyscus maniculatus	Cutbank 15, Montana	48.96388889	-112.4944444	29	3	300
+1994-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	10	3	300
+1994-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	9	1	300
+1994-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	14	0	300
+1994-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	16	1	300
+1995-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	2	1	300
+1995-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	3	1	300
+1995-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	2	1	300
+1995-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	7	3	300
+1995-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	3	0	300
+1995-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	5	2	300
+1996-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	2	1	300
+1996-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	1	0	300
+1996-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	4	1	300
+1996-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	14	0	300
+1996-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	14	0	300
+1996-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	16	0	300
+1997-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	0	0	300
+1997-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	2	0	300
+1997-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	4	0	300
+1997-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	11	0	300
+1997-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	11	0	300
+1997-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	13	0	300
+1998-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	4	1	300
+1998-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	20	3	300
+1998-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	33	3	300
+1998-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	66	2	300
+1998-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	65	1	300
+1998-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	43	2	300
+1999-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	8	3	300
+1999-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	7	1	300
+1999-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	4	1	300
+1999-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	8	2	300
+1999-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	11	3	300
+1999-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	8	1	300
+2000-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	3	0	300
+2000-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	4	0	300
+2000-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	3	0	300
+2000-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	8	2	300
+2000-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	9	0	300
+2000-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	12	1	300
+2001-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	3	0	300
+2001-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	3	0	300
+2001-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	5	0	300
+2001-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	9	0	300
+2001-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	25	1	300
+2001-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	10	0	300
+2002-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	6	0	300
+2002-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	9	0	300
+2002-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	9	0	300
+2002-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	17	4	300
+2002-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	33	1	300
+2002-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	25	0	300
+2003-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	6	0	300
+2003-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	3	0	300
+2003-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	1	0	300
+2003-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	14	1	300
+2003-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	17	0	300
+2003-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	5	0	300
+2004-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	6	2	300
+2004-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	6	2	300
+2004-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	5	1	300
+2004-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	11	2	300
+2004-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	14	1	300
+2004-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	8	1	300
+2005-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	4	3	300
+2005-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	5	2	300
+2005-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	6	2	300
+2005-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	8	2	300
+2005-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	15	2	300
+2005-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 8, Montana	46.51944444	-113.0080556	20	0	300
+1994-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	1	0	300
+1994-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	8	0	300
+1994-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	16	1	300
+1994-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	17	0	300
+1995-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	1	0	300
+1995-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	1	0	300
+1995-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	1	0	300
+1995-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	2	0	300
+1995-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	3	0	300
+1995-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	3	0	300
+1996-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	1	0	300
+1996-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	1	0	300
+1996-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	16	0	300
+1996-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	25	0	300
+1996-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	21	0	300
+1996-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	24	0	300
+1997-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	2	0	300
+1997-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	3	0	300
+1997-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	2	0	300
+1997-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	4	0	300
+1997-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	6	0	300
+1997-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	10	0	300
+1998-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	6	4	300
+1998-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	15	3	300
+1998-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	21	4	300
+1998-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	31	6	300
+1998-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	33	4	300
+1998-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	29	1	300
+1999-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	3	0	300
+1999-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	4	0	300
+1999-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	4	1	300
+1999-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	5	0	300
+1999-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	4	0	300
+1999-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	7	0	300
+2000-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	0	0	300
+2000-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	6	0	300
+2000-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	6	0	300
+2000-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	8	0	300
+2000-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	4	0	300
+2000-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	4	0	300
+2001-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	1	0	300
+2001-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	5	1	300
+2001-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	4	0	300
+2001-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	5	0	300
+2001-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	11	0	300
+2001-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	5	0	300
+2002-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	2	0	300
+2002-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	4	0	300
+2002-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	9	0	300
+2002-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	16	0	300
+2002-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	28	0	300
+2002-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	20	0	300
+2003-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	6	0	300
+2003-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	2	0	300
+2003-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	2	0	300
+2003-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	10	0	300
+2003-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	10	0	300
+2003-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	10	0	300
+2004-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	2	2	300
+2004-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	2	0	300
+2004-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	3	0	300
+2004-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	11	1	300
+2004-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	13	3	300
+2004-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	8	1	300
+2005-05-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	4	3	300
+2005-06-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	3	2	300
+2005-07-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	6	2	300
+2005-08-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	5	2	300
+2005-09-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	17	5	300
+2005-10-01	Peromyscus	Peromyscus maniculatus	Gold Creek 9, Montana	46.5225	-113.0069444	20	2	300
+2002-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	41	5	444
+2002-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	52	15	444
+2002-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	48	10	444
+2002-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	41	8	444
+2002-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	32	10	444
+2003-01-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	30	10	444
+2003-02-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	33	12	444
+2003-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	21	9	444
+2003-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	25	10	444
+2003-06-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	37	20	444
+2003-07-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	36	14	444
+2003-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	37	12	444
+2003-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	64	14	444
+2003-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	79	11	444
+2003-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	117	10	444
+2003-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	117	10	444
+2004-01-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	113	14	444
+2004-03-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	88	15	444
+2004-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	64	14	444
+2004-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	73	14	444
+2004-06-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	81	20	444
+2004-07-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	71	16	444
+2004-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	73	17	444
+2004-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	72	17	444
+2004-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	72	18	444
+2004-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	65	18	444
+2004-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	67	25	444
+2005-02-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	50	22	444
+2005-03-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	47	23	444
+2005-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	35	14	444
+2005-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	51	22	444
+2005-06-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	50	15	444
+2005-07-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	71	18	444
+2005-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	96	22	444
+2005-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	95	29	444
+2005-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	94	24	444
+2005-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	69	18	444
+2005-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	57	16	444
+2006-01-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	53	15	444
+2006-02-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	64	17	444
+2006-03-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	70	15	444
+2006-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	97	21	444
+2006-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon E, Arizona	35.96108333	-112.0922222	72	21	444
+2002-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	10	2	444
+2002-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	19	5	444
+2002-07-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	23	7	444
+2002-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	20	7	444
+2002-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	11	4	444
+2002-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	5	2	444
+2002-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	6	1	444
+2002-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	6	2	444
+2003-01-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	4	1	444
+2003-02-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	4	2	444
+2003-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	4	2	444
+2003-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	11	3	444
+2003-06-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	16	4	444
+2003-07-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	21	4	444
+2003-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	27	5	444
+2003-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	35	6	444
+2003-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	18	2	444
+2003-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	26	4	444
+2003-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	20	4	444
+2004-01-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	15	6	444
+2004-03-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	14	4	444
+2004-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	22	6	444
+2004-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	30	2	444
+2004-06-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	32	6	444
+2004-07-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	34	8	444
+2004-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	28	7	444
+2004-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	25	10	444
+2004-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	23	14	444
+2004-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	40	20	444
+2004-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	28	12	444
+2005-02-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	25	19	444
+2005-03-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	28	14	444
+2005-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	26	12	444
+2005-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	28	12	444
+2005-06-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	45	13	444
+2005-07-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	73	17	444
+2005-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	80	14	444
+2005-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	70	16	444
+2005-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	73	16	444
+2005-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	66	15	444
+2005-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	56	16	444
+2006-01-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	47	19	444
+2006-02-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	43	17	444
+2006-03-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	41	13	444
+2006-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	53	19	444
+2006-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon M, Arizona	35.991	-112.1368611	51	12	444
+2002-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	11	6	444
+2002-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	20	3	444
+2002-07-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	15	2	444
+2002-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	17	3	444
+2002-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	11	2	444
+2002-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	11	2	444
+2002-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	6	1	444
+2002-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	4	1	444
+2003-01-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	5	1	444
+2003-02-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	7	1	444
+2003-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	5	0	444
+2003-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	12	1	444
+2003-06-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	17	5	444
+2003-07-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	18	3	444
+2003-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	10	1	444
+2003-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	17	2	444
+2003-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	6	2	444
+2003-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	23	0	444
+2003-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	12	0	444
+2004-01-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	8	0	444
+2004-03-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	15	0	444
+2004-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	22	0	444
+2004-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	34	0	444
+2004-06-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	27	0	444
+2004-07-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	22	0	444
+2004-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	29	2	444
+2004-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	23	1	444
+2004-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	23	2	444
+2004-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	26	4	444
+2004-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	25	2	444
+2005-02-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	23	4	444
+2005-03-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	25	3	444
+2005-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	24	4	444
+2005-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	27	6	444
+2005-06-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	50	8	444
+2005-07-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	57	17	444
+2005-08-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	89	13	444
+2005-09-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	88	17	444
+2005-10-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	77	12	444
+2005-11-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	49	8	444
+2005-12-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	42	9	444
+2006-01-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	43	10	444
+2006-02-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	51	14	444
+2006-03-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	44	14	444
+2006-04-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	45	12	444
+2006-05-01	Peromyscus	Peromyscus maniculatus	Grand Canyon T, Arizona	35.991	-112.1170833	46	10	444
+2002-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	67	9	300
+2002-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	47	2	300
+2002-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	52	1	300
+2002-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	46	3	300
+2002-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	34	0	300
+2002-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	37	1	300
+2002-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	23	1	300
+2003-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	25	4	300
+2003-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	10	2	300
+2003-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	10	2	300
+2003-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	17	6	300
+2003-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	14	4	300
+2003-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	27	3	300
+2003-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	22	2	300
+2003-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	26	2	300
+2003-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	10	0	300
+2003-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	15	0	300
+2003-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	8	0	300
+2003-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	21	1	300
+2004-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	10	0	300
+2004-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	8	0	300
+2004-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	22	7	300
+2004-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	23	8	300
+2004-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	41	8	300
+2004-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	36	5	300
+2004-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	54	6	300
+2004-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	38	11	300
+2004-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	40	8	300
+2004-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	43	10	300
+2004-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	32	7	300
+2004-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	25	5	300
+2005-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	4	300
+2005-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	16	4	300
+2005-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	19	3	300
+2005-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	37	8	300
+2005-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	24	3	300
+2005-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	21	7	300
+2005-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	17	4	300
+2005-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	18	3	300
+2005-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	16	2	300
+2005-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	21	2	300
+2005-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	12	2	300
+2005-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	2	300
+2006-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	18	2	300
+2006-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	2	300
+2006-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	10	1	300
+2006-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	13	1	300
+2006-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	15	2	300
+2006-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	17	2	300
+2006-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	20	2	300
+2006-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	20	2	300
+2006-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	25	1	300
+2006-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	21	1	300
+2006-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	21	1	300
+2006-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	13	1	300
+2007-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	13	1	300
+2007-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	13	1	300
+2007-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	0	300
+2007-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	21	1	300
+2007-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	21	2	300
+2007-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	19	3	300
+2007-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	14	2	300
+2007-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	19	2	300
+2007-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	14	0	300
+2007-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	21	1	300
+2007-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	19	1	300
+2007-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	7	1	300
+2008-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	8	1	300
+2008-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	4	1	300
+2008-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	9	2	300
+2008-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	16	2	300
+2008-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	15	3	300
+2008-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	8	3	300
+2008-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	13	3	300
+2008-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	12	2	300
+2008-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	13	2	300
+2008-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	19	0	300
+2008-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	28	1	300
+2008-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	21	1	300
+2009-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	19	1	300
+2009-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	22	2	300
+2009-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	13	1	300
+2009-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	20	3	300
+2009-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	18	6	300
+2009-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	15	4	300
+2009-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	7	3	300
+2009-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	0	300
+2009-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	1	300
+2009-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	0	300
+2009-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	17	0	300
+2009-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	0	300
+2010-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	15	1	300
+2010-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	0	300
+2010-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	15	2	300
+2010-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	12	3	300
+2010-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	13	4	300
+2010-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	16	5	300
+2010-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	13	5	300
+2010-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	8	2	300
+2010-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	18	2	300
+2010-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	14	1	300
+2010-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	16	1	300
+2010-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	1	300
+2011-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	10	1	300
+2011-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	1	300
+2011-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	14	1	300
+2011-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	0	300
+2011-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	0	300
+2011-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	0	300
+2011-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	13	0	300
+2011-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	0	300
+2011-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	0	300
+2011-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	15	0	300
+2011-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	1	300
+2011-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	5	1	300
+2012-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	1	300
+2012-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	1	300
+2012-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	1	300
+2012-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	5	0	300
+2012-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	5	0	300
+2012-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	0	300
+2012-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	0	300
+2012-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	2	1	300
+2012-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	2	300
+2012-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	3	300
+2012-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	9	1	300
+2012-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	8	1	300
+2013-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	3	0	300
+2013-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	5	0	300
+2013-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	7	0	300
+2013-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	7	0	300
+2013-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	7	0	300
+2013-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	0	300
+2013-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	4	0	300
+2013-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	5	0	300
+2013-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	2	0	300
+2013-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	3	0	300
+2013-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	14	0	300
+2013-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	6	0	300
+2014-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	4	0	300
+2014-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	3	0	300
+2014-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	10	0	300
+2014-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	11	0	300
+2014-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	14	0	300
+2014-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	12	0	300
+2014-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	12	0	300
+2014-08-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	18	1	300
+2014-09-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	19	0	300
+2014-10-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	25	0	300
+2014-11-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	27	0	300
+2014-12-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	19	1	300
+2015-01-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	15	1	300
+2015-02-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	22	1	300
+2015-03-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	17	0	300
+2015-04-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	17	1	300
+2015-05-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	21	2	300
+2015-06-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	22	1	300
+2015-07-01	Peromyscus	Peromyscus maniculatus	Gregson Lower, Montana	NA	NA	10	0	300
+2004-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	28	7	300
+2004-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	20	6	300
+2004-08-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	26	10	300
+2004-09-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	22	8	300
+2004-10-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	20	3	300
+2004-11-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	9	2	300
+2004-12-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	12	4	300
+2005-01-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2005-02-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2005-03-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	7	3	300
+2005-04-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	13	8	300
+2005-05-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	13	5	300
+2005-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	11	3	300
+2005-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	13	2	300
+2005-08-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	16	2	300
+2005-09-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	18	0	300
+2005-10-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	32	0	300
+2005-11-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	28	0	300
+2005-12-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	20	0	300
+2006-01-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	18	0	300
+2006-02-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	19	0	300
+2006-03-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	26	1	300
+2006-04-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	14	3	300
+2006-05-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	11	4	300
+2006-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	20	6	300
+2006-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	11	2	300
+2006-08-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	16	2	300
+2006-09-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	18	2	300
+2006-10-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	22	1	300
+2006-11-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	14	1	300
+2006-12-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	15	1	300
+2007-01-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	6	1	300
+2007-02-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	11	1	300
+2007-03-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	15	1	300
+2007-04-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	14	1	300
+2007-05-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	13	2	300
+2007-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	9	1	300
+2007-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	10	0	300
+2007-08-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	9	1	300
+2007-09-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	13	3	300
+2007-10-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	14	2	300
+2007-11-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	13	2	300
+2007-12-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	9	0	300
+2008-01-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	9	0	300
+2008-02-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	6	0	300
+2008-03-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	19	3	300
+2008-04-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	13	1	300
+2008-05-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	11	2	300
+2008-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	9	0	300
+2008-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	10	1	300
+2008-08-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	7	1	300
+2008-09-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	7	2	300
+2008-10-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	4	0	300
+2008-11-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	11	0	300
+2008-12-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	16	0	300
+2009-01-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2009-02-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2009-03-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	6	0	300
+2009-04-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	6	0	300
+2009-05-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	10	1	300
+2009-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2009-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	6	0	300
+2009-08-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	8	0	300
+2009-09-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	9	1	300
+2009-10-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	4	1	300
+2009-11-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	13	3	300
+2009-12-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	2	300
+2010-01-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	4	2	300
+2010-02-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	2	1	300
+2010-03-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	6	4	300
+2010-04-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	9	2	300
+2010-05-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	6	2	300
+2010-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	10	2	300
+2010-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	4	1	300
+2010-08-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	2	1	300
+2010-09-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	2	1	300
+2010-10-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	9	1	300
+2010-11-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	11	2	300
+2010-12-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	0	0	300
+2011-01-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	0	0	300
+2011-02-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	3	0	300
+2011-03-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	2	0	300
+2011-04-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	7	1	300
+2011-05-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	10	2	300
+2011-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	11	1	300
+2011-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2011-08-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	1	0	300
+2011-09-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	3	0	300
+2011-10-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2011-11-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2011-12-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2012-01-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	4	0	300
+2012-02-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	3	0	300
+2012-03-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	8	0	300
+2012-04-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	2	0	300
+2012-05-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	3	0	300
+2012-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	7	0	300
+2012-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	6	0	300
+2012-08-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	4	0	300
+2012-09-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	2	0	300
+2012-10-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	9	0	300
+2012-11-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	7	0	300
+2012-12-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2013-01-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	0	0	300
+2013-02-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	2	0	300
+2013-03-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	6	1	300
+2013-04-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	8	1	300
+2013-05-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	10	1	300
+2013-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	3	0	300
+2013-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	3	0	300
+2013-08-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	4	0	300
+2013-09-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	3	0	300
+2013-10-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2013-11-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	5	0	300
+2013-12-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	2	0	300
+2014-01-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	1	0	300
+2014-02-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	2	0	300
+2014-03-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	6	0	300
+2014-04-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	13	0	300
+2014-05-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	12	0	300
+2014-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	14	0	300
+2014-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	11	3	300
+2014-08-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	14	2	300
+2014-09-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	15	3	300
+2014-10-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	19	6	300
+2014-11-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	19	5	300
+2014-12-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	37	8	300
+2015-01-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	30	10	300
+2015-02-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	29	13	300
+2015-03-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	21	12	300
+2015-04-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	18	9	300
+2015-05-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	19	9	300
+2015-06-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	15	4	300
+2015-07-01	Peromyscus	Peromyscus maniculatus	Gregson Upper, Montana	NA	NA	16	6	300
+1994-06-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	6	0	444
+1994-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	35	5	444
+1994-09-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	33	4	444
+1994-10-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	15	0	444
+1994-12-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	9	1	444
+1995-05-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	5	2	444
+1995-06-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	2	1	444
+1995-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	11	1	444
+1995-09-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	24	2	444
+1995-10-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	18	2	444
+1995-11-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	11	1	444
+1996-04-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	8	0	444
+1996-06-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	8	0	444
+1996-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	24	0	444
+1996-08-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	13	0	444
+1996-10-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	12	0	444
+1997-05-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	3	0	444
+1997-06-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	2	0	444
+1997-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	9	0	444
+1997-09-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	10	0	444
+1997-10-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	7	0	444
+1998-04-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	11	0	444
+1998-05-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	18	1	444
+1998-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	17	3	444
+1998-08-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	33	5	444
+1998-09-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	22	4	444
+1999-04-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	20	5	444
+1999-06-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	18	8	444
+1999-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	46	8	444
+1999-09-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	58	10	444
+1999-10-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	82	15	444
+2000-04-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	8	2	444
+2000-05-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	13	3	444
+2000-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	19	2	444
+2000-08-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	11	1	444
+2000-10-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	9	1	444
+2001-04-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	3	1	444
+2001-05-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	4	1	444
+2001-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	16	2	444
+2001-08-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	29	4	444
+2001-09-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	25	1	444
+2001-11-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	17	1	444
+2002-04-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	13	3	444
+2002-05-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	10	3	444
+2002-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	11	2	444
+2002-08-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	13	6	444
+2002-10-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	21	4	444
+2002-11-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	7	3	444
+2003-05-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	4	1	444
+2003-06-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	10	1	444
+2003-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	31	4	444
+2003-09-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	65	2	444
+2003-10-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	71	6	444
+2004-05-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	52	18	444
+2004-06-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	49	13	444
+2004-08-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	67	14	444
+2004-09-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	115	28	444
+2004-10-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	91	25	444
+2005-06-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	31	15	444
+2005-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	44	15	444
+2005-08-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	53	14	444
+2005-10-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	60	15	444
+2006-04-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	35	10	444
+2006-06-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	33	8	444
+2006-07-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	45	12	444
+2006-08-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	76	11	444
+2006-10-01	Peromyscus	Peromyscus maniculatus	Hesperus A, Colorado	37.22805	-108.0399333	23	8	444
+1994-06-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	15	5	444
+1994-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	24	0	444
+1994-09-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	24	0	444
+1994-10-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	7	0	444
+1994-12-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	8	0	444
+1995-05-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	7	0	444
+1995-06-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	8	0	444
+1995-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	13	0	444
+1995-09-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	14	0	444
+1995-10-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	20	0	444
+1995-11-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	17	0	444
+1995-12-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	7	0	444
+1996-04-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	14	0	444
+1996-06-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	11	0	444
+1996-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	22	0	444
+1996-08-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	21	0	444
+1996-10-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	14	0	444
+1997-05-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	6	1	444
+1997-06-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	8	3	444
+1997-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	15	0	444
+1997-09-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	20	4	444
+1997-10-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	14	3	444
+1998-04-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	25	6	444
+1998-05-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	25	8	444
+1998-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	28	8	444
+1998-08-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	39	9	444
+1998-09-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	33	12	444
+1999-04-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	39	18	444
+1999-06-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	42	14	444
+1999-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	65	19	444
+1999-09-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	59	13	444
+1999-10-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	72	19	444
+2000-04-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	30	3	444
+2000-05-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	15	4	444
+2000-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	21	4	444
+2000-08-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	31	1	444
+2000-10-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	16	1	444
+2001-04-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	7	2	444
+2001-05-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	7	1	444
+2001-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	17	1	444
+2001-08-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	23	6	444
+2001-09-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	29	5	444
+2001-11-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	19	4	444
+2002-04-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	22	6	444
+2002-05-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	23	8	444
+2002-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	18	4	444
+2002-08-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	19	3	444
+2002-10-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	20	3	444
+2002-11-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	10	2	444
+2003-05-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	5	2	444
+2003-06-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	11	2	444
+2003-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	30	2	444
+2003-09-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	52	4	444
+2003-10-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	67	5	444
+2004-05-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	32	12	444
+2004-06-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	50	24	444
+2004-08-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	69	22	444
+2004-09-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	108	25	444
+2004-10-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	94	22	444
+2005-06-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	21	10	444
+2005-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	30	11	444
+2005-08-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	37	10	444
+2005-10-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	59	12	444
+2006-04-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	41	13	444
+2006-06-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	61	20	444
+2006-07-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	54	11	444
+2006-08-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	61	8	444
+2006-10-01	Peromyscus	Peromyscus maniculatus	Hesperus B, Colorado	37.22726667	-108.0396667	36	10	444
+1994-10-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	9	0	444
+1995-05-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	12	1	444
+1995-06-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	8	2	444
+1995-07-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	21	5	444
+1995-09-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	35	7	444
+1995-10-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	47	2	444
+1995-12-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	44	2	444
+1996-04-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	27	5	444
+1996-06-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	21	6	444
+1996-07-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	18	3	444
+1996-08-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	8	0	444
+1996-10-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	18	0	444
+1997-05-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	4	0	444
+1997-06-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	4	1	444
+1997-08-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	7	0	444
+1997-09-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	23	1	444
+1997-10-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	30	0	444
+1998-05-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	30	0	444
+1998-07-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	32	0	444
+1998-08-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	23	2	444
+1998-10-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	21	1	444
+1999-06-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	8	0	444
+1999-07-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	8	0	444
+1999-09-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	13	3	444
+1999-10-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	14	1	444
+2000-04-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	9	2	444
+2000-06-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	1	0	444
+2000-07-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	9	0	444
+2000-08-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	10	0	444
+2000-10-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	15	0	444
+2001-05-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	3	0	444
+2001-07-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	4	0	444
+2001-08-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	2	0	444
+2001-09-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	15	0	444
+2001-11-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	14	0	444
+2002-04-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	11	0	444
+2002-05-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	4	0	444
+2002-06-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	3	0	444
+2002-07-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	5	0	444
+2002-08-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	9	0	444
+2002-10-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	16	0	444
+2003-06-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	3	0	444
+2003-08-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	8	0	444
+2003-09-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	7	0	444
+2003-10-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	5	0	444
+2004-05-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	13	0	444
+2004-07-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	15	0	444
+2004-08-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	47	5	444
+2004-09-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	52	6	444
+2005-06-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	14	1	444
+2005-07-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	8	0	444
+2005-09-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	12	0	444
+2005-10-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	15	0	444
+2006-04-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	16	3	444
+2006-06-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	11	1	444
+2006-07-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	14	1	444
+2006-09-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	10	2	444
+2006-10-01	Peromyscus	Peromyscus maniculatus	Molina A, Colorado	39.16175	-108.0572833	17	5	444
+1996-10-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	7	0	444
+1997-05-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	8	0	444
+1997-06-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	5	0	444
+1997-08-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	5	0	444
+1997-09-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	11	0	444
+1997-10-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	34	2	444
+1998-05-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	27	11	444
+1998-07-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	19	5	444
+1998-08-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	24	3	444
+1998-10-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	27	5	444
+1999-06-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	18	1	444
+1999-07-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	17	2	444
+1999-09-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	13	3	444
+1999-10-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	16	4	444
+2000-04-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	10	0	444
+2000-06-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	10	0	444
+2000-07-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	8	0	444
+2000-08-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	8	1	444
+2000-10-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	8	0	444
+2001-05-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	5	0	444
+2001-07-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	3	0	444
+2001-08-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	4	0	444
+2001-09-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	7	0	444
+2001-11-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	19	2	444
+2002-04-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	11	0	444
+2002-05-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	6	0	444
+2002-06-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	9	0	444
+2002-07-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	11	0	444
+2002-08-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	6	0	444
+2002-10-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	22	0	444
+2003-06-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	5	0	444
+2003-08-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	8	0	444
+2003-09-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	9	0	444
+2003-10-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	11	1	444
+2004-05-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	23	0	444
+2004-07-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	21	1	444
+2004-08-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	36	4	444
+2004-09-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	72	3	444
+2005-06-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	9	3	444
+2005-07-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	7	4	444
+2005-09-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	15	2	444
+2005-10-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	14	2	444
+2006-04-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	13	4	444
+2006-06-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	4	0	444
+2006-07-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	11	2	444
+2006-09-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	9	3	444
+2006-10-01	Peromyscus	Peromyscus maniculatus	Molina B, Colorado	39.16725	-108.05875	17	7	444
+1997-09-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	21	0	444
+1997-10-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	25	0	444
+1997-11-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	22	0	444
+1998-01-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	26	0	444
+1998-02-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	19	0	444
+1998-03-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	29	0	444
+1998-04-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	31	2	444
+1998-05-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	28	2	444
+1998-06-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	25	2	444
+1998-07-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	21	2	444
+1998-08-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	25	1	444
+1998-09-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	10	0	444
+1998-10-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	17	3	444
+1998-11-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	9	0	444
+1999-01-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	12	2	444
+1999-02-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	10	3	444
+1999-03-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	16	6	444
+1999-05-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	23	5	444
+1999-06-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	17	8	444
+1999-07-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	16	7	444
+1999-08-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	27	5	444
+1999-09-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	21	3	444
+1999-10-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	12	2	444
+1999-11-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	10	1	444
+2000-01-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	10	1	444
+2000-02-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	13	2	444
+2000-03-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	9	1	444
+2000-04-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	9	1	444
+2000-06-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	7	0	444
+2000-07-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	7	0	444
+2000-08-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	2	444
+2000-09-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	6	2	444
+2000-10-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	11	2	444
+2000-12-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	8	2	444
+2001-01-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	10	1	444
+2001-02-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	11	2	444
+2001-03-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	6	1	444
+2001-05-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	1	444
+2001-06-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	0	444
+2001-07-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	10	0	444
+2001-08-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	18	0	444
+2001-09-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	15	1	444
+2001-10-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	20	0	444
+2001-12-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	9	0	444
+2002-01-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	18	1	444
+2002-02-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	15	1	444
+2002-03-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	10	1	444
+2002-05-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	10	1	444
+2002-06-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	10	1	444
+2002-07-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	0	444
+2002-08-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	0	444
+2002-09-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	3	0	444
+2002-10-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	10	0	444
+2002-12-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	6	0	444
+2003-01-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	0	444
+2003-02-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	2	0	444
+2003-03-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	4	0	444
+2003-04-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	4	0	444
+2003-05-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	0	444
+2003-06-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	6	0	444
+2003-07-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	9	1	444
+2003-08-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	2	0	444
+2003-09-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	8	0	444
+2003-10-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	3	0	444
+2003-11-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	1	0	444
+2003-12-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	0	444
+2004-01-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	4	0	444
+2004-02-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	7	0	444
+2004-03-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	6	0	444
+2004-05-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	9	0	444
+2004-06-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	10	0	444
+2004-07-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	8	0	444
+2004-08-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	6	0	444
+2004-09-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	7	0	444
+2004-10-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	1	0	444
+2004-11-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	1	0	444
+2005-01-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	3	0	444
+2005-02-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	3	0	444
+2005-03-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	6	0	444
+2005-04-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	4	0	444
+2005-05-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	0	444
+2005-06-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	4	0	444
+2005-07-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	0	444
+2005-08-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	7	0	444
+2005-09-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	6	0	444
+2005-10-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	8	0	444
+2005-11-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	0	444
+2005-12-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	4	0	444
+2006-01-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	3	0	444
+2006-02-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	5	0	444
+2006-03-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	3	0	444
+2006-04-01	Peromyscus	Peromyscus maniculatus	Navajo 1, New Mexico	35.24	-108.7683333	4	0	444
+1994-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	53	5	300
+1994-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	73	6	300
+1994-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	81	9	300
+1995-03-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	3	1	300
+1995-04-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	9	4	300
+1995-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	6	3	300
+1995-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	3	1	300
+1995-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	3	0	300
+1995-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	5	1	300
+1995-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	8	2	300
+1995-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	12	2	300
+1996-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	6	4	300
+1996-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	6	4	300
+1996-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	36	13	300
+1996-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	63	14	300
+1996-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	89	4	300
+1996-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	118	4	300
+1997-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	49	22	300
+1997-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	74	26	300
+1997-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	88	25	300
+1997-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	88	20	300
+1997-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	81	19	300
+1997-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	98	22	300
+1998-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	117	51	300
+1998-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	133	53	300
+1998-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	134	53	300
+1998-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	151	51	300
+1998-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	124	44	300
+1998-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	94	35	300
+1999-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	27	7	300
+1999-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	26	5	300
+1999-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	25	5	300
+1999-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	30	12	300
+1999-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	32	15	300
+1999-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	42	20	300
+2000-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	6	3	300
+2000-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	15	9	300
+2000-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	15	6	300
+2000-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	13	2	300
+2000-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	12	4	300
+2000-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	16	2	300
+2001-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	13	4	300
+2001-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	51	8	300
+2001-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	97	16	300
+2001-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	114	14	300
+2001-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	107	10	300
+2001-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	91	6	300
+2002-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	30	4	300
+2002-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	56	8	300
+2002-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	60	6	300
+2002-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	71	8	300
+2002-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	79	5	300
+2002-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	50	5	300
+2003-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	38	5	300
+2003-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	44	9	300
+2003-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	112	16	300
+2003-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	101	10	300
+2003-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	104	5	300
+2003-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	63	5	300
+2004-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	17	4	300
+2004-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	21	3	300
+2004-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	23	2	300
+2004-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	25	1	300
+2004-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	29	1	300
+2004-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	42	1	300
+2004-11-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	54	1	300
+2005-04-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	56	12	300
+2005-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	83	21	300
+2005-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	68	22	300
+2005-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	84	15	300
+2005-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	64	10	300
+2005-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	80	17	300
+2005-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	121	16	300
+2006-04-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	75	21	300
+2006-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	57	19	300
+2006-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	59	17	300
+2006-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	62	13	300
+2006-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	57	9	300
+2006-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	61	6	300
+2006-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	70	7	300
+2007-04-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	39	5	300
+2007-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	52	7	300
+2007-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	50	7	300
+2007-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	54	5	300
+2007-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	64	5	300
+2007-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	82	2	300
+2007-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	70	1	300
+2008-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	9	1	300
+2008-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	12	1	300
+2008-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	19	4	300
+2008-08-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	28	5	300
+2008-09-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	37	4	300
+2008-10-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	35	5	300
+2009-05-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	3	1	300
+2009-06-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	16	2	300
+2009-07-01	Peromyscus	Peromyscus maniculatus	Polson 5, Montana	47.64416667	-114.3461111	26	3	300
+1994-06-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	36	5	300
+1994-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	19	3	300
+1994-08-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	26	5	300
+1994-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	23	7	300
+1995-03-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	8	1	300
+1995-04-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	15	4	300
+1995-05-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	11	5	300
+1995-06-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	10	3	300
+1995-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	7	2	300
+1995-08-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	12	3	300
+1995-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	13	4	300
+1995-10-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	14	2	300
+1996-05-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	14	4	300
+1996-06-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	17	4	300
+1996-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	23	8	300
+1996-08-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	36	8	300
+1996-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	35	8	300
+1996-10-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	34	5	300
+1997-05-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	18	3	300
+1997-06-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	14	2	300
+1997-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	16	2	300
+1997-08-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	14	1	300
+1997-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	25	1	300
+1997-10-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	14	1	300
+1998-05-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	32	1	300
+1998-06-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	19	1	300
+1998-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	26	2	300
+1998-08-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	33	4	300
+1998-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	17	2	300
+1998-10-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	22	4	300
+1999-05-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	6	2	300
+1999-06-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	9	3	300
+1999-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	7	3	300
+1999-08-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	11	2	300
+1999-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	11	2	300
+1999-10-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	11	1	300
+2000-05-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	14	1	300
+2000-06-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	12	2	300
+2000-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	20	1	300
+2000-08-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	19	1	300
+2000-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	12	0	300
+2000-10-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	26	0	300
+2001-05-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	9	0	300
+2001-06-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	10	0	300
+2001-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	11	0	300
+2001-08-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	10	0	300
+2001-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	10	0	300
+2001-10-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	8	0	300
+2002-05-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	3	0	300
+2002-06-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	8	0	300
+2002-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	9	0	300
+2002-08-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	17	0	300
+2002-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	15	0	300
+2002-10-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	7	0	300
+2003-05-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	7	0	300
+2003-06-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	11	0	300
+2003-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	7	0	300
+2003-08-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	9	0	300
+2003-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	4	0	300
+2003-10-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	5	0	300
+2004-05-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	11	2	300
+2004-06-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	23	3	300
+2004-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	21	2	300
+2004-08-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	17	2	300
+2004-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	17	3	300
+2004-10-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	10	3	300
+2005-05-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	10	3	300
+2005-07-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	5	0	300
+2005-09-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	4	0	300
+2005-10-01	Peromyscus	Peromyscus maniculatus	Polson 6, Montana	47.77083333	-114.0125	5	0	300
+1997-09-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	9	0	444
+1997-10-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	15	0	444
+1997-11-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	17	0	444
+1998-01-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	23	0	444
+1998-02-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	9	0	444
+1998-03-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	21	0	444
+1998-04-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	24	0	444
+1998-05-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	22	1	444
+1998-06-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	14	0	444
+1998-07-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	10	0	444
+1998-08-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	9	1	444
+1998-09-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	7	1	444
+1998-10-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	16	0	444
+1998-11-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	15	4	444
+1999-01-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	19	3	444
+1999-02-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	18	4	444
+1999-03-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	12	4	444
+1999-05-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	16	7	444
+1999-06-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	11	3	444
+1999-07-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	4	3	444
+1999-08-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	8	5	444
+1999-09-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	6	4	444
+1999-10-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	6	2	444
+1999-11-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	12	2	444
+2000-01-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	8	1	444
+2000-02-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	10	2	444
+2000-03-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	9	1	444
+2000-04-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	5	1	444
+2000-06-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	7	0	444
+2000-07-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	6	1	444
+2000-08-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	4	1	444
+2000-09-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	7	2	444
+2000-10-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	14	1	444
+2000-12-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	7	1	444
+2001-01-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	4	1	444
+2001-02-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	1	444
+2001-03-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	7	0	444
+2001-05-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	3	0	444
+2001-06-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	1	444
+2001-07-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	4	1	444
+2001-08-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	6	0	444
+2001-09-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	3	0	444
+2001-10-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	5	0	444
+2001-12-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2002-01-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	7	0	444
+2002-02-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	4	0	444
+2002-03-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2002-05-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444
+2002-06-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444
+2002-07-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444
+2002-08-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444
+2002-09-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2002-10-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2002-12-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2003-01-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2003-02-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	3	0	444
+2003-03-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2003-04-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	4	0	444
+2003-05-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	3	0	444
+2003-06-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2003-07-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	4	0	444
+2003-08-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	5	0	444
+2003-09-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2003-10-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444
+2003-11-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444
+2003-12-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2004-01-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	4	0	444
+2004-02-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	8	2	444
+2004-03-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	5	0	444
+2004-05-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	6	0	444
+2004-06-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2004-07-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444
+2004-08-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	3	0	444
+2004-09-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444
+2004-10-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2004-11-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444
+2005-01-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444
+2005-02-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	2	0	444
+2005-03-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	3	0	444
+2005-04-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	6	1	444
+2005-05-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	5	1	444
+2005-06-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	4	0	444
+2005-07-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	3	0	444
+2005-08-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	3	0	444
+2005-09-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444
+2005-10-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	6	0	444
+2005-11-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	9	0	444
+2005-12-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	8	0	444
+2006-01-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	6	0	444
+2006-02-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	8	0	444
+2006-03-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	3	0	444
+2006-04-01	Peromyscus	Peromyscus maniculatus	Zuni 2, New Mexico	35.11833333	-108.77	1	0	444

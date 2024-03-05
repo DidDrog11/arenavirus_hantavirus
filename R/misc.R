@@ -281,4 +281,254 @@ ft_48_2_processed <- ft_48_2 %>%
   write.table("clipboard", sep="\t", row.names=FALSE)
 # needs further work to associated each id with a single genbank record. For now just matched on species, not location
 # currently only matching for virus positive
+
+
+# ft_64 -------------------------------------------------------------------
+library(stringdist)
+ft_64_locations <- read_xlsx(here("data", "data_to_extract", "ft_64_locations.xlsx")) %>%
+  mutate(locality = str_split(`Locality; district (region)`, ";", simplify = TRUE)[, 1],
+         region = str_trim(str_split(`Locality; district (region)`, ";", simplify = TRUE)[, 2]))
+ft_64_samples <- read_xlsx(here("data", "data_to_extract", "ft_64_samples.xlsx"))  %>%
+  mutate(event_date = `Year of collection`,
+         genus = case_when(str_detect(`Host speci es`, "AF|AS|AA") ~ "Apodemus",
+                           str_detect(`Host speci es`, "MA") ~ "Microtus",
+                           str_detect(`Host speci es`, "CG") ~ "Clethrionomys",
+                           str_detect(`Host speci es`, "SM|SA") ~ "Sorex",
+                           str_detect(`Host speci es`, "CL|CS") ~ "Crocidura",
+                           str_detect(`Host speci es`, "NF") ~ "Neomys",
+                           TRUE ~ "error"),
+         species = case_when(str_detect(`Host speci es`, "AF") ~ "Apodemus flavicollis",
+                             str_detect(`Host speci es`, "AS") ~ "Apodemus sylvaticus",
+                             str_detect(`Host speci es`, "AA") ~ "Apodemus agrarius",
+                             str_detect(`Host speci es`, "MA") ~ "Microtus arvalis",
+                             str_detect(`Host speci es`, "CG") ~ "Clethrionomys glareolus",
+                             str_detect(`Host speci es`, "SM") ~ "Sorex minutus",
+                             str_detect(`Host speci es`, "SA") ~ "Sorex araneus",
+                             str_detect(`Host speci es`, "CS") ~ "Crocidura leucodon",
+                             str_detect(`Host speci es`, "CL") ~ "Crocidura suaveolens",
+                             str_detect(`Host speci es`, "NF") ~ "Neomys fodiens",
+                             TRUE ~ "error"),
+         `Kurkino virus` = case_when(str_detect(`Virus detected, positive tissue`, "KURV") ~ 1,
+                          TRUE ~ 0),
+         `Tula virus` = case_when(str_detect(`Virus detected, positive tissue`, "TULV") ~ 1,
+                          TRUE ~ 0),
+         `Asikkala virus` = case_when(str_detect(`Virus detected, positive tissue`, "ASIV") ~ 1,
+                          TRUE ~ 0),
+         `Seewis virus` = case_when(str_detect(`Virus detected, positive tissue`, "SWSV") ~ 1,
+                          TRUE ~ 0)) %>%
+  pivot_longer(cols = c("Kurkino virus", "Tula virus", "Asikkala virus", "Seewis virus"), names_to = "Pathogen", values_to = "Positive") 
+
+# Unique localities from the first dataset
+localities_ft_64 <- unique(ft_64_locations$locality)
+
+# Unique localities from the second dataset
+localities_ft_64_samples <- unique(ft_64_samples$Locality)
+
+# Initialize a vector to store matched localities
+matched_localities <- character(length(localities_ft_64))
+
+# Set a threshold for the maximum distance
+threshold <- 2  # You can adjust this threshold as needed
+
+# Loop through each locality in the first dataset
+for (i in seq_along(localities_ft_64)) {
+  # Compute string distances between the current locality and all localities in the second dataset
+  distances <- stringdist(localities_ft_64[i], localities_ft_64_samples)
   
+  # Check if any of the distances fall below the threshold
+  if (any(distances <= threshold)) {
+    # If a match is found, store the matched locality
+    matched_localities[i] <- localities_ft_64_samples[which.min(distances)]
+  } else {
+    # If no match is found, store NA
+    matched_localities[i] <- NA
+  }
+}
+
+# Create a data frame with original localities and matched localities
+matched_df <- data.frame(original_locality = localities_ft_64, matched_locality = matched_localities)
+
+# Merge the matched localities dataframe with ft_64_locations to get the coordinates
+merged_data <- merge(matched_df, ft_64_locations, by.x = "original_locality", by.y = "locality", all.x = TRUE)
+
+# Merge the merged_data with ft_64_samples to add the coordinates to ft_64_samples
+ft_64_final <- merge(ft_64_samples, merged_data, by.x = "Locality", by.y = "matched_locality", all.x = TRUE) %>%
+  mutate(locality = paste0(Locality, ", ", region)) %>%
+  select(-Locality, -region) %>%
+  select(event_date, genus, species, locality, verbatimLocality = `Locality type`, Latitude, Longitude, Pathogen, Positive, `Sample code`) %>%
+  arrange(Pathogen, event_date, locality, species)
+
+writeClipboard(ft_64_final$`Sample code`)
+  
+write.table(ft_64_final %>%
+              select(Pathogen, Positive), here("data", "data_to_extract", "ft_64_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_66 -------------------------------------------------------------------
+ft_66 <- read_csv(here("data", "data_to_extract", "ft_66_supp.csv")) %>%
+  select(-`...15`)
+
+ft_66_coords <- read_csv(here("data", "data_to_extract", "ft_66_locations.csv"))
+
+ft_66 %>%
+  rename("site" = 1) %>%
+  pivot_longer(cols = !contains("site"), names_to = "species", values_to = "n") %>%
+  mutate(n = replace_na(n, 0),
+         genus = str_split(species, " ", simplify = TRUE)[, 1]) %>%
+  left_join(ft_66_coords) %>%
+  select(genus, species, site, lat, lon, n) %>%
+  write.table(here("data", "data_to_extract", "ft_66_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+# ft_67 -------------------------------------------------------------------
+
+ft_67_rodent <- read_csv(here("data", "data_to_extract", "ft_67_supp_1.csv"))
+
+ft_67_path <- read_csv(here("data", "data_to_extract", "ft_67_supp_2.csv"))
+
+# ft_67_rodent %>%
+#   mutate(season = factor(season, levels = c("spring", "summer", "autumn")),
+#          site = factor(site, levels = c("Weissach", "Jeeser", "Billerbeck", "Gotha"))) %>%
+#   arrange(site, year, season, locality) %>%
+#   select(year, season, species, site, locality, lat, lon) %>%
+#   write_csv(here("data", "data_to_extract", "ft_67_supp_1.csv"))
+
+summarised_supp_1 <- ft_67_rodent %>%
+  group_by(year, season, species, site, lat, lon, assay, pathogen) %>%
+  summarise(n = sum(lt, st),
+            tested = sum(tested),
+            positive = sum(positive),
+            te = sum(tn))
+
+rodent_data_67 <- summarised_supp_1 %>%
+  ungroup() %>%
+  mutate(season = factor(season, levels = c("spring", "summer", "autumn"))) %>%
+  select(year, season, species, site, lat, lon, n, te) %>%
+  bind_rows(ft_67_path %>%
+              ungroup() %>%
+              mutate(season = factor(season, levels = c("spring", "summer", "autumn"))) %>%
+              select(year, season, species, site, lat, lon, n, te) %>%
+              filter(species == "Microtus agrestis") %>%
+              distinct()) %>%
+  arrange(species, year, season, site) %>%
+  mutate(rodent_record_id = 19292 + (row_number(.) - 1)) %>%
+  mutate(year = case_when(season == "spring" ~ paste0(year, "-04"),
+                          season == "summer" ~ paste0(year, "-07"),
+                          season == "autumn" ~ paste0(year, "-10")))
+
+write.table(rodent_data_67, here("data", "data_to_extract", "ft_67_rodent_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+pathogen_67 <- summarised_supp_1 %>%
+  ungroup() %>%
+  select(year, season, species, site, lat, lon, assay, pathogen, tested, positive) %>%
+  bind_rows(ft_67_path %>%
+              select(year, season, species, site, lat, lon, assay, pathogen, tested, positive)) %>%
+  left_join(rodent_data_67 %>%
+              select(rodent_record_id, year, season, species, site) %>%
+              mutate(year = as.numeric(str_split(year, "-", simplify = TRUE)[, 1])))  %>%
+  mutate(year = case_when(season == "spring" ~ paste0(year, "-04"),
+                          season == "summer" ~ paste0(year, "-07"),
+                          season == "autumn" ~ paste0(year, "-10"))) %>%
+  select(-season) %>%
+  group_by(assay, pathogen) %>%
+  arrange(assay, pathogen, rodent_record_id) %>%
+  ungroup() %>%
+  mutate(pathogen_record_id = 26909 + (row_number(.) - 1)) %>%
+  relocate(pathogen_record_id, rodent_record_id, .before = 1)
+  
+write.table(pathogen_67, here("data", "data_to_extract", "ft_67_pathogen_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+ft_67_sequences <- read_csv(here("data", "data_to_extract", "ft_67_supp_3.csv")) %>%
+  separate(`Collection\rdate`, into = c("year", "season"), sep = "\\r", remove = FALSE) %>%
+  mutate(S = str_sub(S, end = 8),
+         M = str_sub(M, end = 8),
+         L = str_sub(L, end = 8)) %>%
+  pivot_longer(cols = c(S, M, L), names_to = "segment", values_to = "accession") %>%
+  filter(str_length(accession) >= 8) %>%
+  select(year, 
+         season,
+         "species" = Host,
+         "site" = `Trapping\rlocation`,
+         accession,
+         Isolate)  %>%
+  mutate(year = case_when(season == "spring" ~ paste0(year, "-04"),
+                          season == "summer" ~ paste0(year, "-07"),
+                          season == "fall" ~ paste0(year, "-10"))) %>%
+  select(-season) %>%
+  left_join(pathogen_67 %>%
+              filter(assay == "PCR" & pathogen == "TULV") %>%
+              select(pathogen_record_id, rodent_record_id, year, species, site) %>%
+              distinct()) %>%
+  select(pathogen_record_id, rodent_record_id, species, accession)
+
+write.table(ft_67_sequences, here("data", "data_to_extract", "ft_67_sequences_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_71 -------------------------------------------------------------------
+
+ft_71 <- read_csv(here("data", "data_to_extract", "ft_71_supp_1.csv")) %>%
+  rename("lab_id" = 1,
+         "field_id" = 2,
+         "museum_id" = 3,
+         "date" = 4,
+         "species" = 5,
+         "province" = 6,
+         "sex" = 7,
+         "samples" = 8,
+         "arenavirus_result" = 9,
+         "hantavirus_result" = 10) %>%
+  mutate(lat = -24.5914,
+         long = 27.6258,
+         date = as_date(date, format = "%d-%b-%y"),
+         clean_species = case_when(
+           str_detect(species, "Mus\\s*\\(Nannomys\\)\\ssp\\.?$") ~ "Mus spp.",
+           str_detect(species, "Mus\\s*\\(Nannomys\\)\\s*sp\\.?$") ~ "Mus spp.",
+           str_detect(species, "Mus (Nannomys) sp..") ~ "Mus spp.",
+           str_detect(species, "Mus\\s*\\(Nannomys\\)\\s*minutoides\\ss\\.l\\.?$") ~ "Mus minutoides",
+           str_detect(species, "s\\.l\\.?$") ~ str_remove(species, "\\s*s\\.l\\.?"),
+           str_detect(species, "Elephantulus\\s*brachyrhynchus") ~ "Elephantulus brachyrhynchus",
+           str_detect(species, "Aethomys\\s*/\\s*Micaelamys\\s*sp\\.?|Aethomys\\ssp\\.?$") ~ "Aeothomys spp.",
+           str_detect(species, "Aethomys ineptus s.l..") ~ "Aethomys ineptus",
+           str_detect(species, "Gerbilliscus\\s*leucogaster\\s*\\.$") ~ "Gerbilliscus leucogaster",
+           str_detect(species, "Steatomys sp.") ~ "Steatomys spp.",
+           TRUE ~ species
+           ),
+         taxa = case_when(str_detect(clean_species, "spp.") ~ "genus",
+                          TRUE ~ "species"),
+         genus = str_split(clean_species, " ", simplify = TRUE)[, 1], 
+         arenavirus_result = case_when(str_detect(arenavirus_result, "Neg") ~ 0,
+                                       str_detect(arenavirus_result, "Pos") ~ 1),
+         hantavirus_result = case_when(str_detect(hantavirus_result, "Neg") ~ 0,
+                                       str_detect(hantavirus_result, "Pos") ~ 1),
+         rodent_record_id = 19393 + row_number() - 1) %>%
+  pivot_longer(cols = c("arenavirus_result", "hantavirus_result"), names_to = "family", values_to = "result") %>%
+  mutate(family = case_when(family == "arenavirus_result" ~ "Arenaviridae",
+                            family == "hantavirus_result" ~ "Hantaviridae")) %>%
+  group_by(family) %>%
+  arrange(family, rodent_record_id) %>%
+  select(rodent_record_id, date, taxa, genus, clean_species, province, lat, long, family, result, lab_id)
+
+write.table(ft_71, here("data", "data_to_extract", "ft_71_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_m_8 ------------------------------------------------------------------
+
+ft_m_8_1 <- read_csv(here("data", "data_to_extract", "ft_m_8_supp_1.csv"))
+ft_m_8_2 <- read_csv(here("data", "data_to_extract", "ft_m_8_supp_2.csv"))
+ft_m_8_locations <- read_csv(here("data", "data_to_extract", "ft_m_8_locations.csv"))
+
+ft_m_8_c <- bind_rows(ft_m_8_1, ft_m_8_2) %>%
+  mutate(Session = ym(Session)) %>%
+  pivot_longer(cols = 2:37, 
+               names_to = c("site", ".value"), 
+               names_pattern = "(.*)\\.(.*)", 
+               values_to = "value") %>%
+  drop_na() %>%
+  left_join(ft_m_8_locations, by = "site") %>%
+  mutate(genus = "Peromyscus",
+         species = "Peromyscus maniculatus",
+         name = paste0(name, ", ", state)) %>%
+  select("event_date" = Session, genus, species, name, lat, lon, MNA, MNI, traps) %>%
+  group_by(name) %>%
+  arrange(name, event_date)
+
+write.table(ft_m_8_c, here("data", "data_to_extract", "ft_m_8_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")

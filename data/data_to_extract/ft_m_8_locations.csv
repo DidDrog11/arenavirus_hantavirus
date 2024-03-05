@@ -1,0 +1,19 @@
+site,name,state,months,start,end,freq,traps,lat,lon
+C11,Cascade 11,Montana,179,1994-06,2009-07,monthly,300,46.98972222,-111.5844444
+CMR18,CMR 18,Montana,69,1994-06,2005-10,monthly,300,47.623,-108.5813333
+Cut15,Cutbank 15,Montana,70,1994-06,2005-10,monthly,300,48.96388889,-112.4944444
+GC8,Gold Creek 8,Montana,70,1994-06,2005-10,monthly,300,46.51944444,-113.0080556
+GC9,Gold Creek 9,Montana,70,1994-06,2005-10,monthly,300,46.5225,-113.0069444
+GU,Gregson Upper,Montana,134,2004-06,2015-07,monthly,300,,
+GL,Gregson Lower,Montana,158,2002-06,2015-07,monthly,300,,
+P5,Polson 5,Montana,96,1994-07,2009-07,monthly,300,47.64416667,-114.3461111
+P6,Polson 6,Montana,70,1994-06,2005-10,monthly,300,47.77083333,-114.0125
+GCE,Grand Canyon E,Arizona,43,2002-08,2006-05,monthly,444,35.96108333,-112.0922222
+GCM,Grand Canyon M,Arizona,46,2002-04,2006-05,monthly,444,35.991,-112.1368611
+GCT,Grand Canyon T,Arizona,46,2002-04,2006-05,monthly,444,35.991,-112.1170833
+HA,Hesperus A,Colorado,67,1994-06,2006-10,six weekly,444,37.22805,-108.0399333
+HB,Hesperus B,Colorado,68,1994-06,2006-10,six weekly,444,37.22726667,-108.0396667
+MA,Molina A,Colorado,58,1994-10,2006-10,six weekly,444,39.16175,-108.0572833
+MB,Molina B,Colorado,47,1996-10,2006-10,six weekly,444,39.16725,-108.05875
+N1,Navajo 1,New Mexico,9,1997-09,2006-04,monthly,444,35.24,-108.7683333
+Z2,Zuni 2,New Mexico,127,1994-09,2006-04,monthly,444,35.11833333,-108.77
