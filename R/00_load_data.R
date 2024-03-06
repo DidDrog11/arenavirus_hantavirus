@@ -13,7 +13,7 @@ pacman::p_load(pkgs, character.only = T)
 # Searches were run manually on 2023-08-24 on PubMed, WoS and Google Scholar
 # 2,448 citations were identified after de-duplication
 search_date <- "2023-08-24"
-analysis_date <- "2024-01-30"
+analysis_date <- "2024-03-06"
 
 if(length(list.files(here("data", "raw_data"), pattern = paste0(analysis_date, "_data.rds"))) == 0) {
   
