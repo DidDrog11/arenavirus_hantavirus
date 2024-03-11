@@ -10,8 +10,6 @@ Recombination is dampened in negative sense RNA viruses relative to positive sen
    
 This project will provide an additional source of data for researchers across the Verena consortium and beyond. Future research could include exploration of changes in host or pathogen presence and the potential for spatio-temporal analysis of pathogen sharing. Based on prior work, I anticipate that data synthesis can be completed within a 3-month timeline, with initial searches and screening of the literature in month 1, and data extraction in months 2-3. Phylogenomic and generalized linear models can be implemented in months 4-6 including computational time. 
 
-Participating in this fellowship programme will allow me to contribute to and access a network of researchers interested in endemic and emerging zoonoses in a changing environment will be of immense support in the final stages of my PhD as I continue to develop my research career and think about next steps. To complete the project, I will further develop my skills in producing and maintaining a dynamic database and gain new skills in mixed data modelling including genomic data. Finally, I share many of the core values of the network and hope to continue to promote open science and equitable access to data and research outputs in my future career. 
-
 ## Useful resources
 
 https://www.bv-brc.org/ - BACTERIAL AND VIRAL BIOINFORMATICS RESOURCE CENTER  
