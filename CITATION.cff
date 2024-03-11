@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+authors:
+- family-names: "Simons"
+  given-names: "David"
+  orcid: "https://orcid.org/0000-0001-9655-1656"
+- family-names: "Seifert"
+  given-names: "Stephanie N"
+  orcid: "https://orcid.org/0000-0002-4397-6156"
+title: "ArHa: Arenavirus and Hantavirus sampling in small mammals."
+version: 0.2
+url: "https://github.com/DidDrog11/arenavirus_hantavirus"
