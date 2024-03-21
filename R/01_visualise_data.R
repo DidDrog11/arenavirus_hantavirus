@@ -47,33 +47,34 @@ leaflet(data = rodent_locations) %>%
 # Pathogens ---------------------------------------------------------------
 
 pathogen_locations <- combined_data$pathogen %>%
-  select(detection_method, pathogen_family, pathogen_species, host_species, latitude, longitude, number_tested, number_positive) %>%
-  mutate(number_tested = as.numeric(number_tested),
-         number_positive = as.numeric(number_positive)) %>%
+  select(identificationRemarks, family, scientificName, associatedTaxa, decimalLatitude, decimalLongitude, occurrenceRemarks, organismQuantity) %>%
+  mutate(number_tested = as.numeric(occurrenceRemarks),
+         number_positive = as.numeric(organismQuantity)) %>%
   drop_na(number_tested, number_positive) %>%
-  st_as_sf(coords = c("longitude", "latitude"), crs = project_crs) %>%
-  group_by(geometry, detection_method, pathogen_family, pathogen_species, host_species) %>%
+  drop_na(decimalLongitude, decimalLatitude) %>%
+  st_as_sf(coords = c("decimalLongitude", "decimalLatitude"), crs = project_crs) %>%
+  group_by(geometry, identificationRemarks, family, scientificName, associatedTaxa) %>%
   mutate(number_tested = sum(number_tested),
          number_positive = sum(number_positive)) %>%
   ungroup() %>%
   distinct() %>%
   mutate(percent_positive = case_when(is.nan(number_positive/number_tested * 100) ~ "NA",
-                                      number_positive == 0 ~ "NA",
+                                      number_positive == 0 ~ "0%",
                                       number_positive/number_tested * 100 < 1 ~ "< 1%",
                                       TRUE ~ paste0(as.character(round(number_positive/number_tested * 100, 2)), "%")),
-         detection_method = case_when(detection_method == "pcr" ~ "Viral",
-                                      detection_method == "antibody" ~ "Antibody"),
+         detection_method = case_when(identificationRemarks == "pcr" ~ "Viral",
+                                      identificationRemarks == "antibody" ~ "Antibody"),
          detection = case_when(number_positive >= 1 ~ "Detected",
                                TRUE ~ "Not detected")) %>%
   rowwise() %>%
-  mutate(labels = HTML(paste0("Pathogen family: ", pathogen_family, "<br>",
-                              "Pathogen species: ", pathogen_species, "<br>",
-                              "Host species: ", host_species, "<br>",
+  mutate(labels = HTML(paste0("Pathogen family: ", family, "<br>",
+                              "Pathogen species: ", scientificName, "<br>",
+                              "Host species: ", associatedTaxa, "<br>",
                               "Number tested: ", number_tested, "<br>",
                               "Number positive (%): ", number_positive, " (", percent_positive, ")", "<br>")))
 
-path_pal <- colorFactor(diverging_hcl(n = length(unique(pathogen_locations$pathogen_species)), palette = "Berlin"),
-                        domain = sort(unique(pathogen_locations$pathogen_species)))
+path_pal <- colorFactor(diverging_hcl(n = length(unique(pathogen_locations$scientificName)), palette = "Berlin"),
+                        domain = sort(unique(pathogen_locations$scientificName)))
 stroke_pal <- colorFactor(palette = c("white", "gray"), levels = c("Detected", "Not detected"))
 
 leaflet(data = pathogen_locations) %>%
@@ -83,7 +84,7 @@ leaflet(data = pathogen_locations) %>%
                      filter(number_tested != 0),
                    radius = ~ifelse(sqrt(number_tested) == 0, 1, sqrt(number_tested)),
                    fill = TRUE,
-                   fillColor = ~path_pal(pathogen_species),
+                   fillColor = ~path_pal(scientificName),
                    stroke = TRUE,
                    color = ~stroke_pal(detection),
                    weight = 2,
@@ -100,7 +101,7 @@ leaflet(data = pathogen_locations) %>%
                      filter(number_tested != 0),
                    radius = ~ifelse(sqrt(number_tested) == 0, 1, sqrt(number_tested)),
                    fill = TRUE,
-                   fillColor = ~path_pal(pathogen_species),
+                   fillColor = ~path_pal(scientificName),
                    stroke = TRUE,
                    color = ~stroke_pal(detection),
                    weight = 2,
@@ -114,7 +115,7 @@ leaflet(data = pathogen_locations) %>%
                    group = "Antibody detection") %>%
   addLayersControl(overlayGroups = c("Viral detection", "Antibody detection"),
                    options = layersControlOptions(collapsed = FALSE)) %>%
-  addLegend("bottomright", pal = path_pal, values = ~pathogen_species, title = "Pathogen species", opacity = 0.8)
+  addLegend("bottomright", pal = path_pal, values = ~scientificName, title = "Pathogen species", opacity = 0.8)
 
 # Host-pathogen associations ----------------------------------------------
 
