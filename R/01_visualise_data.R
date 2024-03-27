@@ -118,7 +118,6 @@ leaflet(data = pathogen_locations) %>%
   addLegend("bottomright", pal = path_pal, values = ~scientificName, title = "Pathogen species", opacity = 0.8)
 
 # Host-pathogen associations ----------------------------------------------
-
 pathogen_summary <- combined_data$pathogen %>%
   select(genus = host_genus,
          species = host_species,

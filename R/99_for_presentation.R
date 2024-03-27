@@ -1,4 +1,5 @@
 source(here::here("R", "00_load_data.R"))
+combined_data <- read_rds(here("data", "clean_data", "2024-03-22_data.rds"))
 
 # Additional packages
 pkgs <- c(
@@ -222,7 +223,191 @@ study_map <- ggplot() +
   scale_fill_viridis_c() +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  labs(title = "Countries with included studies (N = 790)",
+  labs(title = "Countries with included studies (N = 810)",
        fill = "Number of publications")
 
 save_plot(study_map, filename = here("output", "study_map.png"), base_width = 8, base_height = 8)
+
+
+# H-P associations in data ------------------------------------------------
+
+unique_host <- combined_data$pathogen %>%
+  filter(!str_detect(associatedTaxa, "sp.|spp.")) %>%
+  distinct(associatedTaxa) %>%
+  drop_na() %>%
+  arrange(associatedTaxa)
+
+unique_path <- combined_data$pathogen %>%
+  drop_na(scientificName) %>%
+  distinct(scientificName)
+
+library(taxize)
+id <- get_gbifid(unique_host$associatedTaxa)
+gbifid <- id2name(id)
+gbif_df <- map_dfr(gbifid, as_tibble)
+clean_host <- bind_cols(unique_host, gbif_df)
+
+path_id <- get_uid(unique_path$scientificName)
+taxize_options(ncbi_sleep = 0.6)
+ncbiid <- id2name(path_id, db = "ncbi")
+ncbi_df <- map_dfr(ncbiid, as_tibble)
+clean_path <- bind_cols(unique_path, ncbi_df)
+
+hp_df <- combined_data$pathogen %>%
+  drop_na(scientificName) %>%
+  filter(!str_detect(associatedTaxa, "sp.|spp.")) %>%
+  filter(!str_detect(scientificName, "/")) %>%
+  select(associatedTaxa, scientificName, family, occurrenceRemarks, organismQuantity, decimalLatitude, decimalLongitude) %>%
+  left_join(clean_host %>%
+              select(-value, -status) %>%
+              rename("host_id" = id,
+                     "host_clean" = name,
+                     "host_rank" = rank), by = "associatedTaxa") %>%
+  left_join(clean_path %>%
+              select(-value, -status) %>%
+              rename("path_id" = id,
+                     "path_clean" = name,
+                     "path_rank" = rank), by = "scientificName") %>%
+  mutate(path_combined = coalesce(path_clean, scientificName)) %>%
+  filter(host_rank == "species")
+
+hp_summarised <- hp_df %>%
+  group_by(family, host_clean, path_combined) %>%
+  summarise(n_tested = sum(occurrenceRemarks),
+            n_positive = sum(organismQuantity)) %>%
+  filter(n_tested != 0) %>%
+  group_by(host_clean, path_combined) %>%
+  mutate(prevalence = round(n_positive/(n_tested), 3))
+
+hp_list <- hp_summarised %>%
+  group_by(family) %>%
+  group_split()
+
+library(tidyterra)
+
+hanta_hp <- ggplot() +
+  geom_point(data = hp_list[[1]], aes(y = path_combined, x = prevalence, colour = host_clean, size = n_tested), position = position_jitter(width = 0)) +
+  guides(colour = "none") +
+  theme_bw() +
+  labs(title = paste(unique(hp_list[[1]]$family)),
+       x = "Prevalence",
+       y = element_blank(),
+       size = "Number tested") +
+  xlim(0, 1)
+
+mammarena_hp <- ggplot() +
+  geom_point(data = hp_list[[2]], aes(y = path_combined, x = prevalence, colour = host_clean, size = n_tested), position = position_jitter(width = 0)) +
+  guides(colour = "none") +
+  theme_bw() +
+  labs(title = paste(unique(hp_list[[2]]$family)),
+       x = "Prevalence",
+       y = element_blank(),
+       size = "Number tested") +
+  xlim(0, 1)
+
+ggsave(plot = hanta_hp, filename = here("output", "hantavirus_hp.png"), width = 8)
+ggsave(plot = mammarena_hp, filename = here("output", "arenavirus_hp.png"), width = 8)
+
+examples <- c("Orthohantavirus sinnombreense", "Mammarenavirus lassaense")
+
+iucn_all <- vect(here("data", "iucn", "MAMMALS_TERRESTRIAL_ONLY.shp"))
+
+map_hp <- hp_df %>%
+  filter(path_combined %in% examples) %>%
+  group_by(path_combined) %>%
+  group_split()
+
+hp_1_assays <- map_hp[[1]] %>%
+  group_by("sci_name" = host_clean) %>%
+  summarise(n_tested = sum(occurrenceRemarks),
+            n_positive = sum(organismQuantity)) %>%
+  arrange(-n_tested)
+
+hp_1_ranges <- iucn_all[iucn_all$sci_name %in% hp_1_assays$sci_name] %>%
+  as_tibble(geom = "WKT") %>%
+  select(sci_name, geometry) %>%
+  drop_na(geometry) %>%
+  vect(geom = "geometry", crs = "EPSG:4326")
+
+hp_1_points <- map_hp[[1]] %>%
+  distinct("sci_name" = associatedTaxa, occurrenceRemarks, organismQuantity, decimalLatitude, decimalLongitude) %>%
+  filter(organismQuantity >= 1) %>%
+  vect(geom = c("decimalLongitude", "decimalLatitude"), crs = "EPSG:4326")
+
+plot_mammarena <- list()
+
+for(i in 1:length(unique(hp_1_points$sci_name))){
+  
+  species <- sort(unique(hp_1_points$sci_name))[i]
+  
+  species_points <- hp_1_points %>%
+    filter(sci_name == species)
+  
+  species_range <- hp_1_ranges %>%
+    filter(sci_name == species)
+  
+  extent <- ext(species_range)
+  
+  plot_mammarena <- ggplot() +
+    geom_spatvector(data = world_vect) +
+    geom_spatvector(data = species_range, fill = "red", alpha = 0.2) +
+    geom_spatvector(data = species_points, aes(colour = organismQuantity, size = occurrenceRemarks), alpha = 0.4) +
+    scale_size_area() +
+    scale_color_viridis_c() +
+    theme_minimal() +
+    labs(title = paste(species), 
+         colour = "Positive",
+         size = "Tested") +
+    coord_sf(xlim = extent[1:2], ylim = extent[3:4])
+  
+  ggsave(plot = plot_mammarena, filename = here("output", "sample_maps", "arenaviridae", paste0(species, ".png")), width = 6)
+  
+}
+
+
+hp_2_assays <- map_hp[[2]] %>%
+  group_by("sci_name" = host_clean) %>%
+  summarise(n_tested = sum(occurrenceRemarks),
+            n_positive = sum(organismQuantity)) %>%
+  arrange(-n_tested)
+
+hp_2_ranges <- iucn_all[iucn_all$sci_name %in% hp_2_assays$sci_name] %>%
+  as_tibble(geom = "WKT") %>%
+  select(sci_name, geometry) %>%
+  drop_na(geometry) %>%
+  vect(geom = "geometry", crs = "EPSG:4326")
+
+hp_2_points <- map_hp[[2]] %>%
+  distinct("sci_name" = host_clean, occurrenceRemarks, organismQuantity, decimalLatitude, decimalLongitude) %>%
+  filter(organismQuantity >= 1) %>%
+  vect(geom = c("decimalLongitude", "decimalLatitude"), crs = "EPSG:4326")
+
+plot_hantavir <- list()
+
+for(i in 1:length(unique(hp_2_points$sci_name))){
+  
+  species <- sort(unique(hp_2_points$sci_name))[i]
+  
+  species_points <- hp_2_points %>%
+    filter(sci_name == species)
+  
+  species_range <- hp_2_ranges %>%
+    filter(sci_name == species)
+  
+  extent <- ext(species_range)
+  
+  plot_hantavir <- ggplot() +
+    geom_spatvector(data = world_vect) +
+    geom_spatvector(data = species_range, fill = "red", alpha = 0.2) +
+    geom_spatvector(data = species_points, aes(colour = organismQuantity, size = occurrenceRemarks), alpha = 0.4) +
+    scale_size_area() +
+    scale_color_viridis_c() +
+    theme_minimal() +
+    labs(title = paste(species), 
+         colour = "Positive",
+         size = "Tested") +
+    coord_sf(xlim = extent[1:2], ylim = extent[3:4])
+  
+  ggsave(plot = plot_hantavir, filename = here("output", "sample_maps", "hantaviridae", paste0(species, ".png")), width = 6)
+  
+}
