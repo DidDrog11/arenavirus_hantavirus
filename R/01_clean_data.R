@@ -5,8 +5,11 @@ combined_data <- list()
 
 # Clean citation sheet ----------------------------------------------------
 clean_citations <- combined_data_v2$citations %>%
-  left_join(combined_data_v2$studies %>%
-              select(study_id, full_text_id), by = "full_text_id") %>%
+  left_join(bind_rows(
+    combined_data_v2$studies %>%
+      select(study_id, full_text_id),
+    combined_data_v3$studies %>%
+      select(study_id, full_text_id)), by = "full_text_id") %>%
   relocate(study_id, .before = 1)
 
 
