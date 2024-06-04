@@ -532,3 +532,30 @@ ft_m_8_c <- bind_rows(ft_m_8_1, ft_m_8_2) %>%
   arrange(name, event_date)
 
 write.table(ft_m_8_c, here("data", "data_to_extract", "ft_m_8_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_105 ------------------------------------------------------------------
+ft_105 <- read_xlsx(here("data", "data_to_extract", "ft_105_supp.xlsx")) %>%
+  rowwise() %>%
+  mutate(event_date = paste0(Year, if(Season == 1) "-06" else "-09"),
+         scientificName = "Myodes glareolus",
+         locality = "",
+         country = "Sweden",
+         verbatim_locality = paste(Provyta.1, if(Lokaltyp == "Brand") "fire area" else if(Lokaltyp == "Hygge") "clear cut" else "unburned forest"),
+         Provyta.1 = as.numeric(Provyta.1),
+         individual_count = 1,
+         serostatus = PUUV) %>%
+  arrange(Provyta.1, Year, Season) %>%
+  select(event_date, scientificName, locality, country, verbatim_locality, individual_count, serostatus)
+
+write.table(ft_105, here("data", "data_to_extract", "ft_105_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_114 ------------------------------------------------------------------
+
+ft_114 <- read_csv(here("data", "data_to_extract", "ft_114.csv")) %>%
+  fill(Year, .direction = "down") %>%
+  fill(Provinces, .direction = "down") %>%
+  mutate(location = paste0(City, ", ", Provinces))
+
+write.table(ft_114, here("data", "data_to_extract", "ft_114_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")

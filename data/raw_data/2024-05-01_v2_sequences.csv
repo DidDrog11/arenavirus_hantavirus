@@ -1,0 +1,1006 @@
+sequence_record_id,associated_pathogen_record_id,associated_rodent_record_id,study_id,host_genus,associatedTaxa,sequenceType,scientificName,accession_number,method,note,date_sampled,sample_location
+1,NA,87,3,Apodemus,Apodemus agrarius,Pathogen,Dobrava-Belgrade orthohantavirus,AJ269549,NA,NA,NA,NA
+2,NA,87,3,Apodemus,Apodemus agrarius,Pathogen,Dobrava-Belgrade orthohantavirus,AJ269550,NA,NA,NA,NA
+3,NA,87,3,Apodemus,Apodemus agrarius,Pathogen,Dobrava-Belgrade orthohantavirus,AJ269551,NA,NA,NA,NA
+4,NA,87,3,Apodemus,Apodemus agrarius,Pathogen,Dobrava-Belgrade orthohantavirus,AJ269552,NA,NA,NA,NA
+5,NA,87,3,Apodemus,Apodemus agrarius,Pathogen,Dobrava-Belgrade orthohantavirus,AJ269553,NA,NA,NA,NA
+6,NA,88,3,Apodemus,Apodemus flavicollis,Pathogen,Dobrava-Belgrade orthohantavirus,AJ269554,NA,NA,NA,NA
+7,NA,113,6,Urotrichis,Urotrichis talpoides,Pathogen,Asama virus,EU929070,NA,NA,NA,NA
+8,NA,113,6,Urotrichis,Urotrichis talpoides,Pathogen,Asama virus,EU929071,NA,NA,NA,NA
+9,NA,113,6,Urotrichis,Urotrichis talpoides,Pathogen,Asama virus,EU929072,NA,NA,NA,NA
+10,NA,113,6,Urotrichis,Urotrichis talpoides,Pathogen,Asama virus,EU929073,NA,NA,NA,NA
+11,NA,113,6,Urotrichis,Urotrichis talpoides,Pathogen,Asama virus,EU929074,NA,NA,NA,NA
+12,NA,113,6,Urotrichis,Urotrichis talpoides,Pathogen,Asama virus,EU929075,NA,NA,NA,NA
+13,NA,113,6,Urotrichis,Urotrichis talpoides,Pathogen,Asama virus,EU929076,NA,NA,NA,NA
+14,NA,113,6,Urotrichis,Urotrichis talpoides,Pathogen,Asama virus,EU929077,NA,NA,NA,NA
+15,NA,113,6,Urotrichis,Urotrichis talpoides,Pathogen,Asama virus,EU929078,NA,NA,NA,NA
+16,NA,114,7,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HM172504,NA,NA,NA,NA
+17,NA,114,7,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HM172505,NA,NA,NA,NA
+18,NA,114,7,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HM172506,NA,NA,NA,NA
+19,NA,114,7,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HM172507,NA,NA,NA,NA
+20,NA,123,7,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HM172508,NA,NA,NA,NA
+21,NA,123,7,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HM172509,NA,NA,NA,NA
+22,NA,123,7,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HM172510,NA,NA,NA,NA
+23,NA,123,7,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HM172511,NA,NA,NA,NA
+24,NA,123,7,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HM172512,NA,NA,NA,NA
+25,NA,123,7,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HM172513,NA,NA,NA,NA
+26,NA,123,7,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HM172514,NA,NA,NA,NA
+27,NA,192,9,Mastomys,Mastomys natalensis,Pathogen,Lassa mammarenavirus,MW039388,NA,NA,NA,NA
+28,NA,224,9,Mastomys,Mastomys natalensis,Pathogen,Lassa mammarenavirus,MW039389,NA,NA,NA,NA
+29,NA,224,9,Mastomys,Mastomys natalensis,Pathogen,Lassa mammarenavirus,MW039390,NA,NA,NA,NA
+30,NA,224,9,Mastomys,Mastomys natalensis,Pathogen,Lassa mammarenavirus,MW039391,NA,NA,NA,NA
+31,NA,192,9,Mastomys,Mastomys natalensis,Host,NA,MW030681,NA,NA,NA,NA
+32,NA,224,9,Mastomys,Mastomys natalensis,Host,NA,MW030682,NA,NA,NA,NA
+33,NA,224,9,Mastomys,Mastomys natalensis,Host,NA,MW030683,NA,NA,NA,NA
+34,NA,224,9,Mastomys,Mastomys natalensis,Host,NA,MW030684,NA,NA,NA,NA
+35,1555,1836,13,Niviventer,Niviventer confucianus,Pathogen,RtNn-HV/HuN2015,KY370078,NA,NA,NA,NA
+36,1650,1566,13,Apodemus,Apodemus peninsulae,Pathogen,RtAp-HV/JL2014,KY370079,NA,NA,NA,NA
+37,1834,1962,13,Caryomys,Caryomys eva,Pathogen,RtCe-HV/NX2015,KY370080,NA,NA,NA,NA
+38,1965,1946,13,Niviventer,Niviventer confucianus,Pathogen,RtNn-HV/NX2015,KY370081,NA,NA,NA,NA
+39,2054,1575,13,Myodes,Myodes rutilus,Pathogen,RtMrut-HV/JL2014,KY370082,NA,NA,NA,NA
+40,2243,2056,13,Niviventer,Niviventer confucianus,Pathogen,RtNn-HV/SAX2015,KY370083,NA,NA,NA,NA
+41,2307,1430,13,Dipus,Dipus sagitta,Pathogen,RtDs-HV/IM2014,KY370084,NA,NA,NA,NA
+42,2529,2189,13,Microtus,Microtus gregalis,Pathogen,RtMg-HV/XJ2015,KY370085,NA,NA,NA,NA
+43,2603,1659,13,Sorex,Sorex araneus,Pathogen,Shrew-HV/Tibet2014,KY370086,NA,NA,NA,NA
+44,2747,1714,13,Sorex,Sorex araneus,Pathogen,Shrew-HV/SX2014,KY370087,NA,NA,NA,NA
+45,2943,2239,13,Eothenomys,Eothenomys melanogaster,Pathogen,RtCl-HV/GZ2015,KY370088,NA,NA,NA,NA
+46,3033,1881,13,Rattus,Rattus norvegicus,Pathogen,RtRn-HV/GD2015,KY370089,NA,NA,NA,NA
+47,3228,2392,13,Apodemus,Apodemus agrarius,Pathogen,RtAa-HV/SD2016,KY370090,NA,NA,NA,NA
+48,3234,1336,13,Mus,Mus caroli,Pathogen,RtMc-AreV/YN2014,KM020190,NA,NA,NA,NA
+49,3234,1336,13,Mus,Mus caroli,Pathogen,RtMc-AreV/YN2014,KM020191,NA,NA,NA,NA
+50,3366,1332,13,Rattus,Rattus tanezumi,Pathogen,RtRf-AreV/YN2014,KY432889,NA,NA,NA,NA
+51,3366,1332,13,Rattus,Rattus tanezumi,Pathogen,RtRf-AreV/YN2014,KY432890,NA,NA,NA,NA
+52,3499,1331,13,Rattus,Rattus norvegicus,Pathogen,RtRn-AreV/YN2014,KY432891,NA,NA,NA,NA
+53,3647,1430,13,Dipus,Dipus sagitta,Pathogen,RtDs-AreV/IM2014,KY432892,NA,NA,NA,NA
+54,3647,1430,13,Dipus,Dipus sagitta,Pathogen,RtDs-AreV/IM2014,KY432893,NA,NA,NA,NA
+55,3831,1830,13,Rattus,Rattus losea,Pathogen,RtRl-AreV/HuN2015,KY432894,NA,NA,NA,NA
+56,3831,1830,13,Rattus,Rattus losea,Pathogen,RtRl-AreV/HuN2015,KY432895,NA,NA,NA,NA
+57,4023,2321,13,Rattus,Rattus norvegicus,Pathogen,RtRn-AreV/ZJ2016,KY432896,NA,NA,NA,NA
+58,4023,2321,13,Rattus,Rattus norvegicus,Pathogen,RtRn-AreV/ZJ2016,KY432897,NA,NA,NA,NA
+59,4183,NA,15,Niviventer,Niviventer cf. confucianus,Pathogen,Hantaan orthohantavirus (VN3973M589),MZ343363,NA,NA,NA,NA
+60,4183,NA,15,Niviventer,Niviventer cf. confucianus,Pathogen,Hantaan orthohantavirus (VN3973M589),MZ343364,NA,NA,NA,NA
+61,4183,NA,15,Niviventer,Niviventer cf. confucianus,Pathogen,Hantaan orthohantavirus (VN3973M589),MZ343365,NA,NA,NA,NA
+62,4183,NA,15,Niviventer,Niviventer cf. confucianus,Host,NA,MZ356208,NA,NA,NA,NA
+63,4183,NA,15,Niviventer,Niviventer cf. confucianus,Host,NA,MZ356220,NA,NA,NA,NA
+64,4183,NA,15,Niviventer,Niviventer cf. confucianus,Pathogen,Hantaan orthohantavirus (VN4004M620),MZ343366,NA,NA,NA,NA
+65,4183,NA,15,Niviventer,Niviventer cf. confucianus,Pathogen,Hantaan orthohantavirus (VN4004M620),MZ343367,NA,NA,NA,NA
+66,4183,NA,15,Niviventer,Niviventer cf. confucianus,Pathogen,Hantaan orthohantavirus (VN4004M620),MZ343368,NA,NA,NA,NA
+67,4183,NA,15,Niviventer,Niviventer cf. confucianus,Host,NA,MZ356209,NA,NA,NA,NA
+68,4183,NA,15,Niviventer,Niviventer cf. confucianus,Host,NA,MZ356221,NA,NA,NA,NA
+69,4272,NA,15,Rattus,Rattus rattus,Pathogen,Thailand orthohantavirus (MDG3887MG9),MZ343360,NA,NA,NA,NA
+70,4272,NA,15,Rattus,Rattus rattus,Pathogen,Thailand orthohantavirus (MDG3887MG9),MZ343361,NA,NA,NA,NA
+71,4272,NA,15,Rattus,Rattus rattus,Pathogen,Thailand orthohantavirus (MDG3887MG9),MZ343362,NA,NA,NA,NA
+72,4272,NA,15,Rattus,Rattus rattus,Host,NA,LC147016,NA,NA,NA,NA
+73,4272,NA,15,Rattus,Rattus rattus,Host,NA,MK410392,NA,NA,NA,NA
+74,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA3011KTF49),MZ343341,NA,NA,NA,NA
+75,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA3011KTF49),MZ505035,NA,NA,NA,NA
+76,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA3011KTF49),MZ343342,NA,NA,NA,NA
+77,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,LC406450,NA,NA,NA,NA
+78,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356210,NA,NA,NA,NA
+79,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA3028KTF66),MZ343343,NA,NA,NA,NA
+80,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA3028KTF66),MZ505036,NA,NA,NA,NA
+81,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA3028KTF66),MZ343344,NA,NA,NA,NA
+82,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356199,NA,NA,NA,NA
+83,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356211,NA,NA,NA,NA
+84,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA3120KTF116),MZ343345,NA,NA,NA,NA
+85,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA3120KTF116),MZ343346,NA,NA,NA,NA
+86,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356200,NA,NA,NA,NA
+87,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356212,NA,NA,NA,NA
+88,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA3122KTF118),MZ343347,NA,NA,NA,NA
+89,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356201,NA,NA,NA,NA
+90,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356213,NA,NA,NA,NA
+91,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA4032KTF597),MZ343348,NA,NA,NA,NA
+92,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA4032KTF597),MZ343349,NA,NA,NA,NA
+93,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356202,NA,NA,NA,NA
+94,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356214,NA,NA,NA,NA
+95,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA4277KTF-637),MZ505037,NA,NA,NA,NA
+96,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA4277KTF-637),MZ343350,NA,NA,NA,NA
+97,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356203,NA,NA,NA,NA
+98,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356215,NA,NA,NA,NA
+99,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA5171KTF862),MZ343351,NA,NA,NA,NA
+100,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA5171KTF862),MZ343352,NA,NA,NA,NA
+101,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356204,NA,NA,NA,NA
+102,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356216,NA,NA,NA,NA
+103,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA5277KTF945),MZ343355,NA,NA,NA,NA
+104,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA5277KTF945),MZ343356,NA,NA,NA,NA
+105,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356205,NA,NA,NA,NA
+106,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356217,NA,NA,NA,NA
+107,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA6551KTF153),MZ343357,NA,NA,NA,NA
+108,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA6551KTF153),MZ505038,NA,NA,NA,NA
+109,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Pathogen,Puumala orthohantavirus (JA6551KTF153),MZ343358,NA,NA,NA,NA
+110,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356206,NA,NA,NA,NA
+111,4381,NA,15,Myodes,Myodes rufocanus bedfordiae,Host,NA,MZ356218,NA,NA,NA,NA
+112,4356,NA,15,Apodemus,Apodemus speciousus,Pathogen,Puumala orthohantavirus (UA1818B74),MZ343339,NA,NA,NA,NA
+113,4356,NA,15,Apodemus,Apodemus speciousus,Pathogen,Puumala orthohantavirus (UA1818B74),MZ505034,NA,NA,NA,NA
+114,4356,NA,15,Apodemus,Apodemus speciousus,Pathogen,Puumala orthohantavirus (UA1818B74),MZ343340,NA,NA,NA,NA
+115,4356,NA,15,Apodemus,Apodemus speciousus,Host,NA,MK410319,NA,NA,NA,NA
+116,4356,NA,15,Apodemus,Apodemus speciousus,Host,NA,MK410366,NA,NA,NA,NA
+117,4356,NA,15,Apodemus,Apodemus speciousus,Pathogen,Puumala orthohantavirus (JA6557KTF159),MZ343359,NA,NA,NA,NA
+118,4356,NA,15,Apodemus,Apodemus speciousus,Host,NA,MZ356207,NA,NA,NA,NA
+119,4356,NA,15,Apodemus,Apodemus speciousus,Host,NA,MZ356219,NA,NA,NA,NA
+120,4355,NA,15,Apodemus,Apodemus agenteus,Pathogen,Puumala orthohantavirus (JA5274KTF935),MZ343353,NA,NA,NA,NA
+121,4355,NA,15,Apodemus,Apodemus agenteus,Pathogen,Puumala orthohantavirus (JA5274KTF935),MZ343354,NA,NA,NA,NA
+122,4355,NA,15,Apodemus,Apodemus agenteus,Host,NA,MK410343,NA,NA,NA,NA
+123,4355,NA,15,Apodemus,Apodemus agenteus,Host,NA,MK410423,NA,NA,NA,NA
+124,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116262,NA,NA,NA,NA
+125,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116254,NA,NA,NA,NA
+126,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116255,NA,NA,NA,NA
+127,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116263,NA,NA,NA,NA
+128,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116256,NA,NA,NA,NA
+129,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116264,NA,NA,NA,NA
+130,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116257,NA,NA,NA,NA
+131,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116265,NA,NA,NA,NA
+132,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116258,NA,NA,NA,NA
+133,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116266,NA,NA,NA,NA
+134,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116259,NA,NA,NA,NA
+135,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116767,NA,NA,NA,NA
+136,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116260,NA,NA,NA,NA
+137,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116268,NA,NA,NA,NA
+138,5891,3705,17,Bandicota,Bandicota indica,Pathogen,Thailand hantavirus,JN116261,NA,NA,NA,NA
+139,5892,3700,17,Rattus,Rattus tanezumi,Pathogen,Seoul hantavirus,HQ992815,NA,NA,NA,NA
+140,5892,3700,17,Rattus,Rattus tanezumi,Pathogen,Seoul hantavirus,HQ992814,NA,NA,NA,NA
+141,5893,3825,17,Rattus,Rattus norvegicus,Pathogen,Seoul hantavirus,JN116270,NA,NA,NA,NA
+142,5893,3825,17,Rattus,Rattus norvegicus,Pathogen,Seoul hantavirus,JN116269,NA,NA,NA,NA
+143,6421,4036,19,Micaelamys,Micaelamys namaquensis,Pathogen,Bitu virus,MZ065536,NA,NA,NA,NA
+144,6421,4036,19,Micaelamys,Micaelamys namaquensis,Pathogen,Bitu virus,MZ065537,NA,NA,NA,NA
+145,NA,4036,19,Micaelamys,Micaelamys namaquensis,Host,NA,MZ065491,NA,NA,NA,NA
+146,6422,4037,19,Micaelamys,Micaelamys namaquensis,Pathogen,Bitu virus,MZ065538,NA,NA,NA,NA
+147,6422,4037,19,Micaelamys,Micaelamys namaquensis,Pathogen,Bitu virus,MZ065539,NA,NA,NA,NA
+148,NA,4037,19,Micaelamys,Micaelamys namaquensis,Host,NA,MZ065491,NA,NA,NA,NA
+149,6411,4026,19,Mastomys,Mastomys natalensis,Pathogen,Mammarenavirus lunaense,MZ065542,NA,NA,NA,NA
+150,6411,4026,19,Mastomys,Mastomys natalensis,Pathogen,Mammarenavirus lunaense,MZ065543,NA,NA,NA,NA
+151,NA,4026,19,Mastomys,Mastomys natalensis,Host,NA,MZ065496,NA,NA,NA,NA
+152,6488,4103,19,Mus,Mus triton,Pathogen,Kwanza virus,MZ065540,NA,NA,NA,NA
+153,6488,4103,19,Mus,Mus triton,Pathogen,Kwanza virus,MZ065541,NA,NA,NA,NA
+154,NA,NA,19,Mus,Mus triton,Host,NA,MK011523,NA,NA,NA,NA
+155,6587,4202,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580922,NA,NA,NA,NA
+156,6587,4202,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,OK422867,NA,NA,NA,NA
+157,6587,4202,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,OK422869,NA,NA,NA,NA
+158,6686,4301,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580919,NA,NA,NA,NA
+159,6686,4301,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580916,NA,NA,NA,NA
+160,6686,4301,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,OK422871,NA,NA,NA,NA
+161,6686,4301,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580920,NA,NA,NA,NA
+162,6740,4355,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+163,6749,4364,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+164,6749,4364,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+165,6749,4364,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+166,6749,4364,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580910,NA,NA,NA,NA
+167,6749,4364,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+168,6749,4364,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+169,6749,4364,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+170,6749,4364,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580913,NA,NA,NA,NA
+171,6749,4364,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+172,6749,4364,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+173,6758,4373,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,NA,NA,NA
+174,6758,4373,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580914,NA,NA,NA,NA
+175,6758,4373,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580911,NA,NA,NA,NA
+176,6758,4373,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+177,6758,4373,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+178,6758,4373,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580927,NA,NA,NA,NA
+179,6758,4373,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+180,6758,4373,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580927,NA,identical to this accession number,NA,NA
+181,6758,4373,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+182,6758,4373,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580918,NA,identical to this accession number,NA,NA
+183,6758,4373,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580927,NA,identical to this accession number,NA,NA
+184,6794,4409,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580921,NA,NA,NA,NA
+185,6794,4409,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,OK422868,NA,NA,NA,NA
+186,6794,4409,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,OK422870,NA,NA,NA,NA
+187,6794,4409,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580931,NA,NA,NA,NA
+188,6794,4409,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580912,NA,NA,NA,NA
+189,6794,4409,21,Apodemus,Apodemus agrarius,Pathogen,Dubrova-Belgrade orthohantavirus,MT580932,NA,NA,NA,NA
+190,7205,4262,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT580938,NA,NA,NA,NA
+191,7205,4262,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,OL355108,NA,NA,NA,NA
+192,7205,4262,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT580937,NA,NA,NA,NA
+193,7259,4316,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT580939,NA,identical to this accession number,NA,NA
+194,7259,4316,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT580939,NA,identical to this accession number,NA,NA
+195,7259,4316,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT580939,NA,NA,NA,NA
+196,7259,4316,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT580936,NA,NA,NA,NA
+197,7259,4316,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT580939,NA,identical to this accession number,NA,NA
+198,7259,4316,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT580939,NA,identical to this accession number,NA,NA
+199,7268,4325,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT580940,NA,NA,NA,NA
+200,7268,4325,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,OL355109,NA,NA,NA,NA
+201,7268,4325,21,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,OL355110,NA,NA,NA,NA
+202,6878,4214,21,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT580935,NA,NA,NA,NA
+203,6878,4214,21,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT580933,NA,NA,NA,NA
+204,6878,4214,21,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,OL355110,NA,NA,NA,NA
+205,6968,4304,21,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT580934,NA,identical to this accession number,NA,NA
+206,6968,4304,21,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT580934,NA,identical to this accession number,NA,NA
+207,6968,4304,21,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT580934,NA,NA,NA,NA
+208,7775,4557,24,Grammomys,Grammomys macmillani,Pathogen,Kitale virus,MK935152,NA,NA,NA,NA
+209,7775,4557,24,Grammomys,Grammomys macmillani,Pathogen,Kitale virus,MK935153,NA,NA,NA,NA
+210,7971,4735,27,Akodon,Akodon montensis,Pathogen,Jabora virus,MG575411,NA,NA,NA,NA
+211,8297,5061,27,Oligoryzomys,Oligoryzomys nigripes,Pathogen,Juquitiba virus,MG575412,NA,NA,NA,NA
+212,8264,5028,27,Oligoryzomys,Oligoryzomys nigripes,Pathogen,Juquitiba virus,MG575413,NA,NA,NA,NA
+213,8295,5059,27,Oligoryzomys,Oligoryzomys nigripes,Pathogen,Juquitiba virus,MG575414,NA,NA,NA,NA
+214,8181,4945,27,Akodon,Akodon montensis,Pathogen,Jabora virus,MG575415,NA,NA,NA,NA
+215,9207,5097,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453649,NA,NA,NA,NA
+216,9205,5095,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453554,NA,NA,NA,NA
+217,9207,5097,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453660,NA,NA,NA,NA
+218,9205,5095,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453555,NA,NA,NA,NA
+219,9205,5095,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453585,NA,NA,NA,NA
+220,9207,5097,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453651,NA,NA,NA,NA
+221,9207,5097,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453648,NA,NA,NA,NA
+222,9205,5095,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453553,NA,NA,NA,NA
+223,9205,5095,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453563,NA,NA,NA,NA
+224,9205,5095,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453559,NA,NA,NA,NA
+225,9205,5095,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453560,NA,NA,NA,NA
+226,9205,5095,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453566,NA,NA,NA,NA
+227,9205,5095,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453600,NA,NA,NA,NA
+228,9182,5072,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453689,NA,NA,NA,NA
+229,9182,5072,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453692,NA,NA,NA,NA
+230,9180,5070,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453485,NA,NA,NA,NA
+231,9180,5070,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453519,NA,NA,NA,NA
+232,9180,5070,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453491,NA,NA,NA,NA
+233,9180,5070,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453492,NA,NA,NA,NA
+234,9182,5072,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453640,NA,NA,NA,NA
+235,9180,5070,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453496,NA,NA,NA,NA
+236,9180,5070,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453550,NA,NA,NA,NA
+237,9180,5070,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453710,NA,NA,NA,NA
+238,9180,5070,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453516,NA,NA,NA,NA
+239,9182,5072,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453684,NA,NA,NA,NA
+240,9182,5072,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453683,NA,NA,NA,NA
+241,9182,5072,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453687,NA,NA,NA,NA
+242,9182,5072,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453682,NA,NA,NA,NA
+243,9182,5072,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453685,NA,NA,NA,NA
+244,9182,5072,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453681,NA,NA,NA,NA
+245,9182,5072,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453680,NA,NA,NA,NA
+246,9182,5072,28,Clethrionomys,Clethrionomys glareolus,Pathogen,Puumala orthohantavirus,MT453678,NA,NA,NA,NA
+247,NA,NA,32,Homo,Homo sapiens,Pathogen,Sin Nombre hantavirus,MZ787943,NA,NA,NA,NA
+248,NA,NA,32,Homo,Homo sapiens,Pathogen,Sin Nombre hantavirus,MZ787944,NA,NA,NA,NA
+249,NA,NA,32,Homo,Homo sapiens,Pathogen,Sin Nombre hantavirus,MZ787945,NA,NA,NA,NA
+250,10294,6184,32,Mus,Mus musculus,Pathogen,Sin Nombre hantavirus,MZ851449,NA,NA,NA,NA
+251,10294,6184,32,Mus,Mus musculus,Pathogen,Sin Nombre hantavirus,MZ851450,NA,NA,NA,NA
+252,10294,6184,32,Mus,Mus musculus,Pathogen,Sin Nombre hantavirus,MZ851451,NA,NA,NA,NA
+253,10290,6180,32,Peromyscus,Peromyscus maniculatus,NA,NA,MZ851452,NA,NA,NA,NA
+254,10290,6180,32,Peromyscus,Peromyscus maniculatus,NA,NA,MZ851453,NA,NA,NA,NA
+255,10290,6180,32,Peromyscus,Peromyscus maniculatus,NA,NA,MZ851454,NA,NA,NA,NA
+256,NA,NA,32,Homo,Homo sapiens,Pathogen,Sin Nombre hantavirus,MZ851455,NA,NA,NA,NA
+257,NA,NA,32,Homo,Homo sapiens,Pathogen,Sin Nombre hantavirus,MZ851456,NA,NA,NA,NA
+258,NA,NA,32,Homo,Homo sapiens,Pathogen,Sin Nombre hantavirus,MZ851457,NA,NA,NA,NA
+259,10291,6181,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851458,NA,NA,NA,NA
+260,10291,6181,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851459,NA,NA,NA,NA
+261,10291,6181,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851460,NA,NA,NA,NA
+262,10291,6181,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851461,NA,NA,NA,NA
+263,10291,6181,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851462,NA,NA,NA,NA
+264,10291,6181,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851463,NA,NA,NA,NA
+265,10290,6180,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851464,NA,NA,NA,NA
+266,10290,6180,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851465,NA,NA,NA,NA
+267,10290,6180,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851466,NA,NA,NA,NA
+268,10299,6189,32,Tamias,Tamias minimus,Pathogen,Sin Nombre hantavirus,MZ851467,NA,NA,NA,NA
+269,10299,6189,32,Tamias,Tamias minimus,Pathogen,Sin Nombre hantavirus,MZ851468,NA,NA,NA,NA
+270,10299,6189,32,Tamias,Tamias minimus,Pathogen,Sin Nombre hantavirus,MZ851469,NA,NA,NA,NA
+271,10292,6182,32,Peromyscus,Peromyscus boylii,Pathogen,Sin Nombre hantavirus,MZ851470,NA,NA,NA,NA
+272,10292,6182,32,Peromyscus,Peromyscus boylii,Pathogen,Sin Nombre hantavirus,MZ851471,NA,NA,NA,NA
+273,10292,6182,32,Peromyscus,Peromyscus boylii,Pathogen,Sin Nombre hantavirus,MZ851472,NA,NA,NA,NA
+274,10290,6180,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851473,NA,NA,NA,NA
+275,10290,6180,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851474,NA,NA,NA,NA
+276,10290,6180,32,Peromyscus,Peromyscus maniculatus,Pathogen,Sin Nombre hantavirus,MZ851475,NA,NA,NA,NA
+277,10315,6205,33,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MK535084,NA,NA,NA,NA
+278,10312,6202,33,Microtus,Microtus agrestis,Pathogen,Tula orthohantavirus,MK535086,NA,NA,NA,NA
+279,10315,6205,NA,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MK535069,NA,NA,NA,NA
+280,10312,6202,33,Microtus,Microtus agrestis,Pathogen,Tula orthohantavirus,MK535070,NA,NA,NA,NA
+281,10312,6202,33,Microtus,Microtus agrestis,Pathogen,Tula orthohantavirus,MK535071,NA,NA,NA,NA
+282,NA,6204,33,Microtus,Microtus agrestis,Host,NA,MK535088,NA,NA,NA,NA
+283,NA,6202,33,Microtus,Microtus agrestis,Host,NA,MK535089,NA,NA,NA,NA
+284,NA,6204,33,Microtus,Microtus agrestis,Host,NA,MK535087,NA,NA,NA,NA
+285,NA,6202,33,Microtus,Microtus agrestis,Host,NA,MK535090,NA,NA,NA,NA
+286,NA,6202,33,Microtus,Microtus agrestis,Host,NA,MK535092,NA,NA,NA,NA
+287,NA,6202,33,Microtus,Microtus agrestis,Host,NA,MK535091,NA,NA,NA,NA
+288,10374,6233,35,Rattus,Rattus norvegicus,Pathogen,Seoul hantavirus,MZ670777,NA,NA,NA,NA
+289,10374,6233,35,Rattus,Rattus norvegicus,Pathogen,Seoul hantavirus,MZ670778,NA,NA,NA,NA
+290,10374,6233,35,Rattus,Rattus norvegicus,Pathogen,Seoul hantavirus,MZ670779,NA,NA,NA,NA
+291,10374,6233,35,Rattus,Rattus norvegicus,Pathogen,Seoul hantavirus,MZ670780,NA,NA,NA,NA
+292,10374,6233,35,Rattus,Rattus norvegicus,Pathogen,Seoul hantavirus,MZ670781,NA,NA,NA,NA
+293,10374,6233,35,Rattus,Rattus norvegicus,Pathogen,Seoul hantavirus,MZ670782,NA,NA,NA,NA
+294,11057,6486,37,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,MK605679,NA,NA,NA,NA
+295,11058,6486,37,Apodemus,Apodemus flavicollis,Pathogen,Seewis virus,MK605682,NA,NA,NA,NA
+296,11058,6486,37,Apodemus,Apodemus flavicollis,Pathogen,Seewis virus,MK605683,NA,NA,NA,NA
+297,11061,6487,37,Apodemus,Apodemus sylvaticus,Pathogen,Seewis virus,MK605684,NA,NA,NA,NA
+298,11063,6488,37,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,MK605680,NA,NA,NA,NA
+299,11063,6488,37,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,MK605681,NA,NA,NA,NA
+300,11068,6489,37,Microtus,Microtus agrestis,Pathogen,Orthohantavirus tulaense,MK605685,NA,NA,NA,NA
+301,11120,6529,40,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,OM677634,NA,NA,NA,NA
+302,11120,6529,40,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,OM677635,NA,NA,NA,NA
+303,11120,6529,40,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,OM677636,NA,NA,NA,NA
+304,11120,6529,40,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,OM677637,NA,NA,NA,NA
+305,11120,6529,40,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,OM677638,NA,NA,NA,NA
+306,11120,6529,40,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,OM677639,NA,NA,NA,NA
+307,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598466,NA,NA,NA,NA
+308,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598467,NA,NA,NA,NA
+309,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598468,NA,NA,NA,NA
+310,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598469,NA,NA,NA,NA
+311,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598470,NA,NA,NA,NA
+312,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598471,NA,NA,NA,NA
+313,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598472,NA,NA,NA,NA
+314,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598473,NA,NA,NA,NA
+315,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598474,NA,NA,NA,NA
+316,11134,6531,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598475,NA,NA,NA,NA
+317,11134,6531,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598476,NA,NA,NA,NA
+318,11142,6539,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598477,NA,NA,NA,NA
+319,11142,6539,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598478,NA,NA,NA,NA
+320,11142,6539,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598479,NA,NA,NA,NA
+321,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598480,NA,NA,NA,NA
+322,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598481,NA,NA,NA,NA
+323,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598482,NA,NA,NA,NA
+324,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598483,NA,NA,NA,NA
+325,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598484,NA,NA,NA,NA
+326,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598485,NA,NA,NA,NA
+327,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598486,NA,NA,NA,NA
+328,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598487,NA,NA,NA,NA
+329,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598488,NA,NA,NA,NA
+330,11134,6531,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598489,NA,NA,NA,NA
+331,11134,6531,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598490,NA,NA,NA,NA
+332,11142,6539,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598491,NA,NA,NA,NA
+333,11142,6539,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598492,NA,NA,NA,NA
+334,11142,6539,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598493,NA,NA,NA,NA
+335,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598494,NA,NA,NA,NA
+336,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598495,NA,NA,NA,NA
+337,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598496,NA,NA,NA,NA
+338,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598497,NA,NA,NA,NA
+339,NA,NA,41,Homo,Homo sapiens,Pathogen,Orthohantavirus hantanense,MH598498,NA,NA,NA,NA
+340,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598499,NA,NA,NA,NA
+341,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598500,NA,NA,NA,NA
+342,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598501,NA,NA,NA,NA
+343,NA,NA,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598502,NA,NA,NA,NA
+344,11134,6531,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598503,NA,NA,NA,NA
+345,11134,6531,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598504,NA,NA,NA,NA
+346,11142,6539,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598505,NA,NA,NA,NA
+347,11142,6539,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598506,NA,NA,NA,NA
+348,11142,6539,41,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,MH598507,NA,NA,NA,NA
+349,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276691,NA,NA,2017-05-10,UH7
+350,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276692,NA,NA,2017-05-13,UH2
+351,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276693,NA,NA,2017-05-09,UH5
+352,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276694,NA,NA,2017-05-09,UH5
+353,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276695,NA,NA,2017-05-10,UH5
+354,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276696,NA,NA,2017-05-10,UH5
+355,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276697,NA,NA,2017-05-10,UH5
+356,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276698,NA,NA,2017-05-11,UH17
+357,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276699,NA,NA,2017-05-12,UH17
+358,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276700,NA,NA,2017-05-12,UH17
+359,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276701,NA,NA,2017-05-12,UH17
+360,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276702,NA,NA,2017-05-12,UH17
+361,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276703,NA,NA,2017-05-12,UH17
+362,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276704,NA,NA,2017-08-10,E1
+363,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276705,NA,NA,2017-08-16,KYF6
+364,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276706,NA,NA,2017-08-16,KYF6
+365,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276707,NA,NA,2017-08-16,KYF6
+366,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276708,NA,NA,2017-08-16,KYF6
+367,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276709,NA,NA,2017-08-16,KYF6
+368,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276710,NA,NA,2017-08-15,UH12
+369,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276711,NA,NA,2017-08-15,UH12
+370,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276712,NA,NA,2017-08-13,UH12
+371,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276713,NA,NA,2017-08-13,UH12
+372,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276714,NA,NA,2017-08-12,UH4
+373,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276715,NA,NA,2017-08-13,UH2
+374,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276716,NA,NA,2017-08-11,UH2
+375,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276717,NA,NA,2017-08-11,UH5
+376,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276718,NA,NA,2017-08-17,KYF1
+377,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276719,NA,NA,2017-08-17,KYF2
+378,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276720,NA,NA,2017-08-17,KYF2
+379,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276721,NA,NA,2017-08-17,UH17
+380,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276722,NA,NA,2017-08-17,UH18
+381,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276723,NA,NA,2017-10-26,KYF6
+382,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276724,NA,NA,2017-10-25,KYF6
+383,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276725,NA,NA,2017-10-24,KYF6
+384,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276726,NA,NA,2017-10-24,KYF6
+385,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276727,NA,NA,2017-10-24,KYF6
+386,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276728,NA,NA,2017-10-24,KYF6
+387,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276729,NA,NA,2017-10-24,KYF6
+388,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276730,NA,NA,2017-10-24,KYF6
+389,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276731,NA,NA,2017-10-25,KYF6
+390,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276732,NA,NA,2017-10-25,KYF6
+391,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276733,NA,NA,2017-10-26,KYF6
+392,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276734,NA,NA,2017-10-26,KYF6
+393,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276735,NA,NA,2017-10-26,KYF6
+394,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276736,NA,NA,2017-10-26,KYF6
+395,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276737,NA,NA,2017-10-26,KYF6
+396,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276738,NA,NA,2017-10-26,KYF6
+397,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276739,NA,NA,2017-10-24,KYF1
+398,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276740,NA,NA,2017-10-23,E4
+399,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276741,NA,NA,2017-10-24,E4
+400,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276742,NA,NA,2017-10-25,E4
+401,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276743,NA,NA,2017-10-26,UH16
+402,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276744,NA,NA,2017-10-26,UH16
+403,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276745,NA,NA,2017-10-28,UH16
+404,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276746,NA,NA,2017-10-26,UH16
+405,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276747,NA,NA,2017-10-27,UH1
+406,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276748,NA,NA,2017-10-28,UH1
+407,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276749,NA,NA,2017-10-28,UH1
+408,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276750,NA,NA,2017-10-29,UH1
+409,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276751,NA,NA,2017-10-29,UH1
+410,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276752,NA,NA,2017-10-29,W1
+411,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276753,NA,NA,2017-10-28,W2
+412,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276754,NA,NA,2017-10-28,UH2
+413,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276755,NA,NA,2017-10-28,UH2
+414,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276756,NA,NA,2017-10-28,UH2
+415,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276757,NA,NA,2017-10-28,UH2
+416,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276758,NA,NA,2017-10-29,UH2
+417,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276759,NA,NA,2017-10-29,UH2
+418,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276760,NA,NA,2017-10-29,UH2
+419,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276761,NA,NA,2017-10-18,UH14
+420,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276762,NA,NA,2017-10-20,UH14
+421,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276763,NA,NA,2017-10-18,UH4
+422,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276764,NA,NA,2017-10-19,UH4
+423,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276765,NA,NA,2017-10-20,UH4
+424,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276766,NA,NA,2017-10-20,UH4
+425,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276767,NA,NA,2017-10-20,UH4
+426,11326,6723,43,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,MT276768,NA,NA,2017-10-22,UH13
+427,11350,6725,43,Clethrionomys,Clethrionomys glareolus,Pathogen,Orthohantavirus puumalaense,MT276769,NA,NA,2017-08-11,UH2
+428,11350,6725,43,Clethrionomys,Clethrionomys glareolus,Pathogen,Orthohantavirus puumalaense,MT276770,NA,NA,2017-08-11,UH3
+429,11350,6725,43,Clethrionomys,Clethrionomys glareolus,Pathogen,Orthohantavirus puumalaense,MT276771,NA,NA,2017-10-29,UH2
+430,11350,6725,43,Clethrionomys,Clethrionomys glareolus,Pathogen,Orthohantavirus puumalaense,MT276772,NA,NA,2017-10-24,UH9
+431,11350,6725,43,Clethrionomys,Clethrionomys glareolus,Pathogen,Orthohantavirus puumalaense,MT276773,NA,NA,2017-10-27,UH2
+432,11350,6725,43,Clethrionomys,Clethrionomys glareolus,Pathogen,Orthohantavirus puumalaense,MT276774,NA,NA,2017-10-28,UH2
+433,11350,6725,43,Clethrionomys,Clethrionomys glareolus,Pathogen,Orthohantavirus puumalaense,MT580909,NA,NA,2017-05-09,UH6
+434,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677520,NA,NA,NA,NA
+435,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677521,NA,NA,NA,NA
+436,11441,6816,44,Dryomys,Dryomys nitedula,Pathogen,Orthohantavirus tulaense,OL677522,NA,NA,NA,NA
+437,11441,6816,44,Dryomys,Dryomys nitedula,Pathogen,Orthohantavirus tulaense,OL677523,NA,NA,NA,NA
+438,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677524,NA,NA,NA,NA
+439,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677525,NA,NA,NA,NA
+440,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677526,NA,NA,NA,NA
+441,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677527,NA,NA,NA,NA
+442,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677528,NA,NA,NA,NA
+443,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677529,NA,NA,NA,NA
+444,11548,6923,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677530,NA,NA,NA,NA
+445,11448,6823,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677531,NA,NA,NA,NA
+446,11448,6823,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677532,NA,NA,NA,NA
+447,11448,6823,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677533,NA,NA,NA,NA
+448,11448,6823,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,OL677534,NA,NA,NA,NA
+449,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239876,NA,NA,NA,NA
+450,11441,6816,44,Dryomys,Dryomys nitedula,Pathogen,Orthohantavirus tulaense,ON239877,NA,NA,NA,NA
+451,11441,6816,44,Dryomys,Dryomys nitedula,Pathogen,Orthohantavirus tulaense,ON239878,NA,NA,NA,NA
+452,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239879,NA,NA,NA,NA
+453,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239880,NA,NA,NA,NA
+454,11368,6743,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239881,NA,NA,NA,NA
+455,11438,6813,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239882,NA,NA,NA,NA
+456,11438,6813,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239883,NA,NA,NA,NA
+457,11438,6813,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239884,NA,NA,NA,NA
+458,11438,6813,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239885,NA,NA,NA,NA
+459,11448,6823,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239886,NA,NA,NA,NA
+460,11448,6823,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239887,NA,NA,NA,NA
+461,11448,6823,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239888,NA,NA,NA,NA
+462,11448,6823,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239889,NA,NA,NA,NA
+463,11548,6923,44,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON239890,NA,NA,NA,NA
+464,NA,6816,44,Dryomys,Dryomys nitedula,Host,NA,ON513437,NA,NA,NA,NA
+465,NA,6816,44,Dryomys,Dryomys nitedula,Host,NA,ON513438,NA,NA,NA,NA
+466,NA,6743,44,Microtus,Microtus arvalis,Host,NA,ON513439,NA,NA,NA,NA
+467,11590,6962,45,Suncus,Suncus murinus,Pathogen,Mammarenaviridae,KY659332,NA,NA,NA,NA
+468,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659333,NA,NA,NA,NA
+469,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659334,NA,NA,NA,NA
+470,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659335,NA,NA,NA,NA
+471,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659336,NA,NA,NA,NA
+472,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659337,NA,NA,NA,NA
+473,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659338,NA,NA,NA,NA
+474,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659339,NA,NA,NA,NA
+475,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659340,NA,NA,NA,NA
+476,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659341,NA,NA,NA,NA
+477,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659342,NA,NA,NA,NA
+478,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659343,NA,NA,NA,NA
+479,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659344,NA,NA,NA,NA
+480,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659345,NA,NA,NA,NA
+481,11588,6960,45,Rattus,Rattus norvegicus,Pathogen,Mammarenaviridae,KY659346,NA,NA,NA,NA
+482,11587,6962,45,Suncus,Suncus murinus,Pathogen,Hantaviridae,KY659347,NA,NA,NA,NA
+483,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659348,NA,NA,NA,NA
+484,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659349,NA,NA,NA,NA
+485,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659350,NA,NA,NA,NA
+486,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659351,NA,NA,NA,NA
+487,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659352,NA,NA,NA,NA
+488,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659353,NA,NA,NA,NA
+489,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659354,NA,NA,NA,NA
+490,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659355,NA,NA,NA,NA
+491,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659356,NA,NA,NA,NA
+492,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659357,NA,NA,NA,NA
+493,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659358,NA,NA,NA,NA
+494,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659359,NA,NA,NA,NA
+495,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659360,NA,NA,NA,NA
+496,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659361,NA,NA,NA,NA
+497,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659362,NA,NA,NA,NA
+498,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659363,NA,NA,NA,NA
+499,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659364,NA,NA,NA,NA
+500,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659365,NA,NA,NA,NA
+501,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659366,NA,NA,NA,NA
+502,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659367,NA,NA,NA,NA
+503,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659368,NA,NA,NA,NA
+504,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659369,NA,NA,NA,NA
+505,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659370,NA,NA,NA,NA
+506,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659371,NA,NA,NA,NA
+507,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659372,NA,NA,NA,NA
+508,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659373,NA,NA,NA,NA
+509,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659374,NA,NA,NA,NA
+510,11585,6960,45,Rattus,Rattus norvegicus,Pathogen,Hantaviridae,KY659375,NA,NA,NA,NA
+511,11612,6972,47,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,MN657233,NA,NA,NA,NA
+512,11613,6973,47,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,MW151008,NA,NA,NA,NA
+513,11612,6972,47,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,MW091492,NA,NA,NA,NA
+514,11613,6973,47,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,MW091491,NA,NA,NA,NA
+515,11612,6972,47,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,MW091493,NA,NA,NA,NA
+516,11613,6973,47,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,MW091494,NA,NA,NA,NA
+517,12986,7500,49,Oryzomys,Oryzomys texensis,Pathogen,Bayou Virus,GQ200820,NA,NA,NA,NA
+518,13004,7518,49,Oryzomys,Oryzomys texensis,Pathogen,Bayou Virus,KX066103,NA,NA,NA,NA
+519,13022,7536,49,Oryzomys,Oryzomys texensis,Pathogen,Bayou Virus,KX066104,NA,NA,NA,NA
+520,13318,7448,49,Peromyscus,Peromyscus boylii,Pathogen,Limestone Canyon Virus,KX066105,NA,NA,NA,NA
+521,13318,7448,49,Peromyscus,Peromyscus boylii,Pathogen,Limestone Canyon Virus,KX066106,NA,NA,NA,NA
+522,13336,7466,49,Peromyscus,Peromyscus boylii,Pathogen,Limestone Canyon Virus,KX066107,NA,NA,NA,NA
+523,13336,7466,49,Peromyscus,Peromyscus boylii,Pathogen,Limestone Canyon Virus,KX066108,NA,NA,NA,NA
+524,13336,7466,49,Peromyscus,Peromyscus boylii,Pathogen,Limestone Canyon Virus,KX066109,NA,NA,NA,NA
+525,13739,7485,49,Peromyscus,Peromyscus laceianaus,Pathogen,Sin Nombre Virus,KX066110,NA,NA,NA,NA
+526,13737,7483,49,Peromyscus,Peromyscus attwateri,Pathogen,Sin Nombre Virus,KX066111,NA,NA,NA,NA
+527,13737,7483,49,Peromyscus,Peromyscus attwateri,Pathogen,Sin Nombre Virus,KX066112,NA,NA,NA,NA
+528,13737,7483,49,Peromyscus,Peromyscus attwateri,Pathogen,Sin Nombre Virus,KX066113,NA,NA,NA,NA
+529,13737,7483,49,Peromyscus,Peromyscus attwateri,Pathogen,Sin Nombre Virus,KX066114,NA,NA,NA,NA
+530,14037,7399,49,Sigmodon,Sigmodon hispidus,Pathogen,Muleshoe Virus,KX066123,NA,NA,NA,NA
+531,14073,7435,49,Sigmodon,Sigmodon hispidus,Pathogen,Muleshoe Virus,KX066115,NA,NA,NA,NA
+532,14073,7435,49,Sigmodon,Sigmodon hispidus,Pathogen,Muleshoe Virus,KX066116,NA,NA,NA,NA
+533,14073,7435,49,Sigmodon,Sigmodon hispidus,Pathogen,Muleshoe Virus,KX066124,NA,NA,NA,NA
+534,13665,7411,49,Peromyscus,Peromyscus attwateri,Pathogen,Sin Nombre Virus,KX066117,NA,NA,NA,NA
+535,13668,7414,49,Peromyscus,Peromyscus leucopus,Pathogen,Sin Nombre Virus,KX066118,NA,NA,NA,NA
+536,13668,7414,49,Peromyscus,Peromyscus leucopus,Pathogen,Sin Nombre Virus,KX066119,NA,NA,NA,NA
+537,13668,7414,49,Peromyscus,Peromyscus leucopus,Pathogen,Sin Nombre Virus,KX066120,NA,NA,NA,NA
+538,13669,7415,49,Reithrodontomys,Reithrodontomys fulvescens,Pathogen,Sin Nombre Virus,KX066121,NA,NA,NA,NA
+539,13463,7209,49,Peromyscus,Peromyscus leucopus,Pathogen,Sin Nombre Virus,KX066122,NA,NA,NA,NA
+540,13318,7448,49,Peromyscus,Peromyscus boylii,Host,NA,KX866981,NA,NA,NA,NA
+541,14073,7435,49,Sigmodon,Sigmodon hispidus,Host,NA,KX866980,NA,NA,NA,NA
+542,14742,7804,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736216,NA,NA,NA,NA
+543,14742,7804,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736217,NA,NA,NA,NA
+544,14794,7856,50,Rattus,Rattus tanezumi,Pathogen,Arenaviridae,MG736218,NA,NA,NA,NA
+545,14794,7856,50,Rattus,Rattus tanezumi,Pathogen,Arenaviridae,MG736219,NA,NA,NA,NA
+546,14802,7864,50,Tupaia,Tupaia belangeri,Pathogen,Arenaviridae,MG736220,NA,NA,NA,NA
+547,14791,7853,50,Rattus,Rattus nitidus,Pathogen,Arenaviridae,MG736221,NA,NA,NA,NA
+548,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736222,NA,NA,NA,NA
+549,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736223,NA,NA,NA,NA
+550,14794,7856,50,Rattus,Rattus tanezumi,Pathogen,Arenaviridae,MG736224,NA,NA,NA,NA
+551,14794,7856,50,Rattus,Rattus tanezumi,Pathogen,Arenaviridae,MG736225,NA,NA,NA,NA
+552,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736226,NA,NA,NA,NA
+553,14794,7856,50,Rattus,Rattus tanezumi,Pathogen,Arenaviridae,MG736227,NA,NA,NA,NA
+554,14794,7856,50,Rattus,Rattus tanezumi,Pathogen,Arenaviridae,MG736228,NA,NA,NA,NA
+555,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736229,NA,NA,NA,NA
+556,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736230,NA,NA,NA,NA
+557,14742,7804,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736231,NA,NA,NA,NA
+558,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736232,NA,NA,NA,NA
+559,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736233,NA,NA,NA,NA
+560,14742,7804,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736234,NA,NA,NA,NA
+561,14742,7804,50,Rattus,Rattus norvegicus,Pathogen,Arenaviridae,MG736235,NA,NA,NA,NA
+562,14794,7856,50,Rattus,Rattus tanezumi,Pathogen,Arenaviridae,MG736236,NA,NA,NA,NA
+563,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192269,NA,NA,NA,NA
+564,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192270,NA,NA,NA,NA
+565,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192271,NA,NA,NA,NA
+566,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192272,NA,NA,NA,NA
+567,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192273,NA,NA,NA,NA
+568,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192274,NA,NA,NA,NA
+569,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192275,NA,NA,NA,NA
+570,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192276,NA,NA,NA,NA
+571,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192277,NA,NA,NA,NA
+572,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192278,NA,NA,NA,NA
+573,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192279,NA,NA,NA,NA
+574,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192280,NA,NA,NA,NA
+575,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192281,NA,NA,NA,NA
+576,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192282,NA,NA,NA,NA
+577,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192283,NA,NA,NA,NA
+578,14617,7679,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192284,NA,NA,NA,NA
+579,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192285,NA,NA,NA,NA
+580,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192286,NA,NA,NA,NA
+581,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192287,NA,NA,NA,NA
+582,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192288,NA,NA,NA,NA
+583,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192289,NA,NA,NA,NA
+584,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192290,NA,NA,NA,NA
+585,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192291,NA,NA,NA,NA
+586,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192292,NA,NA,NA,NA
+587,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK192293,NA,NA,NA,NA
+588,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK177225,NA,NA,NA,NA
+589,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK177226,NA,NA,NA,NA
+590,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK177227,NA,NA,NA,NA
+591,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK177228,NA,NA,NA,NA
+592,14792,7854,50,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,MK177229,NA,NA,NA,NA
+593,NA,NA,52,Mus,Mus musculus,Pathogen,Mammarenavirus wenzhouense,ON110130,NA,cannot allocate to sample location,NA,NA
+594,NA,NA,52,Rattus,Rattus norvegicus,Pathogen,Mammarenavirus wenzhouense,ON110131,NA,cannot allocate to sample location,NA,NA
+595,NA,NA,52,Rattus,Rattus flavipectus,Pathogen,Mammarenavirus wenzhouense,ON110132,NA,cannot allocate to sample location,NA,NA
+596,NA,NA,52,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,ON110133,NA,cannot allocate to sample location,NA,NA
+597,NA,NA,52,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,ON110134,NA,cannot allocate to sample location,NA,NA
+598,NA,NA,52,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,ON110135,NA,cannot allocate to sample location,NA,NA
+599,NA,NA,52,Niviventer,Niviventer confucianus,Pathogen,Orthohantavirus seoulense,ON110136,NA,cannot allocate to sample location,NA,NA
+600,15191,8113,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340822,NA,NA,NA,NA
+601,15191,8113,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340823,NA,NA,NA,NA
+602,15191,8113,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340824,NA,NA,NA,NA
+603,15191,8113,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340825,NA,NA,NA,NA
+604,15191,8113,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340826,NA,NA,NA,NA
+605,15191,8113,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340827,NA,NA,NA,NA
+606,15191,8113,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340828,NA,NA,NA,NA
+607,15191,8113,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340829,NA,NA,NA,NA
+608,15191,8113,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340830,NA,NA,NA,NA
+609,15223,8145,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340831,NA,NA,NA,NA
+610,15223,8145,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340832,NA,NA,NA,NA
+611,15223,8145,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340833,NA,NA,NA,NA
+612,15223,8145,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340834,NA,NA,NA,NA
+613,15223,8145,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340835,NA,NA,NA,NA
+614,15223,8145,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340836,NA,NA,NA,NA
+615,15223,8145,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340837,NA,NA,NA,NA
+616,15223,8145,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340838,NA,NA,NA,NA
+617,15223,8145,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340839,NA,NA,NA,NA
+618,15223,8145,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340840,NA,NA,NA,NA
+619,15255,8177,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340841,NA,NA,NA,NA
+620,15255,8177,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340842,NA,NA,NA,NA
+621,15255,8177,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340843,NA,NA,NA,NA
+622,15255,8177,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340844,NA,NA,NA,NA
+623,15255,8177,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340845,NA,NA,NA,NA
+624,15255,8177,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340846,NA,NA,NA,NA
+625,15255,8177,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340847,NA,NA,NA,NA
+626,15255,8177,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340848,NA,NA,NA,NA
+627,15279,8201,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340849,NA,NA,NA,NA
+628,15279,8201,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340850,NA,NA,NA,NA
+629,15279,8201,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340851,NA,NA,NA,NA
+630,15279,8201,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340852,NA,NA,NA,NA
+631,15343,8265,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340853,NA,NA,NA,NA
+632,15343,8265,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340854,NA,NA,NA,NA
+633,15343,8265,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340855,NA,NA,NA,NA
+634,15343,8265,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340856,NA,NA,NA,NA
+635,15343,8265,53,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus seoulense,MK340857,NA,NA,NA,NA
+636,15369,8291,54,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,KT223834,NA,NA,NA,NA
+637,15373,8295,54,Microtus,Microtus fortis,Pathogen,Orthohantavirus hantanense,KT213428,NA,NA,NA,NA
+638,15372,8294,54,Clethrionomys,Clethrionomys rutilus,Pathogen,Orthohantavirus hantanense,KT223835,NA,NA,NA,NA
+639,15372,8294,54,Clethrionomys,Clethrionomys rutilus,Pathogen,Orthohantavirus hantanense,KT213429,NA,NA,NA,NA
+640,15369,8291,54,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,KT213430,NA,NA,NA,NA
+641,15373,8295,54,Microtus,Microtus fortis,Pathogen,Orthohantavirus hantanense,KT213432,NA,NA,NA,NA
+642,15373,8295,54,Microtus,Microtus fortis,Pathogen,Orthohantavirus hantanense,KT213433,NA,NA,NA,NA
+643,15373,8295,54,Microtus,Microtus fortis,Pathogen,Orthohantavirus hantanense,KT213434,NA,NA,NA,NA
+644,15373,8295,54,Microtus,Microtus fortis,Pathogen,Orthohantavirus hantanense,KT213435,NA,NA,NA,NA
+645,15373,8295,54,Microtus,Microtus fortis,Pathogen,Orthohantavirus hantanense,KT213436,NA,NA,NA,NA
+646,15372,8294,54,Clethrionomys,Clethrionomys rutilus,Pathogen,Orthohantavirus khabarovskense,KT213437,NA,NA,NA,NA
+647,15373,8295,54,Microtus,Microtus fortis,Pathogen,Orthohantavirus hantanense,KT213431,NA,NA,NA,NA
+648,15373,8295,54,Microtus,Microtus fortis,Pathogen,Orthohantavirus hantanense,KT213421,NA,NA,NA,NA
+649,15372,8294,54,Clethrionomys,Clethrionomys rutilus,Pathogen,Orthohantavirus hantanense,KT213422,NA,NA,NA,NA
+650,15373,8295,54,Microtus,Microtus fortis,Pathogen,Orthohantavirus hantanense,KT213424,NA,NA,NA,NA
+651,15369,8291,54,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus hantanense,KT223836,NA,NA,NA,NA
+652,15372,8294,54,Clethrionomys,Clethrionomys rutilus,Pathogen,Orthohantavirus hantanense,KT213425,NA,NA,NA,NA
+653,15373,8295,54,Microtus,Microtus fortis,Pathogen,Orthohantavirus hantanense,KT213426,NA,NA,NA,NA
+654,15373,8295,54,Microtus,Microtus fortis,Pathogen,Orthohantavirus hantanense,KT213427,NA,NA,NA,NA
+655,15370,8292,54,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus hantanense,KT213438,NA,NA,NA,NA
+656,15375,8297,55,Rattus,Rattus argentiventer,Pathogen,Orthohantavirus seoulense,KP055755,NA,NA,NA,NA
+657,23016,15933,56,Mus,Mus minutoides,Host,NA,OP764674,NA,NA,NA,NA
+658,23016,15933,56,Mus,Mus minutoides,Pathogen,Ngerengere mammarenavirus,OP775654,NA,NA,NA,NA
+659,23016,15933,56,Mus,Mus minutoides,Pathogen,Ngerengere mammarenavirus,OP775655,NA,NA,NA,NA
+660,22741,15658,56,Mus,Mus minutoides,Host,NA,OP764675,NA,NA,NA,NA
+661,22741,15658,56,Mus,Mus minutoides,Pathogen,Ngerengere mammarenavirus,OP775656,NA,NA,NA,NA
+662,22741,15658,56,Mus,Mus minutoides,Pathogen,Ngerengere mammarenavirus,OP775657,NA,NA,NA,NA
+663,20582,13499,56,Grammomys,Grammomys surdaster,Host,NA,OP764676,NA,NA,NA,NA
+664,20582,13499,56,Grammomys,Grammomys surdaster,Host,NA,OK093493,NA,NA,NA,NA
+665,20582,13499,56,Grammomys,Grammomys surdaster,Pathogen,Songea mammarenavirus,OP775658,NA,NA,NA,NA
+666,20582,13499,56,Grammomys,Grammomys surdaster,Pathogen,Songea mammarenavirus,OP775659,NA,NA,NA,NA
+667,15687,8604,56,Grammomys,Grammomys surdaster,Host,NA,OP764677,NA,NA,NA,NA
+668,15687,8604,56,Grammomys,Grammomys surdaster,Host,NA,OK093736,NA,NA,NA,NA
+669,15687,8604,56,Grammomys,Grammomys surdaster,Pathogen,Berega mammarenavirus,OP775660,NA,NA,NA,NA
+670,15687,8604,56,Grammomys,Grammomys surdaster,Pathogen,Berega mammarenavirus,OP775661,NA,NA,NA,NA
+671,25843,18706,62,Microtus,Microtus obscurus,Pathogen,Tula orthohantavirus,MH649272,NA,NA,NA,NA
+672,25843,18706,62,Microtus,Microtus obscurus,Pathogen,Tula orthohantavirus,MH660702,NA,NA,NA,NA
+673,25843,18706,62,Microtus,Microtus obscurus,Pathogen,Tula orthohantavirus,MH660704,NA,NA,NA,NA
+674,25843,18706,62,Microtus,Microtus obscurus,Host,NA,MK107998,NA,NA,NA,NA
+675,25843,18706,62,Microtus,Microtus obscurus,Host,NA,MK107999,NA,NA,NA,NA
+676,25843,18706,62,Microtus,Microtus obscurus,Host,NA,MK108000,NA,NA,NA,NA
+677,25843,18706,62,Microtus,Microtus obscurus,Pathogen,Tula orthohantavirus,MH649270,NA,NA,NA,NA
+678,25852,18715,63,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HQ834499,NA,NA,2009-08-20,NA
+679,25852,18715,63,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HQ834501,NA,NA,2010-08-11,NA
+680,25852,18715,63,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HQ834503,NA,NA,2010-08-12,NA
+681,25852,18715,63,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HQ834500,NA,NA,2010-08-11,NA
+682,25852,18715,63,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HQ834505,NA,NA,2010-08-19,NA
+683,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,HQ834507,NA,NA,2009-11-11,NA
+684,25852,18715,63,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HQ834502,NA,NA,2010-08-12,NA
+685,25852,18715,63,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HQ834504,NA,NA,2010-08-17,NA
+686,25852,18715,63,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,HQ834506,NA,NA,2010-09-13,NA
+687,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,JF421284,NA,NA,2009-11-27,NA
+688,25853,18716,63,Rattus,Rattus norvegicus,Pathogen,Hantaan virus,KC844228,NA,NA,2012-11-17,NA
+689,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,JF421280,NA,NA,2008-11-20,NA
+690,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,JF421282,NA,NA,2008-12-27,NA
+691,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,KC844226,NA,NA,2012-11-18,NA
+692,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,JF421281,NA,NA,2008-11-29,NA
+693,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,JF421283,NA,NA,2009-01-09,NA
+694,25852,18715,63,Apodemus,Apodemus agrarius,Pathogen,Hantaan virus,JN542542,NA,NA,2010-09-17,NA
+695,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,KC844227,NA,NA,2010-11-20,NA
+696,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,KY283955,NA,NA,2016,NA
+697,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,KY283956,NA,NA,2016,NA
+698,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,KY357324,NA,NA,2016,NA
+699,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,KY357325,NA,NA,2016,NA
+700,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,KY357323,NA,NA,2016,NA
+701,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,KY357326,NA,NA,2016,NA
+702,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,KY357327,NA,NA,2016,NA
+703,NA,NA,63,Homo,Homo sapiens,Pathogen,Hantaan virus,KY357322,NA,NA,2016,NA
+704,25857,18720,64,Praomys,Praomys spp.,Pathogen,Mobola virus,MW929170,NA,NA,1981-10-01,NA
+705,25857,18720,64,Praomys,Praomys spp.,Pathogen,Mobola virus,MW929171,NA,NA,1981-10-01,NA
+706,25871,18728,66,Sorex,Sorex araneus,Host,NA,MT939451,NA,NA,NA,NA
+707,25871,18728,66,Sorex,Sorex araneus,Host,NA,MT939452,NA,NA,NA,NA
+708,25871,18728,66,Sorex,Sorex araneus,Host,NA,MT939453,NA,NA,NA,NA
+709,25871,18728,66,Sorex,Sorex araneus,Host,NA,MT939454,NA,NA,NA,NA
+710,25871,18728,66,Sorex,Sorex araneus,Host,NA,MT939455,NA,NA,NA,NA
+711,25871,18728,66,Sorex,Sorex araneus,Host,NA,MT939456,NA,NA,NA,NA
+712,25871,18728,66,Sorex,Sorex araneus,Host,NA,MT939457,NA,NA,NA,NA
+713,25871,18728,66,Sorex,Sorex araneus,Host,NA,MT939458,NA,NA,NA,NA
+714,25871,18728,66,Sorex,Sorex araneus,Pathogen,Seewis virus,MT939459,NA,NA,NA,NA
+715,25871,18728,66,Sorex,Sorex araneus,Pathogen,Seewis virus,MT939460,NA,NA,NA,NA
+716,25871,18728,66,Sorex,Sorex araneus,Pathogen,Seewis virus,MT939461,NA,NA,NA,NA
+717,26061,18762,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,ON243777,NA,NA,NA,NA
+718,26479,18868,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243778,NA,NA,NA,NA
+719,26484,18873,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243779,NA,NA,NA,NA
+720,26425,18814,67,Clethrionomys,Clethrionomys glareolus,Pathogen,Orthohantavirus tulaense,ON243780,NA,NA,NA,NA
+721,26421,18810,67,Clethrionomys,Clethrionomys glareolus,Pathogen,Orthohantavirus tulaense,ON243781,NA,NA,NA,NA
+722,26485,18874,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243782,NA,NA,NA,NA
+723,26475,18864,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243783,NA,NA,NA,NA
+724,26480,18869,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243784,NA,NA,NA,NA
+725,26464,18853,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243785,NA,NA,NA,NA
+726,26463,18852,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243786,NA,NA,NA,NA
+727,26463,18852,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243787,NA,NA,NA,NA
+728,26488,18877,67,Apodemus,Apodemus sylvaticus,Pathogen,Orthohantavirus tulaense,ON243788,NA,NA,NA,NA
+729,26499,18885,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243789,NA,NA,NA,NA
+730,26499,18885,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243790,NA,NA,NA,NA
+731,26478,18867,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243791,NA,NA,NA,NA
+732,26466,18855,67,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus tulaense,ON243792,NA,NA,NA,NA
+733,26461,18850,67,Apodemus,Apodemus sylvaticus,Pathogen,Orthohantavirus tulaense,ON243793,NA,NA,NA,NA
+734,26479,18868,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243794,NA,NA,NA,NA
+735,26486,18875,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243795,NA,NA,NA,NA
+736,26482,18871,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243796,NA,NA,NA,NA
+737,26464,18853,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243797,NA,NA,NA,NA
+738,26463,18852,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243798,NA,NA,NA,NA
+739,26367,18756,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus tulaense,ON243799,NA,NA,NA,NA
+740,26350,18739,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus tulaense,ON243800,NA,NA,NA,NA
+741,26391,18780,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus tulaense,ON243801,NA,NA,NA,NA
+742,26399,18788,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus tulaense,ON243802,NA,NA,NA,NA
+743,26347,18736,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243803,NA,NA,NA,NA
+744,26346,18735,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON243804,NA,NA,NA,NA
+745,26396,18785,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus tulaense,ON243805,NA,NA,NA,NA
+746,26501,18886,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,ON243806,NA,NA,NA,NA
+747,26055,18756,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,ON243807,NA,NA,NA,NA
+748,26061,18762,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,ON243808,NA,NA,NA,NA
+749,26064,18765,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,ON243809,NA,NA,NA,NA
+750,26081,18782,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,ON243810,NA,NA,NA,NA
+751,26086,18787,67,Apodemus,Apodemus agrarius,Pathogen,Orthohantavirus dobravaense,ON243811,NA,NA,NA,NA
+752,26033,18734,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus dobravaense,ON243812,NA,NA,NA,NA
+753,26029,18730,67,Apodemus,Apodemus sylvaticus,Pathogen,Orthohantavirus dobravaense,ON243813,NA,NA,NA,NA
+754,26035,18736,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus dobravaense,ON243814,NA,NA,NA,NA
+755,26304,18849,67,Sorex,Sorex araneus,Pathogen,Orthohantavirus seewisense,ON243815,NA,NA,NA,NA
+756,26283,18828,67,Sorex,Sorex araneus,Pathogen,Orthohantavirus seewisense,ON243816,NA,NA,NA,NA
+757,25989,18846,67,Sorex,Sorex araneus,Pathogen,Orthohantavirus asikkalaense,ON243817,NA,NA,NA,NA
+758,26483,18872,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653425,NA,NA,NA,NA
+759,26484,18873,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653426,NA,NA,NA,NA
+760,26475,18864,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653427,NA,NA,NA,NA
+761,26480,18869,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653428,NA,NA,NA,NA
+762,26476,18865,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653429,NA,NA,NA,NA
+763,26477,18866,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653430,NA,NA,NA,NA
+764,26499,18885,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653431,NA,NA,NA,NA
+765,26478,18867,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653432,NA,NA,NA,NA
+766,26490,18879,67,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus tulaense,ON653433,NA,NA,NA,NA
+767,26466,18855,67,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus tulaense,ON653434,NA,NA,NA,NA
+768,26461,18850,67,Apodemus,Apodemus sylvaticus,Pathogen,Orthohantavirus tulaense,ON653435,NA,NA,NA,NA
+769,26479,18868,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653436,NA,NA,NA,NA
+770,26486,18875,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653437,NA,NA,NA,NA
+771,26481,18870,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653438,NA,NA,NA,NA
+772,26464,18853,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653439,NA,NA,NA,NA
+773,26463,18852,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653440,NA,NA,NA,NA
+774,26347,18736,67,Microtus,Microtus arvalis,Pathogen,Orthohantavirus tulaense,ON653441,NA,NA,NA,NA
+775,26488,18877,67,Apodemus,Apodemus sylvaticus,Pathogen,Orthohantavirus tulaense,ON653442,NA,NA,NA,NA
+776,NA,18899,68,Crocidura,Crocidura somalica,Host,NA,OQ709089,NA,NA,NA,NA
+777,NA,18899,68,Crocidura,Crocidura somalica,Host,NA,OQ709090,NA,NA,NA,NA
+778,NA,18899,68,Crocidura,Crocidura somalica,Host,NA,OQ709091,NA,NA,NA,NA
+779,NA,18899,68,Crocidura,Crocidura somalica,Host,NA,OQ709092,NA,NA,NA,NA
+780,NA,18899,68,Crocidura,Crocidura somalica,Host,NA,OQ709093,NA,NA,NA,NA
+781,NA,18899,68,Crocidura,Crocidura somalica,Host,NA,OQ709094,NA,NA,NA,NA
+782,NA,18899,68,Crocidura,Crocidura somalica,Host,NA,OQ709095,NA,NA,NA,NA
+783,NA,18899,68,Crocidura,Crocidura somalica,Host,NA,OQ709096,NA,NA,NA,NA
+784,NA,18899,68,Crocidura,Crocidura somalica,Host,NA,OQ709097,NA,NA,NA,NA
+785,NA,18899,68,Crocidura,Crocidura somalica,Host,NA,OQ709098,NA,NA,NA,NA
+786,NA,18899,68,Crocidura,Crocidura somalica,Host,NA,OQ709099,NA,NA,NA,NA
+787,26571,18954,69,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,KT971005,NA,sequences may have higher geographic resolution than rodent sampling,NA,"Brezhdan, Diber"
+788,26571,18954,69,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,KT971006,NA,sequences may have higher geographic resolution than rodent sampling,NA,"Pilafe, Diber"
+789,26571,18954,69,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,KT971007,NA,sequences may have higher geographic resolution than rodent sampling,NA,"Llasen, Diber"
+790,26714,19097,69,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,KT971008,NA,sequences may have higher geographic resolution than rodent sampling,NA,"Togez, Librazhd"
+791,26649,19032,69,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,KT971009,NA,sequences may have higher geographic resolution than rodent sampling,NA,"Voskopoje, Korce"
+792,26896,19279,69,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,KT971010,NA,sequences may have higher geographic resolution than rodent sampling,NA,"Llogora, Vlore"
+793,26649,19032,69,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,KT971011,NA,sequences may have higher geographic resolution than rodent sampling,NA,"Deillas, Korce"
+794,26649,19032,69,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,KT971012,NA,sequences may have higher geographic resolution than rodent sampling,NA,"Dardhe, Korce"
+795,26636,19019,69,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,KT971013,NA,sequences may have higher geographic resolution than rodent sampling,NA,"Mollas, Kolonje"
+796,26792,19175,69,Apodemus,Apodemus flavicollis,Pathogen,Orthohantavirus dobravaense,KT971014,NA,sequences may have higher geographic resolution than rodent sampling,NA,"Geshtenjas, Pogradec"
+797,NA,19306,70,Microtus,Microtus arvalis,Host,NA,MW656487,NA,NA,NA,NA
+798,NA,19306,70,Microtus,Microtus arvalis,Host,NA,MW656488,NA,NA,NA,NA
+799,NA,19312,70,Microtus,Microtus arvalis,Host,NA,MW656489,NA,NA,NA,NA
+800,NA,19312,70,Microtus,Microtus arvalis,Host,NA,MW656490,NA,NA,NA,NA
+801,NA,19344,70,Microtus,Microtus arvalis,Host,NA,MW656492,NA,NA,NA,NA
+802,NA,19307,70,Microtus,Microtus arvalis,Host,NA,MW656493,NA,NA,NA,NA
+803,NA,19307,70,Microtus,Microtus arvalis,Host,NA,MW656494,NA,NA,NA,NA
+804,NA,19339,70,Microtus,Microtus arvalis,Host,NA,MW656495,NA,NA,NA,NA
+805,NA,19339,70,Microtus,Microtus arvalis,Host,NA,MW656496,NA,NA,NA,NA
+806,NA,19329,70,Microtus,Microtus arvalis,Host,NA,MW656497,NA,NA,NA,NA
+807,NA,19329,70,Microtus,Microtus arvalis,Host,NA,MW656498,NA,NA,NA,NA
+808,NA,19370,70,Microtus,Microtus arvalis,Host,NA,MW656499,NA,NA,NA,NA
+809,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272834,NA,NA,NA,NA
+810,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272889,NA,NA,NA,NA
+811,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272927,NA,NA,NA,NA
+812,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272835,NA,NA,NA,NA
+813,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272836,NA,NA,NA,NA
+814,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272890,NA,NA,NA,NA
+815,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272928,NA,NA,NA,NA
+816,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272838,NA,NA,NA,NA
+817,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272839,NA,NA,NA,NA
+818,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272840,NA,NA,NA,NA
+819,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272891,NA,NA,NA,NA
+820,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272929,NA,NA,NA,NA
+821,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272841,NA,NA,NA,NA
+822,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272892,NA,NA,NA,NA
+823,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272930,NA,NA,NA,NA
+824,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272842,NA,NA,NA,NA
+825,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272893,NA,NA,NA,NA
+826,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272931,NA,NA,NA,NA
+827,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272843,NA,NA,NA,NA
+828,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272894,NA,NA,NA,NA
+829,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272932,NA,NA,NA,NA
+830,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272837,NA,NA,NA,NA
+831,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272895,NA,NA,NA,NA
+832,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272933,NA,NA,NA,NA
+833,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272844,NA,NA,NA,NA
+834,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272896,NA,NA,NA,NA
+835,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272934,NA,NA,NA,NA
+836,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272845,NA,NA,NA,NA
+837,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272846,NA,NA,NA,NA
+838,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272897,NA,NA,NA,NA
+839,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272935,NA,NA,NA,NA
+840,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272847,NA,NA,NA,NA
+841,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272898,NA,NA,NA,NA
+842,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272936,NA,NA,NA,NA
+843,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272848,NA,NA,NA,NA
+844,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272899,NA,NA,NA,NA
+845,26946,19306,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272937,NA,NA,NA,NA
+846,26966,19314,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272849,NA,NA,NA,NA
+847,26966,19314,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272958,NA,NA,NA,NA
+848,26966,19314,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272850,NA,NA,NA,NA
+849,26942,19304,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272852,NA,NA,NA,NA
+850,26942,19304,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272900,NA,NA,NA,NA
+851,26942,19304,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272939,NA,NA,NA,NA
+852,26962,19312,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272851,NA,NA,NA,NA
+853,26962,19312,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272901,NA,NA,NA,NA
+854,26962,19312,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272940,NA,NA,NA,NA
+855,26962,19312,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272853,NA,NA,NA,NA
+856,26962,19312,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272902,NA,NA,NA,NA
+857,26924,19297,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272854,NA,NA,NA,NA
+858,26924,19297,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272903,NA,NA,NA,NA
+859,26924,19297,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272941,NA,NA,NA,NA
+860,26964,19313,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272855,NA,NA,NA,NA
+861,26964,19313,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272942,NA,NA,NA,NA
+862,27004,19329,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272856,NA,NA,NA,NA
+863,27004,19329,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272904,NA,NA,NA,NA
+864,27004,19329,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272943,NA,NA,NA,NA
+865,27004,19329,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272857,NA,NA,NA,NA
+866,27004,19329,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272905,NA,NA,NA,NA
+867,27004,19329,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272944,NA,NA,NA,NA
+868,27024,19337,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272858,NA,NA,NA,NA
+869,27024,19337,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272906,NA,NA,NA,NA
+870,27024,19337,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272945,NA,NA,NA,NA
+871,27024,19337,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272859,NA,NA,NA,NA
+872,27024,19337,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272907,NA,NA,NA,NA
+873,27024,19337,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272946,NA,NA,NA,NA
+874,27024,19337,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272860,NA,NA,NA,NA
+875,27024,19337,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272908,NA,NA,NA,NA
+876,27024,19337,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272947,NA,NA,NA,NA
+877,27064,19353,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272861,NA,NA,NA,NA
+878,27064,19353,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272909,NA,NA,NA,NA
+879,27064,19353,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272948,NA,NA,NA,NA
+880,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272862,NA,NA,NA,NA
+881,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272910,NA,NA,NA,NA
+882,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272949,NA,NA,NA,NA
+883,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272863,NA,NA,NA,NA
+884,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272911,NA,NA,NA,NA
+885,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272950,NA,NA,NA,NA
+886,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272909,NA,NA,NA,NA
+887,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272864,NA,NA,NA,NA
+888,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272912,NA,NA,NA,NA
+889,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272951,NA,NA,NA,NA
+890,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272865,NA,NA,NA,NA
+891,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272866,NA,NA,NA,NA
+892,27106,19370,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272913,NA,NA,NA,NA
+893,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272867,NA,NA,NA,NA
+894,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272914,NA,NA,NA,NA
+895,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272952,NA,NA,NA,NA
+896,26968,19315,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272868,NA,NA,NA,NA
+897,26968,19315,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272953,NA,NA,NA,NA
+898,26968,19315,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272869,NA,NA,NA,NA
+899,26968,19315,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272915,NA,NA,NA,NA
+900,26968,19315,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272954,NA,NA,NA,NA
+901,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272870,NA,NA,NA,NA
+902,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272916,NA,NA,NA,NA
+903,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272871,NA,NA,NA,NA
+904,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272917,NA,NA,NA,NA
+905,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272955,NA,NA,NA,NA
+906,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272872,NA,NA,NA,NA
+907,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272918,NA,NA,NA,NA
+908,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272956,NA,NA,NA,NA
+909,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272873,NA,NA,NA,NA
+910,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272919,NA,NA,NA,NA
+911,26948,19307,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272957,NA,NA,NA,NA
+912,26968,19315,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272874,NA,NA,NA,NA
+913,26968,19315,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272938,NA,NA,NA,NA
+914,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272875,NA,NA,NA,NA
+915,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272959,NA,NA,NA,NA
+916,27008,19331,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272876,NA,NA,NA,NA
+917,27008,19331,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272960,NA,NA,NA,NA
+918,27008,19331,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272877,NA,NA,NA,NA
+919,27008,19331,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272920,NA,NA,NA,NA
+920,27008,19331,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272961,NA,NA,NA,NA
+921,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272878,NA,NA,NA,NA
+922,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272962,NA,NA,NA,NA
+923,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272879,NA,NA,NA,NA
+924,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272963,NA,NA,NA,NA
+925,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272880,NA,NA,NA,NA
+926,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272921,NA,NA,NA,NA
+927,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272964,NA,NA,NA,NA
+928,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272881,NA,NA,NA,NA
+929,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272922,NA,NA,NA,NA
+930,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272965,NA,NA,NA,NA
+931,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272882,NA,NA,NA,NA
+932,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272923,NA,NA,NA,NA
+933,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272966,NA,NA,NA,NA
+934,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272883,NA,NA,NA,NA
+935,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272924,NA,NA,NA,NA
+936,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272967,NA,NA,NA,NA
+937,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272884,NA,NA,NA,NA
+938,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272925,NA,NA,NA,NA
+939,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272968,NA,NA,NA,NA
+940,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272885,NA,NA,NA,NA
+941,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272926,NA,NA,NA,NA
+942,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272969,NA,NA,NA,NA
+943,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272886,NA,NA,NA,NA
+944,27028,19339,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272970,NA,NA,NA,NA
+945,27068,19355,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272887,NA,NA,NA,NA
+946,27068,19355,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272888,NA,NA,NA,NA
+947,27068,19355,70,Microtus,Microtus arvalis,Pathogen,Tula orthohantavirus,MT272870,NA,NA,NA,NA
+948,27327,19590,72,Micaelamys,Micaelamys namaquensis,Pathogen,Mammarenavirus marientalense,OL790924,NA,NA,NA,NA
+949,27327,19590,72,Micaelamys,Micaelamys namaquensis,Pathogen,Mammarenavirus marientalense,OL790925,NA,NA,NA,NA
+950,27458,19721,72,Mus,Mus minutoides,Pathogen,Mammarenavirus lunkense,OL790926,NA,NA,NA,NA
+951,27458,19721,72,Mus,Mus minutoides,Pathogen,Mammarenavirus lunkense,OL790927,NA,NA,NA,NA
+952,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Amga orthohantvirus,KM201419,NA,NA,NA,NA
+953,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Amga orthohantvirus,KM201420,NA,NA,NA,NA
+954,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Amga orthohantvirus,KM201421,NA,NA,NA,NA
+955,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Amga orthohantvirus,KM201415,NA,NA,NA,NA
+956,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Amga orthohantvirus,KM201416,NA,NA,NA,NA
+957,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Amga orthohantvirus,KM201417,NA,NA,NA,NA
+958,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Amga orthohantvirus,KM201418,NA,NA,NA,NA
+959,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Amga orthohantvirus,KM201411,NA,NA,NA,NA
+960,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Amga orthohantvirus,KM201412,NA,NA,NA,NA
+961,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Amga orthohantvirus,KM201413,NA,NA,NA,NA
+962,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Seewis orhtohantavirus,MT951408,NA,NA,NA,NA
+963,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Amga orthohantvirus,KM201414,NA,NA,NA,NA
+964,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361045,NA,NA,NA,NA
+965,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361057,NA,NA,NA,NA
+966,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361052,NA,NA,NA,NA
+967,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361046,NA,NA,NA,NA
+968,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361058,NA,NA,NA,NA
+969,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361047,NA,NA,NA,NA
+970,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361059,NA,NA,NA,NA
+971,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,MN401400,NA,NA,NA,NA
+972,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361044,NA,NA,NA,NA
+973,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361056,NA,NA,NA,NA
+974,27958,19807,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361051,NA,NA,NA,NA
+975,27959,19808,73,Sorex,Sorex minutissimus,Pathogen,Altai orthohantavirus,MN244247,NA,NA,NA,NA
+976,27963,19812,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361050,NA,NA,NA,NA
+977,27963,19812,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361060,NA,NA,NA,NA
+978,27963,19812,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361048,NA,NA,NA,NA
+979,27963,19812,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361061,NA,NA,NA,NA
+980,27963,19812,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361053,NA,NA,NA,NA
+981,27963,19812,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,MN401398,NA,NA,NA,NA
+982,27963,19812,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,MT951407,NA,NA,NA,NA
+983,27963,19812,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,MN401399,NA,NA,NA,NA
+984,27966,19815,73,Sorex,Sorex roboratus,Pathogen,Altai orthohantavirus,KM361049,NA,NA,NA,NA
+985,27966,19815,73,Sorex,Sorex roboratus,Pathogen,Altai orthohantavirus,KM361063,NA,NA,NA,NA
+986,27966,19815,73,Sorex,Sorex roboratus,Pathogen,Altai orthohantavirus,KM361054,NA,NA,NA,NA
+987,27966,19815,73,Sorex,Sorex roboratus,Pathogen,Altai orthohantavirus,MN401401,NA,NA,NA,NA
+988,27966,19815,73,Sorex,Sorex roboratus,Pathogen,Altai orthohantavirus,KM361062,NA,NA,NA,NA
+989,27966,19815,73,Sorex,Sorex roboratus,Pathogen,Orthohantavirus kenkemeense,GQ306148,NA,NA,NA,NA
+990,27966,19815,73,Sorex,Sorex roboratus,Pathogen,Orthohantavirus kenkemeense,GQ306149,NA,NA,NA,NA
+991,27966,19815,73,Sorex,Sorex roboratus,Pathogen,Orthohantavirus kenkemeense,GQ306150,NA,NA,NA,NA
+992,27968,19817,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361043,NA,NA,NA,NA
+993,27968,19817,73,Sorex,Sorex caecutiens,Pathogen,Altai orthohantavirus,KM361055,NA,NA,NA,NA
+994,28036,19853,74,Stenocephalemys,Stenocephalemys albipes,Pathogen,Orthohantavirus tigrayense,MK875671,NA,NA,NA,NA
+995,28047,19864,76,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus hantanense,MW881022,NA,NA,NA,NA
+996,28047,19864,76,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus hantanense,MW881023,NA,NA,NA,NA
+997,28047,19864,76,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus hantanense,MW881024,NA,NA,NA,NA
+998,28047,19864,76,Rattus,Rattus norvegicus,Pathogen,Orthohantavirus hantanense,MW881025,NA,NA,NA,NA
+999,29570,21371,80,Calomys,Calomys callidus,Pathogen,Latino mammarenavirus,MF325931,NA,NA,NA,NA
+1000,29570,21371,80,Calomys,Calomys callidus,Pathogen,Latino mammarenavirus,MF325932,NA,NA,NA,NA
+1001,29570,21371,80,Calomys,Calomys callidus,Pathogen,Latino mammarenavirus,MF325933,NA,NA,NA,NA
+1002,29570,21371,80,Calomys,Calomys callidus,Pathogen,Latino mammarenavirus,MF325934,NA,NA,NA,NA
+1003,29571,21372,80,Calomys,Calomys callidus,Pathogen,Latino mammarenavirus,MF325935,NA,NA,NA,NA
+1004,29570,21371,80,Calomys,Calomys callidus,Pathogen,Latino mammarenavirus,MF325936,NA,NA,NA,NA
+1005,29570,21371,80,Calomys,Calomys callidus,Pathogen,Latino mammarenavirus,MF325937,NA,NA,NA,NA

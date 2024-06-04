@@ -1,0 +1,17 @@
+study_id,full_text_id,datasetName,sampling_effort,data_access,data_resolution,linked_manuscripts,notes
+81,ft_81,"Molecular detection and genetic characterization of Wenzhou virus in rodents in Guangzhou, China.",not reported,summarised,site,NA,NA
+82,ft_82,"Long-Term Rodent Surveillance after Outbreak of Hantavirus Infection, Yosemite National Park, California, USA, 2012.",2331 trap nights,summarised,site,NA,NA
+83,ft_83,Cocirculation of Two Orthohantavirus Species in Small Mammals of the Northwestern Ukraine.,10575 trap nights,summarised,site,NA,NA
+84,ft_86,"Endemic Hantavirus in Field Voles, Northern England.",not reported,summarised,site,NA,NA
+85,ft_87,"Identification of potential novel hosts and the risk of infection with lymphocytic choriomeningitis virus in humans in Gabon, Central Africa.",not reported,summarised,site,NA,NA
+86,ft_88,"Discovery of hantavirus circulating among Rattus rattus in French Mayotte island, Indian Ocean.",not reported,summarised,site,NA,NA
+87,ft_89,Density dependence and persistence of Morogoro arenavirus transmission in a fluctuating population of its reservoir host.,99900 trap nights,individual,individual rodent,NA,"Likely duplicates other morogoro sampling. Includes recaptures so each row is not a unique rodent 13,734 captures, 6,380 unique rodents"
+88,ft_90,Cluster of human Puumala orthohantavirus infections due to indoor exposure?-An interdisciplinary outbreak investigation.,390 trap nights,summarised,site-session,NA,NA
+89,ft_91,"Long-Term Study of a Hantavirus Reservoir Population in an Urban Protected Area, Argentina.",12754 trap nights,summarised,study,NA,NA
+90,ft_92,"Silent Orthohantavirus Circulation Among Humans and Small Mammals from Central Minas Gerais, Brazil.",not reported,summarised,site,NA,NA
+91,ft_93,Bank vole immunoheterogeneity may limit Nephropatia Epidemica emergence in a French non-endemic region.,not reported,summarised,site,NA,NA
+92,ft_94,"Dobrava hantavirus variants found in Apodemus flavicollis mice in Kırklareli Province, Turkey.",2000 trap nights,summarised,study,NA,NA
+93,ft_95,"Emerging hantavirus infection in wild rodents captured in suburbs of Gwangju Metropolitan City, South Korea.",not reported,summarised,study,NA,NA
+94,ft_97,[Genomic analysis of Wenzhou virus in rodents from Zhejiang province].,not reported,summarised,study,NA,NA
+95,ft_98,Households as hotspots of Lassa fever? Assessing the spatial distribution of Lassa virus-infected rodents in rural villages of Guinea.,NA,NA,NA,NA,NA
+ds_96,ft_99,"Serological Evidence of Thailand Orthohantavirus or Antigenically Related Virus Infection Among Rodents in a Chronic Kidney Disease of Unknown Etiology Endemic Area, Girandurukotte, Sri Lanka.",NA,NA,NA,NA,NA

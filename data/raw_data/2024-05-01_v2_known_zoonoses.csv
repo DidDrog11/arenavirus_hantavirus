@@ -1,0 +1,12 @@
+pathogen_species_id,pathogen_family,pathogen_species,known_zoonosis,disease_name,icd_10,disease_reference
+1,Hantaviridae,Sin Nombre orthohantavirus,TRUE,Hantavirus Cardio-Pulmonary Syndrome,B33.4,https://doi.org/10.1126/science.8235615
+2,Hantaviridae,Dobrava-Belgrade orthohantavirus,TRUE,Hemorrhagic Fever with Renal Syndrome,A98.5,https://doi.org/10.1086/515185
+3,Arenaviridae,Lymphocytic choriomeningitis virus,TRUE,"Lymphocytic Choriomeningitis, Congenital Lymphocytic Choriomeningitis",A87.2,https://academic.oup.com/cid/article/33/3/370/278006
+4,Hantaviridae,Puumala virus,TRUE,Nephropathia Epidemica,NA,https://doi.org/10.1093/oxfordjournals.qjmed.a068385
+5,Hantaviridae,Saaremaa virus,TRUE,Hemorrhagic Fever with Renal Syndrome,A98.5,https://doi.org/10.3201%2Feid1404.071310
+6,Hantaviridae,Asama virus,FALSE,NA,NA,NA
+7,Hantaviridae,Hantaan virus,TRUE,Hemorrhagic Fever with Renal Syndrome,A98.5,https://doi.org/10.7326/0003-4819-113-5-385
+8,Hantaviridae,Seoul hantavirus,TRUE,Hemorrhagic Fever with Renal Syndrome,A98.5,https://doi.org/10.1159/000188762
+9,Arenaviridae,Lassa mammarenavirus,TRUE,Lassa Fever,A96.2,https://doi.org/10.4269/ajtmh.1970.19.670
+10,Hantaviridae,Andes orthohantavirus,TRUE,Hantavirus Cardio-Pulmonary Syndrome,NA,NA
+11,Arenaviridae,Junin virus,TRUE,Argentine Haemorrhagic Fever,NA,NA
