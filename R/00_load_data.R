@@ -15,7 +15,7 @@ pacman::p_load(pkgs, character.only = T)
 # Searches were run manually on 2023-08-24 on PubMed, WoS and Google Scholar
 # 2,448 citations were identified after de-duplication
 search_date <- "2023-08-24"
-analysis_date <- "2024-05-01"
+analysis_date <- "2024-08-14"
 
 if(length(list.files(here("data", "raw_data"), pattern = paste0(analysis_date, "_v2_data.rds"))) == 0) {
   
@@ -67,15 +67,16 @@ if(length(list.files(here("data", "raw_data"), pattern = paste0(analysis_date, "
   write_csv(data_v3_rodent, here("data", "raw_data", paste0(analysis_date, "_v3_rodent.csv")))
   data_v3_pathogen <- data_v3 %>%
     read_sheet(sheet = "pathogen",
+               range = "A:L",
                col_types = "cccccccddddc") %>%
     drop_na(pathogen_record_id)
   write_csv(data_v3_pathogen, here("data", "raw_data", paste0(analysis_date, "_v3_pathogen.csv")))
   data_v3_sequences <- data_v3 %>%
     read_sheet(sheet = "sequences",
+               range = "A:L",
                col_types = "cccccccccccc") %>%
     drop_na(sequence_record_id)
   write_csv(data_v3_sequences, here("data", "raw_data", paste0(analysis_date, "_v3_sequences.csv")))
-  
   
   combined_data_v3 <- list(studies = data_v3_descriptive,
                            host = data_v3_rodent,
