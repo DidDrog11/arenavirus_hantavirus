@@ -99,10 +99,16 @@ names(puumala_hosts_arha) <- group_keys(puumala_host_occurrence_arha) %>%
 # }
 # 
 # puumala_covs <- crop_to_ext(raster_list, host_ranges = puumala_host_ranges)
-# 
-# writeRaster(puumala_covs, filename = here("data", "misc", "covs_rast.tiff"))
+# names(puumala_covs) <- c("trees", "water", "cropland", "grassland", "bio_1", "bio_2", "bio_5", "bio_6", "bio_12", "bio_13", "bio_14", "bio_15", "elevation", "anth_footprint", "travel_cities_1")
+# writeRaster(puumala_covs, filename = here("data", "misc", "covs_rast2.tiff"))
+# puumala_covs <- rast(here("data", "misc", "covs_rast2.tiff"))
+# ds_res <- 0.05
+# res_factor <- ds_res/res(puumala_covs)
+# ds_puumala_covs <- terra::aggregate(puumala_covs, fact = res_factor, fun = "median", cores = 6)
+# Downsampled to 17million raster cells ~5km at equator
+# writeRaster(ds_puumala_covs, filename = here("data", "misc", "covs_rast3.tiff"))
 
-puumala_covs <- rast(here("data", "misc", "covs_rast.tiff"))
+puumala_covs <- rast(here("data", "misc", "covs_rast3.tiff"))
 
 # Myodes glareolus --------------------------------------------------------
 
@@ -375,7 +381,7 @@ bart.step2 <- function (x.data, y.data, ri.data = NULL, iter.step = 100, tree.st
     message("It is strongly recommended that you remove these from the raw data:")
     message(paste(dropnames, collapse = " "), " \n")
   }
-  x.data <- x.data %>% dplyr::select(-dropnames)
+  x.data <- x.data %>% dplyr::select(-any_of(dropnames))
   quiet2 <- quiet
   if (full == TRUE) {
     varimp.diag(x.data, y.data, ri.data, iter = iter.plot, 
@@ -405,15 +411,92 @@ bart.step2 <- function (x.data, y.data, ri.data = NULL, iter.step = 100, tree.st
 xvars <- names(all_cov_myodes_gl)[1:15]
 yvar <- "myodes_gl"
 
-myodes_gl_sdm_1 <- bart.step2(
-  x.data = all_cov_myodes_gl[, xvars],
-  y.data = all_cov_myodes_gl[, yvar], 
-  iter.step = 10,
-  iter.plot = 10,
-  tree.step = 10,
+# myodes_gl_sdm_1 <- bart.step2(
+#   x.data = all_cov_myodes_gl[, xvars],
+#   y.data = all_cov_myodes_gl[, yvar], 
+#   iter.step = 100,
+#   iter.plot = 100,
+#   tree.step = 10,
+#   full = TRUE,
+#   quiet = FALSE)
+# write_rds(myodes_gl_sdm_1, here("data", "misc", "myodes_sdm_1.rds"))
+myodes_gl_sdm_1 <- read_rds(here("data", "misc", "myodes_sdm_1.rds"))
+myodes_gl_sdm_1_summary <- summary(myodes_gl_sdm_1)
+myodes_gl_sdm_1_varimp <- varimp(myodes_gl_sdm_1)
+varimp(myodes_gl_sdm_1, plots = TRUE)
+pred_c <- c(levels(myodes_gl_sdm_1_varimp[, 1]))
+# Predict species distribution --------------------------------------------
+puumala_covs_myodes_gl_stack <- raster::stack(puumala_covs_myodes_gl %>%
+                                                tidyterra::select(any_of(pred_c)))
+# Do the spatial prediction
+test <- x.layers
+test$myodes <- presence_myodes_gl_rast
+test_complete <- test[which(complete.cases(values(test)))]
+input.df <- test_complete
+result <- object$fit$predict(input.df, offset)
+
+object = myodes_gl_sdm_1
+x.layers = puumala_covs_myodes_gl %>%
+  tidyterra::select(any_of(pred_c))
+quantiles = c()
+ri.data = NULL 
+ri.name = NULL
+ri.pred = FALSE
+splitby = 20
+quiet = FALSE
+xnames <- attr(object$fit$data@x, "term.labels")
+all(xnames %in% names(x.layers))
+input.matrix <- terra::values(x.layers, mat = TRUE)
+blankout <- data.frame(matrix(ncol = (1 + length(quantiles)), 
+                              nrow = ncell(x.layers[[1]])))
+whichvals <- which(complete.cases(input.matrix))
+input.matrix <- input.matrix[complete.cases(input.matrix), ]
+split <- floor(nrow(input.matrix)/splitby)
+input.df <- data.frame(input.matrix)
+input.str <- split(input.df, (as.numeric(1:nrow(input.df)) - 1)%/%split)
+
+i = 1
+#pred <- dbarts:::predict.bart(object, input.str[[i]])
+
+object = object
+newdata = input.str[[i]]
+offset <- NULL
+result <- object$fit$predict(newdata, offset)
+n.chains <- object$fit$control@n.chains
+samples <- result
+n.chains = dim(samples)[length(dim(samples))]
+result <- convertSamplesFromDbartsToBart(result, n.chains, 
+                                         combineChains = TRUE)
+result <- pnorm(result)
+
+myodes_gl_map <- predict2.bart(object = myodes_gl_sdm_1,
+                               x.layers = puumala_covs_myodes_gl_stack,
+                               splitby = 20,
+                               quiet = FALSE)
+myodes_gl_map
+
+
+# Model on small subset to troubleshoot -----------------------------------
+
+puumala_covs_myodes_gl$myodes_gl <- presence_myodes_gl_rast
+puumala_covs_myodes_gl$myodes_gl <- puumala_covs_myodes_gl$myodes_gl == 1
+puumala_covs_myodes_gl$myodes_gl <- ifel(is.na(puumala_covs_myodes_gl$myodes_gl), FALSE, TRUE)
+#GBR
+GBR <- world_vect %>% filter(GID_0 == "GBR")
+GBR_myodes <- crop(puumala_covs_myodes_gl, GBR)
+GBR_myodes_df <- as.data.frame(GBR_myodes, cells = TRUE, xy = TRUE) %>%
+  drop_na() %>%
+  mutate(myodes_gl = as.integer(myodes_gl))
+GBR_myodes_vect <- vect(GBR_myodes_df, geom = c("x", "y"), crs = "EPSG:4326")
+#Running as model.0 works.
+GBR_test <- bart.step2(
+  x.data = GBR_myodes_df[, xvars],
+  y.data = GBR_myodes_df[, yvar],
+  iter.step = 5,
+  iter.plot = 5,
+  tree.step = 2,
   full = TRUE,
   quiet = FALSE)
-write_rds(myodes_gl_sdm_1, here("data", "misc", "myodes_sdm_1.rds"))
-myodes_gl_sdm_1_summary <- summary(myodes_gl_sdm_1)
-test1_varimp <- varimp(test1)
-
+result[1, ]
+GBR_myodes_df$result <- colMeans(result)
+GBR_myodes
