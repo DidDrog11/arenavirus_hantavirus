@@ -59,7 +59,7 @@ names(puumala_hosts) <- group_keys(puumala_host_occurrences) %>%
   pull(species)
 
 # Can also bring in the data from ArHa
-arha <- read_rds(here("data", "clean_data", "2024-08-14_data.rds"))
+arha <- read_rds(here("data", "clean_data", "2024-08-27_data.rds"))
 puumala_host_occurrence_arha <- arha$host %>%
   drop_na(species) %>%
   filter(species %in% group_keys(puumala_host_occurrences)$species) %>%
@@ -105,7 +105,7 @@ names(puumala_hosts_arha) <- group_keys(puumala_host_occurrence_arha) %>%
 # ds_res <- 0.05
 # res_factor <- ds_res/res(puumala_covs)
 # ds_puumala_covs <- terra::aggregate(puumala_covs, fact = res_factor, fun = "median", cores = 6)
-# Downsampled to 17million raster cells ~5km at equator
+# Downsampled to 17.5 million raster cells ~5km at equator
 # writeRaster(ds_puumala_covs, filename = here("data", "misc", "covs_rast3.tiff"))
 
 puumala_covs <- rast(here("data", "misc", "covs_rast3.tiff"))
@@ -166,6 +166,8 @@ sum(values(myodes_gl_rast))
 # Convert to binary presence and filter to occurrence only
 presence_myodes_gl_rast <- ifel(myodes_gl_rast >= 1, 1, myodes_gl_rast) %>%
   filter(occurrence == 1)
+# Add back to raster for later
+puumala_covs_myodes_gl$myodes_gl <- presence_myodes_gl_rast
 # Convert back to points
 presence_myodes_gl_vect <- as.points(presence_myodes_gl_rast, values = TRUE)
 # Extract the values from the raster
@@ -254,6 +256,112 @@ all_cov_myodes_gl <- bind_rows(covs_myodes_gl_df,
   drop_na()
 table(all_cov_myodes_gl$myodes_gl)
 
+# Run models --------------------------------------------------------------
+xvars <- names(puumala_covs_myodes_gl)[1:15]
+yvar <- "myodes_gl"
+
+# Subset to UK and Sweden -------------------------------------------------
+#GBR
+GBR <- world_vect %>% filter(GID_0 == "GBR")
+
+GBR_rast <- crop(puumala_covs_myodes_gl, GBR)
+n_presence_GBR <- sum(values(GBR_rast$myodes_gl), na.rm = TRUE)
+pseudoabsence_GBR_pool <- as.data.frame(GBR_rast, cells = TRUE) %>%
+  drop_na(bio_1, trees) %>%
+  filter(is.na(myodes_gl)) %>%
+  pull(cell)
+pseudoabsence_GBR_cell <- sample(pseudoabsence_GBR_pool, size = n_presence_GBR, replace = FALSE)
+GBR_rast$myodes_gl[pseudoabsence_GBR_cell] <- 0
+
+GBR_myodes_df <- as.data.frame(GBR_rast, cells = TRUE, xy = TRUE) %>%
+  mutate(myodes_gl = as.integer(myodes_gl)) %>%
+  drop_na()
+GBR_myodes_vect <- vect(GBR_myodes_df, geom = c("x", "y"), crs = "EPSG:4326")
+
+# Running as model.0 works, including all variables
+x.data = GBR_myodes_df[, xvars]
+y.data = GBR_myodes_df[yvar]
+GBR_model.0 <- bart.flex(x.data = x.data, y.data = y.data, 
+                         ri.data = NULL, n.trees = 200)
+# Check predict works
+GBR_pred.0 <- predict(GBR_model.0, raster::stack(GBR_myodes %>% tidyterra::select(any_of(xvars))))
+ggplot() + geom_spatraster(data = rast(GBR_pred.0, crs = "EPSG:4326"))
+
+# Now try variable selection to reduce variables based on RMSE
+GBR_model_var <- variable.step2(x.data, y.data, ri.data = NULL, n.trees = 10, iter = 50, quiet = FALSE)
+
+GBR_model_final <- bart.flex(x.data = x.data[, GBR_model_var], y.data = y.data, ri.data = NULL, n.trees = 200)
+GBR_model_summary <- summary(GBR_model_final)
+GBR_model_varimp <- varimp(GBR_model_final)
+
+# Do the spatial prediction
+GBR_pred.final <- predict(GBR_model_final, raster::stack(GBR_myodes %>% tidyterra::select(any_of(xvars))))
+
+ggplot() +
+  geom_spatraster(data = rast(GBR_pred.final, crs = "EPSG:4326"), na.rm = TRUE) + 
+  scale_fill_viridis_c(na.value = NA) +
+  #geom_spatvector(data = crop(myodes_gl_pres, GBR_myodes), colour = "blue", size = 0.2) +
+  geom_spatvector(data = vect(GBR_rast), colour = "red", size = 1)
+
+
+test <- x.layers
+test$myodes <- presence_myodes_gl_rast
+test_complete <- test[which(complete.cases(values(test)))]
+input.df <- test_complete
+result <- object$fit$predict(input.df, offset)
+
+object = myodes_gl_sdm_1
+x.layers = puumala_covs_myodes_gl %>%
+  tidyterra::select(any_of(pred_c))
+quantiles = c()
+ri.data = NULL 
+ri.name = NULL
+ri.pred = FALSE
+splitby = 20
+quiet = FALSE
+xnames <- attr(object$fit$data@x, "term.labels")
+all(xnames %in% names(x.layers))
+input.matrix <- terra::values(x.layers, mat = TRUE)
+blankout <- data.frame(matrix(ncol = (1 + length(quantiles)), 
+                              nrow = ncell(x.layers[[1]])))
+whichvals <- which(complete.cases(input.matrix))
+input.matrix <- input.matrix[complete.cases(input.matrix), ]
+split <- floor(nrow(input.matrix)/splitby)
+input.df <- data.frame(input.matrix)
+input.str <- split(input.df, (as.numeric(1:nrow(input.df)) - 1)%/%split)
+
+i = 1
+#pred <- dbarts:::predict.bart(object, input.str[[i]])
+
+object = object
+newdata = input.str[[i]]
+offset <- NULL
+result <- object$fit$predict(newdata, offset)
+n.chains <- object$fit$control@n.chains
+samples <- result
+n.chains = dim(samples)[length(dim(samples))]
+result <- convertSamplesFromDbartsToBart(result, n.chains, 
+                                         combineChains = TRUE)
+result <- pnorm(result)
+
+myodes_gl_map <- predict2.bart(object = myodes_gl_sdm_1,
+                               x.layers = puumala_covs_myodes_gl_stack,
+                               splitby = 20,
+                               quiet = FALSE)
+myodes_gl_map
+
+
+# Model on small subset to troubleshoot -----------------------------------
+
+puumala_covs_myodes_gl$myodes_gl <- presence_myodes_gl_rast
+puumala_covs_myodes_gl$myodes_gl <- puumala_covs_myodes_gl$myodes_gl == 1
+puumala_covs_myodes_gl$myodes_gl <- ifel(is.na(puumala_covs_myodes_gl$myodes_gl), FALSE, TRUE)
+
+
+
+
+
+
 # Updated bart.step functions ---------------------------------------------
 # There is an issue in the variable.step code to do with the indexing of variables. We fix it in the below function
 variable.step2 <- function (x.data, y.data, ri.data = NULL, n.trees = 10, iter = 50, 
@@ -269,7 +377,7 @@ variable.step2 <- function (x.data, y.data, ri.data = NULL, n.trees = 10, iter =
     message("Some rows with NA's have been automatically dropped. \n")
   }
   x.data <- x.data[comp, ]
-  y.data <- y.data[comp] # Missing comma corrected, will now select appropriate column
+  y.data <- y.data[comp, ]
   quietly(model.0 <- bart.flex(x.data = x.data, y.data = y.data, 
                                ri.data = ri.data, n.trees = 200))
   if (class(model.0) == "rbart") {
@@ -406,97 +514,3 @@ bart.step2 <- function (x.data, y.data, ri.data = NULL, iter.step = 100, tree.st
 }
 
 
-# Run models --------------------------------------------------------------
-
-xvars <- names(all_cov_myodes_gl)[1:15]
-yvar <- "myodes_gl"
-
-# myodes_gl_sdm_1 <- bart.step2(
-#   x.data = all_cov_myodes_gl[, xvars],
-#   y.data = all_cov_myodes_gl[, yvar], 
-#   iter.step = 100,
-#   iter.plot = 100,
-#   tree.step = 10,
-#   full = TRUE,
-#   quiet = FALSE)
-# write_rds(myodes_gl_sdm_1, here("data", "misc", "myodes_sdm_1.rds"))
-myodes_gl_sdm_1 <- read_rds(here("data", "misc", "myodes_sdm_1.rds"))
-myodes_gl_sdm_1_summary <- summary(myodes_gl_sdm_1)
-myodes_gl_sdm_1_varimp <- varimp(myodes_gl_sdm_1)
-varimp(myodes_gl_sdm_1, plots = TRUE)
-pred_c <- c(levels(myodes_gl_sdm_1_varimp[, 1]))
-# Predict species distribution --------------------------------------------
-puumala_covs_myodes_gl_stack <- raster::stack(puumala_covs_myodes_gl %>%
-                                                tidyterra::select(any_of(pred_c)))
-# Do the spatial prediction
-test <- x.layers
-test$myodes <- presence_myodes_gl_rast
-test_complete <- test[which(complete.cases(values(test)))]
-input.df <- test_complete
-result <- object$fit$predict(input.df, offset)
-
-object = myodes_gl_sdm_1
-x.layers = puumala_covs_myodes_gl %>%
-  tidyterra::select(any_of(pred_c))
-quantiles = c()
-ri.data = NULL 
-ri.name = NULL
-ri.pred = FALSE
-splitby = 20
-quiet = FALSE
-xnames <- attr(object$fit$data@x, "term.labels")
-all(xnames %in% names(x.layers))
-input.matrix <- terra::values(x.layers, mat = TRUE)
-blankout <- data.frame(matrix(ncol = (1 + length(quantiles)), 
-                              nrow = ncell(x.layers[[1]])))
-whichvals <- which(complete.cases(input.matrix))
-input.matrix <- input.matrix[complete.cases(input.matrix), ]
-split <- floor(nrow(input.matrix)/splitby)
-input.df <- data.frame(input.matrix)
-input.str <- split(input.df, (as.numeric(1:nrow(input.df)) - 1)%/%split)
-
-i = 1
-#pred <- dbarts:::predict.bart(object, input.str[[i]])
-
-object = object
-newdata = input.str[[i]]
-offset <- NULL
-result <- object$fit$predict(newdata, offset)
-n.chains <- object$fit$control@n.chains
-samples <- result
-n.chains = dim(samples)[length(dim(samples))]
-result <- convertSamplesFromDbartsToBart(result, n.chains, 
-                                         combineChains = TRUE)
-result <- pnorm(result)
-
-myodes_gl_map <- predict2.bart(object = myodes_gl_sdm_1,
-                               x.layers = puumala_covs_myodes_gl_stack,
-                               splitby = 20,
-                               quiet = FALSE)
-myodes_gl_map
-
-
-# Model on small subset to troubleshoot -----------------------------------
-
-puumala_covs_myodes_gl$myodes_gl <- presence_myodes_gl_rast
-puumala_covs_myodes_gl$myodes_gl <- puumala_covs_myodes_gl$myodes_gl == 1
-puumala_covs_myodes_gl$myodes_gl <- ifel(is.na(puumala_covs_myodes_gl$myodes_gl), FALSE, TRUE)
-#GBR
-GBR <- world_vect %>% filter(GID_0 == "GBR")
-GBR_myodes <- crop(puumala_covs_myodes_gl, GBR)
-GBR_myodes_df <- as.data.frame(GBR_myodes, cells = TRUE, xy = TRUE) %>%
-  drop_na() %>%
-  mutate(myodes_gl = as.integer(myodes_gl))
-GBR_myodes_vect <- vect(GBR_myodes_df, geom = c("x", "y"), crs = "EPSG:4326")
-#Running as model.0 works.
-GBR_test <- bart.step2(
-  x.data = GBR_myodes_df[, xvars],
-  y.data = GBR_myodes_df[, yvar],
-  iter.step = 5,
-  iter.plot = 5,
-  tree.step = 2,
-  full = TRUE,
-  quiet = FALSE)
-result[1, ]
-GBR_myodes_df$result <- colMeans(result)
-GBR_myodes
