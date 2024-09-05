@@ -559,3 +559,39 @@ ft_114 <- read_csv(here("data", "data_to_extract", "ft_114.csv")) %>%
   mutate(location = paste0(City, ", ", Provinces))
 
 write.table(ft_114, here("data", "data_to_extract", "ft_114_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_115 ------------------------------------------------------------------
+
+ft_115 <- read_xlsx(here("data", "data_to_extract", "ft_115_supp.xlsx")) %>%
+  rename("ID" = 1,
+         "scientificName" = 2,
+         "cyt_b_accession" = 4,
+         "co1_accession" = 5,
+         "rag1_accession" = 6,
+         "locality" = 9)  %>%
+  filter(!apply(., 1, function(row) any(str_detect(row, "\\*\\*")))) %>%
+  filter(!str_detect(locality, "Experimenta")) %>%
+  mutate(eventDate = as.character(as.Date(as.numeric(Collection_date), origin = "1899-12-30")),
+         eventDate = coalesce(eventDate, Collection_date),
+         decimalLatitude = as.numeric(str_extract(`Lat,Lon`, "[0-9.]+(?=[NS])")) * ifelse(str_detect(`Lat,Lon`, "S"), -1, 1),
+         decimalLongitude = as.numeric(str_extract(`Lat,Lon`, "[0-9.]+(?=[EW])")) * ifelse(str_detect(`Lat,Lon`, "W"), -1, 1),
+         across(everything(), ~ str_replace_all(., "\\*", "")),
+         rodent_record_id = row_number() + 35068,
+         individualCount = 1)
+
+ft_115_rodent <- ft_115 %>%
+  select(rodent_record_id, scientificName, eventDate, locality, country = Country, decimalLatitude, decimalLongitude, individualCount)
+
+write.table(ft_115_rodent, here("data", "data_to_extract", "ft_115_rodent_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+ft_115_sequence <- ft_115 %>%
+  select(rodent_record_id, cyt_b_accession, co1_accession, rag1_accession) %>%
+  pivot_longer(cols = c("cyt_b_accession", "co1_accession", "rag1_accession"),
+               names_to = "note",
+               values_to = "accession_number") %>%
+  arrange(note, rodent_record_id, accession_number) %>%
+  filter(!str_detect(accession_number, "ND|NR")) %>%
+  select(rodent_record_id, accession_number, note)
+
+write.table(ft_115_sequence, here("data", "data_to_extract", "ft_115_sequence_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")

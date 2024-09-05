@@ -359,6 +359,8 @@ bin_upper <- ggplot() +
 plot_grid(bin_lower, bin_central, bin_upper, nrow = 1)
 plot_grid(bin_central, overlay_occurrence_bin, nrow = 1)
 
+write_rds(model_final, here("data", "misc", "myodes_gl_final.rds"))
+
 # Updated bart.step functions ---------------------------------------------
 variable.step2 <- function (x.data, y.data, ri.data = NULL, n.trees = 10, iter = 50, 
                             quiet = FALSE) 
