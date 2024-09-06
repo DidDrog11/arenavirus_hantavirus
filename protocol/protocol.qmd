@@ -40,6 +40,10 @@ pacman::p_load(pkgs, character.only = T)
 
 ```
 
+Target journals:
+  1. Scientific Data unclear if they accept protocols but may be worth a try?
+  2. Gigabyte?
+  3. Open Research Europe/F1000 or similar
 
 # Motivation
 
@@ -47,39 +51,46 @@ Current host-pathogen association datasets provide synthesised information on ho
 
 # Introduction
 
+Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [ref]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [ref]. Arenaviruses, including *Mammarenavirus lassaense* (LASV) and *Mammarenavirus juninense* (JUNV) are causative agents of viral haemorrhagic fevers, Lassa fever in West Africa and Argentine haemorrhagic fever, while *Mammarenavirus choriomeningitidis* is believed to have a global distribution and is the cause of Lymphocytic choriomeningitis an aseptic meningitis [ref]. Hantaviruses, such as *Orthohantavirus puumalaense* (PUUV) and *Orthohantavirus seoulense* (SEOV) cause haemorrhagic fever with renal syndrome, while in the Americas *Orthohantavirus sinnombreense* (SNV) is the causative agent of hantavirus pulmonary syndrome [ref]. The distribution and human health impact of hantaviruses in Africa is poorly understood [ref]. 
 
+Novel Arenaviruses and Hantaviruses continue to be described, with new species evolving and emerging in the Anthropocene [ref]. Deforestation, urbanization, and agricultural expansion bring humans into closer contact with rodent reservoirs, increasing the likelihood of spillover events. For instance, agricultural encroachment in West Africa has been linked to increased human exposure to LASV-carrying rodents. Changes in climate, land use, rodent ecology, and human behaviour alter human-reservoir contact, which is a component of a complex human-animal-environment nexus driving spillover and maintenance of novel pathogens [ref]. Extant pathogens remain endemic diseases with limited human-to-human transmission. There remains concern about the emergence of a novel strain of an existing or new pathogen that is able to sustain transmission within human populations, this has led to Lassa fever (LASV) being classed as a priority disease by the WHO [ref].
 
-# Project aims
+A broader understanding of the economic and societal impacts of these pathogens is also required. The economic burden of arenavirus and hantavirus infections extends beyond healthcare costs to include long-term productivity losses and the economic strain on already vulnerable populations. The Four Corners outbreak of HPS led to significant economic disruption in affected communities, demonstrating the far-reaching consequences of these diseases [ref]. Lasting health and wellbeing impacts following infection are also likely. Infection with LASV is presumed to lead to symptomatic Lassa fever in only 20% of infections, the remaining 80% are presumed to have asymptomatic disease [ref]. Sensorineural hearing impairment is considered a sequelae of symptomatic infection, the prevalence of this in the asymptomatic population has not been convincingly assessed and therefore disease associated morbidity may be substantially under-reported in the endemic region.
 
-  1. Review the literature to produce a synthesised dataset on Arenaviridae and Hantaviridae among small mammals
-  2. Implement visualisation tools to explore sampling extent for hosts and pathogens to further understanding of host-pathogen associations
-  3. Investigate the relative contributions of ecological, geographic, and genomic factors leading to cross-species transmission and reassortment in rodent-associated arenaviruses and hantaviruses
+Small mammals, primarily rodents (Rodentia), but also shrews (Soricidae) are reservoirs of zoonotic arenaviruses and hantaviruses [ref]. Traditionally these pathogens, particularly hantaviruses have been considered single reservoir species but this paradigm is changing with increased pathogen surveillance in endemic settings. Multiple potential hosts have been identified for pathogens including LASV, SEOV and SNV. Similarly, a single host species may be a host of multiple arenaviruses and hantaviruses throughout its geographic distribution, for example *Mastomys natalensis*, the primary host of LASV is the host of at least 7 distinct arenaviruses throughout its range [@de2020dhati].
+
+TThe ecology of these hosts, including their population dynamics, behaviour, habitat preferences, and interactions within their communities, directly influences pathogen transmission dynamics. Linking ecological and genomic data allows for the identification of genetic markers associated with increased virulence or transmissibility, providing critical insights into the evolutionary trajectories of arenaviruses and hantaviruses [ref]. Small-mammal sampling to quantify these parameters, with or without pathogen data, is vital to better understand ecological factors driving pathogen spillover. Existing data on rodent-pathogen associations from these studies is typically at a local scale and often lack comprehensive geographic and temporal information limiting the ability to explore the full scope of host-pathogen interactions through synthesising disparate, non-standardise data sources.
+
+An additional current limitation is the linkage of genomic data to the ecological context of the sample, introducing challenges to the assessment of viral evolution, reassortment, and novel pathogen emergence with zoonotic potential. A unified dataset could enable better predictive modeling and outbreak response strategies, addressing current data fragmentation that impairs accurate risk assessments and public health interventions.
+
+A detailed dataset on the current state of sampling for arenaviruses and hantaviruses in wild caught small-mammals is therefore urgently needed. Synthesising spatial, temporal and genomic data from previously published small-mammal sampling studies will provide the most comprehensive index of host-pathogen associations for these viral families in addition to identifying locations and potential hosts that have been relatively undersampled and which may benefit from targeted viral discovery. This dataset is expected to provide a key resource for the development of targeted public health interventions, risk mapping and predictive modelling of future outbreaks.
+
+The dataset will produce following the principles of the Open Science movement. We intend to share our research tools for study identification, data extraction and code for data processing on suitable platforms. By adhering to the FAIR principles (Findable, Accessible, Interoperable, Reusable), the dataset will be accessible to researchers, policymakers, and public health officials worldwide, enhancing its impact on guiding evidence-based decision-making and fostering international collaboration in disease surveillance. The produced dataset will adhere to the FAIR guiding principles and will be submitted to a suitable data repository (e.g., the Global Biodiversity Information Facility) [@wilkinson2016fair; @gbif].
 
 # Method
 
+## Project aims
+
+The specific aims of this dataset production protocol are to:
+
+  1. Review the published literature to produce a standard and synthesised dataset on Arenaviridae and Hantaviridae among small mammals.
+  2. Produce a tool to support the exploration of this data.
+
 ## Search strategy
 
-An initial search was run on NCBI Pubmed 2023-01-06.
+We searched NCBI PubMed and Clarivate Web of Science
 
-  1. rodent* - 165,513
-  2. arenavir* - 2,367
-  3. hantavir*.mp. - 4,022
-  4. 2 OR 3 - 6,308
-  5. 1 AND 4 - 1,842
+| Search term | PubMed | Web of Science |
+|--|--|--|
+| 1. rodent* | 175,084 | 175,258 |
+| 2. shrew | - | - |
+| 3. arenavir* | 2,506 | 1,941 |
+| 4. hantavir* | 4,274 | 5,016 |
+| 5. 1 OR 2 | - | - |
+| 6. 2 OR 3 | 6,689 | 6,809 |
+| 7. 1 AND 4 | 1,956 | 2,064 |
 
-Citations were downloaded as a text file and imported into `R` for processing. Deduplication by Pubmed ID resulted in 1821 distinct citations.
-
-``` {r search-results}
-
-search_date <- "2023-01-06"
-
-articles <- read_rds(here("data", "search", paste0("citations_", search_date, ".rds")))
-
-articles
-
-```
-
-An initial search of the returned citations was conducted to identify nine studies to trial data extraction. 
+Citations were downloaded from the searches and de-duplicated by matching on titles, authors, publication identifiers or digital object identifiers. The initial search resulted in 2,755 unique publications. These citations were uploaded to the Rayyan platform to assess against inclusion and exclusion criteria [ref].
 
 ### Inclusion criteria
 
@@ -87,7 +98,7 @@ Studies were included if they contained information on:
 
   1. Rodent OR Shrew sampling AND
   2. Direct or indirect detection of microorganisms in the Arenaviridae and Hantaviridae families AND
-  3. Information on the trapping location of host species sampled
+  3. Information on the sampling location of small mammals
 
 Studies were excluded if they did not contain information on the host species of the sample for direct or indirect detection of Arenaviridae or Hantaviridae. Studies reporting experimental infections or solely human infections were also excluded. Studies reported as abstract or conference proceedings were also excluded if they did not provide sufficient description of the method of animal sampling or microorganism detection.
   
@@ -198,11 +209,25 @@ Finally, an additional sheet `known_zoonoses` will be produced containing all of
 
 Raw data will be downloaded from Google Sheets using the `googledrive` API in `R`, with date stamped files stored locally. Data will be imported into `R` for processing, cleaning and formatting to produce a dataset suitable for further analysis.
 
-# Outputs
+## Data management and accessibility
+
+# Expected outputs
+
+## Database
 
 ## Data visualisation
 
 An `RShiny` web-based application will be produced to visualise the database and support future analysis.
+
+## Use cases
+
+# Discussion
+
+## Strengths and limitations
+
+## Future directions
+
+# References
 
 ### Rodent sampling
 
@@ -212,38 +237,38 @@ An example of a map produce from rodent sampling data included in the initial 9 
 #| fig-height: 8
 #| label: rodent-map
 #| fig-cap: An interactive map displaying the location of detected small species in included studies. Selecting points will expand the number of data points at those coordinates. Point colour indicates small mammal genus with size of the point varying by the number of individuals detected. Hovering over a point or selecting it will show the species name, the number detected and the time period surveyed at the location. Data is currently shown for 9 studies.
-
-combined_data <- read_rds(here("data", "raw_data", paste0(search_date, "_data.rds")))
-
-project_crs <- "EPSG:4326"
-
-rodent_locations <- combined_data$rodent %>%
-  select(genus, species, latitude, longitude, number) %>%
-  mutate(number = as.numeric(number)) %>%
-  drop_na(number) %>%
-  st_as_sf(coords = c("longitude", "latitude"), crs = project_crs) %>%
-  group_by(geometry, species) %>%
-  mutate(number = sum(number)) %>%
-  ungroup() %>%
-  distinct() %>%
-  rowwise() %>%
-  mutate(labels = HTML(paste0("Species: ", species, "<br>", "Number detected: ", number)))
-
-pal <- colorFactor(diverging_hcl(n = length(sort(unique(rodent_locations$genus))), palette = "Berlin"),
-                   domain = sort(unique(rodent_locations$genus)))
-
-leaflet(data = rodent_locations) %>%
-  addTiles() %>%
-  addCircleMarkers(radius = ~ifelse(sqrt(number) == 0, 1, sqrt(number)),
-                   color = ~pal(genus),
-                   stroke = FALSE,
-                   fillOpacity = 0.8,
-                   clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = TRUE,
-                                                         spiderLegPolylineOptions = list(length = 6),
-                                                         spiderfyDistanceMultiplier = 2),
-                   label = ~labels,
-                   popup = ~labels) %>%
-  addLegend("bottomright", pal = pal, values = ~genus, title = "Host genus", opacity = 0.8)
+# 
+# combined_data <- read_rds(here("data", "raw_data", paste0(search_date, "_data.rds")))
+# 
+# project_crs <- "EPSG:4326"
+# 
+# rodent_locations <- combined_data$rodent %>%
+#   select(genus, species, latitude, longitude, number) %>%
+#   mutate(number = as.numeric(number)) %>%
+#   drop_na(number) %>%
+#   st_as_sf(coords = c("longitude", "latitude"), crs = project_crs) %>%
+#   group_by(geometry, species) %>%
+#   mutate(number = sum(number)) %>%
+#   ungroup() %>%
+#   distinct() %>%
+#   rowwise() %>%
+#   mutate(labels = HTML(paste0("Species: ", species, "<br>", "Number detected: ", number)))
+# 
+# pal <- colorFactor(diverging_hcl(n = length(sort(unique(rodent_locations$genus))), palette = "Berlin"),
+#                    domain = sort(unique(rodent_locations$genus)))
+# 
+# leaflet(data = rodent_locations) %>%
+#   addTiles() %>%
+#   addCircleMarkers(radius = ~ifelse(sqrt(number) == 0, 1, sqrt(number)),
+#                    color = ~pal(genus),
+#                    stroke = FALSE,
+#                    fillOpacity = 0.8,
+#                    clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = TRUE,
+#                                                          spiderLegPolylineOptions = list(length = 6),
+#                                                          spiderfyDistanceMultiplier = 2),
+#                    label = ~labels,
+#                    popup = ~labels) %>%
+#   addLegend("bottomright", pal = pal, values = ~genus, title = "Host genus", opacity = 0.8)
 
 ```
 
@@ -257,76 +282,76 @@ A similar map can be produced to map pathogen detection with separate layers for
 #| fig-cap: An interactive map showing the locations of pathogen sampling. Selecting clustered points will expand the data. Each individual circle represents a single host species pathogen combination at that sampling location. The number of samples tested is associated with circle size. Selecting the point will display information about the host-pathogen association, including number of samples tested and number of positive samples. A white border of the circle designates host-pathogen associations with at least one positive result. The colour of the circle indicates the pathogen species (where known). Two layers are available, for viral detection and antibody detection.
 
 
-pathogen_locations <- combined_data$pathogen %>%
-  select(detection_method, pathogen_family, pathogen_species, host_species, latitude, longitude, number_tested, number_positive) %>%
-  mutate(number_tested = as.numeric(number_tested),
-         number_positive = as.numeric(number_positive)) %>%
-  drop_na(number_tested, number_positive) %>%
-  st_as_sf(coords = c("longitude", "latitude"), crs = project_crs) %>%
-  group_by(geometry, detection_method, pathogen_family, pathogen_species, host_species) %>%
-  mutate(number_tested = sum(number_tested),
-         number_positive = sum(number_positive)) %>%
-  ungroup() %>%
-  distinct() %>%
-  mutate(percent_positive = case_when(is.nan(number_positive/number_tested * 100) ~ "NA",
-                                      number_positive == 0 ~ "NA",
-                                      number_positive/number_tested * 100 < 1 ~ "< 1%",
-                                      TRUE ~ paste0(as.character(round(number_positive/number_tested * 100, 2)), "%")),
-         detection_method = case_when(detection_method == "pcr" ~ "Viral",
-                                      detection_method == "antibody" ~ "Antibody"),
-         detection = case_when(number_positive >= 1 ~ "Detected",
-                               TRUE ~ "Not detected")) %>%
-  rowwise() %>%
-  mutate(labels = HTML(paste0("Pathogen family: ", pathogen_family, "<br>",
-                              "Pathogen species: ", pathogen_species, "<br>",
-                              "Host species: ", host_species, "<br>",
-                              "Number tested: ", number_tested, "<br>",
-                              "Number positive (%): ", number_positive, " (", percent_positive, ")", "<br>")))
-
-
-path_pal <- colorFactor(diverging_hcl(n = length(unique(pathogen_locations$pathogen_species)), palette = "Berlin"),
-                        domain = sort(unique(pathogen_locations$pathogen_species)))
-stroke_pal <- colorFactor(palette = c("white", "gray"), levels = c("Detected", "Not detected"))
-
-leaflet(data = pathogen_locations) %>%
-  addTiles() %>%
-  addCircleMarkers(data = pathogen_locations %>%
-                     filter(detection_method == "Viral") %>%
-                     filter(number_tested != 0),
-                   radius = ~ifelse(sqrt(number_tested) == 0, 1, sqrt(number_tested)),
-                   fill = TRUE,
-                   fillColor = ~path_pal(pathogen_species),
-                   stroke = TRUE,
-                   color = ~stroke_pal(detection),
-                   weight = 2,
-                   opacity = 1,
-                   fillOpacity = 0.8,
-                   clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = TRUE,
-                                                         spiderLegPolylineOptions = list(length = 6),
-                                                         spiderfyDistanceMultiplier = 2),
-                   label = ~labels,
-                   popup = ~labels,
-                   group = "Viral detection") %>%
-  addCircleMarkers(data = pathogen_locations %>%
-                     filter(detection_method == "Antibody") %>%
-                     filter(number_tested != 0),
-                   radius = ~ifelse(sqrt(number_tested) == 0, 1, sqrt(number_tested)),
-                   fill = TRUE,
-                   fillColor = ~path_pal(pathogen_species),
-                   stroke = TRUE,
-                   color = ~stroke_pal(detection),
-                   weight = 2,
-                   opacity = 1,
-                   fillOpacity = 0.8,
-                   clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = TRUE,
-                                                         spiderLegPolylineOptions = list(length = 6),
-                                                         spiderfyDistanceMultiplier = 2),
-                   label = ~labels,
-                   popup = ~labels,
-                   group = "Antibody detection") %>%
-  addLayersControl(overlayGroups = c("Viral detection", "Antibody detection"),
-                   options = layersControlOptions(collapsed = FALSE)) %>%
-  addLegend("bottomright", pal = path_pal, values = ~pathogen_species, title = "Pathogen species", opacity = 0.8)
+# pathogen_locations <- combined_data$pathogen %>%
+#   select(detection_method, pathogen_family, pathogen_species, host_species, latitude, longitude, number_tested, number_positive) %>%
+#   mutate(number_tested = as.numeric(number_tested),
+#          number_positive = as.numeric(number_positive)) %>%
+#   drop_na(number_tested, number_positive) %>%
+#   st_as_sf(coords = c("longitude", "latitude"), crs = project_crs) %>%
+#   group_by(geometry, detection_method, pathogen_family, pathogen_species, host_species) %>%
+#   mutate(number_tested = sum(number_tested),
+#          number_positive = sum(number_positive)) %>%
+#   ungroup() %>%
+#   distinct() %>%
+#   mutate(percent_positive = case_when(is.nan(number_positive/number_tested * 100) ~ "NA",
+#                                       number_positive == 0 ~ "NA",
+#                                       number_positive/number_tested * 100 < 1 ~ "< 1%",
+#                                       TRUE ~ paste0(as.character(round(number_positive/number_tested * 100, 2)), "%")),
+#          detection_method = case_when(detection_method == "pcr" ~ "Viral",
+#                                       detection_method == "antibody" ~ "Antibody"),
+#          detection = case_when(number_positive >= 1 ~ "Detected",
+#                                TRUE ~ "Not detected")) %>%
+#   rowwise() %>%
+#   mutate(labels = HTML(paste0("Pathogen family: ", pathogen_family, "<br>",
+#                               "Pathogen species: ", pathogen_species, "<br>",
+#                               "Host species: ", host_species, "<br>",
+#                               "Number tested: ", number_tested, "<br>",
+#                               "Number positive (%): ", number_positive, " (", percent_positive, ")", "<br>")))
+# 
+# 
+# path_pal <- colorFactor(diverging_hcl(n = length(unique(pathogen_locations$pathogen_species)), palette = "Berlin"),
+#                         domain = sort(unique(pathogen_locations$pathogen_species)))
+# stroke_pal <- colorFactor(palette = c("white", "gray"), levels = c("Detected", "Not detected"))
+# 
+# leaflet(data = pathogen_locations) %>%
+#   addTiles() %>%
+#   addCircleMarkers(data = pathogen_locations %>%
+#                      filter(detection_method == "Viral") %>%
+#                      filter(number_tested != 0),
+#                    radius = ~ifelse(sqrt(number_tested) == 0, 1, sqrt(number_tested)),
+#                    fill = TRUE,
+#                    fillColor = ~path_pal(pathogen_species),
+#                    stroke = TRUE,
+#                    color = ~stroke_pal(detection),
+#                    weight = 2,
+#                    opacity = 1,
+#                    fillOpacity = 0.8,
+#                    clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = TRUE,
+#                                                          spiderLegPolylineOptions = list(length = 6),
+#                                                          spiderfyDistanceMultiplier = 2),
+#                    label = ~labels,
+#                    popup = ~labels,
+#                    group = "Viral detection") %>%
+#   addCircleMarkers(data = pathogen_locations %>%
+#                      filter(detection_method == "Antibody") %>%
+#                      filter(number_tested != 0),
+#                    radius = ~ifelse(sqrt(number_tested) == 0, 1, sqrt(number_tested)),
+#                    fill = TRUE,
+#                    fillColor = ~path_pal(pathogen_species),
+#                    stroke = TRUE,
+#                    color = ~stroke_pal(detection),
+#                    weight = 2,
+#                    opacity = 1,
+#                    fillOpacity = 0.8,
+#                    clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = TRUE,
+#                                                          spiderLegPolylineOptions = list(length = 6),
+#                                                          spiderfyDistanceMultiplier = 2),
+#                    label = ~labels,
+#                    popup = ~labels,
+#                    group = "Antibody detection") %>%
+#   addLayersControl(overlayGroups = c("Viral detection", "Antibody detection"),
+#                    options = layersControlOptions(collapsed = FALSE)) %>%
+#   addLegend("bottomright", pal = path_pal, values = ~pathogen_species, title = "Pathogen species", opacity = 0.8)
 
 ```
 
@@ -338,55 +363,55 @@ leaflet(data = pathogen_locations) %>%
 #| label: hp-associations
 #| fig-cap: An interactive plot displaying observed host pathogen associations. Facets are produced for antibody based assays and viral detection assays. The rodent species are listed in alphabetical order on the y-axis, detected pathogens are displayed in alphabetical order on the x-axis. Purple tiles represent host-pathogen associations that were not observed for that detection type, yellow tiles represent observed host-pathogen associations. The strength of the colour (the alpha) is scaled to the number of assays performed for that host-pathogen pair. A black line surrounding the tile indicates the pathogen as a known zoonosis. Hovering over the relavent tile will highlight the number of assays and the number of positive samples.
 
-pathogen_summary <- combined_data$pathogen %>%
-  select(genus = host_genus,
-         species = host_species,
-         pathogen_family, pathogen_species,
-         number_tested, number_positive,
-         detection_method) %>%
-  mutate(number_tested = as.numeric(number_tested)) %>%
-  filter(number_tested >= 1) %>%
-  left_join(combined_data$zoonoses %>%
-              select(pathogen_species, known_zoonosis),
-            by = c("pathogen_species"))
-
-hp_associations <- combined_data$rodent %>%
-  select(genus, species) %>%
-  left_join(pathogen_summary %>%
-              group_by(detection_method, species, pathogen_species, known_zoonosis) %>%
-              mutate(number_tested = sum(number_tested),
-                     number_positive = sum(number_positive)), by = c("genus", "species")) %>%
-  drop_na(number_tested) %>%
-  distinct() %>%
-  filter(!pathogen_species %in% c("Multiple", "Puumala virus/Saaremaa virus")) %>%
-  arrange(pathogen_family, pathogen_species, genus, species) %>%
-  mutate(association = case_when(number_positive >= 1 ~ TRUE,
-                                 TRUE ~ FALSE),
-         detection_method = case_when(detection_method == "pcr" ~ "Viral",
-                                      detection_method == "antibody" ~ "Antibody"))
-
-scaled_n <- preProcess(as.data.frame(log10(hp_associations$number_tested)), method = "range")
-hp_associations$alpha <- predict(scaled_n, as.data.frame(log10(hp_associations$number_tested)))[, 1]
-
-host_pathogen_plot <- hp_associations %>%
-  ggplot(aes(x = pathogen_species, y = species)) +
-  geom_tile(aes(fill = association, colour = known_zoonosis, alpha = alpha,
-                text = paste0("Pathogen species: ", pathogen_species, "<br>",
-                              "Host species: ", species, "<br>",
-                              "Number tested: ", number_tested, "<br>",
-                              "Number positive: ", number_positive, "<br>",
-                              "Known zoonosis: ", known_zoonosis))) +
-  scale_fill_viridis_d() +
-  scale_colour_manual(values = c("white", "black")) +
-  facet_wrap(~ detection_method) +
-  guides(alpha = "none",
-         colour = "none") +
-  labs(fill = "H-P association",
-       x = element_blank(),
-       y = element_blank()) +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
-
-ggplotly(host_pathogen_plot, tooltip = "text")
+# pathogen_summary <- combined_data$pathogen %>%
+#   select(genus = host_genus,
+#          species = host_species,
+#          pathogen_family, pathogen_species,
+#          number_tested, number_positive,
+#          detection_method) %>%
+#   mutate(number_tested = as.numeric(number_tested)) %>%
+#   filter(number_tested >= 1) %>%
+#   left_join(combined_data$zoonoses %>%
+#               select(pathogen_species, known_zoonosis),
+#             by = c("pathogen_species"))
+# 
+# hp_associations <- combined_data$rodent %>%
+#   select(genus, species) %>%
+#   left_join(pathogen_summary %>%
+#               group_by(detection_method, species, pathogen_species, known_zoonosis) %>%
+#               mutate(number_tested = sum(number_tested),
+#                      number_positive = sum(number_positive)), by = c("genus", "species")) %>%
+#   drop_na(number_tested) %>%
+#   distinct() %>%
+#   filter(!pathogen_species %in% c("Multiple", "Puumala virus/Saaremaa virus")) %>%
+#   arrange(pathogen_family, pathogen_species, genus, species) %>%
+#   mutate(association = case_when(number_positive >= 1 ~ TRUE,
+#                                  TRUE ~ FALSE),
+#          detection_method = case_when(detection_method == "pcr" ~ "Viral",
+#                                       detection_method == "antibody" ~ "Antibody"))
+# 
+# scaled_n <- preProcess(as.data.frame(log10(hp_associations$number_tested)), method = "range")
+# hp_associations$alpha <- predict(scaled_n, as.data.frame(log10(hp_associations$number_tested)))[, 1]
+# 
+# host_pathogen_plot <- hp_associations %>%
+#   ggplot(aes(x = pathogen_species, y = species)) +
+#   geom_tile(aes(fill = association, colour = known_zoonosis, alpha = alpha,
+#                 text = paste0("Pathogen species: ", pathogen_species, "<br>",
+#                               "Host species: ", species, "<br>",
+#                               "Number tested: ", number_tested, "<br>",
+#                               "Number positive: ", number_positive, "<br>",
+#                               "Known zoonosis: ", known_zoonosis))) +
+#   scale_fill_viridis_d() +
+#   scale_colour_manual(values = c("white", "black")) +
+#   facet_wrap(~ detection_method) +
+#   guides(alpha = "none",
+#          colour = "none") +
+#   labs(fill = "H-P association",
+#        x = element_blank(),
+#        y = element_blank()) +
+#   theme_bw() +
+#   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+# 
+# ggplotly(host_pathogen_plot, tooltip = "text")
 
 ```
