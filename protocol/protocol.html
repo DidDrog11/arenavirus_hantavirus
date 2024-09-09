@@ -2,12 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.2.267">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="David Simons">
-<meta name="dcterms.date" content="2024-09-06">
+<meta name="author" content="Ricardo Rivero">
+<meta name="author" content="Harry Gordon">
+<meta name="author" content="Anna Martinez-Checa">
+<meta name="author" content="David Redding">
+<meta name="author" content="Stephanie Seifert">
+<meta name="dcterms.date" content="2024-09-08">
 
 <title>Study protocol: Production of Arenavirus and Hantavirus host-pathogen database.</title>
 <style>
@@ -19,10 +24,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,13 +53,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -82,14 +116,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a>
   <ul class="collapse">
-  <li><a href="#project-aims" id="toc-project-aims" class="nav-link" data-scroll-target="#project-aims">Project aims</a></li>
-  <li><a href="#search-strategy" id="toc-search-strategy" class="nav-link" data-scroll-target="#search-strategy">Search strategy</a>
-  <ul class="collapse">
-  <li><a href="#inclusion-criteria" id="toc-inclusion-criteria" class="nav-link" data-scroll-target="#inclusion-criteria">Inclusion criteria</a></li>
-  </ul></li>
+  <li><a href="#search-strategy" id="toc-search-strategy" class="nav-link" data-scroll-target="#search-strategy">Search strategy</a></li>
+  <li><a href="#study-screening" id="toc-study-screening" class="nav-link" data-scroll-target="#study-screening">Study screening</a></li>
   <li><a href="#data-extraction" id="toc-data-extraction" class="nav-link" data-scroll-target="#data-extraction">Data extraction</a>
   <ul class="collapse">
   <li><a href="#included-studies" id="toc-included-studies" class="nav-link" data-scroll-target="#included-studies">Included studies</a></li>
@@ -136,17 +166,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Authors</div>
   <div class="quarto-title-meta-heading">Affiliation</div>
   
     <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://www.dsimons.org">David Simons</a> </p>
+    <a href="https://www.dsimons.org">David Simons</a> 
   </div>
     <div class="quarto-title-meta-contents">
         <p class="affiliation">
             The Royal Veterinary College, London, UK
           </p>
       </div>
+      <div class="quarto-title-meta-contents">
+    Ricardo Rivero 
+  </div>
+      <div class="quarto-title-meta-contents">
+    Harry Gordon 
+  </div>
+      <div class="quarto-title-meta-contents">
+    Anna Martinez-Checa 
+  </div>
+      <div class="quarto-title-meta-contents">
+    David Redding 
+  </div>
+      <div class="quarto-title-meta-contents">
+    Stephanie Seifert 
+  </div>
     </div>
 
 <div class="quarto-title-meta">
@@ -155,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 6, 2024</p>
+      <p class="date">September 8, 2024</p>
     </div>
   </div>
   
@@ -165,34 +210,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p>Target journals:</p>
+<ol type="1">
+<li>Scientific Data unclear if they accept protocols but may be worth a try?<br>
+</li>
+<li>Gigabyte?<br>
+</li>
+<li>Open Research Europe/F1000 or similar</li>
+</ol>
 <section id="motivation" class="level1">
 <h1>Motivation</h1>
 <p>Current host-pathogen association datasets provide synthesised information on hosts and their pathogens but do not contain temporal or geographic information. These resources often provide linking information to publications reporting the association but information including accession numbers of archived sequences, number of individuals tested and measures of prevalence among sampled populations are not immediately retrievable. Using these resources for inference beyond host-pathogen associations is therefore limited. Here, we aim to produce a database of host-pathogen associations for two viral families of small mammals which contain several known zoonoses, namely Arenaviridae and Hantaviridae. This database can be used to explore the distribution of small mammal hosts of known and suspected pathogens and the extent to which they have been sampled. Further, linkage to sequence data of known zoonoses will support analysis of the risk of viral reassortment between viral species within geographically co-located host species.</p>
 </section>
+<div class="columns">
+<div class="column" style="width:50%;">
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [ref]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [ref]. Arenaviruses, including <em>Mammarenavirus lassaense</em> (LASV) and <em>Mammarenavirus juninense</em> (JUNV) are causative agents of viral haemorrhagic fevers, Lassa fever in West Africa and Argentine haemorrhagic fever, while <em>Mammarenavirus choriomeningitidis</em> is believed to have a global distribution and is the cause of Lymphocytic choriomeningitis an aseptic meningitis [ref]. Hantaviruses, such as <em>Orthohantavirus puumalaense</em> (PUUV) and <em>Orthohantavirus seoulense</em> (SEOV) cause haemorrhagic fever with renal syndrome, while in the Americas <em>Orthohantavirus sinnombreense</em> (SNV) is the causative agent of hantavirus pulmonary syndrome [ref]. The distribution and human health impact of hantaviruses in Africa is poorly understood [ref].</p>
-<p>Novel Arenaviruses and Hantaviruses continue to be described, with new species evolving and emerging in the Anthropocene [ref]. Deforestation, urbanization, and agricultural expansion bring humans into closer contact with rodent reservoirs, increasing the likelihood of spillover events. For instance, agricultural encroachment in West Africa has been linked to increased human exposure to LASV-carrying rodents. Changes in climate, land use, rodent ecology, and human behaviour alter human-reservoir contact, which is a component of a complex human-animal-environment nexus driving spillover and maintenance of novel pathogens [ref]. Extant pathogens remain endemic diseases with limited human-to-human transmission. There remains concern about the emergence of a novel strain of an existing or new pathogen that is able to sustain transmission within human populations, this has led to Lassa fever (LASV) being classed as a priority disease by the WHO [ref].</p>
+<p>Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [ref]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [ref]. Arenaviruses, including <em>Mammarenavirus lassaense</em> (LASV) and <em>Mammarenavirus juninense</em> (JUNV), cause viral haemorrhagic fevers such as Lassa fever in West Africa and Argentine haemorrhagic fever. In contrast, Mammarenavirus choriomeningitidis has a global distribution and causes Lymphocytic choriomeningitis, an aseptic meningitis [ref]. Hantaviruses, such as <em>Orthohantavirus puumalaense</em> (PUUV) and <em>Orthohantavirus seoulense</em> (SEOV) cause haemorrhagic fever with renal syndrome, while in the Americas <em>Orthohantavirus sinnombreense</em> (SNV) is the causative agent of hantavirus pulmonary syndrome [ref]. The distribution and human health impact of hantaviruses in Africa is poorly understood [ref].</p>
+<p>Novel Arenaviruses and Hantaviruses continue to be described, with new species evolving and emerging in the Anthropocene [ref]. Deforestation, urbanization, and agricultural expansion bring humans into closer contact with rodent reservoirs, increasing the likelihood of spillover events. For example, agricultural encroachment in West Africa has been linked to increased human exposure to LASV-carrying rodents [ref]. Changes in climate, land use, rodent ecology, and human behaviour alter human-reservoir contact, which is a component of a complex human-animal-environment nexus driving spillover and maintenance of novel pathogens [ref]. Although these pathogens remain endemic diseases with limited human-to-human transmission, there is concern about the potential emergence of novel strains that could sustain human-to-human transmission, leading to LASV’s classification as a priority disease by the WHO [ref].</p>
 <p>A broader understanding of the economic and societal impacts of these pathogens is also required. The economic burden of arenavirus and hantavirus infections extends beyond healthcare costs to include long-term productivity losses and the economic strain on already vulnerable populations. The Four Corners outbreak of HPS led to significant economic disruption in affected communities, demonstrating the far-reaching consequences of these diseases [ref]. Lasting health and wellbeing impacts following infection are also likely. Infection with LASV is presumed to lead to symptomatic Lassa fever in only 20% of infections, the remaining 80% are presumed to have asymptomatic disease [ref]. Sensorineural hearing impairment is considered a sequelae of symptomatic infection, the prevalence of this in the asymptomatic population has not been convincingly assessed and therefore disease associated morbidity may be substantially under-reported in the endemic region.</p>
 <p>Small mammals, primarily rodents (Rodentia), but also shrews (Soricidae) are reservoirs of zoonotic arenaviruses and hantaviruses [ref]. Traditionally these pathogens, particularly hantaviruses have been considered single reservoir species but this paradigm is changing with increased pathogen surveillance in endemic settings. Multiple potential hosts have been identified for pathogens including LASV, SEOV and SNV. Similarly, a single host species may be a host of multiple arenaviruses and hantaviruses throughout its geographic distribution, for example <em>Mastomys natalensis</em>, the primary host of LASV is the host of at least 7 distinct arenaviruses throughout its range <span class="citation" data-cites="de2020dhati">[@de2020dhati]</span>.</p>
-<p>TThe ecology of these hosts, including their population dynamics, behaviour, habitat preferences, and interactions within their communities, directly influences pathogen transmission dynamics. Linking ecological and genomic data allows for the identification of genetic markers associated with increased virulence or transmissibility, providing critical insights into the evolutionary trajectories of arenaviruses and hantaviruses [ref]. Small-mammal sampling to quantify these parameters, with or without pathogen data, is vital to better understand ecological factors driving pathogen spillover. Existing data on rodent-pathogen associations from these studies is typically at a local scale and often lack comprehensive geographic and temporal information limiting the ability to explore the full scope of host-pathogen interactions through synthesising disparate, non-standardise data sources.</p>
-<p>An additional current limitation is the linkage of genomic data to the ecological context of the sample, introducing challenges to the assessment of viral evolution, reassortment, and novel pathogen emergence with zoonotic potential. A unified dataset could enable better predictive modeling and outbreak response strategies, addressing current data fragmentation that impairs accurate risk assessments and public health interventions.</p>
+<p>The ecology of these hosts, including their population dynamics, behaviour, habitat preferences, and interactions within their communities, directly influences pathogen transmission dynamics. Linking ecological and genomic data allows for the identification of genetic markers associated with increased virulence or transmissibility, providing critical insights into the evolutionary trajectories of arenaviruses and hantaviruses [ref]. Small-mammal sampling to quantify these parameters, is vital to better understand ecological factors driving pathogen spillover. Existing data on rodent-pathogen associations from these studies is typically at a local scale and often lack comprehensive geographic and temporal information which hampers research into the full scope of host-pathogen interactions which requires synthesised and standardised data sources.</p>
+<p>Additionally, human disease data is often reported at national or subnational scales, to preserve patient anonymity, making it challenging to directly link ecological findings with human infection risk. A unified dataset that includes detailed spatial and temporal data could serve as a critical tool for connecting local ecological data with broader-scale public health patterns, enhancing the ability to identify hotspots of transmission risk and inform targeted interventions [ref].</p>
+<p>Research efforts have also been unevenly distributed, with high-risk but understudied regions often lacking sufficient sampling intensity, particularly in Africa and Southeast Asia [ref]. Identifying these undersampled areas is essential for guiding future viral discovery and research prioritisation. This requires a comprehensive understanding of global sampling efforts within and between different host and pathogen taxa, helping to pinpoint gaps in knowledge and inform future research priorities.</p>
+<p>Local-scale, high-intensity research can provide valuable insights into host-pathogen dynamics, but data fragmentation limits the ability to connect this high-resolution information to broader-scale patterns (i.e., human infection) [ref]. This impairs efforts to identify larger-scale trends that could inform public health strategies and disease management. For example, a better linkage of ecological and genomic data could facilitate a better understanding of the drivers of viral evolution, reassortment, and the emergence of novel pathogens with zoonotic potential. A unified dataset could enable better predictive modelling and outbreak response strategies, addressing current data fragmentation and improving risk assessments and public health interventions.</p>
 <p>A detailed dataset on the current state of sampling for arenaviruses and hantaviruses in wild caught small-mammals is therefore urgently needed. Synthesising spatial, temporal and genomic data from previously published small-mammal sampling studies will provide the most comprehensive index of host-pathogen associations for these viral families in addition to identifying locations and potential hosts that have been relatively undersampled and which may benefit from targeted viral discovery. This dataset is expected to provide a key resource for the development of targeted public health interventions, risk mapping and predictive modelling of future outbreaks.</p>
-<p>The dataset will produce following the principles of the Open Science movement. We intend to share our research tools for study identification, data extraction and code for data processing on suitable platforms. By adhering to the FAIR principles (Findable, Accessible, Interoperable, Reusable), the dataset will be accessible to researchers, policymakers, and public health officials worldwide, enhancing its impact on guiding evidence-based decision-making and fostering international collaboration in disease surveillance. The produced dataset will adhere to the FAIR guiding principles and will be submitted to a suitable data repository (e.g., the Global Biodiversity Information Facility) <span class="citation" data-cites="wilkinson2016fair gbif">[@wilkinson2016fair; @gbif]</span>.</p>
+<p>Following Open Science principles, we will share research tools, data extraction methods, and processing code on suitable platforms, ensuring adherence to the FAIR principles (Findable, Accessible, Interoperable, Reusable). The dataset will be accessible to researchers, policymakers, and public health officials worldwide, fostering evidence-based decision-making and international collaboration in disease surveillance. It will be submitted to a suitable data repository (e.g., the Global Biodiversity Information Facility) <span class="citation" data-cites="wilkinson2016fair gbif">[@wilkinson2016fair; @gbif]</span>.</p>
 </section>
+</div><div class="column" style="width:50%;">
+<section id="introduction-v3" class="level1">
+<h1>Introduction v3</h1>
+<p>Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [ref]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [ref]. Arenaviruses, including Mammarenavirus lassaense (LASV) and Mammarenavirus juninense (JUNV), cause viral haemorrhagic fevers such as Lassa fever in West Africa and Argentine haemorrhagic fever. In contrast, Mammarenavirus choriomeningitidis has a global distribution and causes Lymphocytic choriomeningitis, an aseptic meningitis [ref]. Hantaviruses, such as Orthohantavirus puumalaense (PUUV) and Orthohantavirus seoulense (SEOV), cause haemorrhagic fever with renal syndrome, while in the Americas Orthohantavirus sinnombreense (SNV) is the causative agent of hantavirus pulmonary syndrome [ref]. However, despite the significance of these pathogens, comprehensive data on their distribution and health impacts remain limited, especially in under-researched regions such as Africa [ref].</p>
+<p>Despite ongoing viral surveillance, the emergence of novel arenaviruses and hantaviruses continues, driven by human activities such as deforestation, urbanization, and agricultural expansion that increase contact between humans and rodent reservoirs [ref]. For instance, changes in land use in West Africa have been linked to increased human exposure to LASV-carrying rodents [ref]. Although current evidence suggests these pathogens primarily exhibit limited human-to-human transmission, concerns remain about the potential for novel strains to sustain transmission between humans [ref].</p>
+<p>The economic and societal impacts of arenaviruses and hantaviruses extend beyond healthcare costs to include productivity losses and long-term impacts on affected communities. For example, the Four Corners outbreak of hantavirus pulmonary syndrome (HPS) led to significant economic disruption in affected communities [ref]. These diseases may also have under-reported impacts; while Lassa fever is symptomatic in only 20% of LASV infections, sequelae such as sensorineural hearing impairment are prevalent among symptomatic cases but not well assessed among asymptomatic individuals, potentially leading to substantial underestimation of disease-associated morbidity [ref].</p>
+<p>Small mammals, particularly rodents (Rodentia) and shrews (Soricidae), serve as primary reservoirs for arenaviruses and hantaviruses [ref]. While traditionally viewed as single-reservoir species, recent research has identified multiple potential hosts for viruses like LASV, SEOV, and SNV, reflecting a complex ecological picture. Similarly, a single rodent species can host multiple distinct arenaviruses and hantaviruses, underscoring the need for a comprehensive understanding of host-pathogen dynamics <span class="citation" data-cites="de2020dhati">[@de2020dhati]</span>.</p>
+<p>Existing data on rodent-pathogen associations are often limited to local scales, lacking comprehensive spatial, temporal, and genomic information necessary to understand broader host-pathogen interactions. These limitations impede efforts to accurately assess spillover risks and transmission dynamics. A unified, detailed dataset linking ecological and genomic data would provide critical insights into the evolutionary pathways and transmissibility of these pathogens, enabling better identification of transmission hotspots and targeted interventions.</p>
+<p>Human disease data, often reported at national or subnational scales, presents another challenge by complicating efforts to link ecological findings with human infection risk. There is an urgent need for a unified dataset that integrates spatial, temporal, and genomic data from published small-mammal sampling studies to improve risk assessments and public health strategies [ref].</p>
+<p>The development of a comprehensive dataset synthesising existing data on arenavirus and hantavirus host-pathogen associations will address key gaps in current knowledge. This dataset will facilitate predictive modelling, risk mapping, and targeted interventions, identifying undersampled regions and host species that may benefit from future viral discovery efforts.</p>
+<p>Our proposed dataset will adhere to Open Science principles, ensuring that data and research tools are accessible and reusable by the wider scientific community, public health officials, and policymakers. By adhering to FAIR principles (Findable, Accessible, Interoperable, Reusable), we aim to foster collaboration in disease surveillance and enhance our capacity to respond to future outbreaks. The dataset will be submitted to a suitable repository (e.g., the Global Biodiversity Information Facility) <span class="citation" data-cites="wilkinson2016fair gbif">[@wilkinson2016fair; @gbif]</span>.</p>
+</section>
+</div>
+</div>
 <section id="method" class="level1">
 <h1>Method</h1>
-<section id="project-aims" class="level2">
-<h2 class="anchored" data-anchor-id="project-aims">Project aims</h2>
-<p>The specific aims of this dataset production protocol are to:</p>
-<ol type="1">
-<li>Review the published literature to produce a standard and synthesised dataset on Arenaviridae and Hantaviridae among small mammals.</li>
-<li>Produce a tool to support the exploration of this data.</li>
-</ol>
-</section>
 <section id="search-strategy" class="level2">
 <h2 class="anchored" data-anchor-id="search-strategy">Search strategy</h2>
-<p>We searched NCBI PubMed and Clarivate Web of Science</p>
+<p>We searched NCBI PubMed and Clarivate Web of Science. We did not use any limits for publication date, language or geographic locations.</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -240,23 +303,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Citations were downloaded from the searches and de-duplicated by matching on titles, authors, publication identifiers or digital object identifiers. The initial search resulted in 2,755 unique publications. These citations were uploaded to the Rayyan platform to assess against inclusion and exclusion criteria [ref].</p>
-<section id="inclusion-criteria" class="level3">
-<h3 class="anchored" data-anchor-id="inclusion-criteria">Inclusion criteria</h3>
-<p>Studies were included if they contained information on:</p>
+</section>
+<section id="study-screening" class="level2">
+<h2 class="anchored" data-anchor-id="study-screening">Study screening</h2>
+<p>We screened studies against the following inclusion criteria. Studies were included if they reported:</p>
 <ol type="1">
 <li>Rodent OR Shrew sampling AND</li>
 <li>Direct or indirect detection of microorganisms in the Arenaviridae and Hantaviridae families AND</li>
 <li>Information on the sampling location of small mammals</li>
 </ol>
 <p>Studies were excluded if they did not contain information on the host species of the sample for direct or indirect detection of Arenaviridae or Hantaviridae. Studies reporting experimental infections or solely human infections were also excluded. Studies reported as abstract or conference proceedings were also excluded if they did not provide sufficient description of the method of animal sampling or microorganism detection.</p>
-<p>Direct detection was defined as PCR or culture of virus and indirect detection was defined as detection of antibodies against a Arenaviridae or Hantaviridae.</p>
-</section>
+<p>Direct detection was defined as PCR or culture of virus and indirect detection was defined as detection of antibodies against an Arenaviridae or Hantaviridae.</p>
+<p>We first screened study title and abstracts, for manuscripts not published in English we used the search datasets translation of titles and abstracts to assess against the inclusion and exclusion criteria. We then obtained full text articles for screening for all studies that were included at this stage. For articles published in languages other than English automated translation services (i.e., Google Translate) were used to prior to assessing the full text manuscript for inclusion.</p>
+<p>Reference chaining was performed on studies considered for inclusion at the full text screening stage and relevant publications were added as manually identified relevant articles. Figure 1. shows the PRISMA flow chart for the search process. We intend to re-run the search when data extraction from the current round (search run on 2023-09-08) has been completed.</p>
 </section>
 <section id="data-extraction" class="level2">
 <h2 class="anchored" data-anchor-id="data-extraction">Data extraction</h2>
+<p>We aimed to extract included study meta-data and to produce three linked datasets that could used to assess sampling for a) small-mammal hosts, b) viral prevalence and c) genetic variability.</p>
 <section id="included-studies" class="level3">
 <h3 class="anchored" data-anchor-id="included-studies">Included studies</h3>
-<p>Information about the included study is extracted in a <code>descriptive</code> sheet.</p>
+<p>Included study meta-data was abstracted to ensure appropriate attribution for the underlying data that would be extracted from the study. Each included study was provided an internal study_id unique identifier linked to the full text manuscript citation. Where we were unable to infer the sampling effort of small-mammals in the current study or associated manuscripts we recorded a value of not reported. We recorded the level of aggregation of the rodent sampling or pathogen sampling data and classified it as individual (data were provided at the level of individual small-mammals) or summarised (data were aggregated, e.g., at site or sampling session level).</p>
 <div id="tbl-description" class="anchored">
 <table class="table">
 <caption>Table&nbsp;1: Study information extraction sheet</caption>
@@ -273,47 +339,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>study_id</td>
-<td style="text-align: left;">A unique identifier for the included study</td>
+<td style="text-align: left;">An internal unique identifier for the included study</td>
 </tr>
 <tr class="even">
-<td>pubmed_id</td>
-<td style="text-align: left;">The pubmed ID of the included study (if available)</td>
+<td>full_text_id</td>
+<td style="text-align: left;">The internal ID for the full text manuscript and its associated citation</td>
 </tr>
 <tr class="odd">
-<td>DOI</td>
-<td style="text-align: left;">The digital object identifier of the study (if available), if a DOI is not available a weblink to a persistent page for the reference will be included</td>
-</tr>
-<tr class="even">
-<td>first_author_surname</td>
-<td style="text-align: left;">The first authors surname</td>
-</tr>
-<tr class="odd">
-<td>title</td>
+<td>datasetName</td>
 <td style="text-align: left;">The title of the manuscript, report or book section</td>
 </tr>
 <tr class="even">
-<td>journal</td>
-<td style="text-align: left;">The name of the journal, report or book</td>
-</tr>
-<tr class="odd">
-<td>year</td>
-<td style="text-align: left;">The year of publication</td>
-</tr>
-<tr class="even">
-<td>study_design</td>
-<td style="text-align: left;">A free text entry succinctly describing the study design for the rodents or pathogens</td>
-</tr>
-<tr class="odd">
 <td>sampling_effort</td>
 <td style="text-align: left;">A free text entry to capture the effort of sampling, ideally in trap nights for rodent studies</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>data_access</td>
-<td style="text-align: left;">Whether study data is available in complete form or whether summarise data only are available</td>
+<td style="text-align: left;">Whether data is available for individual small mammals or whether it is aggregated</td>
+</tr>
+<tr class="even">
+<td>data_resolution</td>
+<td style="text-align: left;">The level of aggregation available</td>
 </tr>
 <tr class="odd">
 <td>linked_manuscripts</td>
 <td style="text-align: left;">The DOI or weblink to other studies including the same dataset either in its entirety or a subset, this will be used to attempt to de-duplicate data</td>
+</tr>
+<tr class="even">
+<td>notes</td>
+<td style="text-align: left;">Details that may be important for interpreting the extracted data</td>
 </tr>
 </tbody>
 </table>
@@ -817,23 +871,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -898,92 +938,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

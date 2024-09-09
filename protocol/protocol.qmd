@@ -6,6 +6,11 @@ author:
     affiliation: The Royal Veterinary College, London, UK
     affiliation_url: https://www.rvc.ac.uk
     orcid_id: 0000-0001-9655-1656
+  - name: "Ricardo Rivero"
+  - name: "Harry Gordon"
+  - name: "Anna Martinez-Checa"
+  - name: "David Redding"
+  - name: "Stephanie Seifert"
 date: "`r Sys.Date()`"
 format: 
   html: 
@@ -40,45 +45,73 @@ pacman::p_load(pkgs, character.only = T)
 
 ```
 
-Target journals:
-  1. Scientific Data unclear if they accept protocols but may be worth a try?
-  2. Gigabyte?
+Target journals:    
+
+  1. Scientific Data unclear if they accept protocols but may be worth a try?   
+  2. Gigabyte?    
   3. Open Research Europe/F1000 or similar
 
 # Motivation
 
 Current host-pathogen association datasets provide synthesised information on hosts and their pathogens but do not contain temporal or geographic information. These resources often provide linking information to publications reporting the association but information including accession numbers of archived sequences, number of individuals tested and measures of prevalence among sampled populations are not immediately retrievable. Using these resources for inference beyond host-pathogen associations is therefore limited. Here, we aim to produce a database of host-pathogen associations for two viral families of small mammals which contain several known zoonoses, namely Arenaviridae and Hantaviridae. This database can be used to explore the distribution of small mammal hosts of known and suspected pathogens and the extent to which they have been sampled. Further, linkage to sequence data of known zoonoses will support analysis of the risk of viral reassortment between viral species within geographically co-located host species.
 
+::: {.columns}
+
+::: {.column width="50%"}
+
 # Introduction
 
-Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [ref]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [ref]. Arenaviruses, including *Mammarenavirus lassaense* (LASV) and *Mammarenavirus juninense* (JUNV) are causative agents of viral haemorrhagic fevers, Lassa fever in West Africa and Argentine haemorrhagic fever, while *Mammarenavirus choriomeningitidis* is believed to have a global distribution and is the cause of Lymphocytic choriomeningitis an aseptic meningitis [ref]. Hantaviruses, such as *Orthohantavirus puumalaense* (PUUV) and *Orthohantavirus seoulense* (SEOV) cause haemorrhagic fever with renal syndrome, while in the Americas *Orthohantavirus sinnombreense* (SNV) is the causative agent of hantavirus pulmonary syndrome [ref]. The distribution and human health impact of hantaviruses in Africa is poorly understood [ref]. 
+Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [ref]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [ref]. Arenaviruses, including *Mammarenavirus lassaense* (LASV) and *Mammarenavirus juninense* (JUNV), cause viral haemorrhagic fevers such as Lassa fever in West Africa and Argentine haemorrhagic fever. In contrast, Mammarenavirus choriomeningitidis has a global distribution and causes Lymphocytic choriomeningitis, an aseptic meningitis [ref]. Hantaviruses, such as *Orthohantavirus puumalaense* (PUUV) and *Orthohantavirus seoulense* (SEOV) cause haemorrhagic fever with renal syndrome, while in the Americas *Orthohantavirus sinnombreense* (SNV) is the causative agent of hantavirus pulmonary syndrome [ref]. The distribution and human health impact of hantaviruses in Africa is poorly understood [ref]. 
 
-Novel Arenaviruses and Hantaviruses continue to be described, with new species evolving and emerging in the Anthropocene [ref]. Deforestation, urbanization, and agricultural expansion bring humans into closer contact with rodent reservoirs, increasing the likelihood of spillover events. For instance, agricultural encroachment in West Africa has been linked to increased human exposure to LASV-carrying rodents. Changes in climate, land use, rodent ecology, and human behaviour alter human-reservoir contact, which is a component of a complex human-animal-environment nexus driving spillover and maintenance of novel pathogens [ref]. Extant pathogens remain endemic diseases with limited human-to-human transmission. There remains concern about the emergence of a novel strain of an existing or new pathogen that is able to sustain transmission within human populations, this has led to Lassa fever (LASV) being classed as a priority disease by the WHO [ref].
+Novel Arenaviruses and Hantaviruses continue to be described, with new species evolving and emerging in the Anthropocene [ref]. Deforestation, urbanization, and agricultural expansion bring humans into closer contact with rodent reservoirs, increasing the likelihood of spillover events. For example, agricultural encroachment in West Africa has been linked to increased human exposure to LASV-carrying rodents [ref]. Changes in climate, land use, rodent ecology, and human behaviour alter human-reservoir contact, which is a component of a complex human-animal-environment nexus driving spillover and maintenance of novel pathogens [ref]. Although these pathogens remain endemic diseases with limited human-to-human transmission, there is concern about the potential emergence of novel strains that could sustain human-to-human transmission, leading to LASV’s classification as a priority disease by the WHO [ref].
 
 A broader understanding of the economic and societal impacts of these pathogens is also required. The economic burden of arenavirus and hantavirus infections extends beyond healthcare costs to include long-term productivity losses and the economic strain on already vulnerable populations. The Four Corners outbreak of HPS led to significant economic disruption in affected communities, demonstrating the far-reaching consequences of these diseases [ref]. Lasting health and wellbeing impacts following infection are also likely. Infection with LASV is presumed to lead to symptomatic Lassa fever in only 20% of infections, the remaining 80% are presumed to have asymptomatic disease [ref]. Sensorineural hearing impairment is considered a sequelae of symptomatic infection, the prevalence of this in the asymptomatic population has not been convincingly assessed and therefore disease associated morbidity may be substantially under-reported in the endemic region.
 
 Small mammals, primarily rodents (Rodentia), but also shrews (Soricidae) are reservoirs of zoonotic arenaviruses and hantaviruses [ref]. Traditionally these pathogens, particularly hantaviruses have been considered single reservoir species but this paradigm is changing with increased pathogen surveillance in endemic settings. Multiple potential hosts have been identified for pathogens including LASV, SEOV and SNV. Similarly, a single host species may be a host of multiple arenaviruses and hantaviruses throughout its geographic distribution, for example *Mastomys natalensis*, the primary host of LASV is the host of at least 7 distinct arenaviruses throughout its range [@de2020dhati].
 
-TThe ecology of these hosts, including their population dynamics, behaviour, habitat preferences, and interactions within their communities, directly influences pathogen transmission dynamics. Linking ecological and genomic data allows for the identification of genetic markers associated with increased virulence or transmissibility, providing critical insights into the evolutionary trajectories of arenaviruses and hantaviruses [ref]. Small-mammal sampling to quantify these parameters, with or without pathogen data, is vital to better understand ecological factors driving pathogen spillover. Existing data on rodent-pathogen associations from these studies is typically at a local scale and often lack comprehensive geographic and temporal information limiting the ability to explore the full scope of host-pathogen interactions through synthesising disparate, non-standardise data sources.
+The ecology of these hosts, including their population dynamics, behaviour, habitat preferences, and interactions within their communities, directly influences pathogen transmission dynamics. Linking ecological and genomic data allows for the identification of genetic markers associated with increased virulence or transmissibility, providing critical insights into the evolutionary trajectories of arenaviruses and hantaviruses [ref]. Small-mammal sampling to quantify these parameters, is vital to better understand ecological factors driving pathogen spillover. Existing data on rodent-pathogen associations from these studies is typically at a local scale and often lack comprehensive geographic and temporal information which hampers research into the full scope of host-pathogen interactions which requires synthesised and standardised data sources. 
 
-An additional current limitation is the linkage of genomic data to the ecological context of the sample, introducing challenges to the assessment of viral evolution, reassortment, and novel pathogen emergence with zoonotic potential. A unified dataset could enable better predictive modeling and outbreak response strategies, addressing current data fragmentation that impairs accurate risk assessments and public health interventions.
+Additionally, human disease data is often reported at national or subnational scales, to preserve patient anonymity,  making it challenging to directly link ecological findings with human infection risk. A unified dataset that includes detailed spatial and temporal data could serve as a critical tool for connecting local ecological data with broader-scale public health patterns, enhancing the ability to identify hotspots of transmission risk and inform targeted interventions [ref].
+
+Research efforts have also been unevenly distributed, with high-risk but understudied regions often lacking sufficient sampling intensity, particularly in Africa and Southeast Asia [ref]. Identifying these undersampled areas is essential for guiding future viral discovery and research prioritisation.  This requires a comprehensive understanding of global sampling efforts within and between different host and pathogen taxa, helping to pinpoint gaps in knowledge and inform future research priorities.
+
+Local-scale, high-intensity research can provide valuable insights into host-pathogen dynamics, but data fragmentation limits the ability to connect this high-resolution information to broader-scale patterns (i.e., human infection) [ref]. This impairs efforts to identify larger-scale trends that could inform public health strategies and disease management. For example, a better linkage of ecological and genomic data could facilitate a better understanding of the drivers of viral evolution, reassortment, and the emergence of novel pathogens with zoonotic potential. A unified dataset could enable better predictive modelling and outbreak response strategies, addressing current data fragmentation and improving risk assessments and public health interventions.
 
 A detailed dataset on the current state of sampling for arenaviruses and hantaviruses in wild caught small-mammals is therefore urgently needed. Synthesising spatial, temporal and genomic data from previously published small-mammal sampling studies will provide the most comprehensive index of host-pathogen associations for these viral families in addition to identifying locations and potential hosts that have been relatively undersampled and which may benefit from targeted viral discovery. This dataset is expected to provide a key resource for the development of targeted public health interventions, risk mapping and predictive modelling of future outbreaks.
 
-The dataset will produce following the principles of the Open Science movement. We intend to share our research tools for study identification, data extraction and code for data processing on suitable platforms. By adhering to the FAIR principles (Findable, Accessible, Interoperable, Reusable), the dataset will be accessible to researchers, policymakers, and public health officials worldwide, enhancing its impact on guiding evidence-based decision-making and fostering international collaboration in disease surveillance. The produced dataset will adhere to the FAIR guiding principles and will be submitted to a suitable data repository (e.g., the Global Biodiversity Information Facility) [@wilkinson2016fair; @gbif].
+Following Open Science principles, we will share research tools, data extraction methods, and processing code on suitable platforms, ensuring adherence to the FAIR principles (Findable, Accessible, Interoperable, Reusable). The dataset will be accessible to researchers, policymakers, and public health officials worldwide, fostering evidence-based decision-making and international collaboration in disease surveillance. It will be submitted to a suitable data repository (e.g., the Global Biodiversity Information Facility) [@wilkinson2016fair; @gbif].
+
+:::
+
+::: {.column width="50%"}
+
+# Introduction v3
+
+Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [ref]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [ref]. Arenaviruses, including Mammarenavirus lassaense (LASV) and Mammarenavirus juninense (JUNV), cause viral haemorrhagic fevers such as Lassa fever in West Africa and Argentine haemorrhagic fever. In contrast, Mammarenavirus choriomeningitidis has a global distribution and causes Lymphocytic choriomeningitis, an aseptic meningitis [ref]. Hantaviruses, such as Orthohantavirus puumalaense (PUUV) and Orthohantavirus seoulense (SEOV), cause haemorrhagic fever with renal syndrome, while in the Americas Orthohantavirus sinnombreense (SNV) is the causative agent of hantavirus pulmonary syndrome [ref]. However, despite the significance of these pathogens, comprehensive data on their distribution and health impacts remain limited, especially in under-researched regions such as Africa [ref].
+
+Despite ongoing viral surveillance, the emergence of novel arenaviruses and hantaviruses continues, driven by human activities such as deforestation, urbanization, and agricultural expansion that increase contact between humans and rodent reservoirs [ref]. For instance, changes in land use in West Africa have been linked to increased human exposure to LASV-carrying rodents [ref]. Although current evidence suggests these pathogens primarily exhibit limited human-to-human transmission, concerns remain about the potential for novel strains to sustain transmission between humans [ref].
+
+The economic and societal impacts of arenaviruses and hantaviruses extend beyond healthcare costs to include productivity losses and long-term impacts on affected communities. For example, the Four Corners outbreak of hantavirus pulmonary syndrome (HPS) led to significant economic disruption in affected communities [ref]. These diseases may also have under-reported impacts; while Lassa fever is symptomatic in only 20% of LASV infections, sequelae such as sensorineural hearing impairment are prevalent among symptomatic cases but not well assessed among asymptomatic individuals, potentially leading to substantial underestimation of disease-associated morbidity [ref].
+
+Small mammals, particularly rodents (Rodentia) and shrews (Soricidae), serve as primary reservoirs for arenaviruses and hantaviruses [ref]. While traditionally viewed as single-reservoir species, recent research has identified multiple potential hosts for viruses like LASV, SEOV, and SNV, reflecting a complex ecological picture. Similarly, a single rodent species can host multiple distinct arenaviruses and hantaviruses, underscoring the need for a comprehensive understanding of host-pathogen dynamics [@de2020dhati].
+
+Existing data on rodent-pathogen associations are often limited to local scales, lacking comprehensive spatial, temporal, and genomic information necessary to understand broader host-pathogen interactions. These limitations impede efforts to accurately assess spillover risks and transmission dynamics. A unified, detailed dataset linking ecological and genomic data would provide critical insights into the evolutionary pathways and transmissibility of these pathogens, enabling better identification of transmission hotspots and targeted interventions.
+
+Human disease data, often reported at national or subnational scales, presents another challenge by complicating efforts to link ecological findings with human infection risk. There is an urgent need for a unified dataset that integrates spatial, temporal, and genomic data from published small-mammal sampling studies to improve risk assessments and public health strategies [ref].
+
+The development of a comprehensive dataset synthesising existing data on arenavirus and hantavirus host-pathogen associations will address key gaps in current knowledge. This dataset will facilitate predictive modelling, risk mapping, and targeted interventions, identifying undersampled regions and host species that may benefit from future viral discovery efforts.
+
+Our proposed dataset will adhere to Open Science principles, ensuring that data and research tools are accessible and reusable by the wider scientific community, public health officials, and policymakers. By adhering to FAIR principles (Findable, Accessible, Interoperable, Reusable), we aim to foster collaboration in disease surveillance and enhance our capacity to respond to future outbreaks. The dataset will be submitted to a suitable repository (e.g., the Global Biodiversity Information Facility) [@wilkinson2016fair; @gbif].
+
+:::
+
+:::
 
 # Method
 
-## Project aims
-
-The specific aims of this dataset production protocol are to:
-
-  1. Review the published literature to produce a standard and synthesised dataset on Arenaviridae and Hantaviridae among small mammals.
-  2. Produce a tool to support the exploration of this data.
-
 ## Search strategy
 
-We searched NCBI PubMed and Clarivate Web of Science
+We searched NCBI PubMed and Clarivate Web of Science. We did not use any limits for publication date, language or geographic locations.
 
 | Search term | PubMed | Web of Science |
 |--|--|--|
@@ -92,9 +125,9 @@ We searched NCBI PubMed and Clarivate Web of Science
 
 Citations were downloaded from the searches and de-duplicated by matching on titles, authors, publication identifiers or digital object identifiers. The initial search resulted in 2,755 unique publications. These citations were uploaded to the Rayyan platform to assess against inclusion and exclusion criteria [ref].
 
-### Inclusion criteria
+## Study screening
 
-Studies were included if they contained information on:
+We screened studies against the following inclusion criteria. Studies were included if they reported:
 
   1. Rodent OR Shrew sampling AND
   2. Direct or indirect detection of microorganisms in the Arenaviridae and Hantaviridae families AND
@@ -102,27 +135,30 @@ Studies were included if they contained information on:
 
 Studies were excluded if they did not contain information on the host species of the sample for direct or indirect detection of Arenaviridae or Hantaviridae. Studies reporting experimental infections or solely human infections were also excluded. Studies reported as abstract or conference proceedings were also excluded if they did not provide sufficient description of the method of animal sampling or microorganism detection.
   
-Direct detection was defined as PCR or culture of virus and indirect detection was defined as detection of antibodies against a Arenaviridae or Hantaviridae.
+Direct detection was defined as PCR or culture of virus and indirect detection was defined as detection of antibodies against an Arenaviridae or Hantaviridae.
+
+We first screened study title and abstracts, for manuscripts not published in English we used the search datasets translation of titles and abstracts to assess against the inclusion and exclusion criteria. We then obtained full text articles for screening for all studies that were included at this stage. For articles published in languages other than English automated translation services (i.e., Google Translate) were used to prior to assessing the full text manuscript for inclusion.
+
+Reference chaining was performed on studies considered for inclusion at the full text screening stage and relevant publications were added as manually identified relevant articles. Figure 1. shows the PRISMA flow chart for the search process. We intend to re-run the search when data extraction from the current round (search run on 2023-09-08) has been completed.
 
 ## Data extraction
 
+We aimed to extract included study meta-data and to produce three linked datasets that could used to assess sampling for a) small-mammal hosts, b) viral prevalence and c) genetic variability.
+
 ### Included studies
 
-Information about the included study is extracted in a `descriptive` sheet.
+Included study meta-data was abstracted to ensure appropriate attribution for the underlying data that would be extracted from the study. Each included study was provided an internal study_id unique identifier linked to the full text manuscript citation. Where we were unable to infer the sampling effort of small-mammals in the current study or associated manuscripts we recorded a value of not reported. We recorded the level of aggregation of the rodent sampling or pathogen sampling data and classified it as individual (data were provided at the level of individual small-mammals) or summarised (data were aggregated, e.g., at site or sampling session level).
 
 | Column name | Description |
 | ---- | :-------- |
-| study_id | A unique identifier for the included study |
-| pubmed_id | The pubmed ID of the included study (if available) |
-| DOI | The digital object identifier of the study (if available), if a DOI is not available a weblink to a persistent page for the reference will be included |
-| first_author_surname | The first authors surname |
-| title | The title of the manuscript, report or book section |
-| journal | The name of the journal, report or book |
-| year | The year of publication |
-| study_design | A free text entry succinctly describing the study design for the rodents or pathogens |
+| study_id | An internal unique identifier for the included study |
+| full_text_id | The internal ID for the full text manuscript and its associated citation |
+| datasetName | The title of the manuscript, report or book section |
 | sampling_effort | A free text entry to capture the effort of sampling, ideally in trap nights for rodent studies |
-| data_access | Whether study data is available in complete form or whether summarise data only are available |
+| data_access | Whether data is available for individual small mammals or whether it is aggregated |
+| data_resolution | The level of aggregation available |
 | linked_manuscripts | The DOI or weblink to other studies including the same dataset either in its entirety or a subset, this will be used to attempt to de-duplicate data |
+| notes | Details that may be important for interpreting the extracted data |
 
 : Study information extraction sheet {#tbl-description}
 
