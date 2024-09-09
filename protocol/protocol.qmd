@@ -209,14 +209,35 @@ Small mammal and rodent taxonomy has and will continue to change over time. To s
 
 For studies not reporting geographic coordinates of sampling but including some information that describes the location (i.e., the name of the village sampled) we will locate coordinates through several methods. Locations will be searched for in Google Maps, Wikipedia or the  Geographic Names Server provided by the National Geospatial-Intelligence Agency USA. Locations that represent administrative divisions will be matched using the Database of Global Administrative Areas (GADM) accessed through the `geodata` `R` package [ref].
 
-The coordinate resolution for coordinates labelled, site or study site will be set as 100 meters.
+The coordinate resolution for coordinates labelled, site or study site will be set as 100 meters. For locations associated with an adminstrative area but no higher resolution data we will use the radius of the administrative region to represent uncertainty in these coordinates.
 
 ### Imputed non-detections
 
-## Data management and accessibility
+Non-detection of a small mammal species in a location it may be expected to be is of interest to researchers. We will enrich detection only data from included studies by imputing non-detections where they are not given. We restrict this imputation to species that have been detected elsewhere in the study. Imputed non-detections will be labelled as imputed in the final data product.
 
-# Expected outputs
+# Discussion
 
+This novel dataset provides spatially and temporally explicit data on small mammal sampling for arenaviruses and hantaviruses, offering a more comprehensive view of host-pathogen associations than is currently available. By including sampling effort and explicit spatial data, this dataset enhances the ability to quantify sampling biases, assess geographic gaps, and better understand the spatial ecology of these pathogens. The insights gained from this dataset could improve our understanding of how environmental changes, such as habitat fragmentation and urbanisation, influence pathogen dynamics and spillover risks.
+
+Importantly, this resource could serve as a foundational tool for predictive modelling, helping identify areas at heightened risk for emerging zoonosis spillover. The ability to link ecological data with human health outcomes could inform targeted public health interventions, enhancing outbreak preparedness and response. For instance, identifying hotspots of high pathogen prevalence in rodents could guide targeted development of ecologically-based rodent control measures in regions identified as vulnerable.
+
+Existing host-pathogen datasets lack detailed spatial or temporal information, limiting their use in ecological and epidemiological modelling [ref]. By addressing these gaps, our dataset provides information about host-pathogen interactions that span multiple spatial and temporal scales. Moreover, the explicit reporting of sampling effort allows for more robust analyses of detection probability, which is crucial for understanding the true distribution of pathogens [ref]. Current global host-pathogen datasets are unable to account for sampling biases due to their method of synthesis.
+
+This dataset also offers the unique benefit of explicitly reporting the extent of sampling for pathogens within their host species, providing critical insights into spatial sampling biases and detection efforts. For instance, while it is expected that Mastomys natalensis sampling occurs throughout its range, the detection of specific pathogens such as Lassa virus (LASV) or Morogoro virus may be confined to only a subset of that range. By detailing both presence and absence data, the dataset allows for a more nuanced understanding of pathogen distribution within host species, beyond mere occurrence records. This capability to quantify the detection effort for specific pathogens is vital for assessing spatial sampling biases, identifying under-sampled regions, and refining ecological and epidemiological models.
+
+Despite its strengths, this dataset has several limitations. First, the inherent variability in the quality and detail of reported data from included studies means that some records may lack critical information, such as exact coordinates or specific sampling dates. The imputation of non-detections, introduces assumptions that could affect the interpretation of absence data. Additionally, the dataset is inherently static and will become outdated as new data emerge.
+
+Furthermore, the reliance on published literature introduces publication bias, as studies with significant findings are more likely to be published than those with negative results. This could skew the dataset towards areas and hosts with known or previously detected pathogens, potentially underrepresenting regions where sampling has occurred but without positive detections. We are not routinely contacting study authors to obtain data reported within publications. If data are not available within the article or as supplementary material we are not incorporating it into this dataset. An associated project is currently being planned where we hope to contact individual study authors to obtain, standardise and support submission to available repositories. To address limitations associated with extracting data without access to the raw data we encourage scientists with ongoing field studies and pathogen surveillance programmes, to submit their data to dynamic repositories. 
+
+Developing predictive models based on this dataset could provide valuable insights into the factors driving zoonotic spillover, enabling targeted surveillance and control measures. Such models could also be used to forecast the emergence of novel strains with epidemic potential, guiding resource allocation and intervention strategies. Beyond research applications, the dataset could serve as a tool for policymakers, helping to identify priority areas for viral discovery and public health interventions.
+
+# Conclusion
+
+Overall, this dataset will be a valuable resource for understanding the ecology of arenaviruses and hantaviruses in their natural reservoirs. By bridging the gap between local-scale ecological studies and broader public health needs, it has the potential to enhance our ability to predict and mitigate the risks posed by these emerging pathogens. Continued efforts to update and expand this resource will be crucial for maintaining its utility in a rapidly changing epidemiological landscape.
+
+# References
+
+---
 
 ### Zoonosis status
 
@@ -233,23 +254,6 @@ Finally, an additional sheet `known_zoonoses` will be produced containing all of
 | disease_reference | A DOI of a publication that supports the `known_zoonosis` statement |
 
 : Zoonosis status extraction sheet {#tbl-sequence}
-
-
-## Database
-
-## Data visualisation
-
-An `RShiny` web-based application will be produced to visualise the database and support future analysis.
-
-## Use cases
-
-# Discussion
-
-## Strengths and limitations
-
-## Future directions
-
-# References
 
 ### Rodent sampling
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.2.267">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -24,10 +24,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -54,13 +53,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -87,6 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a>
   <ul class="collapse">
   <li><a href="#search-strategy" id="toc-search-strategy" class="nav-link" data-scroll-target="#search-strategy">Search strategy</a></li>
@@ -94,28 +124,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data-extraction" id="toc-data-extraction" class="nav-link" data-scroll-target="#data-extraction">Data extraction</a>
   <ul class="collapse">
   <li><a href="#included-studies" id="toc-included-studies" class="nav-link" data-scroll-target="#included-studies">Included studies</a></li>
-  <li><a href="#rodent-sampling" id="toc-rodent-sampling" class="nav-link" data-scroll-target="#rodent-sampling">Rodent sampling</a></li>
+  <li><a href="#small-mammal-sampling" id="toc-small-mammal-sampling" class="nav-link" data-scroll-target="#small-mammal-sampling">Small-mammal sampling</a></li>
   <li><a href="#pathogen-sampling" id="toc-pathogen-sampling" class="nav-link" data-scroll-target="#pathogen-sampling">Pathogen sampling</a></li>
-  <li><a href="#pathogen-sequences" id="toc-pathogen-sequences" class="nav-link" data-scroll-target="#pathogen-sequences">Pathogen sequences</a></li>
-  <li><a href="#zoonosis-status" id="toc-zoonosis-status" class="nav-link" data-scroll-target="#zoonosis-status">Zoonosis status</a></li>
+  <li><a href="#sequences" id="toc-sequences" class="nav-link" data-scroll-target="#sequences">Sequences</a></li>
   </ul></li>
-  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing">Data processing</a></li>
-  <li><a href="#data-management-and-accessibility" id="toc-data-management-and-accessibility" class="nav-link" data-scroll-target="#data-management-and-accessibility">Data management and accessibility</a></li>
-  </ul></li>
-  <li><a href="#expected-outputs" id="toc-expected-outputs" class="nav-link" data-scroll-target="#expected-outputs">Expected outputs</a>
+  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing">Data processing</a>
   <ul class="collapse">
-  <li><a href="#database" id="toc-database" class="nav-link" data-scroll-target="#database">Database</a></li>
-  <li><a href="#data-visualisation" id="toc-data-visualisation" class="nav-link" data-scroll-target="#data-visualisation">Data visualisation</a></li>
-  <li><a href="#use-cases" id="toc-use-cases" class="nav-link" data-scroll-target="#use-cases">Use cases</a></li>
+  <li><a href="#species-name-harmonisation" id="toc-species-name-harmonisation" class="nav-link" data-scroll-target="#species-name-harmonisation">Species name harmonisation</a></li>
+  <li><a href="#location-of-sampling" id="toc-location-of-sampling" class="nav-link" data-scroll-target="#location-of-sampling">Location of sampling</a></li>
+  <li><a href="#imputed-non-detections" id="toc-imputed-non-detections" class="nav-link" data-scroll-target="#imputed-non-detections">Imputed non-detections</a></li>
   </ul></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
-  <ul class="collapse">
-  <li><a href="#strengths-and-limitations" id="toc-strengths-and-limitations" class="nav-link" data-scroll-target="#strengths-and-limitations">Strengths and limitations</a></li>
-  <li><a href="#future-directions" id="toc-future-directions" class="nav-link" data-scroll-target="#future-directions">Future directions</a></li>
   </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a>
   <ul class="collapse">
-  <li><a href="#rodent-sampling-1" id="toc-rodent-sampling-1" class="nav-link" data-scroll-target="#rodent-sampling-1">Rodent sampling</a></li>
+  <li><a href="#zoonosis-status" id="toc-zoonosis-status" class="nav-link" data-scroll-target="#zoonosis-status">Zoonosis status</a></li>
+  <li><a href="#rodent-sampling" id="toc-rodent-sampling" class="nav-link" data-scroll-target="#rodent-sampling">Rodent sampling</a></li>
   <li><a href="#pathogen-detection" id="toc-pathogen-detection" class="nav-link" data-scroll-target="#pathogen-detection">Pathogen detection</a></li>
   <li><a href="#host-pathogen-associations" id="toc-host-pathogen-associations" class="nav-link" data-scroll-target="#host-pathogen-associations">Host pathogen associations</a></li>
   </ul></li>
@@ -136,38 +161,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Authors</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://www.dsimons.org">David Simons</a> </p>
-  </div>
-    <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            The Royal Veterinary College, London, UK
-          </p>
-      </div>
-      <div class="quarto-title-meta-contents">
-    <p class="author">Ricardo Rivero </p>
-  </div>
-      <div class="quarto-title-meta-contents">
-    <p class="author">Harry Gordon </p>
-  </div>
-      <div class="quarto-title-meta-contents">
-    <p class="author">Anna Martinez-Checa </p>
-  </div>
-      <div class="quarto-title-meta-contents">
-    <p class="author">David Redding </p>
-  </div>
-      <div class="quarto-title-meta-contents">
-    <p class="author">Stephanie Seifert </p>
-  </div>
-    </div>
 
 <div class="quarto-title-meta">
 
-      
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>David Simons </p>
+             <p>Ricardo Rivero </p>
+             <p>Harry Gordon </p>
+             <p>Anna Martinez-Checa </p>
+             <p>David Redding </p>
+             <p>Stephanie Seifert </p>
+          </div>
+  </div>
+    
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
@@ -193,8 +201,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Motivation</h1>
 <p>Current host-pathogen association datasets provide synthesised information on hosts and their pathogens but do not contain temporal or geographic information. These resources often provide linking information to publications reporting the association but information including accession numbers of archived sequences, number of individuals tested and measures of prevalence among sampled populations are not immediately retrievable. Using these resources for inference beyond host-pathogen associations is therefore limited. Here, we aim to produce a database of host-pathogen associations for two viral families of small mammals which contain several known zoonoses, namely Arenaviridae and Hantaviridae. This database can be used to explore the distribution of small mammal hosts of known and suspected pathogens and the extent to which they have been sampled. Further, linkage to sequence data of known zoonoses will support analysis of the risk of viral reassortment between viral species within geographically co-located host species.</p>
 </section>
-<div class="columns">
-<div class="column" style="width:50%;">
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [ref]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [ref]. Arenaviruses, including <em>Mammarenavirus lassaense</em> (LASV) and <em>Mammarenavirus juninense</em> (JUNV), cause viral haemorrhagic fevers such as Lassa fever in West Africa and Argentine haemorrhagic fever. In contrast, Mammarenavirus choriomeningitidis has a global distribution and causes Lymphocytic choriomeningitis, an aseptic meningitis [ref]. Hantaviruses, such as <em>Orthohantavirus puumalaense</em> (PUUV) and <em>Orthohantavirus seoulense</em> (SEOV) cause haemorrhagic fever with renal syndrome, while in the Americas <em>Orthohantavirus sinnombreense</em> (SNV) is the causative agent of hantavirus pulmonary syndrome [ref]. The distribution and human health impact of hantaviruses in Africa is poorly understood [ref].</p>
@@ -208,20 +214,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A detailed dataset on the current state of sampling for arenaviruses and hantaviruses in wild caught small-mammals is therefore urgently needed. Synthesising spatial, temporal and genomic data from previously published small-mammal sampling studies will provide the most comprehensive index of host-pathogen associations for these viral families in addition to identifying locations and potential hosts that have been relatively undersampled and which may benefit from targeted viral discovery. This dataset is expected to provide a key resource for the development of targeted public health interventions, risk mapping and predictive modelling of future outbreaks.</p>
 <p>Following Open Science principles, we will share research tools, data extraction methods, and processing code on suitable platforms, ensuring adherence to the FAIR principles (Findable, Accessible, Interoperable, Reusable). The dataset will be accessible to researchers, policymakers, and public health officials worldwide, fostering evidence-based decision-making and international collaboration in disease surveillance. It will be submitted to a suitable data repository (e.g., the Global Biodiversity Information Facility) <span class="citation" data-cites="wilkinson2016fair gbif">[@wilkinson2016fair; @gbif]</span>.</p>
 </section>
-</div><div class="column" style="width:50%;">
-<section id="introduction-v3" class="level1">
-<h1>Introduction v3</h1>
-<p>Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [ref]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [ref]. Arenaviruses, including Mammarenavirus lassaense (LASV) and Mammarenavirus juninense (JUNV), cause viral haemorrhagic fevers such as Lassa fever in West Africa and Argentine haemorrhagic fever. In contrast, Mammarenavirus choriomeningitidis has a global distribution and causes Lymphocytic choriomeningitis, an aseptic meningitis [ref]. Hantaviruses, such as Orthohantavirus puumalaense (PUUV) and Orthohantavirus seoulense (SEOV), cause haemorrhagic fever with renal syndrome, while in the Americas Orthohantavirus sinnombreense (SNV) is the causative agent of hantavirus pulmonary syndrome [ref]. However, despite the significance of these pathogens, comprehensive data on their distribution and health impacts remain limited, especially in under-researched regions such as Africa [ref].</p>
-<p>Despite ongoing viral surveillance, the emergence of novel arenaviruses and hantaviruses continues, driven by human activities such as deforestation, urbanization, and agricultural expansion that increase contact between humans and rodent reservoirs [ref]. For instance, changes in land use in West Africa have been linked to increased human exposure to LASV-carrying rodents [ref]. Although current evidence suggests these pathogens primarily exhibit limited human-to-human transmission, concerns remain about the potential for novel strains to sustain transmission between humans [ref].</p>
-<p>The economic and societal impacts of arenaviruses and hantaviruses extend beyond healthcare costs to include productivity losses and long-term impacts on affected communities. For example, the Four Corners outbreak of hantavirus pulmonary syndrome (HPS) led to significant economic disruption in affected communities [ref]. These diseases may also have under-reported impacts; while Lassa fever is symptomatic in only 20% of LASV infections, sequelae such as sensorineural hearing impairment are prevalent among symptomatic cases but not well assessed among asymptomatic individuals, potentially leading to substantial underestimation of disease-associated morbidity [ref].</p>
-<p>Small mammals, particularly rodents (Rodentia) and shrews (Soricidae), serve as primary reservoirs for arenaviruses and hantaviruses [ref]. While traditionally viewed as single-reservoir species, recent research has identified multiple potential hosts for viruses like LASV, SEOV, and SNV, reflecting a complex ecological picture. Similarly, a single rodent species can host multiple distinct arenaviruses and hantaviruses, underscoring the need for a comprehensive understanding of host-pathogen dynamics <span class="citation" data-cites="de2020dhati">[@de2020dhati]</span>.</p>
-<p>Existing data on rodent-pathogen associations are often limited to local scales, lacking comprehensive spatial, temporal, and genomic information necessary to understand broader host-pathogen interactions. These limitations impede efforts to accurately assess spillover risks and transmission dynamics. A unified, detailed dataset linking ecological and genomic data would provide critical insights into the evolutionary pathways and transmissibility of these pathogens, enabling better identification of transmission hotspots and targeted interventions.</p>
-<p>Human disease data, often reported at national or subnational scales, presents another challenge by complicating efforts to link ecological findings with human infection risk. There is an urgent need for a unified dataset that integrates spatial, temporal, and genomic data from published small-mammal sampling studies to improve risk assessments and public health strategies [ref].</p>
-<p>The development of a comprehensive dataset synthesising existing data on arenavirus and hantavirus host-pathogen associations will address key gaps in current knowledge. This dataset will facilitate predictive modelling, risk mapping, and targeted interventions, identifying undersampled regions and host species that may benefit from future viral discovery efforts.</p>
-<p>Our proposed dataset will adhere to Open Science principles, ensuring that data and research tools are accessible and reusable by the wider scientific community, public health officials, and policymakers. By adhering to FAIR principles (Findable, Accessible, Interoperable, Reusable), we aim to foster collaboration in disease surveillance and enhance our capacity to respond to future outbreaks. The dataset will be submitted to a suitable repository (e.g., the Global Biodiversity Information Facility) <span class="citation" data-cites="wilkinson2016fair gbif">[@wilkinson2016fair; @gbif]</span>.</p>
-</section>
-</div>
-</div>
 <section id="method" class="level1">
 <h1>Method</h1>
 <section id="search-strategy" class="level2">
@@ -273,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Citations were downloaded from the searches and de-duplicated by matching on titles, authors, publication identifiers or digital object identifiers. The initial search resulted in 2,755 unique publications. These citations were uploaded to the Rayyan platform to assess against inclusion and exclusion criteria [ref].</p>
+<p>Citations returned by the searches were downloaded and de-duplicated by matching on titles, authors, publication identifiers or digital object identifiers. The initial search (conducted 2023-10-16) resulted in 2,755 unique publications. These citations were uploaded to the Rayyan platform to assess against inclusion and exclusion criteria [ref].</p>
 </section>
 <section id="study-screening" class="level2">
 <h2 class="anchored" data-anchor-id="study-screening">Study screening</h2>
@@ -285,15 +277,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Studies were excluded if they did not contain information on the host species of the sample for direct or indirect detection of Arenaviridae or Hantaviridae. Studies reporting experimental infections or solely human infections were also excluded. Studies reported as abstract or conference proceedings were also excluded if they did not provide sufficient description of the method of animal sampling or microorganism detection.</p>
 <p>Direct detection was defined as PCR or culture of virus and indirect detection was defined as detection of antibodies against an Arenaviridae or Hantaviridae.</p>
-<p>We first screened study title and abstracts, for manuscripts not published in English we used the search datasets translation of titles and abstracts to assess against the inclusion and exclusion criteria. We then obtained full text articles for screening for all studies that were included at this stage. For articles published in languages other than English automated translation services (i.e., Google Translate) were used to prior to assessing the full text manuscript for inclusion.</p>
-<p>Reference chaining was performed on studies considered for inclusion at the full text screening stage and relevant publications were added as manually identified relevant articles. Figure 1. shows the PRISMA flow chart for the search process. We intend to re-run the search when data extraction from the current round (search run on 2023-09-08) has been completed.</p>
+<p>We first screened study title and abstracts, for manuscripts not published in English we used the search datasets translation of titles and abstracts to assess against the inclusion and exclusion criteria. Assessments were made by two members of the study team, studies deemed to meet inclusion criteria by at least one member proceeded to full text review. For articles published in languages other than English automated translation services (i.e., Google Translate) were used prior to assessing the full text manuscript for inclusion.</p>
+<p>Reference chaining was performed on studies considered for inclusion at the full text screening stage and relevant publications were added as manually identified relevant articles. Figure 1. shows the PRISMA flow chart for the search process. We intend to re-run the search when data extraction from the current round has been completed.</p>
 </section>
 <section id="data-extraction" class="level2">
 <h2 class="anchored" data-anchor-id="data-extraction">Data extraction</h2>
 <p>We aimed to extract included study meta-data and to produce three linked datasets that could used to assess sampling for a) small-mammal hosts, b) viral prevalence and c) genetic variability.</p>
 <section id="included-studies" class="level3">
 <h3 class="anchored" data-anchor-id="included-studies">Included studies</h3>
-<p>Included study meta-data was abstracted to ensure appropriate attribution for the underlying data that would be extracted from the study. Each included study was provided an internal study_id unique identifier linked to the full text manuscript citation. Where we were unable to infer the sampling effort of small-mammals in the current study or associated manuscripts we recorded a value of not reported. We recorded the level of aggregation of the rodent sampling or pathogen sampling data and classified it as individual (data were provided at the level of individual small-mammals) or summarised (data were aggregated, e.g., at site or sampling session level).</p>
+<p>Included study meta-data was abstracted to ensure appropriate attribution for the underlying data that would be extracted from the study. Each included study was provided an internal study_id unique identifier which provides linkage to the full text manuscript citation. We extracted reported sampling effort, where available. For articles not reporting sampling effort at the study level we inferred total sampling effort from individual trapping session effort. Studies not reporting any measure of sampling effort we recorded a value of not reported. Finally, we record the level of data aggregation of rodent or pathogen sampling, classified as individual (data were provided at the level of individual small-mammals) or summarised (data were aggregated, e.g., at site or sampling session level).</p>
 <div id="tbl-description" class="anchored">
 <table class="table">
 <caption>Table&nbsp;1: Study information extraction sheet</caption>
@@ -344,9 +336,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </section>
-<section id="rodent-sampling" class="level3">
-<h3 class="anchored" data-anchor-id="rodent-sampling">Rodent sampling</h3>
-<p>Rodent data is extracted in a <code>rodent</code> sheet. This will include information on the timing of data collection, the location of data collected, the small mammal species detected either as detection/non-detection or number detected. For studies not reporting the detection of an individual species at a location that has been detected at other locations the species will be entered as not-detected at that location.</p>
+<section id="small-mammal-sampling" class="level3">
+<h3 class="anchored" data-anchor-id="small-mammal-sampling">Small-mammal sampling</h3>
+<p>Data is extracted into a <code>rodent</code> sheet. A record is produced at the highest level of temporal or spatial resolution for detected small-mammals. For example a study reporting on the detection of a single species at four spatially distinct sampling sites would be associated with four records. If this same study reported detections from four distinct trapping sessions at each of these sites there would be 16 records associated with the study. Studies presenting data on <em>N</em> individual rodents will have <em>N</em> records with each record associated with the detection of a single rodent.</p>
+<p>Identification of a detected small mammal was recorded as reported within the article, we will not systematically assess the method of identification and assume accurate identification as reported within the articles. Where identification is to genus or higher taxanomic level we report to this level (i.e., <em>Rattus spp.</em>, Rodentia). See data processing below for the method used to harmonise of species names.</p>
+<p>Included studies were expected to variably report location data associated with sampling. We extract locality as the highest resolution of location data that could be matched to administrative levels within a country (e.g., city, county), verbatimLocality is used where higher resolution spatial data is available which may not map to administrative levels (e.g., Site A).</p>
 <div id="tbl-rodent" class="anchored">
 <table class="table">
 <caption>Table&nbsp;2: Rodent information extraction sheet</caption>
@@ -363,51 +357,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td>rodent_record_id</td>
-<td style="text-align: left;">A unique identifier for the rodent species, at a specific location or timepoint reported by the study dependent on the level of aggregation reported in the study</td>
+<td style="text-align: left;">An internal unique identifier for the rodent record, the resolution of a record is dependent on the level of aggregation reported in the study</td>
 </tr>
 <tr class="even">
 <td>study_id</td>
-<td style="text-align: left;">A unique identifier to link a study to the <code>descriptive</code> sheet entry for that study</td>
+<td style="text-align: left;">A unique identifier to link a record to the study from which it originated</td>
 </tr>
 <tr class="odd">
-<td>date</td>
-<td style="text-align: left;">The period in which data collection of rodent samples occurred, this will be extracted at the highest temporal resolution provided</td>
+<td>scientificName</td>
+<td style="text-align: left;">The species name of the small-mammal as reported in the study, ideally binomial names</td>
 </tr>
 <tr class="even">
-<td>genus</td>
-<td style="text-align: left;">The genus of the small-mammal as reported in the study</td>
+<td>eventDate</td>
+<td style="text-align: left;">The period in which sampling was conducted</td>
 </tr>
 <tr class="odd">
-<td>species</td>
-<td style="text-align: left;">The species of the small-mammal as reported in the study</td>
+<td>locality</td>
+<td style="text-align: left;">The location of sampling effort, reported to the highest spatial resolution available</td>
 </tr>
 <tr class="even">
-<td>location</td>
-<td style="text-align: left;">The location of sampling effort, depending on how data are presented in the study this will match to the coordinates given for trapping effort. i.e.&nbsp;if trapping is aggregated at village level, village names will be used</td>
-</tr>
-<tr class="odd">
 <td>country</td>
-<td style="text-align: left;">Country where trapping occurred, for multinational studies where numbers are not disaggregated by country, all countries will be included</td>
-</tr>
-<tr class="even">
-<td>habitat_type</td>
-<td style="text-align: left;">High level habitat type will be recorded here at the scale for which trapping is recorded</td>
+<td style="text-align: left;">Country where trapping occurred, for multinational studies where counts are not disaggregated by country, all countries sampled are reported</td>
 </tr>
 <tr class="odd">
+<td>verbatimLocality</td>
+<td style="text-align: left;">High level habitat type will be recorded here at the scale for which trapping is recorded, particularly useful when locality does not discriminate between multiple sampling sites</td>
+</tr>
+<tr class="even">
 <td>coordinate_resolution</td>
-<td style="text-align: left;">The description of coordinate levels provided in the study, i.e.&nbsp;aggregated at study site or study region</td>
-</tr>
-<tr class="even">
-<td>latitude</td>
-<td style="text-align: left;">Latitude will be converted from coordinates presented to EPSG:4326</td>
+<td style="text-align: left;">The description of coordinate levels provided in the study</td>
 </tr>
 <tr class="odd">
-<td>longitude</td>
-<td style="text-align: left;">Longitude will be converted from coordinates presented to EPSG:4326</td>
+<td>decimalLatitude</td>
+<td style="text-align: left;">Latitude in decimal format, converted from coordinates reported as required</td>
 </tr>
 <tr class="even">
-<td>number</td>
-<td style="text-align: left;">The number of detected individuals, for capture-mark-recapture studies the number of distinct individuals will be entered. For studies not explicitly reporting non-detection, values of 0 for a species or genus will be entered if it is detected elsewhere in the study</td>
+<td>decimalLongitude</td>
+<td style="text-align: left;">Longitude in decimal format, converted from coordinates reported as required</td>
+</tr>
+<tr class="odd">
+<td>individualCount</td>
+<td style="text-align: left;">The number of detected individuals associated with a record</td>
+</tr>
+<tr class="even">
+<td>trapEffort</td>
+<td style="text-align: left;">Trap effort, recorded in trap nights associated with a record</td>
+</tr>
+<tr class="odd">
+<td>trapEffortResolution</td>
+<td style="text-align: left;">The resolution of trapping effort for the record</td>
 </tr>
 </tbody>
 </table>
@@ -415,7 +413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="pathogen-sampling" class="level3">
 <h3 class="anchored" data-anchor-id="pathogen-sampling">Pathogen sampling</h3>
-<p>Pathogen assays are extracted in the <code>pathogen</code> sheet. This includes information on the host the sample originated from, the pathogen family and species being assayed for and the method of the assay. For studies conducting multiple assays on the same samples for different pathogens additional records will be added for each assay. Similarly, if antibody and direct detection for the same pathogen on the same samples is performed additional records will be added.</p>
+<p>Assays conducted for arenaviruses and hantavrisues are extracted in the <code>pathogen</code> sheet. A record is produced at the highest resolution of pathogen sampling. Each pathogen record is associated with a rodent record, one-to-many matching at this stage is possible. For example, a single rodent may be tested for a pathogen using both antibody and PCR based assays, hence a single sample may be associated with multiple pathogen records.</p>
+<p>The species or family targeted by the assay was recorded as reported within the relevant article, we did not make any assessment of the suitability, sensitivity or specificity of an assay. We recorded the number of samples tested using the assay for a specific pathogen. This may differ from the individual count of the small-mammals sampled in the associated record as not all samples may not have been suitable for testing, or the study authors may have decided to subset available samples. The number of positive and negative samples are related to this tested number. Where reported we extracted the number of inconclusive samples. Similarly to above, we recorded positives and negatives as reported by study authors and make no assessment of these classifications.</p>
 <div id="tbl-pathogen" class="anchored">
 <table class="table">
 <caption>Table&nbsp;3: Pathogen information extraction sheet</caption>
@@ -435,80 +434,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">A unique identifier for the group of samples from the same rodent species, at a specific location or timepoint, tested for the same pathogen using the same method</td>
 </tr>
 <tr class="even">
+<td>associated_rodent_record_id</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
 <td>study_id</td>
 <td style="text-align: left;">A unique identifier to link a study to the <code>descriptive</code> sheet entry for that study</td>
 </tr>
-<tr class="odd">
-<td>date</td>
-<td style="text-align: left;">The period in which data collection of rodent samples occurred, this will be extracted at the highest temporal resolution provided</td>
-</tr>
 <tr class="even">
-<td>host_genus</td>
-<td style="text-align: left;">The genus of the small-mammal from which the sample originated as reported in the study</td>
+<td>associatedTaxa</td>
+<td style="text-align: left;">The scientificName of the rodent from the associated_rodent_record_id</td>
 </tr>
 <tr class="odd">
-<td>host_species</td>
-<td style="text-align: left;">The species of the small-mammal from which the sample originated as reported in the study</td>
+<td>family</td>
+<td style="text-align: left;">The family of the pathogen, either Arenaviridae or Hantaviridae</td>
 </tr>
 <tr class="even">
-<td>location</td>
-<td style="text-align: left;">The location of sampling effort, depending on how data are presented in the study this will match to the coordinates given for trapping effort. i.e.&nbsp;if trapping is aggregated at village level, village names will be used</td>
+<td>scientificName</td>
+<td style="text-align: left;">The species name of the pathogen assayed for, if available. Some assays are not specific to a species.</td>
 </tr>
 <tr class="odd">
-<td>country</td>
-<td style="text-align: left;">Country where trapping occurred, for multinational studies where numbers are not disaggregated by country, all countries will be included</td>
-</tr>
-<tr class="even">
-<td>habitat_type</td>
-<td style="text-align: left;">High level habitat type will be recorded here at the scale for which trapping is recorded</td>
-</tr>
-<tr class="odd">
-<td>coordinate_resolution</td>
-<td style="text-align: left;">The description of coordinate levels provided in the study, i.e.&nbsp;aggregated at study site or study region</td>
-</tr>
-<tr class="even">
-<td>latitude</td>
-<td style="text-align: left;">Latitude will be converted from coordinates presented to EPSG:4326</td>
-</tr>
-<tr class="odd">
-<td>longitude</td>
-<td style="text-align: left;">Longitude will be converted from coordinates presented to EPSG:4326</td>
-</tr>
-<tr class="even">
-<td>pathogen_family</td>
-<td style="text-align: left;">The family of virus being assayed for (i.e.&nbsp;Arenaviridae or Hantaviridae)</td>
-</tr>
-<tr class="odd">
-<td>pathogen_species</td>
-<td style="text-align: left;">The species of virus being assayed for if a specific test is being used. For assays unable to differentiate between multiple viral species <code>Multiple</code> will be entered</td>
-</tr>
-<tr class="even">
-<td>detection_method</td>
+<td>assay</td>
 <td style="text-align: left;">Whether the assay is attempting to detect antibody, direct detection of virus (i.e.&nbsp;pcr), or other</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>number_tested</td>
 <td style="text-align: left;">The number of distinct samples tested</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>number_negative</td>
 <td style="text-align: left;">The number of reported negative samples</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>number_positive</td>
 <td style="text-align: left;">The number of reported positive samples</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>number_inconclusive</td>
 <td style="text-align: left;">The number of samples with inconclusive results</td>
+</tr>
+<tr class="even">
+<td>note</td>
+<td style="text-align: left;">Notes relevant to this record</td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-<section id="pathogen-sequences" class="level3">
-<h3 class="anchored" data-anchor-id="pathogen-sequences">Pathogen sequences</h3>
-<p>If studies include linkage to complete or partial sequences of viruses archived in NCBI they will be lined through the <code>pathogen_sequences</code> sheet.</p>
+<section id="sequences" class="level3">
+<h3 class="anchored" data-anchor-id="sequences">Sequences</h3>
+<p>If studies include complete or partial sequences of hosts or viruses archived in NCBI they will be linked through the <code>sequences</code> sheet. A record will be produced for each accession available. A sequence_record_id will be associated with each accession and depending on whether the sequence relates to a pathogen or host each record will be associated with one or both of these. Many-to-one matching of sequences may occur for several reasons, first, hantaviruses and arenaviruses contain multiple segments and so three or two records respectively will be produced for each acutely infected small mammal. Second, reporting of pathogen sampling may be aggregated with multiple sequences obtained from a single reported assay. Pathogen sequences from human infections will be extracted but will only be linked at study level.</p>
 <div id="tbl-sequence" class="anchored">
 <table class="table">
 <caption>Table&nbsp;4: Pathogen sequences extraction sheet</caption>
@@ -528,29 +503,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">A unique identifier for the sequence record</td>
 </tr>
 <tr class="even">
-<td>study_id</td>
-<td style="text-align: left;">A unique identifier to link a study to the <code>descriptive</code> sheet entry for that study</td>
+<td>sequenceType</td>
+<td style="text-align: left;">One of Pathogen or Host</td>
 </tr>
 <tr class="odd">
-<td>host_genus</td>
-<td style="text-align: left;">The genus of the small-mammal from which the sample originated as reported in the study</td>
+<td>associated_pathogen_record_id</td>
+<td style="text-align: left;">An associated pathogen record for this sequence</td>
 </tr>
 <tr class="even">
-<td>host_species</td>
-<td style="text-align: left;">The species of the small-mammal from which the sample originated as reported in the study</td>
+<td>associated_rodent_record_id</td>
+<td style="text-align: left;">An associated rodent record for this sequence</td>
 </tr>
 <tr class="odd">
-<td>pathogen_species</td>
-<td style="text-align: left;">The species of the pathogen</td>
+<td>study_id</td>
+<td style="text-align: left;">Study ID associated with this sequence</td>
+</tr>
+<tr class="even">
+<td>associatedTaxa</td>
+<td style="text-align: left;">Species name of small mammal sampled/sequenced</td>
+</tr>
+<tr class="odd">
+<td>scientificName</td>
+<td style="text-align: left;">Species name of pathogen sequenced</td>
 </tr>
 <tr class="even">
 <td>accession_number</td>
-<td style="text-align: left;">The accession number for each record archived by the study</td>
+<td style="text-align: left;">NCBI nucleotide accession</td>
+</tr>
+<tr class="odd">
+<td>note</td>
+<td style="text-align: left;">Notes relevant to this record</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>We are not integrating NCBI with our dataset beyond incorporating the NCBI accession. We will develop a method to integrate the enhanced metadata produced with current metadata available in the GenBank NCBI format.</p>
 </section>
+</section>
+<section id="data-processing" class="level2">
+<h2 class="anchored" data-anchor-id="data-processing">Data processing</h2>
+<p>We describe the processes in place to clean and harmonise extracted data below. These processes have been developed on a pilot sample of 10% of included articles. All data processing will be conducted in <code>R</code> with scripts retained in a version controlled git repository [ref]. Raw data will be downloaded from Google Sheets using the <code>googledrive</code> API in <code>R</code>, with date stamped files stored locally [ref].</p>
+<section id="species-name-harmonisation" class="level3">
+<h3 class="anchored" data-anchor-id="species-name-harmonisation">Species name harmonisation</h3>
+<p>Small mammal and rodent taxonomy has and will continue to change over time. To standardise reported species we will match reported names to both the GBIF backbone taxonomy and the NCBI taxonomy database [ref]. The <code>taxize</code> <code>R</code> package is used to query the APIs of these platforms [ref]. Unmatched names are retained as reported by study authors, corrected to a matching name or allocated to a higher taxa (e.g., “<em>Mus/Nannomys</em>” becoming identified at the genus level as <em>Mus</em>).</p>
+</section>
+<section id="location-of-sampling" class="level3">
+<h3 class="anchored" data-anchor-id="location-of-sampling">Location of sampling</h3>
+<p>For studies not reporting geographic coordinates of sampling but including some information that describes the location (i.e., the name of the village sampled) we will locate coordinates through several methods. Locations will be searched for in Google Maps, Wikipedia or the Geographic Names Server provided by the National Geospatial-Intelligence Agency USA. Locations that represent administrative divisions will be matched using the Database of Global Administrative Areas (GADM) accessed through the <code>geodata</code> <code>R</code> package [ref].</p>
+<p>The coordinate resolution for coordinates labelled, site or study site will be set as 100 meters. For locations associated with an adminstrative area but no higher resolution data we will use the radius of the administrative region to represent uncertainty in these coordinates.</p>
+</section>
+<section id="imputed-non-detections" class="level3">
+<h3 class="anchored" data-anchor-id="imputed-non-detections">Imputed non-detections</h3>
+<p>Non-detection of a small mammal species in a location it may be expected to be is of interest to researchers. We will enrich detection only data from included studies by imputing non-detections where they are not given. We restrict this imputation to species that have been detected elsewhere in the study. Imputed non-detections will be labelled as imputed in the final data product.</p>
+</section>
+</section>
+</section>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
+<p>This novel dataset provides spatially and temporally explicit data on small mammal sampling for arenaviruses and hantaviruses, offering a more comprehensive view of host-pathogen associations than is currently available. By including sampling effort and explicit spatial data, this dataset enhances the ability to quantify sampling biases, assess geographic gaps, and better understand the spatial ecology of these pathogens. The insights gained from this dataset could improve our understanding of how environmental changes, such as habitat fragmentation and urbanisation, influence pathogen dynamics and spillover risks.</p>
+<p>Importantly, this resource could serve as a foundational tool for predictive modelling, helping identify areas at heightened risk for emerging zoonosis spillover. The ability to link ecological data with human health outcomes could inform targeted public health interventions, enhancing outbreak preparedness and response. For instance, identifying hotspots of high pathogen prevalence in rodents could guide targeted development of ecologically-based rodent control measures in regions identified as vulnerable.</p>
+<p>Existing host-pathogen datasets lack detailed spatial or temporal information, limiting their use in ecological and epidemiological modelling [ref]. By addressing these gaps, our dataset provides information about host-pathogen interactions that span multiple spatial and temporal scales. Moreover, the explicit reporting of sampling effort allows for more robust analyses of detection probability, which is crucial for understanding the true distribution of pathogens [ref]. Current global host-pathogen datasets are unable to account for sampling biases due to their method of synthesis.</p>
+<p>This dataset also offers the unique benefit of explicitly reporting the extent of sampling for pathogens within their host species, providing critical insights into spatial sampling biases and detection efforts. For instance, while it is expected that Mastomys natalensis sampling occurs throughout its range, the detection of specific pathogens such as Lassa virus (LASV) or Morogoro virus may be confined to only a subset of that range. By detailing both presence and absence data, the dataset allows for a more nuanced understanding of pathogen distribution within host species, beyond mere occurrence records. This capability to quantify the detection effort for specific pathogens is vital for assessing spatial sampling biases, identifying under-sampled regions, and refining ecological and epidemiological models.</p>
+<p>Despite its strengths, this dataset has several limitations. First, the inherent variability in the quality and detail of reported data from included studies means that some records may lack critical information, such as exact coordinates or specific sampling dates. The imputation of non-detections, introduces assumptions that could affect the interpretation of absence data. Additionally, the dataset is inherently static and will become outdated as new data emerge.</p>
+<p>Furthermore, the reliance on published literature introduces publication bias, as studies with significant findings are more likely to be published than those with negative results. This could skew the dataset towards areas and hosts with known or previously detected pathogens, potentially underrepresenting regions where sampling has occurred but without positive detections. We are not routinely contacting study authors to obtain data reported within publications. If data are not available within the article or as supplementary material we are not incorporating it into this dataset. An associated project is currently being planned where we hope to contact individual study authors to obtain, standardise and support submission to available repositories. To address limitations associated with extracting data without access to the raw data we encourage scientists with ongoing field studies and pathogen surveillance programmes, to submit their data to dynamic repositories.</p>
+<p>Developing predictive models based on this dataset could provide valuable insights into the factors driving zoonotic spillover, enabling targeted surveillance and control measures. Such models could also be used to forecast the emergence of novel strains with epidemic potential, guiding resource allocation and intervention strategies. Beyond research applications, the dataset could serve as a tool for policymakers, helping to identify priority areas for viral discovery and public health interventions.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>Overall, this dataset will be a valuable resource for understanding the ecology of arenaviruses and hantaviruses in their natural reservoirs. By bridging the gap between local-scale ecological studies and broader public health needs, it has the potential to enhance our ability to predict and mitigate the risks posed by these emerging pathogens. Continued efforts to update and expand this resource will be crucial for maintaining its utility in a rapidly changing epidemiological landscape.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<hr>
 <section id="zoonosis-status" class="level3">
 <h3 class="anchored" data-anchor-id="zoonosis-status">Zoonosis status</h3>
 <p>Finally, an additional sheet <code>known_zoonoses</code> will be produced containing all of the viral species sampled and whether they are known to cause disease in humans.</p>
@@ -600,41 +624,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </section>
-</section>
-<section id="data-processing" class="level2">
-<h2 class="anchored" data-anchor-id="data-processing">Data processing</h2>
-<p>Raw data will be downloaded from Google Sheets using the <code>googledrive</code> API in <code>R</code>, with date stamped files stored locally. Data will be imported into <code>R</code> for processing, cleaning and formatting to produce a dataset suitable for further analysis.</p>
-</section>
-<section id="data-management-and-accessibility" class="level2">
-<h2 class="anchored" data-anchor-id="data-management-and-accessibility">Data management and accessibility</h2>
-</section>
-</section>
-<section id="expected-outputs" class="level1">
-<h1>Expected outputs</h1>
-<section id="database" class="level2">
-<h2 class="anchored" data-anchor-id="database">Database</h2>
-</section>
-<section id="data-visualisation" class="level2">
-<h2 class="anchored" data-anchor-id="data-visualisation">Data visualisation</h2>
-<p>An <code>RShiny</code> web-based application will be produced to visualise the database and support future analysis.</p>
-</section>
-<section id="use-cases" class="level2">
-<h2 class="anchored" data-anchor-id="use-cases">Use cases</h2>
-</section>
-</section>
-<section id="discussion" class="level1">
-<h1>Discussion</h1>
-<section id="strengths-and-limitations" class="level2">
-<h2 class="anchored" data-anchor-id="strengths-and-limitations">Strengths and limitations</h2>
-</section>
-<section id="future-directions" class="level2">
-<h2 class="anchored" data-anchor-id="future-directions">Future directions</h2>
-</section>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
-<section id="rodent-sampling-1" class="level3">
-<h3 class="anchored" data-anchor-id="rodent-sampling-1">Rodent sampling</h3>
+<section id="rodent-sampling" class="level3">
+<h3 class="anchored" data-anchor-id="rodent-sampling">Rodent sampling</h3>
 <p>An example of a map produce from rodent sampling data included in the initial 9 studies is shown below.</p>
 <div class="cell">
 <details>
@@ -842,23 +833,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -923,92 +900,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
