@@ -2,10 +2,6 @@
 title: "Study protocol: Production of Arenavirus and Hantavirus host-pathogen database."
 author:
   - name: "David Simons"
-    url: https://www.dsimons.org
-    affiliation: The Royal Veterinary College, London, UK
-    affiliation_url: https://www.rvc.ac.uk
-    orcid_id: 0000-0001-9655-1656
   - name: "Ricardo Rivero"
   - name: "Harry Gordon"
   - name: "Anna Martinez-Checa"
@@ -55,10 +51,6 @@ Target journals:
 
 Current host-pathogen association datasets provide synthesised information on hosts and their pathogens but do not contain temporal or geographic information. These resources often provide linking information to publications reporting the association but information including accession numbers of archived sequences, number of individuals tested and measures of prevalence among sampled populations are not immediately retrievable. Using these resources for inference beyond host-pathogen associations is therefore limited. Here, we aim to produce a database of host-pathogen associations for two viral families of small mammals which contain several known zoonoses, namely Arenaviridae and Hantaviridae. This database can be used to explore the distribution of small mammal hosts of known and suspected pathogens and the extent to which they have been sampled. Further, linkage to sequence data of known zoonoses will support analysis of the risk of viral reassortment between viral species within geographically co-located host species.
 
-::: {.columns}
-
-::: {.column width="50%"}
-
 # Introduction
 
 Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [ref]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [ref]. Arenaviruses, including *Mammarenavirus lassaense* (LASV) and *Mammarenavirus juninense* (JUNV), cause viral haemorrhagic fevers such as Lassa fever in West Africa and Argentine haemorrhagic fever. In contrast, Mammarenavirus choriomeningitidis has a global distribution and causes Lymphocytic choriomeningitis, an aseptic meningitis [ref]. Hantaviruses, such as *Orthohantavirus puumalaense* (PUUV) and *Orthohantavirus seoulense* (SEOV) cause haemorrhagic fever with renal syndrome, while in the Americas *Orthohantavirus sinnombreense* (SNV) is the causative agent of hantavirus pulmonary syndrome [ref]. The distribution and human health impact of hantaviruses in Africa is poorly understood [ref]. 
@@ -81,32 +73,6 @@ A detailed dataset on the current state of sampling for arenaviruses and hantavi
 
 Following Open Science principles, we will share research tools, data extraction methods, and processing code on suitable platforms, ensuring adherence to the FAIR principles (Findable, Accessible, Interoperable, Reusable). The dataset will be accessible to researchers, policymakers, and public health officials worldwide, fostering evidence-based decision-making and international collaboration in disease surveillance. It will be submitted to a suitable data repository (e.g., the Global Biodiversity Information Facility) [@wilkinson2016fair; @gbif].
 
-:::
-
-::: {.column width="50%"}
-
-# Introduction v3
-
-Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [ref]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [ref]. Arenaviruses, including Mammarenavirus lassaense (LASV) and Mammarenavirus juninense (JUNV), cause viral haemorrhagic fevers such as Lassa fever in West Africa and Argentine haemorrhagic fever. In contrast, Mammarenavirus choriomeningitidis has a global distribution and causes Lymphocytic choriomeningitis, an aseptic meningitis [ref]. Hantaviruses, such as Orthohantavirus puumalaense (PUUV) and Orthohantavirus seoulense (SEOV), cause haemorrhagic fever with renal syndrome, while in the Americas Orthohantavirus sinnombreense (SNV) is the causative agent of hantavirus pulmonary syndrome [ref]. However, despite the significance of these pathogens, comprehensive data on their distribution and health impacts remain limited, especially in under-researched regions such as Africa [ref].
-
-Despite ongoing viral surveillance, the emergence of novel arenaviruses and hantaviruses continues, driven by human activities such as deforestation, urbanization, and agricultural expansion that increase contact between humans and rodent reservoirs [ref]. For instance, changes in land use in West Africa have been linked to increased human exposure to LASV-carrying rodents [ref]. Although current evidence suggests these pathogens primarily exhibit limited human-to-human transmission, concerns remain about the potential for novel strains to sustain transmission between humans [ref].
-
-The economic and societal impacts of arenaviruses and hantaviruses extend beyond healthcare costs to include productivity losses and long-term impacts on affected communities. For example, the Four Corners outbreak of hantavirus pulmonary syndrome (HPS) led to significant economic disruption in affected communities [ref]. These diseases may also have under-reported impacts; while Lassa fever is symptomatic in only 20% of LASV infections, sequelae such as sensorineural hearing impairment are prevalent among symptomatic cases but not well assessed among asymptomatic individuals, potentially leading to substantial underestimation of disease-associated morbidity [ref].
-
-Small mammals, particularly rodents (Rodentia) and shrews (Soricidae), serve as primary reservoirs for arenaviruses and hantaviruses [ref]. While traditionally viewed as single-reservoir species, recent research has identified multiple potential hosts for viruses like LASV, SEOV, and SNV, reflecting a complex ecological picture. Similarly, a single rodent species can host multiple distinct arenaviruses and hantaviruses, underscoring the need for a comprehensive understanding of host-pathogen dynamics [@de2020dhati].
-
-Existing data on rodent-pathogen associations are often limited to local scales, lacking comprehensive spatial, temporal, and genomic information necessary to understand broader host-pathogen interactions. These limitations impede efforts to accurately assess spillover risks and transmission dynamics. A unified, detailed dataset linking ecological and genomic data would provide critical insights into the evolutionary pathways and transmissibility of these pathogens, enabling better identification of transmission hotspots and targeted interventions.
-
-Human disease data, often reported at national or subnational scales, presents another challenge by complicating efforts to link ecological findings with human infection risk. There is an urgent need for a unified dataset that integrates spatial, temporal, and genomic data from published small-mammal sampling studies to improve risk assessments and public health strategies [ref].
-
-The development of a comprehensive dataset synthesising existing data on arenavirus and hantavirus host-pathogen associations will address key gaps in current knowledge. This dataset will facilitate predictive modelling, risk mapping, and targeted interventions, identifying undersampled regions and host species that may benefit from future viral discovery efforts.
-
-Our proposed dataset will adhere to Open Science principles, ensuring that data and research tools are accessible and reusable by the wider scientific community, public health officials, and policymakers. By adhering to FAIR principles (Findable, Accessible, Interoperable, Reusable), we aim to foster collaboration in disease surveillance and enhance our capacity to respond to future outbreaks. The dataset will be submitted to a suitable repository (e.g., the Global Biodiversity Information Facility) [@wilkinson2016fair; @gbif].
-
-:::
-
-:::
-
 # Method
 
 ## Search strategy
@@ -123,7 +89,7 @@ We searched NCBI PubMed and Clarivate Web of Science. We did not use any limits 
 | 6. 2 OR 3 | 6,689 | 6,809 |
 | 7. 1 AND 4 | 1,956 | 2,064 |
 
-Citations were downloaded from the searches and de-duplicated by matching on titles, authors, publication identifiers or digital object identifiers. The initial search resulted in 2,755 unique publications. These citations were uploaded to the Rayyan platform to assess against inclusion and exclusion criteria [ref].
+Citations returned by the searches were downloaded and de-duplicated by matching on titles, authors, publication identifiers or digital object identifiers. The initial search (conducted 2023-10-16) resulted in 2,755 unique publications. These citations were uploaded to the Rayyan platform to assess against inclusion and exclusion criteria [ref].
 
 ## Study screening
 
@@ -137,9 +103,9 @@ Studies were excluded if they did not contain information on the host species of
   
 Direct detection was defined as PCR or culture of virus and indirect detection was defined as detection of antibodies against an Arenaviridae or Hantaviridae.
 
-We first screened study title and abstracts, for manuscripts not published in English we used the search datasets translation of titles and abstracts to assess against the inclusion and exclusion criteria. We then obtained full text articles for screening for all studies that were included at this stage. For articles published in languages other than English automated translation services (i.e., Google Translate) were used to prior to assessing the full text manuscript for inclusion.
+We first screened study title and abstracts, for manuscripts not published in English we used the search datasets translation of titles and abstracts to assess against the inclusion and exclusion criteria. Assessments were made by two members of the study team, studies deemed to meet inclusion criteria by at least one member proceeded to full text review. For articles published in languages other than English automated translation services (i.e., Google Translate) were used prior to assessing the full text manuscript for inclusion.
 
-Reference chaining was performed on studies considered for inclusion at the full text screening stage and relevant publications were added as manually identified relevant articles. Figure 1. shows the PRISMA flow chart for the search process. We intend to re-run the search when data extraction from the current round (search run on 2023-09-08) has been completed.
+Reference chaining was performed on studies considered for inclusion at the full text screening stage and relevant publications were added as manually identified relevant articles. Figure 1. shows the PRISMA flow chart for the search process. We intend to re-run the search when data extraction from the current round has been completed.
 
 ## Data extraction
 
@@ -147,7 +113,7 @@ We aimed to extract included study meta-data and to produce three linked dataset
 
 ### Included studies
 
-Included study meta-data was abstracted to ensure appropriate attribution for the underlying data that would be extracted from the study. Each included study was provided an internal study_id unique identifier linked to the full text manuscript citation. Where we were unable to infer the sampling effort of small-mammals in the current study or associated manuscripts we recorded a value of not reported. We recorded the level of aggregation of the rodent sampling or pathogen sampling data and classified it as individual (data were provided at the level of individual small-mammals) or summarised (data were aggregated, e.g., at site or sampling session level).
+Included study meta-data was abstracted to ensure appropriate attribution for the underlying data that would be extracted from the study. Each included study was provided an internal study_id unique identifier which provides linkage to the full text manuscript citation. We extracted reported sampling effort, where available. For articles not reporting sampling effort at the study level we inferred total sampling effort from individual trapping session effort. Studies not reporting any measure of sampling effort we recorded a value of not reported. Finally, we record the level of data aggregation of rodent or pathogen sampling, classified as individual (data were provided at the level of individual small-mammals) or summarised (data were aggregated, e.g., at site or sampling session level).
 
 | Column name | Description |
 | ---- | :-------- |
@@ -162,68 +128,95 @@ Included study meta-data was abstracted to ensure appropriate attribution for th
 
 : Study information extraction sheet {#tbl-description}
 
-### Rodent sampling
+### Small-mammal sampling
 
-Rodent data is extracted in a `rodent` sheet. This will include information on the timing of data collection, the location of data collected, the small mammal species detected either as detection/non-detection or number detected. For studies not reporting the detection of an individual species at a location that has been detected at other locations the species will be entered as not-detected at that location.
+Data is extracted into a `rodent` sheet. A record is produced at the highest level of temporal or spatial resolution for detected small-mammals. For example a study reporting on the detection of a single species at four spatially distinct sampling sites would be associated with four records. If this same study reported detections from four distinct trapping sessions at each of these sites there would be 16 records associated with the study. Studies presenting data on *N* individual rodents will have *N* records with each record associated with the detection of a single rodent. 
+
+Identification of a detected small mammal was recorded as reported within the article, we will not systematically assess the method of identification and assume accurate identification as reported within the articles. Where identification is to genus or higher taxanomic level we report to this level (i.e., *Rattus spp.*, Rodentia). See data processing below for the method used to harmonise of species names.
+
+Included studies were expected to variably report location data associated with sampling. We extract locality as the highest resolution of location data that could be matched to administrative levels within a country (e.g., city, county), verbatimLocality is used where higher resolution spatial data is available which may not map to administrative levels (e.g., Site A). 
 
 | Column name | Description |
 | ---- | :-------- |
-| rodent_record_id | A unique identifier for the rodent species, at a specific location or timepoint reported by the study dependent on the level of aggregation reported in the study |
-| study_id | A unique identifier to link a study to the `descriptive` sheet entry for that study |
-| date | The period in which data collection of rodent samples occurred, this will be extracted at the highest temporal resolution provided |
-| genus | The genus of the small-mammal as reported in the study |
-| species | The species of the small-mammal as reported in the study |
-| location | The location of sampling effort, depending on how data are presented in the study this will match to the coordinates given for trapping effort. i.e. if trapping is aggregated at village level, village names will be used |
-| country | Country where trapping occurred, for multinational studies where numbers are not disaggregated by country, all countries will be included |
-| habitat_type | High level habitat type will be recorded here at the scale for which trapping is recorded |
-| coordinate_resolution | The description of coordinate levels provided in the study, i.e. aggregated at study site or study region |
-| latitude | Latitude will be converted from coordinates presented to EPSG:4326 |
-| longitude | Longitude will be converted from coordinates presented to EPSG:4326 |
-| number | The number of detected individuals, for capture-mark-recapture studies the number of distinct individuals will be entered. For studies not explicitly reporting non-detection, values of 0 for a species or genus will be entered if it is detected elsewhere in the study |
+| rodent_record_id | An internal unique identifier for the rodent record, the resolution of a record is dependent on the level of aggregation reported in the study |
+| study_id | A unique identifier to link a record to the study from which it originated |
+| scientificName | The species name of the small-mammal as reported in the study, ideally binomial names |
+| eventDate | The period in which sampling was conducted |
+| locality | The location of sampling effort, reported to the highest spatial resolution available |
+| country | Country where trapping occurred, for multinational studies where counts are not disaggregated by country, all countries sampled are reported |
+| verbatimLocality | High level habitat type will be recorded here at the scale for which trapping is recorded, particularly useful when locality does not discriminate between multiple sampling sites |
+| coordinate_resolution | The description of coordinate levels provided in the study |
+| decimalLatitude | Latitude in decimal format, converted from coordinates reported as required |
+| decimalLongitude | Longitude in decimal format, converted from coordinates reported as required |
+| individualCount | The number of detected individuals associated with a record |
+| trapEffort | Trap effort, recorded in trap nights associated with a record |
+| trapEffortResolution | The resolution of trapping effort for the record |
 
 : Rodent information extraction sheet {#tbl-rodent}
 
 ### Pathogen sampling
 
-Pathogen assays are extracted in the `pathogen` sheet. This includes information on the host the sample originated from, the pathogen family and species being assayed for and the method of the assay. For studies conducting multiple assays on the same samples for different pathogens additional records will be added for each assay. Similarly, if antibody and direct detection for the same pathogen on the same samples is performed additional records will be added. 
+Assays conducted for arenaviruses and hantavrisues are extracted in the `pathogen` sheet. A record is produced at the highest resolution of pathogen sampling. Each pathogen record is associated with a rodent record, one-to-many matching at this stage is possible. For example, a single rodent may be tested for a pathogen using both antibody and PCR based assays, hence a single sample may be associated with multiple pathogen records. 
+
+The species or family targeted by the assay was recorded as reported within the relevant article, we did not make any assessment of the suitability, sensitivity or specificity of an assay. We recorded the number of samples tested using the assay for a specific pathogen. This may differ from the individual count of the small-mammals sampled in the associated record as not all samples may not have been suitable for testing, or the study authors may have decided to subset available samples. The number of positive and negative samples are related to this tested number. Where reported we extracted the number of inconclusive samples. Similarly to above, we recorded positives and negatives as reported by study authors and make no assessment of these classifications.
 
 | Column name | Description |
 | ---- | :-------- |
 | pathogen_record_id | A unique identifier for the group of samples from the same rodent species, at a specific location or timepoint, tested for the same pathogen using the same method |
+| associated_rodent_record_id | |
 | study_id | A unique identifier to link a study to the `descriptive` sheet entry for that study |
-| date | The period in which data collection of rodent samples occurred, this will be extracted at the highest temporal resolution provided |
-| host_genus | The genus of the small-mammal from which the sample originated as reported in the study |
-| host_species | The species of the small-mammal from which the sample originated as reported in the study |
-| location | The location of sampling effort, depending on how data are presented in the study this will match to the coordinates given for trapping effort. i.e. if trapping is aggregated at village level, village names will be used |
-| country | Country where trapping occurred, for multinational studies where numbers are not disaggregated by country, all countries will be included |
-| habitat_type | High level habitat type will be recorded here at the scale for which trapping is recorded |
-| coordinate_resolution | The description of coordinate levels provided in the study, i.e. aggregated at study site or study region |
-| latitude | Latitude will be converted from coordinates presented to EPSG:4326 |
-| longitude | Longitude will be converted from coordinates presented to EPSG:4326 |
-| pathogen_family | The family of virus being assayed for (i.e. Arenaviridae or Hantaviridae) |
-| pathogen_species | The species of virus being assayed for if a specific test is being used. For assays unable to differentiate between multiple viral species `Multiple` will be entered |
-| detection_method | Whether the assay is attempting to detect antibody, direct detection of virus (i.e. pcr), or other |
+| associatedTaxa | The scientificName of the rodent from the associated_rodent_record_id |
+| family | The family of the pathogen, either Arenaviridae or Hantaviridae |
+| scientificName | The species name of the pathogen assayed for, if available. Some assays are not specific to a species. |
+| assay | Whether the assay is attempting to detect antibody, direct detection of virus (i.e. pcr), or other |
 | number_tested | The number of distinct samples tested |
 | number_negative | The number of reported negative samples |
 | number_positive | The number of reported positive samples |
 | number_inconclusive | The number of samples with inconclusive results |
+| note | Notes relevant to this record |
 
 : Pathogen information extraction sheet {#tbl-pathogen}
 
-### Pathogen sequences
+### Sequences
 
-If studies include linkage to complete or partial sequences of viruses archived in NCBI they will be lined through the `pathogen_sequences` sheet. 
+If studies include complete or partial sequences of hosts or viruses archived in NCBI they will be linked through the `sequences` sheet. A record will be produced for each accession available. A sequence_record_id will be associated with each accession and depending on whether the sequence relates to a pathogen or host each record will be associated with one or both of these. Many-to-one matching of sequences may occur for several reasons, first, hantaviruses and arenaviruses contain multiple segments and so three or two records respectively will be produced for each acutely infected small mammal. Second, reporting of pathogen sampling may be aggregated with multiple sequences obtained from a single reported assay. Pathogen sequences from human infections will be extracted but will only be linked at study level.
 
 | Column name | Description |
 | ---- | :-------- |
 | sequence_record_id | A unique identifier for the sequence record |
-| study_id | A unique identifier to link a study to the `descriptive` sheet entry for that study |
-| host_genus | The genus of the small-mammal from which the sample originated as reported in the study |
-| host_species | The species of the small-mammal from which the sample originated as reported in the study |
-| pathogen_species | The species of the pathogen |
-| accession_number | The accession number for each record archived by the study |
+| sequenceType | One of Pathogen or Host |
+| associated_pathogen_record_id | An associated pathogen record for this sequence |
+| associated_rodent_record_id | An associated rodent record for this sequence |
+| study_id | Study ID associated with this sequence |
+| associatedTaxa | Species name of small mammal sampled/sequenced |
+| scientificName | Species name of pathogen sequenced |
+| accession_number | NCBI nucleotide accession |
+| note | Notes relevant to this record |
 
 : Pathogen sequences extraction sheet {#tbl-sequence}
+
+We are not integrating NCBI with our dataset beyond incorporating the NCBI accession. We will develop a method to integrate the enhanced metadata produced with current metadata available in the GenBank NCBI format.
+
+## Data processing
+
+We describe the processes in place to clean and harmonise extracted data below. These processes have been developed on a pilot sample of 10% of included articles. All data processing will be conducted in `R` with scripts retained in a version controlled git repository [ref]. Raw data will be downloaded from Google Sheets using the `googledrive` API in `R`, with date stamped files stored locally [ref].
+
+### Species name harmonisation
+
+Small mammal and rodent taxonomy has and will continue to change over time. To standardise reported species we will match reported names to both the GBIF backbone taxonomy and the NCBI taxonomy database [ref]. The `taxize` `R` package is used to query the APIs of these platforms [ref]. Unmatched names are retained as reported by study authors, corrected to a matching name or allocated to a higher taxa (e.g., "*Mus/Nannomys*" becoming identified at the genus level as *Mus*). 
+
+### Location of sampling
+
+For studies not reporting geographic coordinates of sampling but including some information that describes the location (i.e., the name of the village sampled) we will locate coordinates through several methods. Locations will be searched for in Google Maps, Wikipedia or the  Geographic Names Server provided by the National Geospatial-Intelligence Agency USA. Locations that represent administrative divisions will be matched using the Database of Global Administrative Areas (GADM) accessed through the `geodata` `R` package [ref].
+
+The coordinate resolution for coordinates labelled, site or study site will be set as 100 meters.
+
+### Imputed non-detections
+
+## Data management and accessibility
+
+# Expected outputs
+
 
 ### Zoonosis status
 
@@ -241,13 +234,6 @@ Finally, an additional sheet `known_zoonoses` will be produced containing all of
 
 : Zoonosis status extraction sheet {#tbl-sequence}
 
-## Data processing
-
-Raw data will be downloaded from Google Sheets using the `googledrive` API in `R`, with date stamped files stored locally. Data will be imported into `R` for processing, cleaning and formatting to produce a dataset suitable for further analysis.
-
-## Data management and accessibility
-
-# Expected outputs
 
 ## Database
 
