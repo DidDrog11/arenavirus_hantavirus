@@ -47,6 +47,8 @@ Target journals:
   1. Scientific Data unclear if they accept protocols but may be worth a try?   
   2. Gigabyte?    
   3. Open Research Europe/F1000 or similar
+  
+Word count: 3,840
 
 # Motivation
 
@@ -54,25 +56,25 @@ Current host-pathogen association datasets provide synthesised information on ho
 
 # Introduction
 
-Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [@childs1993ecology; @jonsson2010global]. Several of these pathogens sporadically spillover into human populations where they are responsible for substantial morbidity and mortality within their endemic regions [@smith2024health; @vapalahti2003hantavirus]. Arenaviruses, including *Mammarenavirus lassaense* (LASV) and *Mammarenavirus juninense* (JUNV), cause viral haemorrhagic fevers such as Lassa fever in West Africa and Argentine haemorrhagic fever [@gibb2017understanding; @gallo2022virus]. In contrast, Mammarenavirus choriomeningitidis has a global distribution and causes Lymphocytic choriomeningitis, an aseptic meningitis [@vilibic2021lymphocytic]. Hantaviruses, such as *Orthohantavirus puumalaense* (PUUV) and *Orthohantavirus seoulense* (SEOV) cause haemorrhagic fever with renal syndrome, while in the Americas *Orthohantavirus sinnombreense* (SNV) is the causative agent of hantavirus pulmonary syndrome [@makary2010disease; @park2019epidemiologic; @goodfellow2021tracing]. The distribution and human health impact of hantaviruses in Africa is poorly understood [@kang2014expanded]. 
+Arenaviruses and Hantaviruses are globally distributed pathogens primarily infecting rodents and other small mammals [@childs1993ecology; @jonsson2010global]. Several of these pathogens sporadically spillover into human populations where they may be responsible for substantial morbidity and mortality within their endemic regions, but often the human health impact of these pathogens remains unknown [@smith2024health; @vapalahti2003hantavirus]. Geographically constrained arenaviruses, including *Mammarenavirus lassaense* (LASV) and *Mammarenavirus juninense* (JUNV), cause viral haemorrhagic fevers such as Lassa fever in West Africa and Argentine haemorrhagic fever [@gibb2017understanding; @gallo2022virus]. In contrast, Mammarenavirus choriomeningitidis has a global distribution and is known to cause Lymphocytic choriomeningitis, an aseptic meningitis [@vilibic2021lymphocytic]. Hantaviruses, such as *Orthohantavirus puumalaense* (PUUV) and *Orthohantavirus seoulense* (SEOV) cause haemorrhagic fever with renal syndrome, while in the Americas *Orthohantavirus sinnombreense* (SNV) is the causative agent of hantavirus pulmonary syndrome [@makary2010disease; @park2019epidemiologic; @goodfellow2021tracing]. The distribution and human health impact of hantaviruses in Africa is even more poorly understood [@kang2014expanded]. 
 
-Novel Arenaviruses and Hantaviruses continue to be described, with new species evolving and emerging in the Anthropocene [@yanagihara2014hantaviruses; @mcmahon2018ecosystem]. Deforestation, urbanization, and agricultural expansion bring humans into closer contact with rodent reservoirs, increasing the likelihood of spillover events [@plowright2017pathways; @dearing2010ecology]. Changes in climate, land use, rodent ecology, and human behaviour alter human-reservoir contact, which is a component of a complex human-animal-environment nexus driving spillover and maintenance of novel pathogens [@keesing2010impacts; @ecke2022population]. Although these pathogens remain endemic diseases with limited human-to-human transmission, there is concern about the potential emergence of novel strains that could sustain human-to-human transmission, leading to LASV’s classification as a priority disease by the WHO [ref].
+Novel Arenaviruses and Hantaviruses continue to be described, with new species evolving and emerging in the Anthropocene [@yanagihara2014hantaviruses; @mcmahon2018ecosystem]. Deforestation, urbanization, and agricultural expansion bring humans into closer contact with rodent reservoirs, increasing the likelihood of spillover events [@plowright2017pathways; @dearing2010ecology]. Changes in climate, land use, rodent ecology, and human behaviour alter human-reservoir contact, which is a component of a complex human-animal-environment nexus driving spillover and maintenance of novel pathogens [@keesing2010impacts; @ecke2022population]. Although these pathogens remain endemic diseases with limited human-to-human transmission, there is concern about the potential emergence of novel strains that could sustain human-to-human transmission (i.e., Disease X), leading to LASV’s classification as a priority pathogen by the WHO [@world2015blueprint].
 
-A broader understanding of the economic and societal impacts of these pathogens is also required. The economic burden of arenavirus and hantavirus infections extends beyond healthcare costs to include long-term productivity losses and the economic strain on already vulnerable populations [@smith2024health]. The Yosemite National Park outbreak of HPS led to significant economic disruption in affected communities, demonstrating the potentially far-reaching consequences of these diseases [@bach2017social]. Lasting impacts on an individuals health and wellbeing following infection may also occur. While infection with LASV is only presumed to be symptomatic in 20% of infections, the true scale of symptomatic disease or long term sequelae are unknown, for example sensorineural hearing defects [@ficenec2020lassa]. Difficulty in diagnosing acute arenavirus and hantavirus infections likely means most cases are not detected through passive disease surveillance, likely leading to substantial under-reporting in endemic regions.
+A broader understanding of the economic and societal impacts of these pathogens is also required. The economic burden of arenavirus and hantavirus infections extends beyond healthcare costs to include long-term productivity losses and the economic strain on already vulnerable populations [@smith2024health]. Outbreaks of novel or emerging rodent-borne zoonosis such as HPS during the Four Corners Outbreak (1993) or Yosemite outbreak (2012) can lead to significant social and economic disruption in affected communities, demonstrating the potentially far-reaching consequences of these diseases [@van2018hantavirus; @bach2017social]. Lasting impacts on an individuals health and wellbeing following infection may also occur. While infection with LASV is only presumed to be symptomatic in 20% of infections, the true scale of symptomatic disease or long term sequelae are unknown, for example sensorineural hearing defects [@ficenec2020lassa]. Difficulty in diagnosing acute arenavirus and hantavirus infections likely means most cases are not detected through passive disease surveillance, likely leading to substantial under-reporting in endemic regions.
 
 Small mammals, primarily rodents (Rodentia), but also shrews (Soricidae) are reservoirs of zoonotic arenaviruses and hantaviruses [@jonsson2010global]. Traditionally these pathogens, particularly hantaviruses have been considered single reservoir species but this paradigm is changing with increased pathogen surveillance in endemic settings [@reusken2013factors]. Multiple potential hosts have been identified for pathogens including LASV, SEOV and SNV [@simons2023rodent; @clement2019wild; @goodfellow2021tracing]. Similarly, a single host species may be a host of multiple arenaviruses and hantaviruses throughout its geographic distribution, for example *Mastomys natalensis*, the primary host of LASV is the host of at least 7 distinct arenaviruses throughout its range [@de2020dhati].
 
-The ecology of these hosts, including their population dynamics, behaviour, habitat preferences, and interactions within their communities, directly influences pathogen transmission dynamics [@voutilainen2016temporal]. Linking ecological and genomic data allows for the identification of genetic markers associated with increased virulence or transmissibility, providing critical insights into the evolutionary trajectories of arenaviruses and hantaviruses [@kozakiewicz2018pathogens; @napflin2019genomics]. Small-mammal sampling to quantify these parameters, is vital to better understand ecological factors driving pathogen spillover [ref]. Existing data on rodent-pathogen associations from these studies is typically at a local scale and often lack comprehensive geographic and temporal information which hampers research into the full scope of host-pathogen interactions which requires synthesised and standardised data sources [@simons2023rodent]. 
+The ecology of these hosts, including their population dynamics, behaviour, habitat preferences, and interactions within their communities, directly influences pathogen transmission dynamics [@voutilainen2016temporal]. Linking ecological and genomic data allows for the identification of genetic markers associated with increased virulence or transmissibility, providing critical insights into the evolutionary trajectories of arenaviruses and hantaviruses [@kozakiewicz2018pathogens; @napflin2019genomics]. Small-mammal sampling to quantify these parameters, is vital to better understand ecological factors driving pathogen spillover [@childs2009surveillance; @vora2023interventions]. Existing data on rodent-pathogen associations from these studies is typically at a local scale and often lack comprehensive geographic and temporal information which hampers research into the full scope of host-pathogen interactions which requires synthesised and standardised data sources [@simons2023rodent]. 
 
-Additionally, human disease data is often reported at national or subnational scales, to preserve patient anonymity,  making it challenging to directly link ecological findings with human infection risk. A unified dataset that includes detailed spatial and temporal data could serve as a critical tool for connecting local ecological data with broader-scale public health patterns, enhancing the ability to identify hotspots of transmission risk and inform targeted interventions [ref].
+Additionally, human disease data is often reported at national or subnational scales, to preserve patient anonymity,  making it challenging to directly link ecological findings with human infection risk. A dataset that includes detailed spatial and temporal data could serve as a critical tool for connecting local ecological data with broader-scale public health patterns, enhancing the ability to identify hotspots of transmission risk and inform targeted interventions.
 
-Research efforts have also been unevenly distributed, with high-risk but understudied regions often lacking sufficient sampling intensity, particularly in Africa and Southeast Asia [ref]. Identifying these undersampled areas is essential for guiding future viral discovery and research prioritisation.  This requires a comprehensive understanding of global sampling efforts within and between different host and pathogen taxa, helping to pinpoint gaps in knowledge and inform future research priorities.
+Research efforts have also been unevenly distributed, with high-risk but understudied regions often lacking sufficient sampling intensity, particularly in Africa and Southeast Asia [@lachish2018certainty; @wille2021accurately; @simons2023rodent]. Identifying these undersampled areas is essential for guiding future viral discovery and research prioritisation.  This requires a comprehensive understanding of global sampling efforts within and between different host and pathogen taxa, helping to pinpoint gaps in knowledge and inform future research priorities.
 
-Local-scale, high-intensity research can provide valuable insights into host-pathogen dynamics, but data fragmentation limits the ability to connect this high-resolution information to broader-scale patterns (i.e., human infection) [ref]. This impairs efforts to identify larger-scale trends that could inform public health strategies and disease management. For example, a better linkage of ecological and genomic data could facilitate a better understanding of the drivers of viral evolution, reassortment, and the emergence of novel pathogens with zoonotic potential. A unified dataset could enable better predictive modelling and outbreak response strategies, addressing current data fragmentation and improving risk assessments and public health interventions.
+Local-scale, high-intensity research can provide valuable insights into host-pathogen dynamics, but data fragmentation limits the ability to connect this high-resolution information to broader-scale patterns (i.e., human infection). This impairs efforts to identify larger-scale trends that could inform public health strategies and disease management. For example, a better linkage of ecological and genomic data could facilitate a better understanding of the drivers of viral evolution, reassortment, and the emergence of novel pathogens with zoonotic potential [@arruda2023current]. A unified dataset could enable better predictive modelling and outbreak response strategies, addressing current data fragmentation and improving risk assessments and public health interventions.
 
 A detailed dataset on the current state of sampling for arenaviruses and hantaviruses in wild caught small-mammals is therefore urgently needed. Synthesising spatial, temporal and genomic data from previously published small-mammal sampling studies will provide the most comprehensive index of host-pathogen associations for these viral families in addition to identifying locations and potential hosts that have been relatively undersampled and which may benefit from targeted viral discovery. This dataset is expected to provide a key resource for the development of targeted public health interventions, risk mapping and predictive modelling of future outbreaks.
 
-Following Open Science principles, we will share research tools, data extraction methods, and processing code on suitable platforms, ensuring adherence to the FAIR principles (Findable, Accessible, Interoperable, Reusable). The dataset will be accessible to researchers, policymakers, and public health officials worldwide, fostering evidence-based decision-making and international collaboration in disease surveillance. It will be submitted to a suitable data repository (e.g., the Global Biodiversity Information Facility) [@wilkinson2016fair; @gbif].
+Following Open Science principles, we will share research tools, data extraction methods, and processing code on suitable platforms, ensuring adherence to the FAIR principles (Findable, Accessible, Interoperable, Reusable) [@wilkinson2016fair]. The dataset will be accessible to researchers, policymakers, and public health officials worldwide, fostering evidence-based decision-making and international collaboration in disease surveillance. It will be submitted to a suitable data repository (e.g., the Global Biodiversity Information Facility) [@wilkinson2016fair; @gbif].
 
 # Method
 
@@ -89,6 +91,8 @@ We searched NCBI PubMed and Clarivate Web of Science. We did not use any limits 
 | 5. 1 OR 2 | - | - |
 | 6. 2 OR 3 | 6,689 | 6,809 |
 | 7. 1 AND 4 | 1,956 | 2,064 |
+
+: Search results **needs updating** {#tbl-search}
 
 Citations returned by the searches were downloaded and de-duplicated by matching on titles, authors, publication identifiers or digital object identifiers. The initial search (conducted 2023-10-16) resulted in 2,755 unique publications. These citations were uploaded to the Rayyan platform to assess against inclusion and exclusion criteria [ref].
 
@@ -107,6 +111,8 @@ Direct detection was defined as PCR or culture of virus and indirect detection w
 We first screened study title and abstracts, for manuscripts not published in English we used the search datasets translation of titles and abstracts to assess against the inclusion and exclusion criteria. Assessments were made by two members of the study team, studies deemed to meet inclusion criteria by at least one member proceeded to full text review. For articles published in languages other than English automated translation services (i.e., Google Translate) were used prior to assessing the full text manuscript for inclusion.
 
 Reference chaining was performed on studies considered for inclusion at the full text screening stage and relevant publications were added as manually identified relevant articles. Figure 1. shows the PRISMA flow chart for the search process. We intend to re-run the search when data extraction from the current round has been completed.
+
+**Prisma diagram**
 
 ## Data extraction
 
@@ -237,208 +243,3 @@ Developing predictive models based on this dataset could provide valuable insigh
 Overall, this dataset will be a valuable resource for understanding the ecology of arenaviruses and hantaviruses in their natural reservoirs. By bridging the gap between local-scale ecological studies and broader public health needs, it has the potential to enhance our ability to predict and mitigate the risks posed by these emerging pathogens. Continued efforts to update and expand this resource will be crucial for maintaining its utility in a rapidly changing epidemiological landscape.
 
 # References
-
----
-
-### Zoonosis status
-
-Finally, an additional sheet `known_zoonoses` will be produced containing all of the viral species sampled and whether they are known to cause disease in humans.
-
-| Column name | Description |
-| ---- | :-------- |
-| pathogen_id | A unique identifier for the pathogen species |
-| pathogen_family | The family of pathogen |
-| pathogen_species | The species of pathogen |
-| known_zoonosis | A logical statement of pathogenicity among humans |
-| disease_name | The disease name caused by the viral species, if multiple diseases they are entered with a comma separator |
-| icd_10 | The ICD-10 associated name of the disease (if known) |
-| disease_reference | A DOI of a publication that supports the `known_zoonosis` statement |
-
-: Zoonosis status extraction sheet {#tbl-sequence}
-
-### Rodent sampling
-
-An example of a map produce from rodent sampling data included in the initial 9 studies is shown below.
-
-```{r leaflet-rodents, warning = FALSE}
-#| fig-height: 8
-#| label: rodent-map
-#| fig-cap: An interactive map displaying the location of detected small species in included studies. Selecting points will expand the number of data points at those coordinates. Point colour indicates small mammal genus with size of the point varying by the number of individuals detected. Hovering over a point or selecting it will show the species name, the number detected and the time period surveyed at the location. Data is currently shown for 9 studies.
-# 
-# combined_data <- read_rds(here("data", "raw_data", paste0(search_date, "_data.rds")))
-# 
-# project_crs <- "EPSG:4326"
-# 
-# rodent_locations <- combined_data$rodent %>%
-#   select(genus, species, latitude, longitude, number) %>%
-#   mutate(number = as.numeric(number)) %>%
-#   drop_na(number) %>%
-#   st_as_sf(coords = c("longitude", "latitude"), crs = project_crs) %>%
-#   group_by(geometry, species) %>%
-#   mutate(number = sum(number)) %>%
-#   ungroup() %>%
-#   distinct() %>%
-#   rowwise() %>%
-#   mutate(labels = HTML(paste0("Species: ", species, "<br>", "Number detected: ", number)))
-# 
-# pal <- colorFactor(diverging_hcl(n = length(sort(unique(rodent_locations$genus))), palette = "Berlin"),
-#                    domain = sort(unique(rodent_locations$genus)))
-# 
-# leaflet(data = rodent_locations) %>%
-#   addTiles() %>%
-#   addCircleMarkers(radius = ~ifelse(sqrt(number) == 0, 1, sqrt(number)),
-#                    color = ~pal(genus),
-#                    stroke = FALSE,
-#                    fillOpacity = 0.8,
-#                    clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = TRUE,
-#                                                          spiderLegPolylineOptions = list(length = 6),
-#                                                          spiderfyDistanceMultiplier = 2),
-#                    label = ~labels,
-#                    popup = ~labels) %>%
-#   addLegend("bottomright", pal = pal, values = ~genus, title = "Host genus", opacity = 0.8)
-
-```
-
-
-### Pathogen detection
-
-A similar map can be produced to map pathogen detection with separate layers for acute infection (i.e. PCR positive samples) and evidence of prior infection (i.e. antibody positive samples)
-
-``` {r leaflet-pathogens, warning = FALSE}
-#| label: pathogen-map
-#| fig-cap: An interactive map showing the locations of pathogen sampling. Selecting clustered points will expand the data. Each individual circle represents a single host species pathogen combination at that sampling location. The number of samples tested is associated with circle size. Selecting the point will display information about the host-pathogen association, including number of samples tested and number of positive samples. A white border of the circle designates host-pathogen associations with at least one positive result. The colour of the circle indicates the pathogen species (where known). Two layers are available, for viral detection and antibody detection.
-
-
-# pathogen_locations <- combined_data$pathogen %>%
-#   select(detection_method, pathogen_family, pathogen_species, host_species, latitude, longitude, number_tested, number_positive) %>%
-#   mutate(number_tested = as.numeric(number_tested),
-#          number_positive = as.numeric(number_positive)) %>%
-#   drop_na(number_tested, number_positive) %>%
-#   st_as_sf(coords = c("longitude", "latitude"), crs = project_crs) %>%
-#   group_by(geometry, detection_method, pathogen_family, pathogen_species, host_species) %>%
-#   mutate(number_tested = sum(number_tested),
-#          number_positive = sum(number_positive)) %>%
-#   ungroup() %>%
-#   distinct() %>%
-#   mutate(percent_positive = case_when(is.nan(number_positive/number_tested * 100) ~ "NA",
-#                                       number_positive == 0 ~ "NA",
-#                                       number_positive/number_tested * 100 < 1 ~ "< 1%",
-#                                       TRUE ~ paste0(as.character(round(number_positive/number_tested * 100, 2)), "%")),
-#          detection_method = case_when(detection_method == "pcr" ~ "Viral",
-#                                       detection_method == "antibody" ~ "Antibody"),
-#          detection = case_when(number_positive >= 1 ~ "Detected",
-#                                TRUE ~ "Not detected")) %>%
-#   rowwise() %>%
-#   mutate(labels = HTML(paste0("Pathogen family: ", pathogen_family, "<br>",
-#                               "Pathogen species: ", pathogen_species, "<br>",
-#                               "Host species: ", host_species, "<br>",
-#                               "Number tested: ", number_tested, "<br>",
-#                               "Number positive (%): ", number_positive, " (", percent_positive, ")", "<br>")))
-# 
-# 
-# path_pal <- colorFactor(diverging_hcl(n = length(unique(pathogen_locations$pathogen_species)), palette = "Berlin"),
-#                         domain = sort(unique(pathogen_locations$pathogen_species)))
-# stroke_pal <- colorFactor(palette = c("white", "gray"), levels = c("Detected", "Not detected"))
-# 
-# leaflet(data = pathogen_locations) %>%
-#   addTiles() %>%
-#   addCircleMarkers(data = pathogen_locations %>%
-#                      filter(detection_method == "Viral") %>%
-#                      filter(number_tested != 0),
-#                    radius = ~ifelse(sqrt(number_tested) == 0, 1, sqrt(number_tested)),
-#                    fill = TRUE,
-#                    fillColor = ~path_pal(pathogen_species),
-#                    stroke = TRUE,
-#                    color = ~stroke_pal(detection),
-#                    weight = 2,
-#                    opacity = 1,
-#                    fillOpacity = 0.8,
-#                    clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = TRUE,
-#                                                          spiderLegPolylineOptions = list(length = 6),
-#                                                          spiderfyDistanceMultiplier = 2),
-#                    label = ~labels,
-#                    popup = ~labels,
-#                    group = "Viral detection") %>%
-#   addCircleMarkers(data = pathogen_locations %>%
-#                      filter(detection_method == "Antibody") %>%
-#                      filter(number_tested != 0),
-#                    radius = ~ifelse(sqrt(number_tested) == 0, 1, sqrt(number_tested)),
-#                    fill = TRUE,
-#                    fillColor = ~path_pal(pathogen_species),
-#                    stroke = TRUE,
-#                    color = ~stroke_pal(detection),
-#                    weight = 2,
-#                    opacity = 1,
-#                    fillOpacity = 0.8,
-#                    clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = TRUE,
-#                                                          spiderLegPolylineOptions = list(length = 6),
-#                                                          spiderfyDistanceMultiplier = 2),
-#                    label = ~labels,
-#                    popup = ~labels,
-#                    group = "Antibody detection") %>%
-#   addLayersControl(overlayGroups = c("Viral detection", "Antibody detection"),
-#                    options = layersControlOptions(collapsed = FALSE)) %>%
-#   addLegend("bottomright", pal = path_pal, values = ~pathogen_species, title = "Pathogen species", opacity = 0.8)
-
-```
-
-### Host pathogen associations
-
-``` {r  plotly-hp, warning = FALSE}
-#| fig-width: 9
-#| fig-height: 12
-#| label: hp-associations
-#| fig-cap: An interactive plot displaying observed host pathogen associations. Facets are produced for antibody based assays and viral detection assays. The rodent species are listed in alphabetical order on the y-axis, detected pathogens are displayed in alphabetical order on the x-axis. Purple tiles represent host-pathogen associations that were not observed for that detection type, yellow tiles represent observed host-pathogen associations. The strength of the colour (the alpha) is scaled to the number of assays performed for that host-pathogen pair. A black line surrounding the tile indicates the pathogen as a known zoonosis. Hovering over the relavent tile will highlight the number of assays and the number of positive samples.
-
-# pathogen_summary <- combined_data$pathogen %>%
-#   select(genus = host_genus,
-#          species = host_species,
-#          pathogen_family, pathogen_species,
-#          number_tested, number_positive,
-#          detection_method) %>%
-#   mutate(number_tested = as.numeric(number_tested)) %>%
-#   filter(number_tested >= 1) %>%
-#   left_join(combined_data$zoonoses %>%
-#               select(pathogen_species, known_zoonosis),
-#             by = c("pathogen_species"))
-# 
-# hp_associations <- combined_data$rodent %>%
-#   select(genus, species) %>%
-#   left_join(pathogen_summary %>%
-#               group_by(detection_method, species, pathogen_species, known_zoonosis) %>%
-#               mutate(number_tested = sum(number_tested),
-#                      number_positive = sum(number_positive)), by = c("genus", "species")) %>%
-#   drop_na(number_tested) %>%
-#   distinct() %>%
-#   filter(!pathogen_species %in% c("Multiple", "Puumala virus/Saaremaa virus")) %>%
-#   arrange(pathogen_family, pathogen_species, genus, species) %>%
-#   mutate(association = case_when(number_positive >= 1 ~ TRUE,
-#                                  TRUE ~ FALSE),
-#          detection_method = case_when(detection_method == "pcr" ~ "Viral",
-#                                       detection_method == "antibody" ~ "Antibody"))
-# 
-# scaled_n <- preProcess(as.data.frame(log10(hp_associations$number_tested)), method = "range")
-# hp_associations$alpha <- predict(scaled_n, as.data.frame(log10(hp_associations$number_tested)))[, 1]
-# 
-# host_pathogen_plot <- hp_associations %>%
-#   ggplot(aes(x = pathogen_species, y = species)) +
-#   geom_tile(aes(fill = association, colour = known_zoonosis, alpha = alpha,
-#                 text = paste0("Pathogen species: ", pathogen_species, "<br>",
-#                               "Host species: ", species, "<br>",
-#                               "Number tested: ", number_tested, "<br>",
-#                               "Number positive: ", number_positive, "<br>",
-#                               "Known zoonosis: ", known_zoonosis))) +
-#   scale_fill_viridis_d() +
-#   scale_colour_manual(values = c("white", "black")) +
-#   facet_wrap(~ detection_method) +
-#   guides(alpha = "none",
-#          colour = "none") +
-#   labs(fill = "H-P association",
-#        x = element_blank(),
-#        y = element_blank()) +
-#   theme_bw() +
-#   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
-# 
-# ggplotly(host_pathogen_plot, tooltip = "text")
-
-```
