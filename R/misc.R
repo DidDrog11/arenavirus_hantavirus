@@ -1,3 +1,8 @@
+library(tidyverse)
+library(readxl)
+library(here)
+library(stringr)
+
 rodent_data %>%
   filter(study_id == 15) %>%
   group_by(scientificName, country) %>%
@@ -9,7 +14,6 @@ rodent_data %>%
 
 
 # Extracting data from ft_12 ----------------------------------------------
-library(readxl)
 ft_12_t2 <- read_xlsx(here("data", "data_to_extract", "ft_12_mod_t2.xlsx"))
 names(ft_12_t2) <- c("site", "year", "species", "trapped", "leptospira", "leptospira_type", "hantavirus")
 
@@ -595,3 +599,46 @@ ft_115_sequence <- ft_115 %>%
   select(rodent_record_id, accession_number, note)
 
 write.table(ft_115_sequence, here("data", "data_to_extract", "ft_115_sequence_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_124 ------------------------------------------------------------------
+
+ft_124_traps <- read_csv(here("data", "data_to_extract", "ft_124_supp_1.csv"))
+
+ft_124_rodents <- read_csv(here("data", "data_to_extract", "ft_124_supp_2.csv")) %>%
+  mutate(verbatimLocality = paste0(`4_Trap_Line`, str_pad(`5_Trap_Number`, pad = 0, width = 4)),
+         scientificName = paste0(`8_Genus`, " ", `9_Species`),
+         eventDate = as_date(`3_Date`, format = "%d/%m/%Y"),
+         IFA_value = as.character(`24_IFA_SCORE`),
+         PUUV_PCR = `25_RTPCR_Status`,
+         DOBV_PCR = `25_RTPCR_Status`,
+         rodent_id = `1_Specimen_Number`) %>%
+  select(scientificName, eventDate, verbatimLocality, IFA_value, PUUV_PCR, DOBV_PCR, rodent_id) %>%
+  left_join(ft_124_traps %>%
+              select(`Trap number`, decimalLatitude = Latitude, decimalLongitude = Longitude),
+            by = c("verbatimLocality" = "Trap number")) %>%
+  select(scientificName, eventDate, verbatimLocality, decimalLatitude, decimalLongitude, IFA_value, PUUV_PCR, DOBV_PCR, rodent_id) %>%
+  mutate(rodent_record_id = 35330 + row_number()) %>%
+  relocate(rodent_record_id, .before = 1)
+
+ft_124_pathogen <- ft_124_rodents %>%
+  pivot_longer(cols = c("IFA_value", "PUUV_PCR", "DOBV_PCR"),
+               names_to = "assay",
+               values_to = "result") %>%
+  mutate(scientificName = case_when(str_detect(assay, "DOBV") ~ "DOBV",
+                                    str_detect(assay, "PUUV") ~ "PUUV",
+                                    TRUE ~ ""),
+         assay = case_when(str_detect(assay, "PCR") ~ "PCR",
+                           str_detect(assay, "IFA") ~ "IFA"),
+         tested = case_when(str_detect(result, "Not Tested|NOT TESTED") ~ 0,
+                            is.na(result) ~ 0,
+                            TRUE ~ 1),
+         positive = case_when(as.numeric(result) > 0 ~ 1,
+                              str_detect(result, "POSITIVE") ~ 1,
+                              TRUE ~ 0),
+         pathogen_record_id = 43695 + row_number()) %>%
+  arrange(assay, pathogen_record_id) %>%
+  select(pathogen_record_id, associated_rodent_record_id = rodent_record_id, scientificName, assay, tested, positive, rodent_id)
+
+write.table(ft_124_rodents, here("data", "data_to_extract", "ft_124_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+write.table(ft_124_pathogen, here("data", "data_to_extract", "ft_124_pathogen_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
