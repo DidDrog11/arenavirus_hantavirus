@@ -193,7 +193,6 @@ na_covs <- covs_myodes_gl_df %>%
   filter(if_any(everything(), is.na))
 na_covs_vect <- vect(na_covs, geom = c("x", "y"), crs = europe_crs)
 
-
 # Figure out how to deal with NAs later -----------------------------------
 # 
 # # Focal window (adjust size as needed)
@@ -284,11 +283,12 @@ model.0 <- bart.flex(x.data = x.data, y.data = y.data,
 summary(model.0)
 # Check predict works
 # Predict to a reasonable resolution raster
+temp_proj <- project(x = covs_myodes_gl, y = "EPSG:3857")
 
-new_data <- raster::stack(covs_myodes_gl %>% tidyterra::select(any_of(xvars)))
-crs(new_data) <- "EPSG:3035"
 # 10km cells
-new_data <- aggregate(new_data, fact = 10, fun = "median", na.rm = TRUE, cores = 4)
+temp_proj_lr <- aggregate(temp_proj, fact = 10, fun = "median", na.rm = TRUE, cores = 4)
+new_data <- project(x = temp_proj_lr, y = "EPSG:3035")
+new_data <- raster::stack(new_data %>% tidyterra::select(any_of(xvars)))
 
 pred.0 <- predict(model.0, new_data, splitby = 50, quiet = FALSE)
 ggplot() + geom_spatraster(data = rast(pred.0, crs = europe_crs))

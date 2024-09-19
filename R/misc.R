@@ -610,35 +610,50 @@ ft_124_rodents <- read_csv(here("data", "data_to_extract", "ft_124_supp_2.csv"))
          scientificName = paste0(`8_Genus`, " ", `9_Species`),
          eventDate = as_date(`3_Date`, format = "%d/%m/%Y"),
          IFA_value = as.character(`24_IFA_SCORE`),
-         PUUV_PCR = `25_RTPCR_Status`,
-         DOBV_PCR = `25_RTPCR_Status`,
+         PCR = `25_RTPCR_Status`,
          rodent_id = `1_Specimen_Number`) %>%
-  select(scientificName, eventDate, verbatimLocality, IFA_value, PUUV_PCR, DOBV_PCR, rodent_id) %>%
+  select(scientificName, eventDate, verbatimLocality, IFA_value, PCR, rodent_id) %>%
   left_join(ft_124_traps %>%
               select(`Trap number`, decimalLatitude = Latitude, decimalLongitude = Longitude),
             by = c("verbatimLocality" = "Trap number")) %>%
-  select(scientificName, eventDate, verbatimLocality, decimalLatitude, decimalLongitude, IFA_value, PUUV_PCR, DOBV_PCR, rodent_id) %>%
+  select(scientificName, eventDate, verbatimLocality, decimalLatitude, decimalLongitude, IFA_value, PCR, rodent_id) %>%
   mutate(rodent_record_id = 35330 + row_number()) %>%
   relocate(rodent_record_id, .before = 1)
 
 ft_124_pathogen <- ft_124_rodents %>%
-  pivot_longer(cols = c("IFA_value", "PUUV_PCR", "DOBV_PCR"),
+  pivot_longer(cols = c("IFA_value", "PCR"),
                names_to = "assay",
                values_to = "result") %>%
-  mutate(scientificName = case_when(str_detect(assay, "DOBV") ~ "DOBV",
-                                    str_detect(assay, "PUUV") ~ "PUUV",
-                                    TRUE ~ ""),
+  mutate(scientificName = "",
          assay = case_when(str_detect(assay, "PCR") ~ "PCR",
                            str_detect(assay, "IFA") ~ "IFA"),
-         tested = case_when(str_detect(result, "Not Tested|NOT TESTED") ~ 0,
-                            is.na(result) ~ 0,
+         note = case_when(as.numeric(result) > 0 ~ as.numeric(result),
+                          TRUE ~ NA),
+         tested = case_when(assay == "IFA" ~ 1,
+                            assay == "PCR" & result == "Not Tested" ~ 0,
                             TRUE ~ 1),
          positive = case_when(as.numeric(result) > 0 ~ 1,
                               str_detect(result, "POSITIVE") ~ 1,
-                              TRUE ~ 0),
-         pathogen_record_id = 43695 + row_number()) %>%
-  arrange(assay, pathogen_record_id) %>%
+                              TRUE ~ 0)) %>%
+  arrange(assay, rodent_record_id) %>%
+  mutate(pathogen_record_id = 43694 + row_number()) %>%
   select(pathogen_record_id, associated_rodent_record_id = rodent_record_id, scientificName, assay, tested, positive, rodent_id)
 
-write.table(ft_124_rodents, here("data", "data_to_extract", "ft_124_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
-write.table(ft_124_pathogen, here("data", "data_to_extract", "ft_124_pathogen_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+ft_124_sequences <- read_xlsx(here("data", "data_to_extract", "ft_124_sequences.xlsx")) %>%
+  left_join(ft_124_pathogen %>%
+              filter(assay == "PCR") %>%
+              select(pathogen_record_id, associated_rodent_record_id, tested, positive, rodent_id),
+            by = c("isolate_id" = "rodent_id"))
+
+ft_124_pathogen$tested[ft_124_pathogen$pathogen_record_id %in% ft_124_sequences$pathogen_record_id] <- 1
+ft_124_pathogen$positive[ft_124_pathogen$pathogen_record_id %in% ft_124_sequences$pathogen_record_id] <- 1
+
+write.table(ft_124_rodents %>%
+              select(rodent_record_id, scientificName, eventDate, verbatimLocality, decimalLatitude, decimalLongitude),
+            here("data", "data_to_extract", "ft_124_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+write.table(ft_124_pathogen %>%
+              select(pathogen_record_id, associated_rodent_record_id, scientificName, assay, tested, positive),
+            here("data", "data_to_extract", "ft_124_pathogen_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+write.table(ft_124_sequences %>%
+              select(pathogen_record_id, associated_rodent_record_id, accession),
+            here("data", "data_to_extract", "ft_124_sequence_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
