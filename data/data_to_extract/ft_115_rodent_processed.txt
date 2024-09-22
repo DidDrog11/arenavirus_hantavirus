@@ -1,0 +1,206 @@
+rodent_record_id	scientificName	eventDate	locality	country	decimalLatitude	decimalLongitude	individualCount
+35069	Suncus murinus	2011-05-24	Okinawa prefecture	Japan	24.456806	122.975472	1
+35070	Suncus murinus	2011-05-25	Okinawa prefecture	Japan	24.456611	123.010944	1
+35071	Suncus murinus	2011-05-25	Okinawa prefecture	Japan	24.456611	123.010944	1
+35072	Suncus murinus	2011-05-25	Okinawa prefecture	Japan	24.456611	123.010944	1
+35073	Suncus murinus	2011-05-25	Okinawa prefecture	Japan	24.456611	123.010944	1
+35074	Suncus murinus	2011-05-25	Okinawa prefecture	Japan	24.456611	123.010944	1
+35075	Suncus murinus	2011-05-26	Okinawa prefecture	Japan	24.456611	123.010944	1
+35076	Suncus murinus	2011-05-26	Okinawa prefecture	Japan	24.457972	123.002694	1
+35077	Suncus murinus	2011-05-26	Okinawa prefecture	Japan	24.457972	123.002694	1
+35078	Suncus murinus	2011-05-26	Okinawa prefecture	Japan	24.457972	123.002694	1
+35079	Suncus murinus	2011-05-26	Okinawa prefecture	Japan	24.457972	123.002694	1
+35080	Suncus murinus	2011-05-26	Okinawa prefecture	Japan	24.457972	123.002694	1
+35081	Suncus murinus	2011-05-26	Okinawa prefecture	Japan	24.457972	123.002694	1
+35082	Suncus murinus	2011-05-26	Okinawa prefecture	Japan	24.457972	123.002694	1
+35083	Suncus murinus	2011-05-26	Okinawa prefecture	Japan	24.457972	123.002694	1
+35084	Suncus murinus	2011-05-26	Okinawa prefecture	Japan	24.457972	123.002694	1
+35085	Suncus murinus	2011-05-26	Okinawa prefecture	Japan	24.456611	123.010944	1
+35086	Suncus murinus	2011-07-16	Okinawa prefecture	Japan	NA	NA	1
+35087	Suncus murinus	2011-07-15	Okinawa prefecture	Japan	NA	NA	1
+35088	Suncus murinus	2011-11-07	Okinawa prefecture	Japan	24.457972	123.002694	1
+35089	Suncus murinus	2011-11-07	Okinawa prefecture	Japan	24.457972	123.002694	1
+35090	Suncus murinus	2011-11-07	Okinawa prefecture	Japan	24.457972	123.002694	1
+35091	Suncus murinus	2011-11-07	Okinawa prefecture	Japan	24.457972	123.002694	1
+35092	Suncus murinus	2011-11-07	Okinawa prefecture	Japan	24.457972	123.002694	1
+35093	Suncus murinus	2012-06-25	Qui Hoi district, Nghe An province	Viet Nam	19.356783	105.130799	1
+35094	Suncus murinus	2012-06-25	Qui Hoi district, Nghe An province	Viet Nam	19.356783	105.130799	1
+35095	Suncus murinus	2012-06-25	Qui Hoi district, Nghe An province	Viet Nam	19.356783	105.130799	1
+35096	Suncus murinus	2012-06-25	Qui Hoi district, Nghe An province	Viet Nam	19.356783	105.130799	1
+35097	Suncus murinus	2012-06-25	Qui Hoi district, Nghe An province	Viet Nam	19.356783	105.130799	1
+35098	Suncus murinus	2012-06-25	Qui Hoi district, Nghe An province	Viet Nam	19.356783	105.130799	1
+35099	Suncus murinus	2012-06-25	Qui Hoi district, Nghe An province	Viet Nam	19.356783	105.130799	1
+35100	Suncus murinus	2012-06-21	MeLinh, Vich Phuc province	Viet Nam	21.394235	105.727588	1
+35101	Suncus murinus	2012-06-21	MeLinh, Vich Phuc province	Viet Nam	21.394235	105.727588	1
+35102	Suncus murinus	2012-06-21	MeLinh, Vich Phuc province	Viet Nam	21.394235	105.727588	1
+35103	Suncus murinus	2012-06-21	MeLinh, Vich Phuc province	Viet Nam	21.394235	105.727588	1
+35104	Suncus murinus	2012-06-21	MeLinh, Vich Phuc province	Viet Nam	21.394235	105.727588	1
+35105	Suncus murinus	2012-06-21	MeLinh, Vich Phuc province	Viet Nam	21.394235	105.727588	1
+35106	Suncus murinus	2012-06-21	MeLinh, Vich Phuc province	Viet Nam	21.394235	105.727588	1
+35107	Suncus murinus	2012-06-21	MeLinh, Vich Phuc province	Viet Nam	21.394235	105.727588	1
+35108	Suncus murinus	2012-06-21	MeLinh, Vich Phuc province	Viet Nam	21.394235	105.727588	1
+35109	Suncus murinus	2012-06-21	Dong Anla district, Ha Noi province	Viet Nam	21.182686	105.795928	1
+35110	Suncus murinus	2012-06-21	Dong Anla district, Ha Noi province	Viet Nam	21.182686	105.795928	1
+35111	Suncus murinus	2012-08-17	Le Port, art studio, Ré union island	Réunion	-20.941083	55.309278	1
+35112	Suncus murinus	2012-08-17	Le Port, art studio, Ré union island	Réunion	-20.941083	55.309278	1
+35113	Suncus murinus	2012-08-18	Le Port, art studio, Ré union island	Réunion	-20.941083	55.309278	1
+35114	Suncus murinus	2012-08-18	Le Port, art studio, Ré union island	Réunion	-20.941083	55.309278	1
+35115	Suncus murinus	2012-12-06	Chin state	Myanmar	NA	NA	1
+35116	Suncus murinus	2012-12-06	Chin state	Myanmar	NA	NA	1
+35117	Suncus murinus	2012-12-07	Chin state	Myanmar	NA	NA	1
+35118	Suncus murinus	January_2013	Dong Nai Province	Viet Nam	11.383611	107.0625	1
+35119	Suncus murinus	January_2013	Dong Nai Province	Viet Nam	11.383611	107.0625	1
+35120	Suncus murinus	2013-01-20	Dong Nai Province	Viet Nam	11.383611	107.0625	1
+35121	Suncus murinus	2013-01-20	Dong Nai Province	Viet Nam	11.383611	107.0625	1
+35122	Suncus murinus	2013-01-20	Dong Nai Province	Viet Nam	11.383611	107.0625	1
+35123	Suncus murinus	2013-06-01	Naypyidaw Union Territory	Myanmar	19.839917	96.274667	1
+35124	Suncus murinus	2013-06-03	Shan state	Myanmar	20.848389	97.025611	1
+35125	Suncus murinus	2013-06-03	Shan state	Myanmar	20.804167	97.060361	1
+35126	Suncus murinus	2013-06-03	Shan state	Myanmar	NA	NA	1
+35127	Suncus murinus	2013-06-03	Shan state	Myanmar	20.737444	96.893944	1
+35128	Suncus murinus	2013-06-05	Shan state	Myanmar	20.662194	96.925222	1
+35129	Suncus murinus	2013-06-05	Shan state	Myanmar	NA	NA	1
+35130	Suncus murinus	2013-06-05	Shan state	Myanmar	NA	NA	1
+35131	Suncus murinus	2013-08-26	Quang Tri province	Viet Nam	16.626028	106.733139	1
+35132	Suncus murinus	2013-08-26	Quang Tri province	Viet Nam	16.626028	106.733139	1
+35133	Suncus murinus	2013-08-31	Dong Hoi province	Viet Nam	17.471976	106.603193	1
+35134	Suncus murinus	2013-09-20	Okinawa prefecture	Japan	24.457972	123.002694	1
+35135	Suncus murinus	2013-09-20	Okinawa prefecture	Japan	24.457972	123.002694	1
+35136	Suncus murinus	2013-09-20	Okinawa prefecture	Japan	24.457972	123.002694	1
+35137	Suncus murinus	2013-10-04	Vinh Phuc province	Viet Nam	21.349083	105.706528	1
+35138	Suncus murinus	2013-10-04	Vinh Phuc province	Viet Nam	21.349083	105.706528	1
+35139	Suncus murinus	2013-10-04	Vinh Phuc province	Viet Nam	21.349083	105.706528	1
+35140	Suncus murinus	2013-10-04	Vinh Phuc province	Viet Nam	21.349083	105.706528	1
+35141	Suncus murinus	2013-10-04	Vinh Phuc province	Viet Nam	21.349083	105.706528	1
+35142	Suncus murinus	2013-10-04	Vinh Phuc province	Viet Nam	21.349083	105.706528	1
+35143	Suncus murinus	2013-10-05	Vinh Phuc province	Viet Nam	21.349083	105.706528	1
+35144	Suncus murinus	2013-10-05	Vinh Phuc province	Viet Nam	21.349083	105.706528	1
+35145	Suncus murinus	2013-10-05	Vinh Phuc province	Viet Nam	21.349083	105.706528	1
+35146	Suncus murinus	2013-10-05	Vinh Phuc province	Viet Nam	21.349083	105.706528	1
+35147	Suncus murinus	2013-11-02	Kuala Lumpur	Malaysia	3.288233	101.731717	1
+35148	Suncus murinus	2013-11-02	Malacca state	Malaysia	2.217278	102.297306	1
+35149	Suncus murinus	2013-11-02	Malacca state	Malaysia	2.216833	102.296028	1
+35150	Suncus murinus	2013-11-02	Malacca state	Malaysia	2.216833	102.296028	1
+35151	Suncus murinus	2013-11-02	Malacca state	Malaysia	2.217278	102.297306	1
+35152	Suncus murinus	2013-11-03	Malacca state	Malaysia	2.216833	102.296028	1
+35153	Suncus murinus	2013-11-03	Malacca state	Malaysia	2.217278	102.297306	1
+35154	Suncus murinus	2013-11-03	Malacca state	Malaysia	2.216833	102.296028	1
+35155	Suncus murinus	2013-12-21	Mandalay Region	Myanmar	21.992917	96.191556	1
+35156	Suncus murinus	2013-12-21	Mandalay Region	Myanmar	21.992917	96.191556	1
+35157	Suncus murinus	2013-12-21	Mandalay Region	Myanmar	21.992917	96.191556	1
+35158	Suncus murinus	2013-12-31	Khūzestān state	Iran	30.432222	48.1975	1
+35159	Suncus murinus	2014-01-01	Khūzestān state	Iran	30.393889	48.238611	1
+35160	Suncus murinus	2014-02-20	Mahajanga district	Madagascar	-15.698767	46.33045	1
+35161	Suncus murinus	2014-02-21	Mahajanga district	Madagascar	-15.697767	46.329517	1
+35162	Suncus murinus	2014-02-21	Mahajanga district	Madagascar	-15.697767	46.329517	1
+35163	Suncus murinus	2014-02-21	Mahajanga district	Madagascar	-15.703033	46.335383	1
+35164	Suncus murinus	2014-02-22	Mahajanga district	Madagascar	-15.698767	46.33045	1
+35165	Suncus murinus	2014-02-22	Mahajanga district	Madagascar	-15.669233	46.34245	1
+35166	Suncus murinus	2014-02-23	Mahajanga district	Madagascar	-15.695733	46.32975	1
+35167	Suncus murinus	2014-02-25	Analamanga region	Madagascar	-18.93245	47.524867	1
+35168	Suncus murinus	2014-02-25	Analamanga region	Madagascar	NA	NA	1
+35169	Suncus murinus	2014-02-26	Analamanga region	Madagascar	-18.932267	47.5258	1
+35170	Suncus murinus	2014-02-26	Analamanga region	Madagascar	-18.932083	47.52485	1
+35171	Suncus murinus	2014-04-29	Sagan dstrict	Myanmar	NA	NA	1
+35172	Suncus murinus	2013-10-24	Sindh province	Pakistan	24.946042	67.123264	1
+35173	Suncus murinus	2013-10-25	Sindh province	Pakistan	24.946639	67.123264	1
+35174	Suncus murinus	2013-10-26	Sindh province	Pakistan	24.947822	67.122992	1
+35175	Suncus murinus	2013-10-26	Sindh province	Pakistan	24.947822	67.122992	1
+35176	Suncus murinus	2013-10-26	Sindh province	Pakistan	24.947822	67.122992	1
+35177	Suncus murinus	2013-10-26	Sindh province	Pakistan	24.947822	67.122992	1
+35178	Suncus murinus	2013-10-26	Sindh province	Pakistan	24.947822	67.122992	1
+35179	Suncus murinus	2013-10-27	Sindh province	Pakistan	24.947822	67.122992	1
+35180	Suncus murinus	2013-10-27	Sindh province	Pakistan	24.947822	67.122992	1
+35181	Suncus murinus	2013-10-27	Sindh province	Pakistan	24.947822	67.122992	1
+35182	Suncus murinus	2013-10-28	Sindh province	Pakistan	24.947822	67.122992	1
+35183	Suncus murinus	2014-08-16	Zanzibar	Tanzania	-5.922639	39.293722	1
+35184	Suncus murinus	2014-08-16	Zanzibar	Tanzania	-5.922639	39.293722	1
+35185	Suncus murinus	2014-08-18	Zanzibar	Tanzania	-5.922639	39.293722	1
+35186	Suncus murinus	2014-08-18	Zanzibar	Tanzania	-5.922639	39.293722	1
+35187	Suncus murinus	2014-08-19	Zanzibar	Tanzania	-5.875222	39.289111	1
+35188	Suncus murinus	2014-08-19	Zanzibar	Tanzania	-5.875222	39.289111	1
+35189	Suncus murinus	2014-08-19	Zanzibar	Tanzania	-5.871417	39.293278	1
+35190	Suncus murinus	2014-05-24	Yangon Region	Myanmar	16.830778	96.1375	1
+35191	Suncus murinus	2014-05-25	Yangon Region	Myanmar	16.841192	96.036402	1
+35192	Suncus murinus	2014-05-25	Yangon Region	Myanmar	16.823225	96.035257	1
+35193	Suncus murinus	2014-11-26	Kandy district	Sri Lanka	7.292478	80.634253	1
+35194	Suncus murinus	2014-11-27	Kandy district	Sri Lanka	7.292478	80.634253	1
+35195	Suncus murinus	2014-11-27	Kandy district	Sri Lanka	7.292478	80.634253	1
+35196	Suncus murinus	2014-11-28	Kandy district	Sri Lanka	7.292478	80.634253	1
+35197	Suncus murinus	2014-11-28	Kandy district	Sri Lanka	7.292478	80.634253	1
+35198	Suncus murinus	2014-12-01	Kandy district	Sri Lanka	7.319817	80.638781	1
+35199	Suncus murinus	2014-12-01	Kandy district	Sri Lanka	7.319817	80.638781	1
+35200	Suncus murinus	2014-12-01	Kandy district	Sri Lanka	7.319817	80.638781	1
+35201	Suncus murinus	2014-12-02	Kandy district	Sri Lanka	7.319817	80.638781	1
+35202	Suncus murinus	2014-12-02	Kandy district	Sri Lanka	7.319817	80.638781	1
+35203	Suncus murinus	2014-12-22	Pathein district	Myanmar	16.936036	94.598292	1
+35204	Suncus murinus	2014-12-22	Pathein district	Myanmar	16.922103	94.664267	1
+35205	Suncus murinus	2015-02-20	Bogor, West Java province	Indonesia	NA	NA	1
+35206	Suncus murinus	2015-02-20	Bogor, West Java province	Indonesia	NA	NA	1
+35207	Suncus murinus	2015-02-20	Bogor, West Java province	Indonesia	NA	NA	1
+35208	Suncus murinus	2015-02-20	Bogor, West Java province	Indonesia	NA	NA	1
+35209	Suncus murinus	2015-02-20	Bogor, West Java province	Indonesia	NA	NA	1
+35210	Suncus murinus	2015-02-21	Bogor, West Java province	Indonesia	-6.624445	106.796667	1
+35211	Suncus murinus	2015-03-07	Analamanga region	Madagascar	-18.93245	47.524867	1
+35212	Suncus murinus	2015-03-09	Analamanga region	Madagascar	-18.93245	47.524867	1
+35213	Suncus murinus	2015-03-09	Analamanga region	Madagascar	-18.93245	47.524867	1
+35214	Suncus murinus	2015-03-10	Analamanga region	Madagascar	-18.93245	47.524867	1
+35215	Suncus murinus	2015-03-09	Analamanga region	Madagascar	-18.93245	47.524867	1
+35216	Suncus murinus	2015-03-18	Analamanga region	Madagascar	-19.067916	47.525159	1
+35217	Suncus murinus	2015-03-18	Analamanga region	Madagascar	-19.067916	47.525159	1
+35218	Suncus murinus	2015-03-08	Atsinanana region	Madagascar	-19.3373	48.976617	1
+35219	Suncus murinus	2015-03-08	Atsinanana region	Madagascar	-19.3373	48.976617	1
+35220	Suncus murinus	2015-03-08	Atsinanana region	Madagascar	-19.327267	48.9777	1
+35221	Suncus murinus	2015-03-08	Atsinanana region	Madagascar	-19.335133	48.978617	1
+35222	Suncus murinus	2015-03-10	Atsinanana region	Madagascar	-17.682833	49.516367	1
+35223	Suncus murinus	2015-03-10	Atsinanana region	Madagascar	-17.682833	49.516367	1
+35224	Suncus murinus	2015-03-10	Atsinanana region	Madagascar	-17.682833	49.516367	1
+35225	Suncus murinus	2015-03-10	Atsinanana region	Madagascar	-17.682833	49.516367	1
+35226	Suncus murinus	2015-03-12	Atsinanana region	Madagascar	-18.149917	49.414883	1
+35227	Suncus murinus	2015-03-12	Atsinanana region	Madagascar	-18.149917	49.414883	1
+35228	Suncus murinus	2015-03-13	Atsinanana region	Madagascar	-18.149917	49.414883	1
+35229	Suncus murinus	2015-11-29	Bago Region	Myanmar	NA	NA	1
+35230	Suncus murinus	2015-11-30	Bago Region	Myanmar	NA	NA	1
+35231	Suncus murinus	2015-12-02	Naypyidaw Union Territory	Myanmar	19.868724	96.154102	1
+35232	Suncus murinus	2015-01-01	Al Hudaydah governorate	Yemen	14.825056	42.975611	1
+35233	Suncus murinus	2015-01-01	Al Hudaydah governorate	Yemen	14.825056	42.975611	1
+35234	Suncus murinus	2015-01-01	Al Hudaydah governorate	Yemen	14.825056	42.975611	1
+35235	Suncus murinus	2015-01-01	Al Hudaydah governorate	Yemen	14.825056	42.975611	1
+35236	Suncus murinus	2015-01-02	Al Hudaydah governorate	Yemen	14.825056	42.975611	1
+35237	Suncus murinus	2015-01-04	Al Hudaydah governorate	Yemen	14.823694	42.963167	1
+35238	Suncus murinus	2015-01-04	Al Hudaydah governorate	Yemen	14.823694	42.963167	1
+35239	Suncus murinus	2015-01-04	Al Hudaydah governorate	Yemen	14.823694	42.963167	1
+35240	Suncus murinus	2012-08-16	Okinawa prefecture	Japan	NA	NA	1
+35241	Suncus murinus	2012-08-16	Okinawa prefecture	Japan	NA	NA	1
+35242	Suncus murinus	2012-08-16	Okinawa prefecture	Japan	NA	NA	1
+35243	Suncus murinus	2012-08-16	Okinawa prefecture	Japan	NA	NA	1
+35244	Suncus murinus	2012-08-16	Okinawa prefecture	Japan	NA	NA	1
+35245	Suncus murinus	2015-09-14	Kagoshima prefecture	Japan	NA	NA	1
+35246	Suncus murinus	2016-01-24	Okinawa prefecture	Japan	24.670939	124.701569	1
+35247	Suncus murinus	2016-01-24	Okinawa prefecture	Japan	24.670939	124.701569	1
+35248	Suncus murinus	2016-01-24	Okinawa prefecture	Japan	24.670939	124.701569	1
+35249	Suncus murinus	2016-01-24	Okinawa prefecture	Japan	24.670939	124.701569	1
+35250	Suncus murinus	2016-01-24	Okinawa prefecture	Japan	24.670939	124.701569	1
+35251	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.258194	127.772056	1
+35252	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.258194	127.772056	1
+35253	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.258194	127.772056	1
+35254	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.258194	127.772056	1
+35255	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.258194	127.772056	1
+35256	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.235583	27.762417	1
+35257	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.235583	27.762417	1
+35258	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.235583	27.762417	1
+35259	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.235583	27.762417	1
+35260	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.235583	27.762417	1
+35261	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.235583	27.762417	1
+35262	Suncus murinus	2016-03-16	Okinawa prefecture	Japan	26.234056	127.763528	1
+35263	Suncus murinus	2016-03-17	Okinawa prefecture	Japan	26.258194	127.772056	1
+35264	Suncus murinus	2016-05-29	Kachin State	Myanmar	NA	NA	1
+35265	Suncus murinus	2016-05-29	Kachin State	Myanmar	NA	NA	1
+35266	Suncus murinus	2015-09-18	Experimenta animal	Nepal	NA	NA	1
+35267	Suncus murinus	2015-09-18	Experimenta animal	Nepal	NA	NA	1
+35268	Suncus murinus	2015-08-26	Experimenta animal	Bangladesh	NA	NA	1
+35269	Suncus murinus	2015-09-11	Experimenta animal	Bangladesh	NA	NA	1
+35270	Suncus murinus	2015-10-14	Experimenta animal	Bangladesh	NA	NA	1
+35271	Suncus murinus	Apr-2009_	Zhejiang province	China	NA	NA	1
+35272	Suncus murinus	2011_	Zhejiang province	China	NA	NA	1
+35273	Suncus murinus	2013_	Zhejiang province	China	NA	NA	1
