@@ -1,5 +1,5 @@
 source(here::here("R", "00_load_data.R"))
-combined_data <- read_rds(here("data", "clean_data", "2024-03-22_data.rds"))
+combined_data <- read_rds(here("data", "clean_data", "2024-10-04_data.rds"))
 
 # Additional packages
 pkgs <- c(
@@ -11,6 +11,82 @@ pkgs <- c(
 )
 
 pacman::p_load(pkgs, character.only = T)
+
+
+# Dataset description -----------------------------------------------------
+n_included <- combined_data$citations %>%
+  distinct(study_id) %>%
+  drop_na() %>%
+  nrow()
+
+n_rodent_records <- combined_data$host %>%
+  distinct(rodent_record_id) %>%
+  drop_na() %>%
+  nrow()
+
+n_rodents_sampled <- sum(combined_data$host$individualCount, na.rm = TRUE)
+
+distinct_locations <- combined_data$host %>%
+  distinct(decimalLatitude, decimalLongitude) %>%
+  drop_na() %>%
+  nrow()
+
+n_pathogen_records <- combined_data$pathogen %>%
+  distinct(pathogen_record_id) %>%
+  drop_na() %>%
+  nrow()
+
+n_assays <- sum(combined_data$pathogen$n_assayed, na.rm = TRUE)
+n_positive <- sum(combined_data$pathogen$n_positive, na.rm = TRUE)
+
+n_sequences <- combined_data$sequences %>%
+  filter(!is.na(associated_pathogen_record_id) | !is.na(associated_rodent_record_id))
+
+n_path_host_sequences <- combined_data$sequences %>%
+  filter(sequenceType == "Pathogen") %>%
+  filter(!is.na(associated_pathogen_record_id) & !is.na(associated_rodent_record_id))
+
+n_host_sequences <- combined_data$sequences %>%
+  filter(sequenceType == "Host") %>%
+  filter(!is.na(associated_pathogen_record_id) | !is.na(associated_rodent_record_id))
+
+
+# Plots of samples --------------------------------------------------------
+
+map_hanta_samples <- combined_data$pathogen %>%
+  filter(n_assayed >= 1 &
+           str_detect(family, "Hantaviridae")) %>%
+  group_by(family, virus_clean, host_species, host_genus, host_family, host_order, decimalLatitude, decimalLongitude) %>%
+  summarise(n_assayed = sum(n_assayed, na.rm = TRUE)) %>%
+  vect(geom = c("decimalLongitude", "decimalLatitude"), crs = project_crs) %>%
+  ggplot() +
+  geom_spatvector(data = world_vect, fill = "transparent") +
+  geom_spatvector(aes(colour = log(n_assayed))) +
+  scale_colour_viridis_c() +
+  theme_minimal() +
+  theme(title = element_text(size = 18)) +
+  labs(title = "Hantaviridae",
+       colour = "N assayed (log10)")
+
+map_arena_samples <- combined_data$pathogen %>%
+  filter(n_assayed >= 1 &
+           str_detect(family, "Mammarenaviridae")) %>%
+  group_by(family, virus_clean, host_species, host_genus, host_family, host_order, decimalLatitude, decimalLongitude) %>%
+  summarise(n_assayed = sum(n_assayed, na.rm = TRUE)) %>%
+  vect(geom = c("decimalLongitude", "decimalLatitude"), crs = project_crs) %>%
+  ggplot() +
+  geom_spatvector(data = world_vect, fill = "transparent") +
+  geom_spatvector(aes(colour = log(n_assayed))) +
+  scale_colour_viridis_c() +
+  theme_minimal() +
+  theme(title = element_text(size = 18)) +
+  labs(title = "Mammarenaviridae",
+       colour = "N assayed (log10)")
+
+save_plot(map_hanta_samples, filename = here("output", "hanta_sample_locations.png"), base_width = 14, base_height = 10)
+save_plot(map_arena_samples, filename = here("output", "arena_sample_locations.png"), base_width = 14, base_height = 10)
+
+# Plots of hosts ----------------------------------------------------------
 
 # Read in clover data
 clover_data <- read_rds(here("data", "clover_data.rds")) %>%
@@ -125,9 +201,6 @@ n_arena_hosts_country <- countries_containing_arena_hosts %>%
   left_join(st_as_sf(world_vect), by = c("country" = "NAME_0")) %>%
   st_as_sf(crs = crs(st_as_sf(world_vect)))
 
-
-# Plots of hosts ----------------------------------------------------------
-
 hanta_country_plot <- ggplot() +
   geom_sf(data = st_as_sf(world_vect)) +
   geom_sf(data = n_hanta_hosts_country, aes(fill = n)) +
@@ -230,83 +303,113 @@ save_plot(study_map, filename = here("output", "study_map.png"), base_width = 8,
 
 
 # H-P associations in data ------------------------------------------------
+library(ggrepel)
+library(ggridges)
 
 unique_host <- combined_data$pathogen %>%
-  filter(!str_detect(associatedTaxa, "sp.|spp.")) %>%
-  distinct(associatedTaxa) %>%
-  drop_na() %>%
-  arrange(associatedTaxa)
+  select(virus_clean, family, assay_clean, host_species, host_genus, host_family, host_order, n_assayed, n_positive)
 
-unique_path <- combined_data$pathogen %>%
-  drop_na(scientificName) %>%
-  distinct(scientificName)
+# Limit to named pathogens and species for host
+subset_hp <- unique_host %>%
+  filter(!str_detect(virus_clean, "^Rt|^Shrew|Hantaviridae|Mammarenaviridae")) %>%
+  filter(!is.na(host_species)) %>%
+  filter(n_assayed >= 1) %>%
+  ungroup() %>%
+  rowwise() %>%
+  mutate(virus_clean = factor(virus_clean),
+         host_species = factor(host_species),
+         prop_pos = n_positive/n_assayed)
 
-library(taxize)
-id <- get_gbifid(unique_host$associatedTaxa)
-gbifid <- id2name(id)
-gbif_df <- map_dfr(gbifid, as_tibble)
-clean_host <- bind_cols(unique_host, gbif_df)
+subset_hp$virus_clean <- fct_rev(fct_infreq(subset_hp$virus_clean))
+subset_hp$host_species <- fct_rev(fct_infreq(subset_hp$host_species))
 
-path_id <- get_uid(unique_path$scientificName)
-taxize_options(ncbi_sleep = 0.6)
-ncbiid <- id2name(path_id, db = "ncbi")
-ncbi_df <- map_dfr(ncbiid, as_tibble)
-clean_path <- bind_cols(unique_path, ncbi_df)
+labelled_hanta <- subset_hp %>%
+  filter(family == "Hantaviridae") %>%
+  group_by(virus_clean, host_species, assay_clean) %>%
+  filter(n_assayed >= 25 &
+           n_positive > 1) %>%
+  arrange(-prop_pos) %>%
+  slice(1)
 
-hp_df <- combined_data$pathogen %>%
-  drop_na(scientificName) %>%
-  filter(!str_detect(associatedTaxa, "sp.|spp.")) %>%
-  filter(!str_detect(scientificName, "/")) %>%
-  select(associatedTaxa, scientificName, family, occurrenceRemarks, organismQuantity, decimalLatitude, decimalLongitude) %>%
-  left_join(clean_host %>%
-              select(-value, -status) %>%
-              rename("host_id" = id,
-                     "host_clean" = name,
-                     "host_rank" = rank), by = "associatedTaxa") %>%
-  left_join(clean_path %>%
-              select(-value, -status) %>%
-              rename("path_id" = id,
-                     "path_clean" = name,
-                     "path_rank" = rank), by = "scientificName") %>%
-  mutate(path_combined = coalesce(path_clean, scientificName)) %>%
-  filter(host_rank == "species")
+hp_simple <- subset_hp %>%
+  filter(n_positive >= 1) %>%
+  group_by(virus_clean, family) %>%
+  summarise(n_species = length(unique(host_species)),
+            n_assayed = sum(n_assayed, na.rm = TRUE)) %>%
+  ggplot() +
+  geom_point(aes(x = n_species, y = virus_clean, colour = log(n_assayed))) +
+  geom_segment(aes(x = 0, xend = n_species, y = virus_clean, yend = virus_clean, colour = log(n_assayed)),
+               linewidth = 1) +
+  scale_colour_viridis_c() +
+  facet_grid(~family, scales = "free") +
+  labs(y = element_blank(),
+       x = "Number of species",
+       colour = "N samples assayed (log10)")
 
-hp_summarised <- hp_df %>%
-  group_by(family, host_clean, path_combined) %>%
-  summarise(n_tested = sum(occurrenceRemarks),
-            n_positive = sum(organismQuantity)) %>%
-  filter(n_tested != 0) %>%
-  group_by(host_clean, path_combined) %>%
-  mutate(prevalence = round(n_positive/(n_tested), 3))
-
-hp_list <- hp_summarised %>%
-  group_by(family) %>%
-  group_split()
-
-library(tidyterra)
+save_plot(hp_simple, filename = here("output", "simple_hp.png"), base_width = 8, base_height = 8)
+  
 
 hanta_hp <- ggplot() +
-  geom_point(data = hp_list[[1]], aes(y = path_combined, x = prevalence, colour = host_clean, size = n_tested), position = position_jitter(width = 0)) +
+  geom_point(data = subset_hp %>%
+                   filter(family == "Hantaviridae"),
+                 aes(x = prop_pos, y = virus_clean, colour = host_genus, size = log10(n_assayed)),
+             position = position_jitter(width = NULL)) +
   guides(colour = "none") +
-  theme_bw() +
-  labs(title = paste(unique(hp_list[[1]]$family)),
-       x = "Prevalence",
+  geom_text_repel(data = labelled_hanta,
+               aes(y = virus_clean, x = prop_pos, label = host_species),
+               max.overlaps = 30,
+               min.segment.length = 0,
+               size = 3,
+               force = 1.2) +
+  theme_minimal() +
+  theme(panel.grid.major.y = element_line(color = "black", linewidth = 0.2)) +
+  facet_grid(~ assay_clean) +
+  labs(title = "Hantaviruses",
+       x = "Proportion positive",
        y = element_blank(),
-       size = "Number tested") +
-  xlim(0, 1)
+       size = "Number tested (log10)",
+       caption = "Labels only shown for >25 assayed and >1 positive") +
+  expand_limits(x = c(0, max(subset_hp$prop_pos) * 1.1),
+                y = c(0, nrow(subset_hp %>%
+                                  filter(family == "Hantaviridae") %>%
+                                  distinct(virus_clean)) * 1.1))
+
+ggsave(plot = hanta_hp, filename = here("output", "hantavirus_hp.png"), width = 10)
+
+labelled_arena <-  subset_hp %>%
+  filter(family == "Mammarenaviridae") %>%
+  group_by(virus_clean, host_species, assay_clean) %>%
+  filter(n_assayed >= 25 &
+           n_positive > 1) %>%
+  arrange(-prop_pos) %>%
+  slice(1)
 
 mammarena_hp <- ggplot() +
-  geom_point(data = hp_list[[2]], aes(y = path_combined, x = prevalence, colour = host_clean, size = n_tested), position = position_jitter(width = 0)) +
+  geom_point(data = subset_hp %>%
+               filter(family == "Mammarenaviridae"),
+             aes(x = prop_pos, y = virus_clean, colour = host_genus, size = log10(n_assayed)),
+             position = position_jitter(width = NULL)) +
   guides(colour = "none") +
-  theme_bw() +
-  labs(title = paste(unique(hp_list[[2]]$family)),
-       x = "Prevalence",
+  geom_text_repel(data = labelled_arena,
+                  aes(y = virus_clean, x = prop_pos, label = host_species),
+                  max.overlaps = 30,
+                  min.segment.length = 0,
+                  size = 3,
+                  force = 1.2) +
+  theme_minimal() +
+  theme(panel.grid.major.y = element_line(color = "black", linewidth = 0.2)) +
+  facet_grid(~ assay_clean) +
+  labs(title = "Mammarenaviridae",
+       x = "Proportion positive",
        y = element_blank(),
-       size = "Number tested") +
-  xlim(0, 1)
+       size = "Number tested (log10)",
+       caption = "Labels only shown for >25 assayed and >1 positive") +
+  expand_limits(x = c(0, max(subset_hp$prop_pos) * 1.1),
+                y = c(0, nrow(subset_hp %>%
+                                filter(family == "Mammarenaviridae") %>%
+                                distinct(virus_clean)) * 1.1))
 
-ggsave(plot = hanta_hp, filename = here("output", "hantavirus_hp.png"), width = 8)
-ggsave(plot = mammarena_hp, filename = here("output", "arenavirus_hp.png"), width = 8)
+ggsave(plot = mammarena_hp, filename = here("output", "arenavirus_hp.png"), width = 10)
 
 examples <- c("Orthohantavirus sinnombreense", "Mammarenavirus lassaense")
 

@@ -255,8 +255,8 @@ clean_v2_path <- combined_data_v2$pathogen %>%
   dplyr::select(pathogen_record_id, associated_rodent_record_id, study_id, family, virus_clean, assay_clean,
          n_assayed, n_positive, n_negative, n_inconclusive, original_name, original_assay, note) %>%
   left_join(clean_host %>%
-              dplyr::select(rodent_record_id, study_id, eventDate, host = reported_name, host_genus = genus,
-                     locality, country, verbatimLocality, coordinate_resolution, decimalLatitude, decimalLongitude),
+              dplyr::select(rodent_record_id, study_id, eventDate, host_species = species, host_genus = genus, host_family = family, host_order = order,
+                            locality, country, verbatimLocality, coordinate_resolution, decimalLatitude, decimalLongitude),
             by = c("associated_rodent_record_id" = "rodent_record_id", "study_id"))
 
 # Some records are missing an associated rodent record id
@@ -283,7 +283,7 @@ clean_v3_path <- combined_data_v3$pathogen %>%
   dplyr::select(pathogen_record_id, associated_rodent_record_id, study_id, family, virus_clean, assay_clean,
          n_assayed, n_positive, n_negative, n_inconclusive, original_name, note) %>%
   left_join(clean_host %>%
-              dplyr::select(rodent_record_id, study_id, eventDate, host = reported_name, host_genus = genus,
+              dplyr::select(rodent_record_id, study_id, eventDate, host_species = species, host_genus = genus, host_family = family, host_order = order,
                      locality, country, verbatimLocality, coordinate_resolution, decimalLatitude, decimalLongitude),
             by = c("associated_rodent_record_id" = "rodent_record_id", "study_id"))
 
@@ -307,7 +307,7 @@ pathogen_sequences_v2 <- combined_data_v2$sequence_data %>%
               dplyr::select(rodent_record_id, study_id, eventDate, species, host_genus = genus, gbif_id, coordinate_resolution, decimalLatitude, decimalLongitude),
             by = c("associated_rodent_record_id" = "rodent_record_id", "study_id")) %>%
   left_join(clean_pathogen %>%
-              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host),
+              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host_species, host_genus, host_family, host_order),
             by = c("associated_pathogen_record_id" = "pathogen_record_id", "study_id"))
 
 host_sequences_v2 <-  combined_data_v2$sequence_data %>%
@@ -318,7 +318,7 @@ host_sequences_v2 <-  combined_data_v2$sequence_data %>%
               dplyr::select(rodent_record_id, study_id, eventDate, species, host_genus = genus, gbif_id, coordinate_resolution, decimalLatitude, decimalLongitude),
             by = c("associated_rodent_record_id" = "rodent_record_id", "study_id")) %>%
   left_join(clean_pathogen %>%
-              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host),
+              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host_species, host_genus, host_family, host_order),
             by = c("associated_pathogen_record_id" = "pathogen_record_id", "study_id"))
 
 other_sequences_v2 <-  combined_data_v2$sequence_data %>%
@@ -329,7 +329,7 @@ other_sequences_v2 <-  combined_data_v2$sequence_data %>%
               dplyr::select(rodent_record_id, study_id, eventDate, species, host_genus = genus, gbif_id, coordinate_resolution, decimalLatitude, decimalLongitude),
             by = c("associated_rodent_record_id" = "rodent_record_id", "study_id")) %>%
   left_join(clean_pathogen %>%
-              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host),
+              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host_species, host_genus, host_family, host_order),
             by = c("associated_pathogen_record_id" = "pathogen_record_id", "study_id"))
 
 clean_sequences_v2 <- bind_rows(pathogen_sequences_v2,
@@ -345,7 +345,7 @@ pathogen_sequences_v3 <- combined_data_v3$sequence_data %>%
               dplyr::select(rodent_record_id, study_id, eventDate, species, host_genus = genus, gbif_id, coordinate_resolution, decimalLatitude, decimalLongitude),
             by = c("associated_rodent_record_id" = "rodent_record_id", "study_id")) %>%
   left_join(clean_pathogen %>%
-              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host),
+              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host_species, host_genus, host_family, host_order),
             by = c("associated_pathogen_record_id" = "pathogen_record_id", "study_id"))
 
 host_sequences_v3 <-  combined_data_v3$sequence_data %>%
@@ -356,7 +356,7 @@ host_sequences_v3 <-  combined_data_v3$sequence_data %>%
               dplyr::select(rodent_record_id, study_id, eventDate, species, host_genus = genus, gbif_id, coordinate_resolution, decimalLatitude, decimalLongitude),
             by = c("associated_rodent_record_id" = "rodent_record_id", "study_id")) %>%
   left_join(clean_pathogen %>%
-              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host),
+              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host_species, host_genus, host_family, host_order),
             by = c("associated_pathogen_record_id" = "pathogen_record_id", "study_id"))
 
 other_sequences_v3 <-  combined_data_v3$sequence_data %>%
@@ -367,7 +367,7 @@ other_sequences_v3 <-  combined_data_v3$sequence_data %>%
               dplyr::select(rodent_record_id, study_id, eventDate, species, host_genus = genus, gbif_id, coordinate_resolution, decimalLatitude, decimalLongitude),
             by = c("associated_rodent_record_id" = "rodent_record_id", "study_id")) %>%
   left_join(clean_pathogen %>%
-              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host),
+              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative, host_species, host_genus, host_family, host_order),
             by = c("associated_pathogen_record_id" = "pathogen_record_id", "study_id"))
 
 clean_sequences_v3 <- bind_rows(pathogen_sequences_v3,
@@ -386,4 +386,4 @@ combined_data <- list(citations = clean_citations,
                       sequences = clean_sequences)
 
 
-write_rds(combined_data, here("data", "clean_data", paste0(Sys.Date(), "_data.rds")))
+write_rds(combined_data, here("data", "clean_data", paste0(analysis_date, "_data.rds")))

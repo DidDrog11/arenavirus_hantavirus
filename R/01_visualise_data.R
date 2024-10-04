@@ -1,11 +1,15 @@
 source(here::here("R", "00_load_data.R"))
 
+combined_data <- read_rds(here("data", "clean_data", paste0(analysis_date, "_data.rds")))
+
 pkgs <- c(
   "colorspace",
   "htmltools",
   "leaflet",
   "plotly",
-  "sf"
+  "sf",
+  "terra",
+  "tidyterra"
 )
 
 pacman::p_load(pkgs, character.only = T)
@@ -16,16 +20,15 @@ project_crs <- "EPSG:4326"
 # Rodents -----------------------------------------------------------------
 
 rodent_locations <- combined_data$host %>%
-  select(genus, scientificName, decimalLatitude, decimalLongitude, individualCount) %>%
+  drop_na(genus) %>%
+  select(genus, species, decimalLatitude, decimalLongitude, individualCount) %>%
   mutate(number = as.numeric(individualCount)) %>%
   drop_na(number, decimalLongitude, decimalLatitude) %>%
-  st_as_sf(coords = c("decimalLongitude", "decimalLatitude"), crs = project_crs) %>%
-  group_by(geometry, scientificName) %>%
-  mutate(number = sum(number, na.rm = TRUE)) %>%
-  ungroup() %>%
-  distinct() %>%
+  vect(geom = c("decimalLongitude", "decimalLatitude"), crs = project_crs) %>%
   rowwise() %>%
-  mutate(labels = HTML(paste0("Species: ", scientificName, "<br>", "Number detected: ", number)))
+  mutate(labels = HTML(paste0("Genus: ", genus, "<br>",
+                              "Species: ", species, "<br>",
+                              "Number detected: ", number)))
 
 pal <- colorFactor(diverging_hcl(n = length(sort(unique(rodent_locations$genus))), palette = "Berlin"),
                    domain = sort(unique(rodent_locations$genus)))
@@ -39,7 +42,6 @@ leaflet(data = rodent_locations) %>%
                    clusterOptions = markerClusterOptions(spiderfyOnMaxZoom = TRUE,
                                                          spiderLegPolylineOptions = list(length = 6),
                                                          spiderfyDistanceMultiplier = 2),
-                   label = ~labels,
                    popup = ~labels) %>%
   addLegend("bottomright", pal = pal, values = ~genus, title = "Host genus", opacity = 0.8)
 
