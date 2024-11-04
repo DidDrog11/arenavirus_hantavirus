@@ -2,6 +2,7 @@ library(tidyverse)
 library(readxl)
 library(here)
 library(stringr)
+library(tidygeocoder)
 
 rodent_data %>%
   filter(study_id == 15) %>%
@@ -657,3 +658,51 @@ write.table(ft_124_pathogen %>%
 write.table(ft_124_sequences %>%
               select(pathogen_record_id, associated_rodent_record_id, accession),
             here("data", "data_to_extract", "ft_124_sequence_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+# ft_169 ------------------------------------------------------------------
+
+ft_169_rodents <- read_csv(here("data", "data_to_extract", "ft_169_supp_1.csv")) %>%
+  select(site, location, country, species, n, pathogen, assay, tested, positive) %>%
+  mutate(combined_location = paste0(location, ", ", country)) %>%
+  geocode(address = combined_location, method = "osm", lat = latitude, long = longitude)
+
+unmatched_locations <- ft_169_rodents %>%
+  filter(is.na(latitude)) %>%
+  distinct(combined_location) %>%
+  bind_cols(latitude = c(54.17, 52.4, 51.63, 52.96, 52.04, 50.92, 51.30, 48.69),
+            longitude = c(13.26, 11.29, 14.01, 11.95, 12.57, 14.8, 13.02, 12.21))
+
+ft_169_rodents_processed <- ft_169_rodents %>%
+  left_join(unmatched_locations, by = "combined_location", suffix = c("", "_unmatched")) %>%
+  mutate(latitude = coalesce(latitude, latitude_unmatched),
+         longitude = coalesce(longitude, longitude_unmatched),
+         rodent_record_id = rep(36093:36329, 2)) %>%
+  select(-latitude_unmatched, -longitude_unmatched)
+
+ft_169_pathogen_processed <- ft_169_rodents_processed %>%
+  mutate(pathogen_record_id = 44940 + row_number())
+
+ft_169_sequences <- read_csv(here("data", "data_to_extract", "ft_169_supp_2.csv")) %>%
+  mutate(species = case_when(str_detect(sequence, "Marv") ~ "Microtus arvalis",
+                             str_detect(sequence, "Magr") ~ "Microtus agrestis",
+                             str_detect(sequence, "Arv") ~ "Arvicola",
+                             TRUE ~ NA)) %>%
+  left_join(ft_169_pathogen_processed %>%
+              filter(assay == "PCR") %>%
+              select(pathogen_record_id, site, species), by = c("site", "species"))
+
+ft_169_sequences_2 <- read_csv(here("data", "data_to_extract", "ft_169_supp_3.csv"))
+
+write.table(ft_169_rodents_processed %>%
+              select(rodent_record_id, scientificName = species, locality = location, country, verbatimLocality = site, decimalLatitude = latitude, decimalLongitude = longitude, individualCount = n),
+            here("data", "data_to_extract", "ft_169_rodent_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+write.table(ft_169_pathogen_processed %>%
+              select(pathogen_record_id, rodent_record_id, scientificName = pathogen, assay, tested, positive),
+            here("data", "data_to_extract", "ft_169_pathogen_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+write.table(ft_169_sequences %>%
+              select(pathogen_record_id, accession) %>%
+              bind_rows(ft_169_sequences_2 %>%
+                          select(accession)),
+            here("data", "data_to_extract", "ft_169_sequences_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
