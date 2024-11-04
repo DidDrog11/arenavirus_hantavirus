@@ -706,3 +706,71 @@ write.table(ft_169_sequences %>%
               bind_rows(ft_169_sequences_2 %>%
                           select(accession)),
             here("data", "data_to_extract", "ft_169_sequences_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+# ft_177 ------------------------------------------------------------------
+
+ft_177_raw <- read_csv(here("data", "data_to_extract", "ft_177_t1.csv")) %>%
+  select(1:9) %>%
+  drop_na(species)
+
+ft_177_separated <- ft_177_raw %>%
+  # Using `separate` to split each `fields` and `residential` column
+  separate(fields_2008, into = c("fields_2008_tested", "fields_2008_positive"), sep = "/", convert = TRUE) %>%
+  separate(residential_2008, into = c("residential_2008_tested", "residential_2008_positive"), sep = "/", convert = TRUE) %>%
+  separate(fields_2009, into = c("fields_2009_tested", "fields_2009_positive"), sep = "/", convert = TRUE) %>%
+  separate(residential_2009, into = c("residential_2009_tested", "residential_2009_positive"), sep = "/", convert = TRUE) %>%
+  separate(fields_2010, into = c("fields_2010_tested", "fields_2010_positive"), sep = "/", convert = TRUE) %>%
+  separate(residential_2010, into = c("residential_2010_tested", "residential_2010_positive"), sep = "/", convert = TRUE) %>%
+  separate(fields_2011, into = c("fields_2011_tested", "fields_2011_positive"), sep = "/", convert = TRUE) %>%
+  separate(residential_2011, into = c("residential_2011_tested", "residential_2011_positive"), sep = "/", convert = TRUE)
+
+# Step 2: Pivot the data to a long format
+ft_177_long <- ft_177_separated %>%
+  # Pivoting longer to create the `location`, `eventDate`, `tested`, and `positive` columns
+  pivot_longer(
+    cols = -species,  # All columns except `species`
+    names_to = c("location", "eventDate", ".value"),
+    names_pattern = "(fields|residential)_(\\d{4})_(tested|positive)"
+  ) %>%
+  # Renaming the `eventDate` column to align with the example structure
+  rename(location = location, eventDate = eventDate, tested = tested, positive = positive) %>%
+  mutate(species = case_when(str_detect(species, "R. ") ~ str_replace(species, "R. ", "Rattus "),
+                             str_detect(species, "N. ") ~ str_replace(species, "N. ", "Niviventer "),
+                             TRUE ~ species),
+         eventDate = as.integer(eventDate)) %>%
+  # Arrange for better readability (optional)
+  arrange(eventDate, location, species) %>%
+  mutate(rodent_record_id = 36445 + row_number(),
+         pathogen_record_id = 45572 + row_number())
+
+ft_177_sequences <- read_csv(here("data", "data_to_extract", "ft_177_s2.csv")) %>%
+  mutate(s = str_trim(str_remove_all(s, "\\(partial\\)")),
+         m = str_trim(str_remove_all(m, "\\(partial\\)")),
+         location = "Longquan",
+         virus = str_remove_all(virus, "Longquan"),
+         species = str_extract(virus, "^[^-]+"),
+         species = case_when(str_detect(species, "Aa") ~ "Apodemus agrarius",
+                             str_detect(species, "Hu") ~ "Homo sapiens",
+                             str_detect(species, "Mf") ~ "Microtus fortis",
+                             str_detect(species, "Rf") ~ "Rattus flavipectus",
+                             str_detect(species, "Rn") ~ "Rattus norvegicus"),
+         year = if_else(
+           str_detect(virus, "-\\d{2}-"),                 # Check if formatted like Aa-09-98
+           str_extract(virus, "(?<=-)(\\d{2})(?=-)"),     # Extract 2 digits between `-`
+           str_extract(virus, "\\d{4}")                   # Otherwise, extract the first 4 digits
+         ),
+         year = case_when(str_detect(year, "08") ~ as.integer(2008),
+                          str_detect(year, "09") ~ as.integer(2009),
+                          str_detect(year, "10") ~ as.integer(2010),
+                          str_detect(year, "11") ~ as.integer(2011),
+                          TRUE ~ as.integer(year))) %>%
+  left_join(ft_177_long %>%
+              filter(positive >= 1),
+            by = c("species", "year" = "eventDate"))
+
+write.table(ft_177_long %>%
+              select(rodent_record_id, pathogen_record_id, species, eventDate, location, tested, positive),
+            here("data", "data_to_extract", "ft_177_rodent_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+write.table(ft_177_sequences %>%
+              select(rodent_record_id, pathogen_record_id, species, year, s, m),
+            here("data", "data_to_extract", "ft_177_sequences_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
