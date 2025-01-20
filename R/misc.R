@@ -3,6 +3,8 @@ library(readxl)
 library(here)
 library(stringr)
 library(tidygeocoder)
+library(seqinr)
+library(lubridate)
 
 rodent_data %>%
   filter(study_id == 15) %>%
@@ -774,3 +776,370 @@ write.table(ft_177_long %>%
 write.table(ft_177_sequences %>%
               select(rodent_record_id, pathogen_record_id, species, year, s, m),
             here("data", "data_to_extract", "ft_177_sequences_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_188 ------------------------------------------------------------------
+
+ft_188_t1 <- read_csv(here("data", "data_to_extract", "ft_188_t1.csv")) %>%
+  mutate(Species = case_when(str_detect(Species, "B. ") ~ str_replace(Species, "B. ", "Baiomys "),
+                             str_detect(Species, "P. ") ~ str_replace(Species, "P. ", "Peromyscus "),
+                             str_detect(Species, "R. ") ~ str_replace(Species, "R. ", "Reithrodontomys "),
+                             str_detect(Species, "S. ") ~ str_replace(Species, "S. ", "Sigmodon "),
+                             TRUE ~ Species)) %>%
+  pivot_longer(names_to = "location", values_to = "N", cols = contains("site")) %>%
+  mutate(state = str_extract(N, "(?<=\\()[A-Z]{2}(?=\\))"),
+         N = as.numeric(str_extract(N, "\\d+"))) %>%
+  drop_na(state)
+
+state_codes <- tibble::tribble(
+  ~code, ~state,           ~localities,
+  "CH",  "Chiapas",        c("Mapastepec", "Ocozocoautla de Espinosa", "Zinacantán"),
+  "CI",  "Chihuahua",      c("Cusihuiriáchi"),
+  "CU",  "Coahuila",       c("Monclova"),
+  "EM",  "México", c("Ecatepec de Morelos", "Toluca", "Villa del Carbón"),
+  "GJ",  "Guanajuato",     c("Allende"),
+  "GR",  "Guerrero",       c("Chilpancingo de los Bravo"),
+  "JA",  "Jalisco",        c("Autlán de Navarro", "Cocula", "Jocotepec", "Ojuelos de Jalisco"),
+  "MH",  "Michoacán",      c("Múgica", "Uruapan", "Zinapécuaro", "Zitácuaro"),
+  "NA",  "Nayarit",        c("San Blas", "Santa María del Oro"),
+  "NL",  "Nuevo León",     c("Doctor Arroyo", "Galeana", "Monterrey", "Santiago"),
+  "OA",  "Oaxaca",         c("Oaxaca de Juárez", "San Pedro Mixtepec", "Santo Domingo Zanatepec"),
+  "PU",  "Puebla",         c("Tehuacán"),
+  "SL",  "San Luis Potosí", c("Catorce", "Ciudad del Maíz"),
+  "SI",  "Sinaloa",        c("Rosario"),
+  "SO",  "Sonora",         c("Navojoa", "Yécora"),
+  "TL",  "Tlaxcala",       c("Tepetitla de Lardizabal"),
+  "TM",  "Tamaulipas",     c("San Fernando", "Soto la Marina"),
+  "VZ",  "Veracruz",       c("Coatzacoalcos", "Perote", "Poza Rica")
+)
+
+ft_188_t2 <- read_xlsx(here("data", "data_to_extract", "ft_188_t2.xlsx")) %>%
+  pivot_longer(cols = 2:40, values_to = "N") %>%
+  mutate(name = case_when(str_detect(name, "Reithrodonomys") ~ str_replace(name, "Reithrodonomys", "Reithrodontomys"),
+                          TRUE ~ name)) %>%
+  drop_na(N) %>%
+  mutate(positive = as.numeric(str_extract(N, "^\\d+")),
+         tested = as.numeric(str_extract(N, "(?<=/)\\d+")))
+
+ft_188_locations <- read_csv(here("data", "data_to_extract", "ft_188_locations.csv"),
+                             locale = locale(encoding = "latin1")) %>%
+  rename("latitude" = `Latitude (Decimal Degrees)`,
+         "longitude" = `Longitude (Decimal Degrees)`,
+         "eventDate" = Date,
+         "location" = `Location Name`,
+         "trapnights" = `Trap Nights`) %>%
+  mutate(eventDate = format(my(eventDate), "%Y-%m"),
+         state = str_split(location, ", ", simplify = TRUE)[ ,2]) %>%
+  left_join(state_codes, by = "state")
+
+ft_188_t2 <- ft_188_t2 %>%
+  left_join(ft_188_locations) %>%
+  group_by(name, state, code) %>%
+  summarise(positive = sum(positive),
+            tested = sum(tested),
+            eventDate = paste0(eventDate, collapse = "/"),
+            latitude = mean(latitude),
+            longitude = mean(longitude),
+            trapnights = sum(trapnights)) %>%
+  ungroup() %>%
+  mutate(rodent_record_id = 36657 + row_number(),
+         pathogen_record_id = 46035 + row_number())
+
+ft_188_sequences <- read_csv(here("data", "data_to_extract", "ft_188_sequences.csv")) %>%
+  select(pathogen, genus, species, state, S, M) %>%
+  mutate(genus = case_when(str_detect(genus, "B.$") ~ str_replace(genus, "B.$", "Baiomys"),
+                           str_detect(genus, "P.$") ~ str_replace(genus, "P.$", "Peromyscus"),
+                           str_detect(genus, "R.$") ~ str_replace(genus, "R.$", "Reithrodontomys"),
+                           str_detect(genus, "S.$") ~ str_replace(genus, "S.$", "Sigmodon"),
+                           TRUE ~ genus),
+         species = paste0(genus, " ", species)) %>%
+  pivot_longer(cols = c("S", "M"), names_to = "chain", values_to = "accession") %>%
+  filter(accession != "ND") %>%
+  select(species, state, pathogen, accession) %>%
+  left_join(ft_188_t2 %>%
+              select(pathogen_record_id, "species" = name, code, positive, tested),
+            by = c("species", "state" = "code"))
+
+write.table(ft_188_t2,
+            here("data", "data_to_extract", "ft_188_pathogen_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+write.table(ft_188_sequences,
+            here("data", "data_to_extract", "ft_188_sequences_processed.txt"), quote = FALSE, row.names = FALSE, sep = "\t")                             
+
+
+# ft_206 ------------------------------------------------------------------
+gb_file <- readLines(here("data", "data_to_extract", "ft_206_seq.gb"))
+parse_genbank_entry <- function(entry_lines) {
+  # Extract the ACCESSION
+  accession <- {
+    accession_line <- grep("ACCESSION", entry_lines, value = TRUE)
+    if (length(accession_line) > 0) sub("ACCESSION\\s+(\\S+).*", "\\1", accession_line[1]) else NA_character_
+  }
+  
+  # Extract DEFINITION
+  definition <- {
+    definition_line <- grep("DEFINITION", entry_lines, value = TRUE)
+    if (length(definition_line) > 0) sub("DEFINITION\\s+(.*)", "\\1", definition_line[1]) else NA_character_
+  }
+  
+  # Extract the strain name
+  strain <- {
+    strain_line <- grep("/strain=", entry_lines, value = TRUE)
+    if (length(strain_line) > 0) sub(".*/strain=\"([^\"]+)\".*", "\\1", strain_line[1]) else NA_character_
+  }
+  
+  # Extract sampling location (portion of strain before the first underscore)
+  sampling_location <- if (!is.na(strain)) {
+    str_remove_all(sub("_.*", "", strain), "\\d+$")
+  } else {
+    NA_character_
+  }
+  
+  # Extract the isolate string
+  isolate <- {
+    isolate_line <- grep("isolate\\s+", entry_lines, value = TRUE)
+    if (length(isolate_line) > 0) sub(".*isolate\\s+(\\S+).*", "\\1", isolate_line[1]) else NA_character_
+  }
+  
+  # Extract the state (second set of letters after the first underscore)
+  state <- if (!is.na(isolate) && str_detect(isolate, "_")) {
+    isolate_parts <- strsplit(isolate, "_")[[1]]
+    if (length(isolate_parts) >= 2) isolate_parts[2] else NA_character_
+  } else {
+    NA_character_
+  }
+  
+  # Extract Host_ID (portion after the second underscore)
+  host_id <- if (!is.na(isolate) && str_detect(isolate, "_")) {
+    host_id_match <- sub(".*_[A-Z]{2}_([^/]+).*", "\\1", isolate)
+    if (host_id_match != isolate) host_id_match else NA_character_
+  } else {
+    NA_character_
+  }
+  
+  # Extract ORGANISM
+  organism <- {
+    organism_line <- grep("organism=", entry_lines, value = TRUE)
+    if (length(organism_line) > 0) sub(".*organism=\"([^\"]+)\".*", "\\1", organism_line[1]) else NA_character_
+  }
+  
+  # Extract host
+  host <- {
+    host_line <- grep("host=", entry_lines, value = TRUE)
+    if (length(host_line) > 0) sub(".*host=\"([^\"]+)\".*", "\\1", host_line[1]) else NA_character_
+  }
+  
+  # Extract host number
+  host_number <- {
+    # Match "letters followed by / followed by numbers before -"
+    definition_line <- grep("DEFINITION", entry_lines, value = TRUE)
+    if (length(definition_line) > 0) {
+      # Use regex to extract the host number
+      host_number_match <- sub(".*(?:\\b[A-Za-z]+/(\\d+)-|voucher\\s+(\\d+)-).*", "\\1\\2", definition_line[1])
+      if (host_number_match != definition_line[1]) host_number_match else NA_character_
+    } else {
+      NA_character_
+    }
+  }
+  
+  # Extract date
+  collection_date <- {
+    collection_date_line <- grep("collection_date=", entry_lines, value = TRUE)
+    if (length(collection_date_line) > 0) {
+      sub(".*collection_date=\"?([^\"]+)\"?.*", "\\1", collection_date_line[1])
+    } else {
+      NA_character_
+    }
+  }
+  
+  # Return a data frame row
+  data.frame(
+    Accession = accession,
+    Host = host,
+    Host_Number = host_number,
+    Organism = organism,
+    Strain = strain,
+    Sampling_Location = sampling_location,
+    State = state,
+    Host_ID = host_id,
+    Collection_Date = collection_date,
+    stringsAsFactors = FALSE
+  )
+}
+
+entries <- split(gb_file, cumsum(gb_file == "//"))
+
+# Parse each entry
+parsed_data <- lapply(entries, function(entry) {
+  # Skip empty entries (if any)
+  if (length(entry) < 10) return(NULL)
+  parse_genbank_entry(entry)
+})
+
+parsed_data <- do.call(rbind, parsed_data) %>%
+  drop_na(Host) %>%
+  mutate(Host = str_remove_all(Host, "\\d+"))
+
+
+# ft_231 ------------------------------------------------------------------
+
+ft_231_raw <- read_xlsx(here("data", "data_to_extract", "ft_231_arctos.xlsx")) %>%
+  select("species" = 4,
+         "locality" = 6,
+         "country" = 5,
+         "eventDate" = 8,
+         "latitude" = 9,
+         "longitude" = 10) %>%
+  mutate(year = year(eventDate)) %>%
+  group_by(year, species) %>%
+  summarise(median_lat = median(latitude, na.rm = TRUE),
+            median_long = median(longitude, na.rm = TRUE),
+            n = n()) %>%
+  arrange(year, species, desc(n)) %>%
+  ungroup() %>%
+  mutate(median_lat = case_when(is.na(median_lat) ~ median(median_lat, na.rm = TRUE),
+                                TRUE ~ median_lat),
+         median_long = case_when(is.na(median_long) ~ median(median_long, na.rm = TRUE),
+                                TRUE ~ median_long))
+
+write.table(ft_231_raw,
+            here("data", "data_to_extract", "ft_231_rodent.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_233 ------------------------------------------------------------------
+
+ft_233_raw <- read_csv(here("data", "data_to_extract", "ft_233_sampling.csv")) %>%
+  select(1:7) %>%
+  pivot_longer(cols = Buriram:Kalasin, names_to = "Province", values_to = "Counts") %>%
+  mutate(Counts = case_when(str_detect(Counts, "/") ~ Counts,
+                            TRUE ~ NA)) %>%
+  drop_na(Counts) %>%
+  # Separate Counts into Positive and Tested
+  separate(Counts, into = c("Positive", "Tested"), sep = "/", convert = TRUE) %>%
+  select(Species, Province, Collection, Tested, Positive)
+
+write.table(ft_233_raw,
+            here("data", "data_to_extract", "ft_233_pathogen.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_234 ------------------------------------------------------------------
+
+ft_234_raw <- tribble(
+  ~Cover, ~Trapping_Site, ~`1996_F`, ~`1996_S`, ~`1997_F`, ~`1997_S`, ~`1998_F`, ~`1998_S`, ~`1999_F`,
+  "Dense cover", "Thuin", "21.2 (66)", "20.0 (10)", "4.3 (23)", "10.0 (10)", "0.0 (29)", "12.8 (47)", "21.5 (65)",
+  "Dense cover", "Montbliart", "7.7 (26)", "40.0 (5)", "16.7 (30)", "50.0 (4)", "0.0 (48)", "44.9 (49)", "27.2 (81)",
+  "Dense cover", "Momignies", "17.9 (28)", "0.0 (0)", "0.0 (31)", "0.0 (14)", "15.7 (51)", "64.8 (54)", "28.3 (60)",
+  "Dense cover", "Couvin", NA, "0.0 (1)", "0.0 (19)", "0.0 (9)", "0.0 (17)", "59.3 (27)", "50.0 (18)",
+  "Low cover", "Thuin", "40.0 (5)", "33.3 (3)", "10.0 (10)", "0.0 (0)", "0.0 (6)", "0.0 (13)", "17.6 (17)",
+  "Low cover", "Montbliart", "42.9 (7)", "0.0 (2)", "0.0 (4)", "0.0 (1)", "0.0 (3)", "50.0 (6)", "0.0 (3)",
+  "Low cover", "Momignies", "50.0 (6)", "0.0 (0)", "0.0 (1)", "0.0 (0)", "0.0 (0)", "50.0 (4)", "33.3 (3)",
+  "Low cover", "Couvin", NA, "0.0 (0)", "0.0 (7)", "0.0 (0)", "0.0 (1)", "66.7 (3)", "0.0 (0)"
+) %>%
+  pivot_longer(
+    cols = starts_with("199"), 
+    names_to = "Year_Season",
+    values_to = "Results"
+  ) %>%
+  separate(Year_Season, into = c("Year", "Season"), sep = "_") %>%
+  separate(Results, into = c("Percent_Positive", "Number_Tested"), sep = " \\(", extra = "merge") %>%
+  mutate(
+    Percent_Positive = as.numeric(Percent_Positive),
+    Number_Tested = as.numeric(gsub("\\)", "", Number_Tested)) # Remove closing parenthesis
+  ) %>%
+  mutate(Season = factor(Season, levels = c("S", "F")),
+         Year = case_when(Season == "S" ~ paste0(Year, "-03/05"),
+                          TRUE ~ paste0(Year, "-09/11")),
+         N_positive = Number_Tested/100 * Percent_Positive,
+         species = "Clethrionomys glareolus",
+         country = "Belgium") %>%
+  select(species, Year, Trapping_Site, country, Cover, Number_Tested, N_positive) %>%
+  arrange(species, Trapping_Site, Year, Cover, Number_Tested, N_positive)
+
+write.table(ft_234_raw,
+            here("data", "data_to_extract", "ft_234_pathogen.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_275 ------------------------------------------------------------------
+ft_275_gb_file <- readLines(here("data", "data_to_extract", "ft_275_seq.gb"))
+
+ft_275_entries <- split(ft_275_gb_file, cumsum(ft_275_gb_file == "//"))
+
+# Parse each entry
+parsed_data <- lapply(ft_275_entries, function(entry) {
+  # Skip empty entries (if any)
+  if (length(entry) < 10) return(NULL)
+  parse_genbank_entry(entry)
+})
+
+ft_275_seq_processed <- do.call(rbind, parsed_data) %>%
+  drop_na(Accession) %>%
+  mutate(Host = str_remove_all(Host, "\\d+"))
+
+write.table(ft_275_seq_processed,
+            here("data", "data_to_extract", "ft_275_sequences.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_284 ------------------------------------------------------------------
+ft_284_seq_files <- list.files(here("data", "data_to_extract"), pattern = "ft_284", full.names = TRUE)
+
+ft_284_gb_file <- read_lines(file = ft_284_seq_files)
+
+ft_284_entries <- split(ft_284_gb_file, cumsum(ft_284_gb_file == "//"))
+
+# Parse each entry
+parsed_data <- lapply(ft_284_entries, function(entry) {
+  # Skip empty entries (if any)
+  if (length(entry) < 10) return(NULL)
+  parse_genbank_entry(entry)
+})
+
+ft_284_seq_processed <- do.call(rbind, parsed_data) %>%
+  drop_na(Accession)
+
+ft_rodent <- tibble(Host = c("Myodes glareolus",
+                             "Apodemus flavicollis",
+                             "Apodemus agrarius",
+                             "Arvicola terrestris",
+                             "Microtus agrestis",
+                             "Microtus arvalis",
+                             "Microtus nivalis",
+                             "Microtus liechtensterini",
+                             "Microtus subterraneus",
+                             "Crocidura leucodon",
+                             "Crocidura suaveolens",
+                             "Neomys anomalus",
+                             "Neomys fodiens",
+                             "Sorex alpinus",
+                             "Sorex araneus"),
+                    rodent_record_id = c(37243:37257),
+                    pathogen_record_id = c(46784:46798))
+
+ft_284_combined <- ft_284_seq_processed %>%
+  left_join(ft_rodent, by = c("Host")) %>%
+  select(pathogen_record_id, rodent_record_id, Host, Organism, Collection_Date, Accession)
+
+write.table(ft_284_combined,
+            here("data", "data_to_extract", "ft_284_sequences.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_295 ------------------------------------------------------------------
+
+ft_295_seq_files <- list.files(here("data", "data_to_extract"), pattern = "ft_295", full.names = TRUE)
+
+ft_295_gb_file <- read_lines(file = ft_295_seq_files)
+
+ft_295_entries <- split(ft_295_gb_file, cumsum(ft_295_gb_file == "//"))
+
+# Parse each entry
+parsed_data <- lapply(ft_295_entries, function(entry) {
+  # Skip empty entries (if any)
+  if (length(entry) < 10) return(NULL)
+  parse_genbank_entry(entry)
+})
+
+ft_295_seq_processed <- do.call(rbind, parsed_data) %>%
+  drop_na(Accession) %>%
+  select(Host, Organism, Sampling_Location, Accession) %>%
+  arrange(Sampling_Location, Host, Accession)
+
+write.table(ft_295_seq_processed,
+            here("data", "data_to_extract", "ft_295_sequences.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
