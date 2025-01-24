@@ -46,13 +46,13 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                        cleaned_rodent_names = case_when(
                          str_detect(rodent_names, "\"Oriental vole\"") ~ "Eothenomys eleusis",
                          str_detect(rodent_names, "\"Asian house shrew\"|Asian house shrew") ~ "Suncus murinus",
-                         str_detect(rodent_names, "Abrothrix longipilus") ~ "Abrothrix longipilis",
-                         str_detect(rodent_names, "Abrothrix olivacea") ~ "Abrothrix olivaceus",
+                         str_detect(rodent_names, "Abrothrix longipilus|A longipilis") ~ "Abrothrix longipilis",
+                         str_detect(rodent_names, "Abrothrix olivacea|A olivaceus") ~ "Abrothrix olivaceus",
                          str_detect(rodent_names, "Aterelix albiventrix") ~ "Atelerix albiventrix",
                          str_detect(rodent_names, "A\\.? agrarius|Aoidemus agrarius|Apodeums agrarius|Apodumus agrarius") ~ "Apodemus agrarius",
                          str_detect(rodent_names, "A\\.? amphibius") ~ "Arvicola amphibius",
-                         str_detect(rodent_names, "A\\.? flavicollis|Yellow-necked mouse|Apodemus flavicolis|Adodemus flavicollis|Apodeums flavicollis") ~ "Apodemus flavicollis",
-                         str_detect(rodent_names, "Aoidemus peninsulae|Aoidmus peninsulae|Apodeums peninsulae") ~ "Apodemus peninsulae",
+                         str_detect(rodent_names, "A\\.? flavicollis|A flavocilis|Yellow-necked mouse|Apodemus flavicolis|Adodemus flavicollis|Apodeums flavicollis") ~ "Apodemus flavicollis",
+                         str_detect(rodent_names, "Aoidemus peninsulae|Aoidmus peninsulae|Apodeums peninsulae|A peninsulae|Adodemus peninsulae") ~ "Apodemus peninsulae",
                          str_detect(rodent_names, "A\\.? sylvaticus|Apodemus syhaticus|Wood mouse|Apodemus sylvaticus s.l.|Apodeums sylvaticus") ~ "Apodemus sylvaticus",
                          str_detect(rodent_names, "Apodeums witherby") ~ "Apodemus witherby",
                          str_detect(rodent_names, "A\\.? montensis|Akodon arviculoides montensis") ~ "Akodon montensis",
@@ -64,37 +64,40 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                          str_detect(rodent_names, "Bolomys lasiururs") ~ "Bolomys lasiurus",
                          str_detect(rodent_names, "\"Yellow-breasted rat\"") ~ "Rattus flavipectus",
                          str_detect(rodent_names, "B\\.? indica|Bandicota indicia") ~ "Bandicota indica",
-                         str_detect(rodent_names, "Bandicota savelei") ~ "Bandicota savilei",
+                         str_detect(rodent_names, "Bandicota savelei|B savilei") ~ "Bandicota savilei",
                          str_detect(rodent_names, "Berykmys bowersi") ~ "Berylmys bowersi",
-                         str_detect(rodent_names, "Bolomys lasirus|Bolomys lasiururs") ~ "Bolomys lasiurus",
+                         str_detect(rodent_names, "Bolomys lasirus|Bolomys lasiururs|B lasiurus") ~ "Bolomys lasiurus",
                          str_detect(rodent_names, "Brush mouse|Brush mice") ~ "Peromyscus boylii",
                          str_detect(rodent_names, "Crocidura cf. macmillani") ~ "Crocidura macmillani",
                          str_detect(rodent_names, "Crocidura cf. yaldeni") ~ "Crocidura yaldeni",
                          str_detect(rodent_names, "C\\.? buettikoferi") ~ "Crocidura buettikoferi",
-                         str_detect(rodent_names, "C\\.? glareolus|Bank vole|Clethryonomys glareolus") ~ "Clethrionomys glareolus",
+                         str_detect(rodent_names, "C\\.? glareolus|Bank vole|Clethryonomys glareolus|C glareoulus|C glareous") ~ "Clethrionomys glareolus",
                          str_detect(rodent_names, "C\\.? laucha") ~ "Calomys laucha",
                          str_detect(rodent_names, "C\\.? musculinus") ~ "Calomys musculinus",
                          str_detect(rodent_names, "C\\.? callosus") ~ "Calomys callosus",
                          str_detect(rodent_names, "Crocidura oliveri") ~ "Crocidura olivieri",
                          str_detect(rodent_names, "Crocidura rusla") ~ "Crocidura russula",
                          str_detect(rodent_names, "Crocidura shauntungensis") ~ "Crocidura shantungensis",
-                         str_detect(rodent_names, "Crocidura subaveolens") ~ "Crocidura suaveolens",
+                         str_detect(rodent_names, "Crocidura subaveolens|C suaveolens") ~ "Crocidura suaveolens",
                          str_detect(rodent_names, "Corcidura somalica") ~ "Crocidura somalica",
                          str_detect(rodent_names, "Dendromus angolensis") ~ "Dendromus sp.",
                          str_detect(rodent_names, "Dideiphis marsupialis") ~ "Didelphis marsupialis",
                          str_detect(rodent_names, "Dipodomys ordi") ~ "Dipodomys ordii",
                          str_detect(rodent_names, "Diplodidae sagitta") ~ "Dipus sagitta",
+                         str_detect(rodent_names, "D gliroides") ~ "Dromiciops gliroides",
                          str_detect(rodent_names, "Echimyidae proechimys") ~ "Proechimys sp.",
                          str_detect(rodent_names, "Fossorial water vole")~ "Arvicola scherman",
                          str_detect(rodent_names, "Citellus erthyrogenys|Citellus erthrogenys") ~ "Spermophilus erythrogenys",
                          str_detect(rodent_names, "Gerbilliscus angolae|Gerbilliscus taborae") ~ "Gerbilliscus sp.",
                          str_detect(rodent_names, "Gerbilliscus humpatensis") ~ "Gerbilliscus brantsii",
+                         str_detect(rodent_names, "G glis") ~ "Glis glis",
                          str_detect(rodent_names, "Grammomys surdaster") ~ "Grammomys dolichurus",
                          str_detect(rodent_names, "Heteromiydae heteromys") ~ "Heteromys sp.",
                          str_detect(rodent_names, "H\\.? chacarius") ~ "Holochilus chacarius",
                          str_detect(rodent_names, "H\\.? brasiliensis") ~ "Holochilus brasiliensis",
                          str_detect(rodent_names, "L\\.? linulus") ~ "Lemniscomys linulus",
                          str_detect(rodent_names, "L\\.? sibiricus") ~ "Lemmus sibiricus",
+                         str_detect(rodent_names, "L micropus") ~ "Loxodontomys micropus",
                          str_detect(rodent_names, "M\\.? agrestis") ~ "Microtus agrestis",
                          str_detect(rodent_names, "M\\.? glareolus|M\\.? glareoulus|Cletherionyms glareolus|Myodes glareolus|Myodes glareoulus|Myodes glareous") ~ "Clethrionomys glareolus",
                          str_detect(rodent_names, "M\\.? minutoides") ~ "Mus minutoides",
@@ -107,23 +110,25 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                          str_detect(rodent_names, "Microtus liechtensterini") ~ "Microtus liechtensteini",
                          str_detect(rodent_names, "Montane vole") ~ "Microtus montanus",
                          str_detect(rodent_names, "Microtus obscuruc") ~ "Microtus obscurus",
+                         str_detect(rodent_names, "M oeconomus") ~ "Microtus oeconomus",
                          str_detect(rodent_names, "Microtus rossiaemeridonalis") ~ "Microtus rossiaemeridionalis",
                          str_detect(rodent_names, "Mictrotus subterraneus") ~ "Microtus subterraneus",
                          str_detect(rodent_names, "Montemys delectorum") ~ "Praomys delectorum",
                          str_detect(rodent_names, "Mus nannomys") ~ "Mus sp.",
                          str_detect(rodent_names, "Mus (nannomys) mahomet") ~ "Mus mahomet",
-                         str_detect(rodent_names, "Mus musculus castaneus|Mus musculus domesticus|Mus musculus musculus|Mus domesticus|Mus musculis") ~ "Mus musculus",
+                         str_detect(rodent_names, "Mus musculus castaneus|Mus musculus domesticus|Mus musculus musculus|Mus domesticus|Mus musculis|M domesticus") ~ "Mus musculus",
                          str_detect(rodent_names, "Muscardinus aranus") ~ "Muscardinus sp.",
-                         str_detect(rodent_names, "Myodes rufocanus bedfordiae") ~ "Myodes rufocanus",
-                         str_detect(rodent_names, "Myodes rutilus mikado") ~ "Myodes rutilus",
+                         str_detect(rodent_names, "Myodes rufocanus bedfordiae|C rufocanus") ~ "Myodes rufocanus",
+                         str_detect(rodent_names, "Myodes rutilus mikado|C rutilus") ~ "Myodes rutilus",
                          str_detect(rodent_names, "Nannomys minutoides") ~ "Mus minutoides",
                          str_detect(rodent_names, "Nannomys setulosus") ~ "Mus setulosus",
                          str_detect(rodent_names, "Muscardinus avellinarius") ~ "Muscardinus avellanarius",
                          str_detect(rodent_names, "Mustela nivales|Mustela nivalus") ~ "Mustela nivalis",
                          str_detect(rodent_names, "Neoromicia africanus") ~ "Pipistrellus nanus",
                          str_detect(rodent_names, "Neotoma montanus") ~ "Neotoma sp.",
+                         str_detect(rodent_names, "N fodiens") ~ "Neomys fodiens",
                          str_detect(rodent_names, "Niviventer cf. confucianus") ~ "Niviventer confucianus",
-                         str_detect(rodent_names, "Necromys lasirurus") ~ "Necromys lasiurus",
+                         str_detect(rodent_names, "Necromys lasirurus|N lasiurus") ~ "Necromys lasiurus",
                          str_detect(rodent_names, "N\\.? indica") ~ "Nesokia indica",
                          str_detect(rodent_names, "Neotoma cinera|Neotoma cineria") ~ "Neotoma cinerea",
                          str_detect(rodent_names, "Dusky-footed|Neotoma fiscipes") ~ "Neotoma fuscipes",
@@ -140,6 +145,7 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                          str_detect(rodent_names, "Oryzomys grupo nitidus") ~ "Oryzomys nitidus",
                          str_detect(rodent_names, "O\\.? flavescens|Oi. flavescens|Oligoryzomysfulvescens|Oligoryzomys favescens") ~ "Oligoryzomys flavescens",
                          str_detect(rodent_names, "O\\.? chacoensis") ~ "Oligoryzomys chacoensis",
+                         str_detect(rodent_names, "O longicaudatus") ~ "Oligoryzomys longicaudatus",
                          str_detect(rodent_names, "Ochromyscus niveiventris") ~ "Mus niveiventris",
                          str_detect(rodent_names, "Oryzomys cous") ~ "Oryzomys couesi",
                          str_detect(rodent_names, "Onychomys torridue") ~ "Onychomys torridus",
@@ -160,17 +166,21 @@ Peromycus manicalatus") ~ "Peromyscus maniculatus",
                          str_detect(rodent_names, "Phyllotic darwini") ~ "Phyllotis darwini",
                          str_detect(rodent_names, "R\\.? megalotis") ~ "Reithrodontomys megalotis",
                          str_detect(rodent_names, "Rattus edwardsi") ~ "Leopoldamys edwardsi",
+                         str_detect(rodent_names, "R\\.? argentiventer|R argentiventer") ~ "Rattus argentiventer",
                          str_detect(rodent_names, "R\\.? exulans") ~ "Rattus exulans",
+                         str_detect(rodent_names, "R\\.? losea|R losea") ~ "Rattus losea",
                          str_detect(rodent_names, "Rattus nitidius") ~ "Rattus nitidus",
-                         str_detect(rodent_names, "R\\.? norvegicus") ~ "Rattus norvegicus",
+                         str_detect(rodent_names, "R\\.? norvegicus|R vorvegicus") ~ "Rattus norvegicus",
                          str_detect(rodent_names, "R\\.? rattus|Rattus rattus alexandrinus|Rattus rattus frugivorus|Rattus rattus species complex") ~ "Rattus rattus",
-                         str_detect(rodent_names, "R\\.? tanezumi|Rattus tanezumi species complex") ~ "Rattus tanezumi",
+                         str_detect(rodent_names, "R\\.? tanezumi|Rattus tanezumi species complex|R\\.? flavipectus|R flavipectus") ~ "Rattus tanezumi",
+                         str_detect(rodent_names, "R tiomanicus") ~ "Rattus tiomanicus",
                          str_detect(rodent_names, "Reihtrodon spp.") ~ "Reithrodon spp.",
                          str_detect(rodent_names, "Rattus yunnanensis") ~ "Hadromys yunnanensis",
                          str_detect(rodent_names, "Scapteromys acquaticus") ~ "Scapteromys aquaticus",
                          str_detect(rodent_names, "Scapteromys tumidis") ~ "Scapteromys tumidus",
                          str_detect(rodent_names, "S\\.? hispidus") ~ "Sigmodon hispidus",
-                         str_detect(rodent_names, "Sorex ananeus") ~ "Sorex araneus",
+                         str_detect(rodent_names, "U.u. Soricidae") ~ "Soricidae",
+                         str_detect(rodent_names, "Sorex ananeus|S araneus") ~ "Sorex araneus",
                          str_detect(rodent_names, "Sorex gacillimus") ~ "Sorex gracillimus",
                          str_detect(rodent_names, "Serengetimys pernanus") ~ "Mastomys pernanus",
                          str_detect(rodent_names, "Spermophilus beecheyii") ~ "Spermophilus beecheyi",
@@ -214,6 +224,7 @@ rodent_genus <- tibble(rodent_genus = c(str_split(unique(rodent_names$cleaned_ro
   distinct() %>%
   mutate(cleaned_rodent_genus = case_when(str_detect(rodent_genus, "Aeothomys") ~ "Aethomys",
                                   str_detect(rodent_genus, "Ammonospermophilus") ~ "Ammospermophilus",
+                                  str_detect(rodent_genus, "Apododemus") ~ "Apodemus",
                                   str_detect(rodent_genus, "Arvincanthis") ~ "Arvicanthis",
                                   str_detect(rodent_genus, "Aterelix") ~ "Atelerix",
                                   str_detect(rodent_genus, "Baoimys|Biomys") ~ "Baiomys",
@@ -227,16 +238,17 @@ rodent_genus <- tibble(rodent_genus = c(str_split(unique(rodent_names$cleaned_ro
                                   str_detect(rodent_genus, "Serengetimys") ~ "Mastomys",
                                   str_detect(rodent_genus, "Maxomus") ~ "Maxomys",
                                   str_detect(rodent_genus, "Monodelphys") ~ "Monodelphis",
+                                  str_detect(rodent_genus, "Mictorus") ~ "Microtus",
                                   str_detect(rodent_genus, "Mydoes") ~ "Myodes",
                                   str_detect(rodent_genus, "Ochromyscus") ~ "Myomyscus",
                                   str_detect(rodent_genus, "Neotomas") ~ "Neotoma",
                                   str_detect(rodent_genus, "Oeonomys") ~ "Oenomys",
-                                  str_detect(rodent_genus, "Oligorysomys|Oligoyzomys|Oligozomys|Oiigoryzomys") ~ "Oligoryzomys",
+                                  str_detect(rodent_genus, "Oligorysomys|Oligoyzomys|Oligozomys|Oiigoryzomys|Oligorymys") ~ "Oligoryzomys",
                                   str_detect(rodent_genus, "Onchomys") ~ "Onychomys",
                                   str_detect(rodent_genus, "Peromycus") ~ "Peromyscus",
                                   str_detect(rodent_genus, "Pitimys") ~ "Pitymys",
                                   str_detect(rodent_genus, "Montemys") ~ "Praomys",
-                                  str_detect(rodent_genus, "Scuirdae") ~ "Sciuridae",
+                                  str_detect(rodent_genus, "Scuirdae|Sciuridae") ~ "Sciuridae",
                                   str_detect(rodent_genus, "Sigmondon") ~ "Sigmodon",
                                   str_detect(rodent_genus, "Sorext") ~ "Sorex",
                                   str_detect(rodent_genus, "Suneus") ~ "Suncus",
@@ -396,6 +408,7 @@ higher_taxa <- unmatched_genera %>%
   mutate(clean_higher_taxa = case_when(str_detect(scientificName, "Rodentia|\"Social Rat\"|Unknown") ~ "Rodentia",
                                        str_detect(scientificName, "Other") ~ "Mammalia",
                                        str_detect(scientificName, "Sciuridae|Scuirdae") ~ "Sciuridae",
+                                       str_detect(scientificName, "Soricidae") ~ "Soricidae",
                                        TRUE ~ scientificName))
 
 gbif_higher <- get_gbifid(unique(higher_taxa$clean_higher_taxa))
@@ -407,6 +420,7 @@ higher_hierarchy <- rbind(resolve_higher) %>%
   pivot_wider(id_cols = "query", names_from = rank, values_from = name) %>%
   mutate(gbif_id = as.integer(query))
 higher_taxa_table <- tibble(clean_higher_taxa = unique(higher_taxa$clean_higher_taxa)) %>%
+  drop_na() %>%
   bind_cols(higher_hierarchy) %>%
   left_join(higher_taxa, by = "clean_higher_taxa")
 
@@ -479,7 +493,7 @@ if(nrow(v3_host_species) + nrow(v3_host_genus) + nrow(v3_unmatched_higher) == v3
                                            !is.na(order) ~ "order",
                                            !is.na(class) ~ "class",
                                            TRUE ~ "unresolved"), # Default for rows with no taxonomic information
-                                 levels = c("species", "genus", "family", "order", "class")),
+                                 levels = c("species", "genus", "family", "order", "class", "unresolved")),
            individualCount = if_else(is.na(individualCount), 0, individualCount),
            scientificName = coalesce(species, genus, family, order, class)) %>%
     select(rodent_record_id, study_id, eventDate, extracted_name, scientificName, locality, country, verbatimLocality, coordinate_resolution, decimalLatitude, decimalLongitude, individualCount,
@@ -602,6 +616,23 @@ v2_multiple_countries_flagged <- v2_multiple_countries %>%
 v2_coords_requiring_check <- bind_rows(v2_single_countries_flagged,
                                        v2_multiple_countries_flagged)
 
+v2_coords_checked <- bind_rows(v2_single_countries_status,
+                               v2_multiple_countries) %>%
+  select(rodent_record_id, study_id, country, iso3, iso3_composite, NAME_0, GID_0, country_flag = coords_in_country) %>%
+  right_join(v2_rodent_cleaned, by = c("rodent_record_id", "study_id", "country")) %>%
+  arrange(rodent_record_id) %>%
+  group_by(study_id, country, decimalLatitude, decimalLongitude) %>%
+  fill(iso3, .direction = "down") %>%
+  fill(NAME_0, .direction = "down") %>%
+  fill(GID_0, .direction = "down") %>%
+  fill(country_flag, .direction = "down")
+
+# Based on the coordinate resolution we will match locations to administrative areas
+# UP-TO-HERE
+v2_coords_checked %>%
+  select(rodent_record_id, study_id, country, locality, coordinate_resolution, decimalLatitude, decimalLongitude) %>%
+  distinct(country, locality, coordinate_resolution, decimalLatitude, decimalLongitude, .keep_all = TRUE)
+
 # v3
 
 v3_country_cleaned <- v3_rodent_cleaned %>%
@@ -663,87 +694,33 @@ v3_multiple_countries_flagged <- v3_multiple_countries_status %>%
 v3_coords_requiring_check <- bind_rows(v3_single_countries_flagged,
                                        v3_multiple_countries_flagged)
 
-# Correct the wrong coords
+
+# Add location hierarchy --------------------------------------------------
+
+# Clean coordinate resolution level to site (locations of traps, trap grids, trap lines etc), village (), town, city, adm3 (lowest level of administrative unit the country), adm2 (level 2 administrative unit), adm1 (level 1 administrative unit)
+
+# Some locations may span multiple regions at the same level need to be used with caution (maybe set up a flag for these)
+
+## Join cleaned coordinate data -------------------------------------------
+
+v2_rodent_cleaned %>%
+  left_join()
+v3_rodent_cleaned
 
 # Impute non-detections ---------------------------------------------------
-
+# Leave to the end
 # impute non-detected species for studies with summarised detections
 # we will identify those studies that report multiple sites and are not explicitly labelled as individual level data
 # this will only be performed for v3
 
 studies_to_impute <- combined_data_v3$studies %>%
   filter(!str_detect(data_access, "individual")) %>%
-  arrange(study_id)
+  arrange(study_id) %>%
+  pull(study_id)
 
-multiple_site_sessions <- v3_rodent_cleaned %>%
-  filter()
-  drop_na(study_id, locality, decimalLongitude, decimalLatitude) %>%
-  group_by(study_id, eventDate, locality, verbatimLocality, decimalLongitude, decimalLatitude) %>%
-  filter(n() > 1) %>%
-  group_split()
+# Finalise clean rodent data ----------------------------------------------
 
 
-
-
-list_v3_host <- clean_v3_host %>%
-  drop_na(reported_name) %>%
-  group_by(study_id) %>%
-  group_split()
-
-expanded_v3_host <- lapply(list_v3_host, function(x) {
-  
-  if(unique(x$study_id) %in% studies_to_impute$study_id && length(!is.na(x$gbif_id)) >= 1) {
-    
-    x <- x %>%
-      drop_na(gbif_id)
-    
-    all_species <- unique(x$gbif_id)
-    
-    site_session_list <- x %>%
-      group_by(eventDate, locality, country, verbatimLocality, decimalLatitude, decimalLongitude) %>%
-      group_split()
-    
-    site_session_list <- map(site_session_list, ~ {
-      missing_species <- setdiff(all_species, unique(.x$gbif_id))
-      if(length(missing_species) > 0) {
-        missing_rows <- tibble(
-          gbif_id = missing_species,
-          # You can add other columns here if needed
-          individualCount = 0,
-          imputed = TRUE
-        )
-        bind_rows(.x, missing_rows) %>%
-          fill(study_id, eventDate, locality, country, verbatimLocality, coordinate_resolution,
-               decimalLatitude, decimalLongitude, .direction = "downup")
-      } else {
-        .x
-      }
-    }) %>%
-      bind_rows() %>%
-      group_by(gbif_id) %>%
-      fill(kingdom, phylum, class, order, family, genus, species, .direction = "downup") %>%
-      mutate(reported_name = coalesce(reported_name, species, genus)) %>%
-      ungroup()
-    
-    message("Imputed missing")
-    
-  } else {
-    
-    message("No imputation")
-    
-    x
-    
-  }
-}) %>%
-  bind_rows() %>%
-  mutate(imputed = if_else(is.na(imputed), FALSE, TRUE))
-
-clean_host <- clean_v2_host %>%
-  dplyr::select(-genus.x) %>%
-  rename("genus" = genus.y) %>%
-  mutate(version = "v2") %>%
-  bind_rows(expanded_v3_host %>%
-              mutate(version = "v3"))
 
 # Clean Pathogen sheet ----------------------------------------------------
 virus_names <- tibble(virus = sort(unique(c(unique(combined_data_v2$pathogen$scientificName), unique(combined_data_v3$pathogen$scientificName),
