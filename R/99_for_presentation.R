@@ -1,5 +1,5 @@
 source(here::here("R", "00_load_data.R"))
-combined_data <- read_rds(here("data", "clean_data", "2024-10-04_data.rds"))
+combined_data <- read_rds(here("data", "clean_data", "2025-01-20_data.rds"))
 
 # Additional packages
 pkgs <- c(
@@ -60,7 +60,7 @@ map_hanta_samples <- combined_data$pathogen %>%
   summarise(n_assayed = sum(n_assayed, na.rm = TRUE)) %>%
   vect(geom = c("decimalLongitude", "decimalLatitude"), crs = project_crs) %>%
   ggplot() +
-  geom_spatvector(data = world_vect, fill = "transparent") +
+  geom_spatvector(data = world_shapefile, fill = "transparent") +
   geom_spatvector(aes(colour = log(n_assayed))) +
   scale_colour_viridis_c() +
   theme_minimal() +
@@ -70,12 +70,12 @@ map_hanta_samples <- combined_data$pathogen %>%
 
 map_arena_samples <- combined_data$pathogen %>%
   filter(n_assayed >= 1 &
-           str_detect(family, "Mammarenaviridae")) %>%
+           str_detect(family, "Mammarenaviridae|Arenaviridae|Mammarenavirus")) %>%
   group_by(family, virus_clean, host_species, host_genus, host_family, host_order, decimalLatitude, decimalLongitude) %>%
   summarise(n_assayed = sum(n_assayed, na.rm = TRUE)) %>%
   vect(geom = c("decimalLongitude", "decimalLatitude"), crs = project_crs) %>%
   ggplot() +
-  geom_spatvector(data = world_vect, fill = "transparent") +
+  geom_spatvector(data = world_shapefile, fill = "transparent") +
   geom_spatvector(aes(colour = log(n_assayed))) +
   scale_colour_viridis_c() +
   theme_minimal() +
@@ -277,48 +277,72 @@ save_plot(plot = incompleteness,
 
 # Plot countries where studies were conducted -----------------------------
 
-study_countries <- combined_data$citations %>%
-  filter(!str_detect(decision, "Exclude")) %>%
-  filter(!is.na(full_text_id)) %>%
-  drop_na(Country) %>%
-  select(Country) %>%
-  separate_rows(Country, sep = ", ") %>%
-  group_by(Country) %>%
+study_countries <- combined_data$host %>%
+  ungroup() %>%
+  distinct(study_id, country, iso3) %>%
+  mutate(iso3 = case_when(str_detect(country, "South Africa") ~ "ZAF",
+                          str_detect(country, "Wales|England|Scotland") ~ "GBR",
+                          str_detect(country, "Finland|Finald|Karelia") ~ "FIN",
+                          str_detect(country, "US|U.S.|Texas|California|Nevada|Colorado") ~ "USA",
+                          str_detect(country, "Ukraine") ~ "UKR",
+                          str_detect(country, "Czech") ~ "CZE",
+                          str_detect(country, "Phillipines") ~ "PHL",
+                          str_detect(country, "Germany|Gemany") ~ "DEU",
+                          str_detect(country, "Lithuania") ~ "LTU",
+                          str_detect(country, "Nepal") ~ "NPL",
+                          str_detect(country, "Venezuela|Venezuala") ~ "VEN",
+                          str_detect(country, "Zambia") ~ "ZMB",
+                          str_detect(country, "Solvenia|Slovenia") ~ "SVN",
+                          str_detect(country, "Argentina") ~ "ARG",
+                          str_detect(country, "France") ~ "FRA",
+                          str_detect(country, "Korea") ~ "KOR",
+                          str_detect(country, "Guinea") ~ "GIN",
+                          str_detect(country, "Russia") ~ "RUS",
+                          str_detect(country, "Uruaguay") ~ "URY",
+                          str_detect(country, "Brazil") ~ "BRA",
+                          str_detect(country, "Nambia") ~ "NAM",
+                          TRUE ~ iso3
+                          )) %>%
+  group_by(iso3) %>%
   summarise(n = n())
-  
-study_countries$iso3 <- countrycode::countrycode(sourcevar = study_countries$Country, origin_regex = TRUE, origin = "country.name.en", destination = "iso3c")
 
 study_map <- ggplot() + 
-  geom_sf(data = st_as_sf(world_vect)) +
-  geom_sf(data = st_as_sf(world_vect) %>%
+  geom_sf(data = st_as_sf(world_shapefile)) +
+  geom_sf(data = st_as_sf(world_shapefile) %>%
   left_join(study_countries, by = c("GID_0" = "iso3")) %>%
   drop_na(n), aes(fill = n)) +
   scale_fill_viridis_c() +
   theme_minimal() +
   theme(legend.position = "bottom") +
-  labs(title = "Countries with included studies (N = 810)",
+  labs(title = "Countries with included studies",
        fill = "Number of publications")
 
 save_plot(study_map, filename = here("output", "study_map.png"), base_width = 8, base_height = 8)
-
 
 # H-P associations in data ------------------------------------------------
 library(ggrepel)
 library(ggridges)
 
 unique_host <- combined_data$pathogen %>%
-  select(virus_clean, family, assay_clean, host_species, host_genus, host_family, host_order, n_assayed, n_positive)
+  select(virus_clean, family, taxonomic_level, assay_clean, host_species, host_genus, host_family, host_order, n_assayed, n_positive) %>%
+  mutate(family = case_when(str_detect(virus_clean, "Mammarenavirus allpahuayoense|Mammarenavirus lassaense|Mammarenavirus choriomeningitidis") ~ "Arenaviridae",
+                            str_detect(virus_clean, "Orthohantavirus andesense|Orthohantavirus seoulense") ~ "Hantaviridae",
+                            TRUE ~ family),
+         family = case_when(str_detect(family, "Arenaviridae|Mammarenaviridae|Mammarenavirus") ~ "Arenaviridae",
+                            TRUE ~ family))
 
 # Limit to named pathogens and species for host
 subset_hp <- unique_host %>%
-  filter(!str_detect(virus_clean, "^Rt|^Shrew|Hantaviridae|Mammarenaviridae")) %>%
+  filter(taxonomic_level == "species") %>%
   filter(!is.na(host_species)) %>%
   filter(n_assayed >= 1) %>%
   ungroup() %>%
   rowwise() %>%
   mutate(virus_clean = factor(virus_clean),
          host_species = factor(host_species),
-         prop_pos = n_positive/n_assayed)
+         prop_pos = n_positive/n_assayed,
+         assay_clean = case_when(str_detect(assay_clean, "PCR|Culture|Sequencing") ~ "Acute",
+                                 str_detect(assay_clean, "Serology") ~ "Prior"))
 
 subset_hp$virus_clean <- fct_rev(fct_infreq(subset_hp$virus_clean))
 subset_hp$host_species <- fct_rev(fct_infreq(subset_hp$host_species))
@@ -332,6 +356,7 @@ labelled_hanta <- subset_hp %>%
   slice(1)
 
 hp_simple <- subset_hp %>%
+  filter(str_detect(family, "Hanta|Arena")) %>%
   filter(n_positive >= 1) %>%
   group_by(virus_clean, family) %>%
   summarise(n_species = length(unique(host_species)),
@@ -340,14 +365,34 @@ hp_simple <- subset_hp %>%
   geom_point(aes(x = n_species, y = virus_clean, colour = log(n_assayed))) +
   geom_segment(aes(x = 0, xend = n_species, y = virus_clean, yend = virus_clean, colour = log(n_assayed)),
                linewidth = 1) +
-  scale_colour_viridis_c() +
+  scale_colour_viridis_c(direction = -1) +
   facet_grid(~family, scales = "free") +
   labs(y = element_blank(),
        x = "Number of species",
-       colour = "N samples assayed (log10)")
+       colour = "N samples assayed (log10)") +
+  theme_minimal()
 
-save_plot(hp_simple, filename = here("output", "simple_hp.png"), base_width = 8, base_height = 8)
-  
+save_plot(hp_simple, filename = here("output", "simple_hp.png"), base_width = 8, base_height = 8, bg = "transparent")
+
+hp_simple_acute <- subset_hp %>%
+  filter(str_detect(family, "Hanta|Arena")) %>%
+  filter(str_detect(assay_clean, "Acute")) %>%
+  filter(n_positive >= 1) %>%
+  group_by(virus_clean, family) %>%
+  summarise(n_species = length(unique(host_species)),
+            n_assayed = sum(n_assayed, na.rm = TRUE)) %>%
+  ggplot() +
+  geom_point(aes(x = n_species, y = virus_clean, colour = log(n_assayed))) +
+  geom_segment(aes(x = 0, xend = n_species, y = virus_clean, yend = virus_clean, colour = log(n_assayed)),
+               linewidth = 1) +
+  scale_colour_viridis_c(direction = -1) +
+  facet_grid(~family, scales = "free") +
+  labs(y = element_blank(),
+       x = "Number of species",
+       colour = "N samples assayed (log10)") +
+  theme_minimal()
+
+save_plot(hp_simple_acute, filename = here("output", "simple_hp_acute.png"), base_width = 8, base_height = 8, bg = "transparent")
 
 hanta_hp <- ggplot() +
   geom_point(data = subset_hp %>%
@@ -355,12 +400,12 @@ hanta_hp <- ggplot() +
                  aes(x = prop_pos, y = virus_clean, colour = host_genus, size = log10(n_assayed)),
              position = position_jitter(width = NULL)) +
   guides(colour = "none") +
-  geom_text_repel(data = labelled_hanta,
-               aes(y = virus_clean, x = prop_pos, label = host_species),
-               max.overlaps = 30,
-               min.segment.length = 0,
-               size = 3,
-               force = 1.2) +
+  # geom_text_repel(data = labelled_hanta,
+  #              aes(y = virus_clean, x = prop_pos, label = host_species),
+  #              max.overlaps = 30,
+  #              min.segment.length = 0,
+  #              size = 3,
+  #              force = 1.2) +
   theme_minimal() +
   theme(panel.grid.major.y = element_line(color = "black", linewidth = 0.2)) +
   facet_grid(~ assay_clean) +
@@ -372,12 +417,13 @@ hanta_hp <- ggplot() +
   expand_limits(x = c(0, max(subset_hp$prop_pos) * 1.1),
                 y = c(0, nrow(subset_hp %>%
                                   filter(family == "Hantaviridae") %>%
-                                  distinct(virus_clean)) * 1.1))
+                                  distinct(virus_clean)) * 1.1)) +
+  coord_cartesian(xlim = c(0, 1))
 
-ggsave(plot = hanta_hp, filename = here("output", "hantavirus_hp.png"), width = 10)
+ggsave(plot = hanta_hp, filename = here("output", "hantavirus_hp.png"), width = 12, height = 8)
 
 labelled_arena <-  subset_hp %>%
-  filter(family == "Mammarenaviridae") %>%
+  filter(family == "Arenaviridae") %>%
   group_by(virus_clean, host_species, assay_clean) %>%
   filter(n_assayed >= 25 &
            n_positive > 1) %>%
@@ -386,30 +432,31 @@ labelled_arena <-  subset_hp %>%
 
 mammarena_hp <- ggplot() +
   geom_point(data = subset_hp %>%
-               filter(family == "Mammarenaviridae"),
+               filter(family == "Arenaviridae"),
              aes(x = prop_pos, y = virus_clean, colour = host_genus, size = log10(n_assayed)),
              position = position_jitter(width = NULL)) +
   guides(colour = "none") +
-  geom_text_repel(data = labelled_arena,
-                  aes(y = virus_clean, x = prop_pos, label = host_species),
-                  max.overlaps = 30,
-                  min.segment.length = 0,
-                  size = 3,
-                  force = 1.2) +
+  # geom_text_repel(data = labelled_arena,
+  #                 aes(y = virus_clean, x = prop_pos, label = host_species),
+  #                 max.overlaps = 30,
+  #                 min.segment.length = 0,
+  #                 size = 3,
+  #                 force = 1.2) +
   theme_minimal() +
   theme(panel.grid.major.y = element_line(color = "black", linewidth = 0.2)) +
   facet_grid(~ assay_clean) +
-  labs(title = "Mammarenaviridae",
+  labs(title = "Arenaviridae",
        x = "Proportion positive",
        y = element_blank(),
        size = "Number tested (log10)",
        caption = "Labels only shown for >25 assayed and >1 positive") +
   expand_limits(x = c(0, max(subset_hp$prop_pos) * 1.1),
                 y = c(0, nrow(subset_hp %>%
-                                filter(family == "Mammarenaviridae") %>%
-                                distinct(virus_clean)) * 1.1))
+                                filter(family == "Arenaviridae") %>%
+                                distinct(virus_clean)) * 1.1)) +
+  coord_cartesian(xlim = c(0, 1))
 
-ggsave(plot = mammarena_hp, filename = here("output", "arenavirus_hp.png"), width = 10)
+ggsave(plot = mammarena_hp, filename = here("output", "arenavirus_hp.png"), width = 12, height = 8)
 
 examples <- c("Orthohantavirus sinnombreense", "Mammarenavirus lassaense")
 

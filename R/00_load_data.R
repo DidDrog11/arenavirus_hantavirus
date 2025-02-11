@@ -29,12 +29,13 @@ if(length(list.files(here("data", "raw_data"), pattern = paste0(analysis_date, "
   data_v2_full_text_studies <- data_v2 %>%
     read_sheet(sheet = "inclusion_full_text",
                col_types = "cccccciccccccccccccccc") %>%
-    mutate(study_id = fct_inorder(paste0("david_", str_extract(record_number, "\\d+"))))
+    filter(processed == "y")
   write_csv(data_v2_full_text_studies, here("data", "raw_data", paste0(analysis_date, "_v2_inclusion_full_text.csv")))
   
   data_v2_descriptive <- data_v2 %>%
     read_sheet(sheet = "descriptive",
                col_types = "cccciccccccc") %>%
+    drop_na(study_id) %>%
     mutate(study_id = fct_inorder(paste0("david_", str_extract(study_id, "\\d+"))))
   write_csv(data_v2_descriptive, here("data", "raw_data", paste0(analysis_date, "_v2_descriptive.csv")))
   
@@ -74,6 +75,10 @@ if(length(list.files(here("data", "raw_data"), pattern = paste0(analysis_date, "
                            zoonoses = data_v2_known_zoonoses)
   
   data_v3 <- list()
+  
+  data_v3_full_text_studies <- drive_get("https://docs.google.com/spreadsheets/d/1rh6H_N_f3NgLZoPRIjMKgkrYCTgaznReub_EhBctHxI/edit?usp=sharing") %>%
+    read_sheet() %>%
+    select(full_text_id, processed, extractor, decision, reason, Key, `Publication Year`, Author, Title, `Publication Title`, DOI, Issue, Volume, Rights, Extra)
   
   data_v3$david <- drive_get("https://docs.google.com/spreadsheets/d/14Ghz07XOlZoaie8990mvsPbHfsHplxtfwscgf2-5KDk/edit?usp=sharing")
   data_v3$ana <- drive_get("https://docs.google.com/spreadsheets/d/10LsT76WZF4c1-LyvTKwGUsG5KH5VXIhAFcaALK6x1Cw/edit?usp=sharing")
@@ -126,13 +131,15 @@ if(length(list.files(here("data", "raw_data"), pattern = paste0(analysis_date, "
       drop_na(study_id) %>%
       mutate(study_id = fct_inorder(paste0(name, "_", str_extract(study_id, "\\d+"))),
              associated_rodent_record_id = fct_inorder(if_else(!is.na(associated_rodent_record_id), paste0(name, "_", str_extract(associated_rodent_record_id, "\\d+")), NA)),
-             associated_pathogen_record_id = fct_inorder(if_else(!is.na(associated_pathogen_record_id), paste0(name, "_", str_extract(associated_pathogen_record_id, "\\d+")), NA))
+             associated_pathogen_record_id = fct_inorder(if_else(!is.na(associated_pathogen_record_id), paste0(name, "_", str_extract(associated_pathogen_record_id, "\\d+")), NA)),
+             sequence_record_id = fct_inorder(if_else(!is.na(sequence_record_id), paste0(name, "_", str_extract(sequence_record_id, "\\d+")), NA))
       )}) %>%
     bind_rows()
   
   write_csv(data_v3_sequences, here("data", "raw_data", paste0(analysis_date, "_v3_sequences.csv")))
   
-  combined_data_v3 <- list(studies = data_v3_descriptive,
+  combined_data_v3 <- list(inclusion_full_text = data_v3_full_text_studies,
+                           studies = data_v3_descriptive,
                            host = data_v3_rodent,
                            pathogen = data_v3_pathogen,
                            sequence_data = data_v3_sequences)
@@ -151,3 +158,7 @@ if(length(list.files(here("data", "raw_data"), pattern = paste0(analysis_date, "
 # Download country shapefiles ---------------------------------------------
 
 world_shapefile <- world(path = here("data"))
+
+
+# Other settings ----------------------------------------------------------
+project_crs <- "EPSG:4326"

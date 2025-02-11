@@ -1143,3 +1143,5 @@ ft_295_seq_processed <- do.call(rbind, parsed_data) %>%
 
 write.table(ft_295_seq_processed,
             here("data", "data_to_extract", "ft_295_sequences.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
