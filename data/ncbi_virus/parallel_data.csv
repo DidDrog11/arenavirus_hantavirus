@@ -1,0 +1,3 @@
+data,NA,Country,Number_NA,Number_country,Collection_date_missing,Collection_date_month,Collection_date_year,Collection_date_day,percentage_coordinates,missing_host,percentage_city,percentage_state,percentage_site
+NCBI,5.19,58.85,278.0,3152.0,17.793,12.603,30.937,38.667,35.96,4.201,0.0,0.0,0.0
+ArHa,0.017,3.752,1.0,218.0,11.102,10.981,55.336,14.509,92.53,0.482,34.234,25.697,25.628
