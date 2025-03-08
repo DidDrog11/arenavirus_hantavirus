@@ -104,3 +104,105 @@ plotTree(tree)
 
 #save tree
 ape::write.tree(tree, 'data/ncbi_virus/uphamTree_hantaHosts.nwk')
+#Save taxa list to get genomes (continuing in Python)
+write(pnames, file='data/ncbi_virus/associatedViralSpecies_cophylo.txt', sep = '\t')
+
+#Load BEAST MCC tree for Hanta
+hanta_tree <- read.beast('data/ncbi_virus/Hanta_S-hanta_S_aligned.mcc.tree') %>% 
+  as.phylo()
+
+hanta_tree$tip.label <- sapply(hanta_tree$tip.label, function(x) str_split(x, "\\.")[[1]][1])
+
+
+#Set the tipnames to species using full NCBI data
+ncbi_hanta <- read_csv('data/ncbi_virus/hantaviridae_ncbi_03062025.csv')
+
+mapping <- setNames(ncbi_hanta$Species, ncbi_hanta$Accession)
+hanta_tree$tip.label <- sapply(hanta_tree$tip.label, function(x) {
+  if (x %in% names(mapping)) {
+    mapping[x]
+  } else {
+    x
+  }
+})
+
+plotTree(hanta_tree)
+
+longdata <- melt(hv_hanta_matrix)
+
+hlist <- tree$tip.label
+plist <- hanta_tree$tip.label
+
+# Reorder association matrix using seriation
+o <- seriate(hv_hanta_matrix, method = "BEA_TSP")
+longdata$host <- factor(longdata$Var1, levels = names(unlist(o[[1]][])))
+longdata$organism_name <- factor(longdata$Var2, levels = names(unlist(o[[2]][])))
+
+# Filter longdata to include only rows with tree tip labels and cast to matrix
+ld <- longdata %>% 
+  filter(host %in% hlist, organism_name %in% plist) %>% 
+  droplevels()
+amtab <- acast(ld, host ~ organism_name)
+
+amtab_filtered <- filter_assoc_matrix(amtab, hnames, pnames)
+htree <- keep.tip(tree, rownames(amtab_filtered))
+ptree <- keep.tip(hanta_tree, colnames(amtab_filtered))
+
+cat("Dimensions of filtered association matrix:", dim(amtab_filtered), "\n")
+cat("Number of host tips:", length(htree$tip.label), "\n")
+cat("Number of virus tips:", length(ptree$tip.label), "\n")
+
+
+#---------------------------
+# PHYLOGENETIC ANALYSES
+#---------------------------
+
+# Compute cophenetic distances
+hdist <- cophenetic.phylo(htree)
+pdist <- cophenetic.phylo(ptree)
+
+
+# Parafit test
+set.seed(1)
+pfit <- parafit(host.D = hdist, para.D = pdist, HP = amtab_filtered,
+                correction = "cailliez", nperm = 999, test.links = TRUE)
+print(pfit)
+
+# Prepare PACo data and perform PACo analysis
+D <- prepare_paco_data(H = hdist, P = pdist, HP = amtab_filtered)
+D <- add_pcoord(D, correction = "cailliez")
+set.seed(1)
+pac <- PACo(D, nperm = 999, seed = 1, method = "r0", symmetric = FALSE)
+pac_links <- paco_links(pac)
+res.l <- residuals_paco(pac_links$proc)
+cat("PACo goodness-of-fit:\n")
+print(pac_links$gof)
+
+# Calculate weights for links based on residuals
+wei <- ((res.l^-2) / 2)
+
+# Create interaction matrix for cophyloplot format
+imat.l <- melt(amtab)
+names(imat.l) <- c("host", "virus", "link")
+imat.l <- imat.l[which(imat.l$link > 0), ]
+
+# Plot cophyloplot
+par(oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0))
+cophyloplot(htree, ptree, assoc = imat.l, show.tip.label = TRUE,
+            use.edge.length = FALSE, lwd = 1 / wei, space = 200, gap = 5, length.line = 20)
+
+# Generate color palette for virus tips
+pal <- MoMAColors::moma.colors("Ohchi", length(unique(ptree$tip.label)))
+
+# Create cophylogenetic object and plot using phytools
+co.phylo.l <- cophylo(htree, ptree, assoc = imat.l, rotate = TRUE)
+link <- co.phylo.l$assoc
+
+ragg::agg_jpeg(filename = "output/cophylo_iter1.jpeg",
+               height = 25 * 10/16, width = 25, units = "in", res = 750)
+
+plot(co.phylo.l, link.type = "curved", link.lty = "solid",
+     fsize = c(0.7, 0.5), link.lwd = ifelse(res.l < 50, 1, 0.1),
+     link.col = pal)
+
+dev.off()
