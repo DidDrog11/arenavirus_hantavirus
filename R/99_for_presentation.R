@@ -51,6 +51,15 @@ n_host_sequences <- combined_data$sequences %>%
   filter(!is.na(associated_pathogen_record_id) | !is.na(associated_rodent_record_id))
 
 
+combined_data$descriptive %>%
+  ungroup() %>%
+  summarise(n_rodent_records = median(n_rodent_records, na.rm = TRUE),
+            n_rodent_species = median(n_rodent_species, na.rm = TRUE),
+            n_individuals = median(n_rodent_individuals, na.rm = TRUE),
+            n_pathogen_records = median(n_pathogen_records, na.rm = TRUE),
+            n_assays = median(n_assays, na.rm = TRUE),
+            n_sequences = median(n_sequence_records[n_sequence_records > 0], na.rm = TRUE))
+
 # Plots of samples --------------------------------------------------------
 
 map_hanta_samples <- combined_data$pathogen %>%
@@ -279,6 +288,7 @@ save_plot(plot = incompleteness,
 
 study_countries <- combined_data$host %>%
   ungroup() %>%
+  mutate(iso3 = coalesce(iso3, GID_0)) %>%
   distinct(study_id, country, iso3) %>%
   mutate(iso3 = case_when(str_detect(country, "South Africa") ~ "ZAF",
                           str_detect(country, "Wales|England|Scotland") ~ "GBR",
@@ -307,10 +317,12 @@ study_countries <- combined_data$host %>%
   summarise(n = n())
 
 study_map <- ggplot() + 
-  geom_sf(data = st_as_sf(world_shapefile)) +
   geom_sf(data = st_as_sf(world_shapefile) %>%
-  left_join(study_countries, by = c("GID_0" = "iso3")) %>%
-  drop_na(n), aes(fill = n)) +
+            st_transform(crs = st_crs("+proj=aeqd +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs"))) +
+  geom_sf(data = st_as_sf(world_shapefile) %>%
+            st_transform(crs = st_crs("+proj=aeqd +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs")) %>%
+            left_join(study_countries, by = c("GID_0" = "iso3")) %>%
+            drop_na(n), aes(fill = n)) +
   scale_fill_viridis_c() +
   theme_minimal() +
   theme(legend.position = "bottom") +
@@ -333,14 +345,14 @@ unique_host <- combined_data$pathogen %>%
 
 # Limit to named pathogens and species for host
 subset_hp <- unique_host %>%
+  filter(str_detect(family, "Arena|Hanta")) %>%
   filter(taxonomic_level == "species") %>%
+  filter(!str_detect(virus_clean, "Aza")) %>%
   filter(!is.na(host_species)) %>%
   filter(n_assayed >= 1) %>%
   ungroup() %>%
   rowwise() %>%
-  mutate(virus_clean = factor(virus_clean),
-         host_species = factor(host_species),
-         prop_pos = n_positive/n_assayed,
+  mutate(prop_pos = n_positive/n_assayed,
          assay_clean = case_when(str_detect(assay_clean, "PCR|Culture|Sequencing") ~ "Acute",
                                  str_detect(assay_clean, "Serology") ~ "Prior"))
 
@@ -417,7 +429,7 @@ save_plot(hp_simple_acute, filename = here("output", "simple_hp_acute.png"), bas
 
 hanta_hp <- ggplot() +
   geom_point(data = subset_hp %>%
-                   filter(family == "Hantaviridae"),
+                   filter(family == "Hantaviridae") %>% drop_na(assay_clean),
                  aes(x = prop_pos, y = virus_clean, colour = host_genus, size = log10(n_assayed)),
              position = position_jitter(width = NULL)) +
   guides(colour = "none") +
@@ -453,7 +465,8 @@ labelled_arena <-  subset_hp %>%
 
 mammarena_hp <- ggplot() +
   geom_point(data = subset_hp %>%
-               filter(family == "Arenaviridae"),
+               filter(family == "Arenaviridae") %>%
+               drop_na(assay_clean),
              aes(x = prop_pos, y = virus_clean, colour = host_genus, size = log10(n_assayed)),
              position = position_jitter(width = NULL)) +
   guides(colour = "none") +
@@ -479,61 +492,67 @@ mammarena_hp <- ggplot() +
 
 ggsave(plot = mammarena_hp, filename = here("output", "arenavirus_hp.png"), width = 12, height = 8)
 
+
+# Host ranges -------------------------------------------------------------
+
 examples <- c("Orthohantavirus sinnombreense", "Mammarenavirus lassaense")
 
 iucn_all <- vect(here("data", "iucn", "MAMMALS_TERRESTRIAL_ONLY.shp"))
 
-map_hp <- hp_df %>%
-  filter(path_combined %in% examples) %>%
-  group_by(path_combined) %>%
+map_hp <- combined_data$pathogen %>%
+  filter(str_detect(assay_clean, "PCR|Sequencing|Culture")) %>%
+  filter(virus_clean %in% examples) %>%
+  filter(!study_id %in% c("grant_52")) %>%
+  group_by(virus_clean) %>%
   group_split()
 
 hp_1_assays <- map_hp[[1]] %>%
-  group_by("sci_name" = host_clean) %>%
-  summarise(n_tested = sum(occurrenceRemarks),
-            n_positive = sum(organismQuantity)) %>%
-  arrange(-n_tested)
+  group_by(assay_clean, host_species, host_genus, decimalLatitude, decimalLongitude) %>%
+  summarise(n_assayed = sum(n_assayed, na.rm = TRUE),
+            n_positive = sum(n_positive, na.rm = TRUE)) %>%
+  arrange(-n_assayed)
 
-hp_1_ranges <- iucn_all[iucn_all$sci_name %in% hp_1_assays$sci_name] %>%
+hp_1_hosts <- hp_1_assays %>%
+  filter(n_positive >= 1) %>%
+  drop_na(host_species) %>%
+  pull(host_species) %>%
+  unique()
+
+hp_1_ranges <- iucn_all[iucn_all$sci_name %in% hp_1_hosts] %>%
   as_tibble(geom = "WKT") %>%
   select(sci_name, geometry) %>%
   drop_na(geometry) %>%
   vect(geom = "geometry", crs = "EPSG:4326")
 
 hp_1_points <- map_hp[[1]] %>%
-  distinct("sci_name" = associatedTaxa, occurrenceRemarks, organismQuantity, decimalLatitude, decimalLongitude) %>%
-  filter(organismQuantity >= 1) %>%
+  distinct(host_species, host_genus, n_assayed, n_positive, decimalLatitude, decimalLongitude) %>%
+  filter(n_positive >= 1) %>%
   vect(geom = c("decimalLongitude", "decimalLatitude"), crs = "EPSG:4326")
 
 plot_mammarena <- list()
 
-for(i in 1:length(unique(hp_1_points$sci_name))){
-  
-  species <- sort(unique(hp_1_points$sci_name))[i]
-  
-  species_points <- hp_1_points %>%
-    filter(sci_name == species)
-  
-  species_range <- hp_1_ranges %>%
-    filter(sci_name == species)
-  
-  extent <- ext(species_range)
-  
-  plot_mammarena <- ggplot() +
-    geom_spatvector(data = world_vect) +
-    geom_spatvector(data = species_range, fill = "red", alpha = 0.2) +
-    geom_spatvector(data = species_points, aes(colour = organismQuantity, size = occurrenceRemarks), alpha = 0.4) +
-    scale_size_area() +
-    scale_color_viridis_c() +
-    theme_minimal() +
-    labs(title = paste(species), 
-         colour = "Positive",
-         size = "Tested") +
-    coord_sf(xlim = extent[1:2], ylim = extent[3:4])
-  
-  ggsave(plot = plot_mammarena, filename = here("output", "sample_maps", "arenaviridae", paste0(species, ".png")), width = 6)
-  
-}
+species <- sort(unique(hp_1_points$host_species))
+
+species_points <- hp_1_points %>%
+  filter(host_species %in% species)
+
+species_range <- hp_1_ranges %>%
+  filter(sci_name %in% species)
+
+extent <- ext(species_range)
+
+plot_mammarena <- ggplot() +
+  geom_spatvector(data = world_shapefile) +
+  geom_spatvector(data = species_range, fill = "red", alpha = 0.2) +
+  geom_spatvector(data = species_points, aes(colour = ifelse(n_positive == 0, NA, n_positive), size = n_assayed), alpha = 0.4) +
+  scale_size_area() +
+  scale_color_viridis_c() +
+  theme_minimal() +
+  labs(title = "Mammarenavirus lassaense", 
+       colour = "Positive",
+       size = "Tested")
+
+ggsave(plot = plot_mammarena, filename = here("output", "sample_maps", "arenaviridae", "mammarenavirus_lassaense.png"), width = 6)
 
 
 hp_2_assays <- map_hp[[2]] %>%
@@ -568,9 +587,9 @@ for(i in 1:length(unique(hp_2_points$sci_name))){
   extent <- ext(species_range)
   
   plot_hantavir <- ggplot() +
-    geom_spatvector(data = world_vect) +
+    geom_spatvector(data = world_shapefile) +
     geom_spatvector(data = species_range, fill = "red", alpha = 0.2) +
-    geom_spatvector(data = species_points, aes(colour = organismQuantity, size = occurrenceRemarks), alpha = 0.4) +
+    geom_spatvector(data = species_points, aes(colour = n_positive, size = n_assayed), alpha = 0.4) +
     scale_size_area() +
     scale_color_viridis_c() +
     theme_minimal() +
@@ -582,3 +601,30 @@ for(i in 1:length(unique(hp_2_points$sci_name))){
   ggsave(plot = plot_hantavir, filename = here("output", "sample_maps", "hantaviridae", paste0(species, ".png")), width = 6)
   
 }
+
+
+# Sequences ---------------------------------------------------------------
+
+combined_data$sequences %>%
+  filter(sequenceType == "Pathogen") %>%
+  filter(!str_detect(virus_clean, "Aza")) %>%
+  distinct(accession_number, virus_clean) %>%
+  group_by(virus_clean) %>%
+  summarise(n = n()) %>%
+  arrange(-n) %>%
+  mutate(virus_clean = fct_inorder(virus_clean)) %>%
+  # Reverse the order of virus_clean to make labels match reversed stacking
+  mutate(virus_clean_rev = fct_rev(virus_clean)) %>%
+  # Calculate cumulative sum for each reversed level to position the label
+  mutate(cumsum_n = cumsum(n)) %>%
+  ggplot(aes(x = 1, y = n, fill = virus_clean_rev, alpha = n)) +  # Reverse the fill aesthetic to stack correctly
+  geom_col(position = "stack") +  # Create stacked bars
+  geom_label(aes(label = n, y = cumsum_n - n / 2), fill = "white") +  # Place labels in the middle of each segment
+  scale_fill_viridis_d(direction = -1) +  # Use a discrete color scale
+  scale_alpha_continuous(range = c(0.3, 1)) +
+  guides(fill = guide_legend(),
+         label = "none",
+         text = "none") +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y = element_blank())
+

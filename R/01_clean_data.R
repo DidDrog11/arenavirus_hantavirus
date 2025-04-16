@@ -11,10 +11,10 @@ clean_citations <- combined_data_v3$inclusion_full_text %>%
     combined_data_v3$studies %>%
       dplyr::select(study_id, full_text_id)), by = "full_text_id") %>%
   select(-any_of(c("study_id.x", "study_id.y"))) %>%
+  mutate(full_text_id = fct_inorder(full_text_id)) %>%
   relocate(study_id, .before = 1)
 
 extractions <- clean_citations %>%
-  mutate(full_text_id = fct(full_text_id)) %>%
   select(full_text_id, study_id, processed, decision, reason) %>%
   left_join(bind_rows(combined_data_v2$studies, combined_data_v3$studies) %>%
               mutate(full_text_id = fct(full_text_id)),
@@ -44,6 +44,13 @@ excluded <- extractions %>%
 no_extractions <- extractions %>%
   filter(!study_id %in% c(multiple_extractions$study_id, single_extractions$study_id)) %>%
   filter(!full_text_id %in% excluded$full_text_id)
+
+
+# Clean Descriptive -------------------------------------------------------
+
+descriptives_v2 <- combined_data_v2$studies
+
+descriptives_v3 <- combined_data_v3$studies
 
 # Clean Rodent sheet ------------------------------------------------------
 
@@ -76,6 +83,7 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                          str_detect(rodent_names, "Abrothrix olivacea|A olivaceus") ~ "Abrothrix olivaceus",
                          str_detect(rodent_names, "Aterelix albiventrix") ~ "Atelerix albiventrix",
                          str_detect(rodent_names, "A\\.? agrarius|Aoidemus agrarius|Apodeums agrarius|Apodumus agrarius") ~ "Apodemus agrarius",
+                         str_detect(rodent_names, "A\\.? niloticus|Arvicanthis dembeensis") ~ "Arvicanthis niloticus",
                          str_detect(rodent_names, "A\\.? amphibius") ~ "Arvicola amphibius",
                          str_detect(rodent_names, "A\\.? flavicollis|A flavocilis|Yellow-necked mouse|Apodemus flavicolis|Adodemus flavicollis|Apodeums flavicollis") ~ "Apodemus flavicollis",
                          str_detect(rodent_names, "Aoidemus peninsulae|Aoidmus peninsulae|Apodeums peninsulae|A peninsulae|Adodemus peninsulae") ~ "Apodemus peninsulae",
@@ -107,6 +115,7 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                          str_detect(rodent_names, "C\\.? musculinus") ~ "Calomys musculinus",
                          str_detect(rodent_names, "C\\.? callosus") ~ "Calomys callosus",
                          str_detect(rodent_names, "M\\.? nelsoni") ~ "Chaetodipus nelsoni",
+                         str_detect(rodent_names, "Crocidura barabensis") ~ "Cricetulus barabensis",
                          str_detect(rodent_names, "Crocidura oliveri") ~ "Crocidura olivieri",
                          str_detect(rodent_names, "Crocidura rusla") ~ "Crocidura russula",
                          str_detect(rodent_names, "Crocidura shauntungensis") ~ "Crocidura shantungensis",
@@ -138,12 +147,12 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                          str_detect(rodent_names, "M\\.? minutoides") ~ "Mus minutoides",
                          str_detect(rodent_names, "M\\.? musculus") ~ "Mus musculus",
                          str_detect(rodent_names, "M\\.? natalensis") ~ "Mastomys natalensis",
-                         str_detect(rodent_names, "Mastomys erythrileucus") ~ "Mastomys erythroleucus",
+                         str_detect(rodent_names, "Mastomys erythrileucus|M\\.? erythroleucus") ~ "Mastomys erythroleucus",
                          str_detect(rodent_names, "Microtus arvalis obscurus|M\\.? arvalis") ~ "Microtus arvalis",
                          str_detect(rodent_names, "Microtus fortis buchner") ~ "Microtus fortis",
                          str_detect(rodent_names, "Microtus guentheri lydius") ~ "Microtus guentheri",
                          str_detect(rodent_names, "Microtus liechtensterini") ~ "Microtus liechtensteini",
-                         str_detect(rodent_names, "Montane vole") ~ "Microtus montanus",
+                         str_detect(rodent_names, "Montane vole|M\\.? montanus") ~ "Microtus montanus",
                          str_detect(rodent_names, "Microtus obscuruc") ~ "Microtus obscurus",
                          str_detect(rodent_names, "M oeconomus") ~ "Microtus oeconomus",
                          str_detect(rodent_names, "Microtus rossiaemeridonalis") ~ "Microtus rossiaemeridionalis",
@@ -157,13 +166,14 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                          str_detect(rodent_names, "Myodes rufocanus bedfordiae|C rufocanus|M\\.? rufocanus") ~ "Myodes rufocanus",
                          str_detect(rodent_names, "Myodes rutilus mikado|C rutilus") ~ "Myodes rutilus",
                          str_detect(rodent_names, "Nannomys minutoides") ~ "Mus minutoides",
-                         str_detect(rodent_names, "Nannomys setulosus") ~ "Mus setulosus",
+                         str_detect(rodent_names, "Nannomys setulosus|Nannomys seulosus") ~ "Mus setulosus",
                          str_detect(rodent_names, "Muscardinus avellinarius") ~ "Muscardinus avellanarius",
                          str_detect(rodent_names, "Mustela nivales|Mustela nivalus") ~ "Mustela nivalis",
                          str_detect(rodent_names, "Neoromicia africanus") ~ "Pipistrellus nanus",
                          str_detect(rodent_names, "Neotoma montanus") ~ "Neotoma sp.",
+                         str_detect(rodent_names, "N\\.? stephensi") ~ "Neotoma stephensi",
                          str_detect(rodent_names, "N fodiens") ~ "Neomys fodiens",
-                         str_detect(rodent_names, "Niviventer cf. confucianus") ~ "Niviventer confucianus",
+                         str_detect(rodent_names, "Niviventer cf. confucianus|N\\.? confucianus") ~ "Niviventer confucianus",
                          str_detect(rodent_names, "Necromys lasirurus|N lasiurus") ~ "Necromys lasiurus",
                          str_detect(rodent_names, "N\\.? indica") ~ "Nesokia indica",
                          str_detect(rodent_names, "T\\.? quadrivittatus") ~ "Neotamias quadrivittatus",
@@ -174,7 +184,8 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                          str_detect(rodent_names, "N\\.? leucodon") ~ "Neotoma leucodon",
                          str_detect(rodent_names, "N\\.? micropus|N\\.? microtus") ~ "Neotoma micropus",
                          str_detect(rodent_names, "N\\.? mexican") ~ "Neotoma mexicana",
-                         str_detect(rodent_names, "Rattus fulvescens") ~ "Niviventer fulvescens",
+                         str_detect(rodent_names, "Rattus fulvescens|R\\.? fulvescens") ~ "Niviventer fulvescens",
+                         str_detect(rodent_names, "Rattus niviventer") ~ "Niviventer niviventer",
                          str_detect(rodent_names, "Oecomys speciousus") ~ "Oecomys speciosus",
                          str_detect(rodent_names, "Oligoryzomys albigularis") ~ "Nephelomys albigularis",
                          str_detect(rodent_names, "O\\.? delticola") ~ "Oligoryzomys delticola",
@@ -184,8 +195,10 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                          str_detect(rodent_names, "Oximycterus rutilans") ~ "Oxymycterus rutilans",
                          str_detect(rodent_names, "O\\.? nigripes|Ol. nigripes") ~ "Oligoryzomys nigripes",
                          str_detect(rodent_names, "Oligoyzomys microtis|Oligoryzomys mictrotis") ~ "Oligoryzomys microtis",
+                         str_detect(rodent_names, "Oryzomys grupo nitidus") ~ "Oryzomys capito",
                          str_detect(rodent_names, "O\\.? palustris|Rice rat|Oryzomys paulustris") ~ "Oryzomys palustris",
-                         str_detect(rodent_names, "Oryzomys grupo nitidus") ~ "Oryzomys nitidus",
+                         str_detect(rodent_names, "Oligoryzomys capito") ~ "Oryzomys nitidus",
+                         str_detect(rodent_names, "Oligoryzomys yunganus") ~ "Oryzomys yunganus",
                          str_detect(rodent_names, "O\\.? flavescens|Oi. flavescens|Oligoryzomysfulvescens|Oligoryzomys favescens|Oligoryomys falvescens") ~ "Oligoryzomys flavescens",
                          str_detect(rodent_names, "O\\.? chacoensis") ~ "Oligoryzomys chacoensis",
                          str_detect(rodent_names, "O longicaudatus") ~ "Oligoryzomys longicaudatus",
@@ -210,9 +223,13 @@ Peromycus manicalatus|P maiculatus|P maniculatis") ~ "Peromyscus maniculatus",
                          str_detect(rodent_names, "Peromyscus flavus") ~ "Perognathus flavus",
                          str_detect(rodent_names, "Praomys missonei") ~ "Praomys misonnei",
                          str_detect(rodent_names, "Phyllotic darwini") ~ "Phyllotis darwini",
+                         str_detect(rodent_names, "R\\.? gracilis") ~ "Reithrodontomys gracilis",
                          str_detect(rodent_names, "R\\.? megalotis") ~ "Reithrodontomys megalotis",
+                         str_detect(rodent_names, "R\\.? mexicanus") ~ "Reithrodontomys mexicanus",
+                         str_detect(rodent_names, "R\\.? mantanus") ~ "Reithrodontomys montanus",
                          str_detect(rodent_names, "R\\.? sumichrasti") ~ "Reithrodontomys sumichrasti",
                          str_detect(rodent_names, "Rattus edwardsi") ~ "Leopoldamys edwardsi",
+                         str_detect(rodent_names, "O\\.? rufus") ~ "Oxymycterus rufus",
                          str_detect(rodent_names, "R\\.? argentiventer|R argentiventer") ~ "Rattus argentiventer",
                          str_detect(rodent_names, "R\\.? exulans") ~ "Rattus exulans",
                          str_detect(rodent_names, "R\\.? losea|R losea") ~ "Rattus losea",
@@ -242,6 +259,7 @@ Peromycus manicalatus|P maiculatus|P maniculatis") ~ "Peromyscus maniculatus",
                          str_detect(rodent_names, "T\\.? elegans") ~ "Thylamys elegans",
                          str_detect(rodent_names, "Tamiascurus douglasii") ~ "Tamiasciurus douglasii",
                          str_detect(rodent_names, "Western harvest mouse") ~ "Reithrodontomys megalotis",
+                         str_detect(rodent_names, "Citellus undulatus") ~ "Urocitellus undulatus",
                          str_detect(rodent_names, "Urotrichis talpoides") ~ "Urotrichus talpoides",
                          str_detect(rodent_names, "Oligorysomys|Oligorysomys spp.") ~ "Oligoryzomys",
                          str_detect(rodent_names, "Zygogontomy s") ~ "Zygodontomys",
@@ -275,7 +293,7 @@ rodent_genus <- tibble(rodent_genus = c(str_split(unique(rodent_names$cleaned_ro
   distinct() %>%
   mutate(cleaned_rodent_genus = case_when(str_detect(rodent_genus, "Aeothomys") ~ "Aethomys",
                                   str_detect(rodent_genus, "Ammonospermophilus") ~ "Ammospermophilus",
-                                  str_detect(rodent_genus, "Apododemus") ~ "Apodemus",
+                                  str_detect(rodent_genus, "Apododemus|Apodemdus|Apodmus") ~ "Apodemus",
                                   str_detect(rodent_genus, "Arvincanthis") ~ "Arvicanthis",
                                   str_detect(rodent_genus, "Aterelix") ~ "Atelerix",
                                   str_detect(rodent_genus, "Baoimys|Biomys") ~ "Baiomys",
@@ -457,7 +475,7 @@ unmatched_genera <- combined_data_v3$host %>%
 
 higher_taxa <- unmatched_genera %>%
   distinct(scientificName) %>%
-  mutate(clean_higher_taxa = case_when(str_detect(scientificName, "Rodentia|\"Social Rat\"|Unknown") ~ "Rodentia",
+  mutate(clean_higher_taxa = case_when(str_detect(scientificName, "Rodentia|Rodentia sp.|\"Social Rat\"|Unknown") ~ "Rodentia",
                                        str_detect(scientificName, "Other") ~ "Mammalia",
                                        str_detect(scientificName, "Neotominae") ~ "Cricetidae",
                                        str_detect(scientificName, "Sciuridae|Scuirdae") ~ "Sciuridae",
@@ -924,14 +942,10 @@ pathogen_sequences_v3 <- combined_data_v3$sequence_data %>%
 
 host_sequences_v3 <-  combined_data_v3$sequence_data %>%
   filter(str_detect(sequenceType, "Host")) %>%
-  left_join(virus_names, by = c("scientificName" = "virus")) %>%
-  dplyr::select(sequence_record_id, associated_pathogen_record_id, associated_rodent_record_id, study_id, sequenceType, virus_clean, original_name = scientificName, accession_number) %>%
+  dplyr::select(sequence_record_id, associated_pathogen_record_id, associated_rodent_record_id, study_id, sequenceType, accession_number) %>%
   left_join(clean_host %>%
               dplyr::select(rodent_record_id, study_id, eventDate, species, host_genus = genus, gbif_id, coordinate_resolution, decimalLatitude, decimalLongitude),
-            by = c("associated_rodent_record_id" = "rodent_record_id", "study_id")) %>%
-  left_join(clean_pathogen %>%
-              dplyr::select(pathogen_record_id, study_id, n_assayed, n_positive, n_negative),
-            by = c("associated_pathogen_record_id" = "pathogen_record_id", "study_id"))
+            by = c("associated_rodent_record_id" = "rodent_record_id", "study_id"))
 
 clean_sequences_v3 <- bind_rows(pathogen_sequences_v3,
                                 host_sequences_v3) %>%
@@ -941,11 +955,46 @@ clean_sequences <- bind_rows(clean_sequences_v2,
                              clean_sequences_v3)
 
 
+# Add extraction descriptives ---------------------------------------------
+group_descriptives <- c("study_id", "full_text_id", "identifiedBy", "datasetName", "publication_year", "data",
+                        "sampling_effort", "data_access", "linked_manuscripts", "data_extractor", "data_checker",
+                        "notes", "source", "data_resolution")
+
+combined_descriptive <- bind_rows(descriptives_v2 %>%
+                                    mutate(source = "v2"),
+                                  descriptives_v3 %>%
+                                    mutate(source = "v3")) %>%
+  mutate(full_text_id = fct(full_text_id, levels = levels(clean_citations$full_text_id))) %>%
+  left_join(clean_host %>%
+              ungroup() %>%
+              select(rodent_record_id, study_id, species, individualCount), by = "study_id") %>%
+  group_by(across(any_of(group_descriptives))) %>%
+  summarise(n_rodent_records = n(),
+            n_rodent_species = length(unique(species)),
+            n_rodent_individuals = sum(individualCount, na.rm = TRUE),
+            .groups = "keep") %>%
+  left_join(clean_pathogen %>%
+              ungroup() %>%
+              select(pathogen_record_id, study_id, virus_clean, n_assayed, n_positive), by = "study_id") %>%
+  group_by(n_rodent_records, n_rodent_species, n_rodent_individuals, .add = TRUE) %>%
+  summarise(n_pathogen_records = n(),
+            n_pathogen_species = length(unique(virus_clean)),
+            n_assays = sum(n_assayed, na.rm = TRUE),
+            n_positive = sum(n_positive, na.rm = TRUE),
+            .groups = "keep") %>%
+  left_join(clean_sequences %>%
+              select(sequence_record_id, study_id, accession_number, sequenceType)) %>%
+  group_by(n_pathogen_records, n_pathogen_species, n_assays, .add = TRUE) %>%
+  summarise(n_sequence_records = sum(!is.na(accession_number)),
+            n_pathogen_sequences = sum(sequenceType == "Pathogen", na.rm = TRUE),
+            n_host_sequences = sum(sequenceType == "Host", na.rm = TRUE),
+            .groups = "keep")
+
 # Clean data --------------------------------------------------------------
 combined_data <- list(citations = clean_citations,
+                      descriptive = combined_descriptive,
                       host = clean_host,
                       pathogen = clean_pathogen,
                       sequences = clean_sequences)
-
 
 write_rds(combined_data, here("data", "clean_data", paste0(analysis_date, "_data.rds")))
