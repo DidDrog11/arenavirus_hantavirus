@@ -1,5 +1,5 @@
 source(here::here("R", "00_load_data.R"))
-combined_data <- read_rds(here("data", "clean_data", "2025-01-20_data.rds"))
+combined_data <- read_rds(here("data", "clean_data", "2025-03-05_data.rds"))
 
 # Additional packages
 pkgs <- c(
@@ -343,6 +343,27 @@ subset_hp <- unique_host %>%
          prop_pos = n_positive/n_assayed,
          assay_clean = case_when(str_detect(assay_clean, "PCR|Culture|Sequencing") ~ "Acute",
                                  str_detect(assay_clean, "Serology") ~ "Prior"))
+
+
+# For Ricardo -------------------------------------------------------------
+subset_hp_rr <- unique_host %>%
+  filter(taxonomic_level == "species") %>%
+  filter(!is.na(host_species)) %>%
+  filter(n_assayed >= 1) %>%
+  ungroup() %>%
+  rowwise() %>%
+  mutate(virus_clean = factor(virus_clean),
+         host_species = factor(host_species),
+         prop_pos = n_positive/n_assayed,
+         assay_clean = case_when(str_detect(assay_clean, "PCR|Culture|Sequencing") ~ "PCR, culture or sequencing",
+                                 str_detect(assay_clean, "Serology") ~ "Serology"))
+
+write_csv(subset_hp_rr, here("data", "data_outputs", "prevalence.csv"))
+
+# Continue HP -------------------------------------------------------------
+
+
+
 
 subset_hp$virus_clean <- fct_rev(fct_infreq(subset_hp$virus_clean))
 subset_hp$host_species <- fct_rev(fct_infreq(subset_hp$host_species))
