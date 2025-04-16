@@ -1145,3 +1145,118 @@ write.table(ft_295_seq_processed,
             here("data", "data_to_extract", "ft_295_sequences.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
 
 
+# ft_544 ------------------------------------------------------------------
+
+ft_544_supp <- read_csv(here("data", "data_to_extract", "ft_544_supp_2.csv")) %>%
+  mutate(ID = fct(ID),
+         CAPTURE_SESSION = as.integer(CAPTURE_SESSION),
+         GRID = fct(GRID),
+         DATE = as.Date(DATE, format = "%d/%m/%Y")) %>%
+  group_by(ID, CAPTURE_SESSION, GRID, HANTAVIRUS_INFECTION) %>%
+  summarise(eventDate = median(DATE),
+            n = 1)
+
+write.table(ft_544_supp,
+            here("data", "data_to_extract", "ft_544.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_545 ------------------------------------------------------------------
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(sf)
+
+ft_545_supp <- read_xlsx(here("data", "data_to_extract", "ft_545_data.xlsx")) %>%
+  mutate(eventDate = as.Date(`Collection date`),
+         country = "Tanzania",
+         verbatimLocality = `Grid / Site`,
+         decimalLatitude = as.numeric(Latitude),
+         decimalLongitude = as.numeric(Longitude),
+         gairo = case_when(str_detect(arenavirus, "Gairo") ~ 1,
+                               TRUE ~ 0),
+         morogoro =  case_when(str_detect(arenavirus, "Morogoro") ~ 1,
+                               TRUE ~ 0),
+         tested = case_when(str_detect(RT.PCR_blood_moroLprimers, "not") & str_detect(RT.PCR_blood_panarenavirusLprimers, "not") & str_detect(RT.PCR_kidney, "not") ~ 0,
+                            TRUE ~ 1),
+         cytb_accession = Mnatalensis_cytb_GenBank_AccesionNumber,
+         smcy_accession = Mnatalensis_smcy_GenBankAccession,
+         arena_l_accession = arenavirus_partialL_GenBank_AccesionNumber,
+         arena_np_accession = arenavirus_partialNP_GenBank_AccesionNumber,
+         arena_gpc_accession = arenavirus_partialGPC_GenBank_AccesionNumber) %>%
+  select(ID, Species, eventDate, Locality, country, verbatimLocality, decimalLatitude, decimalLongitude, tested, gairo, morogoro, arena_l_accession, arena_np_accession, arena_gpc_accession, cytb_accession, smcy_accession)
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+countries <- ft_545_supp %>% 
+  group_by(Locality) %>% 
+  summarise(lat = median(decimalLatitude, na.rm = TRUE), lon = median(decimalLongitude, na.rm = TRUE)) %>%
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>%
+  st_join(., world["name_long"])
+
+write.table(ft_545_supp,
+            here("data", "data_to_extract", "ft_545.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+ft_545_path <- ft_545_supp %>%
+  select(ID, tested, gairo, morogoro) %>%
+  mutate(associated_rodent_record = 45498:47190) %>%
+  pivot_longer(cols = c("gairo", "morogoro"), names_to = "pathogen", values_to = "positive") %>%
+  mutate(pathogen = fct(pathogen, levels = c("gairo", "morogoro"))) %>%
+  arrange(pathogen, associated_rodent_record) %>%
+  mutate(pathogen_record_id = 55949:59334) %>%
+  select(pathogen_record_id, associated_rodent_record, pathogen, tested, positive, ID)
+
+write.table(ft_545_path,
+            here("data", "data_to_extract", "ft_545_path.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+ft_545_seq <- ft_545_path %>%
+  select(ID, pathogen_record_id, associated_rodent_record, positive) %>%
+  left_join(ft_545_supp %>%
+              select(ID, contains("accession"))) %>%
+  pivot_longer(cols = contains("accession"), values_to = "accession", names_to = "type") %>%
+  mutate(type = fct(case_when(str_detect(type, "arena") ~ "Pathogen",
+                          TRUE ~ "Host"), levels = c("Pathogen", "Host"))) %>%
+  drop_na(accession) %>%
+  filter((type == "Pathogen" & positive == 1) | type == "Host") %>%
+  arrange(type, pathogen_record_id, associated_rodent_record)
+
+ft_545_path_seq <- ft_545_seq %>%
+  filter(type == "Pathogen")
+
+ft_545_host_seq <- ft_545_seq %>%
+  filter(type == "Host") %>%
+  distinct(ID, associated_rodent_record, type, accession)
+  
+write.table(ft_545_path_seq,
+            here("data", "data_to_extract", "ft_545_path_seq.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+write.table(ft_545_host_seq,
+            here("data", "data_to_extract", "ft_545_host_seq.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+# ft_586 ------------------------------------------------------------------
+
+ft_586 <- read_xlsx(here("data", "data_to_extract", "ft_586_path.xlsx")) %>%
+  mutate(year = as.numeric(str_extract(date, "\\d+")))
+
+ft_586_rodent <- ft_586 %>%
+  group_by(site, year, species) %>%
+  summarise(n = n())
+
+ft_586_pathogen <- ft_586 %>%
+  mutate(antibody = case_when(str_detect(ab, "\\+") ~ 1,
+                              TRUE ~ 0),
+         pcr = case_when(str_detect(rna, "\\+") ~ 1,
+                         TRUE ~ 0)) %>%
+  group_by(site, year, species) %>%
+  summarise(n = n(),
+            sum_ab = sum(antibody),
+            sum_pcr = sum(pcr)) %>%
+  ungroup() %>%
+  mutate(rodent_id = 48155:48167,
+         path_id = 60421:60433) %>%
+  select(rodent_id, path_id, year, species, site) %>%
+  full_join(ft_586 %>%
+              select(year, species, site, virus_seg, cytb, virus),
+            by = c("year", "species", "site"))
+
+write.table(ft_586_pathogen,
+            here("data", "data_to_extract", "ft_586_seq.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
