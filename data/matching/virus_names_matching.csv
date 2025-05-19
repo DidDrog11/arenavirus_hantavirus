@@ -2,27 +2,27 @@ virus,clean_name,taxonomic_level,virus_1,virus_2,virus_3,virus_4,virus_5,virus_6
 1 Guanarito virus/1 Pirital virus,Mammarenavirus,genus,Guanarito virus,Pirital virus,NA,NA,NA,NA,NA,NA,NA,NA,NA
 AMRV (Amur Virus),Orthohantavirus hantanense,species,Amur virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 ANDV,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-ANDV/SNV,Orthohantavirus,genus,Orthohantavirus andesense,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+ANDV/SNV,Orthohantavirus,genus,Orthohantavirus andesense,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Adler virus,Orthohantavirus tulaense,species,Adler hantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Allpahuayo Virus,Mammarenavirus allpahuayoense,species,Mammarenavirus allpahuayoense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Altai orthohantavirus,Altai virus,species,Altai orthohantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Alto Paraguay Strain SNV,Alto Paraguay hantavirus,species,Alto Paraguay hantavirus,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Amga orthohantvirus,Amga orthohantavirus,species,Amga orthohantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Amga virus,Amga orthohantavirus,species,Amga orthohantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Alto Paraguay Strain SNV,Alto Paraguay hantavirus,species,Alto Paraguay hantavirus,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Amga orthohantvirus,Orthohantavirus seewisense,species,Orthohantavirus seewisense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Amga virus,Orthohantavirus seewisense,species,Orthohantavirus seewisense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Amur virus,Orthohantavirus hantanense,species,Amur virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Andes Virus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Andes hantavirus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Andes orthohantavirus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Andes virus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Andes/SNV,Orthohantavirus,genus,Orthohantavirus andesense,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Andes/SNV,Orthohantavirus,genus,Orthohantavirus andesense,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Anjozorobe virus,Orthohantavirus thailandense,species,Orthohantavirus thailandense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Anjozorobe�virus,Orthohantavirus thailandense,species,Orthohantavirus thailandense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Ape Aime-Itapua Strain SNV,Ape Aime-Itapua virus,species,Ape Aime-Itapua virus,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ape Aime-Itapua Strain SNV,Ape Aime-Itapua virus,species,Ape Aime-Itapua virus,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Ape Aime-Itapua virus,Ape Aime-Itapua virus,species,Ape Aime-Itapua virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Apore Virus,Mammarenavirus aporeense,species,Mammarenavirus aporeense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Araraquara Virus,Araraquara virus,species,Araraquara virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Araraquara hantavirus,Araraquara virus,species,Araraquara virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Araraquara virus,Araraquara virus,species,Araraquara virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Araraquara Virus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Araraquara hantavirus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Araraquara virus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Araucaria Virus,Araucaria virus,species,Araucaria virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Arenaviridae,Arenaviridae,family,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Asama Virus,Orthohantavirus asamaense,species,Orthohantavirus asamaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -41,17 +41,17 @@ Bartonella taylorii,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Bayou Virus,Orthohantavirus bayoui,species,Orthohantavirus bayoui,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Bayou orthohantavirus,Orthohantavirus bayoui,species,Orthohantavirus bayoui,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Berega mammarenavirus,Berega mammarenavirus,species,Berega mammarenavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Bermejo virus,Bermejo virus,species,Bermejo virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Bermejo-Neembucu Strain SNV,Bermejo virus,species,Bermejo virus,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Bermejo virus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Bermejo-Neembucu Strain SNV,Orthohantavirus andesense,species,Orthohantavirus andesense,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Bitu virus,Mammarenavirus bituense,species,Mammarenavirus bituense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Black Canal Creek Virus,Orthohantavirus nigrorivense,species,Orthohantavirus nigrorivense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Blue River virus,Blue River virus,species,Blue River virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Blue River virus,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Boginia virus,Boginia virus,species,Boginia virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Borrelia afzelii,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Borrelia garinii,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CADV,Orthohantavirus delgaditoense,species,Orthohantavirus delgaditoense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CADV/MAPV,Orthohantavirus,genus,Orthohantavirus delgaditoense,Orthohantavirus maporalense,NA,NA,NA,NA,NA,NA,NA,NA,NA
-CASV,CASV,species,CASV,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CASV,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CPXV,Cowpox virus,species,Cowpox virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CTNV,Catarina virus,species,Catarina virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Calabazo virus,Calabazo virus,species,Calabazo virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -60,7 +60,7 @@ Catarina virus,Catarina virus,species,Catarina virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,
 Chapare mammarenavirus,Mammarenavirus chapareense,species,Mammarenavirus chapareense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Choclo virus,Orthohantavirus chocloense,species,Orthohantavirus chocloense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Ciao Bang Virus,Orthohantavirus caobangense,species,Orthohantavirus caobangense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Convict Creek Virus,Orthohantavirus sinnombrense,species,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Convict Creek Virus,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 DBSV,Orthohantavirus dabieshanense,species,Orthohantavirus dabieshanense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 DOBV,Orthohantavirus dobravaense,species,Orthohantavirus dobravaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 DOBV/PUUV,Orthohantavirus,genus,Orthohantavirus dobravaense,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -75,8 +75,8 @@ Dubrova-Belgrade orthohantavirus,Orthohantavirus dobravaense,species,Orthohantav
 ELMCV,Orthohantavirus moroense,species,Orthohantavirus moroense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Easter/Western Hauntaviruse Serotypes,Orthohantavirus,genus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 El Choclo virus,Orthohantavirus chocloense,species,Orthohantavirus chocloense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-El Moro Canyon Virus/SNV Antigen,Orthohantavirus,genus,Orthohantavirus moroense,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Four Corners Virus (SNV),Orthohantavirus sinnombrense,species,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+El Moro Canyon Virus/SNV Antigen,Orthohantavirus,genus,Orthohantavirus moroense,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Four Corners Virus (SNV),Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Fugong virus,Orthohantavirus fugongense,species,Orthohantavirus fugongense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Gairo virus,Mammarenavirus gairoense,species,Mammarenavirus gairoense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Gou Virus,Gou virus,species,Gou virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -86,15 +86,15 @@ Guanarito/Pichinde Virus,Mammarenavirus,genus,Mammarenavirus guanaritoense,Mamma
 HNTV,Orthohantavirus hantanense,species,Orthohantavirus hantanense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 HNTV/PUUV,Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 HNTV/SEOV/DBSV,Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus seoulense,Orthohantavirus dabieshanense,NA,NA,NA,NA,NA,NA,NA,NA
-HOKV,Hokkaido virus,species,Hokkaido virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+HOKV,Orthohantavirus puumalaense,species,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 HTNV,Orthohantavirus hantanense,species,Orthohantavirus hantanense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 HTNV spp.,Orthohantavirus hantanense,species,Orthohantavirus hantanense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "HTNV, SEOV",Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus seoulense,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"HTNV, SNV, PUUV, DOBV, SEOV, SAAV",Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus sinnombrense,Orthohantavirus puumalaense,Orthohantavirus dobravaense,Orthohantavirus seoulense,Kurkino virus,NA,NA,NA,NA,NA
+"HTNV, SNV, PUUV, DOBV, SEOV, SAAV",Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus sinnombreense,Orthohantavirus puumalaense,Orthohantavirus dobravaense,Orthohantavirus seoulense,Orthohantavirus dobravaense,NA,NA,NA,NA,NA
 HTNV/PUUV/DOBV,Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus puumalaense,Orthohantavirus dobravaense,NA,NA,NA,NA,NA,NA,NA,NA
 HTNV/SEO/PUUV,Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus seoulense,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA
 HTNV/SEOV,Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus seoulense,NA,NA,NA,NA,NA,NA,NA,NA,NA
-HTNV/SEOV/DOBV/SNV,Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus seoulense,Orthohantavirus dobravaense,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA
+HTNV/SEOV/DOBV/SNV,Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus seoulense,Orthohantavirus dobravaense,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA
 HTNV/SEOV/Eothenomys miletus hantavirus LX309,Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus seoulense,Orthohantavirus luxiense,NA,NA,NA,NA,NA,NA,NA,NA
 HTNV/SEOV/Eothenomys miletus hantavirus LX310,Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus seoulense,Orthohantavirus luxiense,NA,NA,NA,NA,NA,NA,NA,NA
 HTNV/SEOV/Eothenomys miletus hantavirus LX311,Orthohantavirus,genus,Orthohantavirus hantanense,Orthohantavirus seoulense,Orthohantavirus luxiense,NA,NA,NA,NA,NA,NA,NA,NA
@@ -121,11 +121,11 @@ Hantavirus,Orthohantavirus,genus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Hantavirus Antigen,Orthohantavirus,genus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Hantavirus Oln6469,Orthohantavirus,genus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Hantavirus Oln6470,Orthohantavirus,genus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Hokkaido Virus,Hokkaido virus,species,Hokkaido virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hokkaido Virus,Orthohantavirus puumalaense,species,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Imjin virus,Thottimvirus imjinense,species,Thottimvirus imjinense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Isla Vista Virus,Isla Vista hantavirus,species,Isla Vista hantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Isla Vista virus,Isla Vista hantavirus,species,Isla Vista hantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Itapua Strain SNV,Itapua hantavirus,species,Itapua hantavirus,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Itapua Strain SNV,Itapua hantavirus,species,Itapua hantavirus,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 JABV,Jabora virus,species,Jabora virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 JMSV/AARV,Orthohantavirus,genus,Jemez Springs virus,Ash River virus,NA,NA,NA,NA,NA,NA,NA,NA,NA
 JUNV,Mammarenavirus juninense,species,Mammarenavirus juninense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -145,13 +145,13 @@ Juquitiba virus,Juquitiba virus,species,Juquitiba virus,NA,NA,NA,NA,NA,NA,NA,NA,
 Juquitibia Virus,Juquitiba virus,species,Juquitiba virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Juquitibia Virus/Araraquara Virus,Orthohantavirus,genus,Juquitiba virus,Araraquara virus,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Jurong Virus,Orthohantavirus,genus,Hantavirus Jurong,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-KKMV,Kurkino virus,species,Kurkino virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KKMV,Orthohantavirus dobravaense,species,Orthohantavirus dobravaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Kielder orthohantavirus,Kielder hantavirus,species,Kielder hantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Kitale virus,Mammarenavirus kitaleense,species,Mammarenavirus kitaleense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Kodoko virus,Kodoko virus,species,Kodoko virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Korean Haemorrhagic Fever Virus/HTNV,Orthohantavirus hantanense,species,Orthohantavirus hantanense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Kurkino,Kurkino virus,species,Kurkino virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Kurkino virus,Kurkino virus,species,Kurkino virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Kurkino,Orthohantavirus dobravaense,species,Orthohantavirus dobravaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Kurkino virus,Orthohantavirus dobravaense,species,Orthohantavirus dobravaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Kwanza virus,Mammarenavirus kwanzaense,species,Mammarenavirus kwanzaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 LASV,Mammarenavirus lassaense,species,Mammarenavirus lassaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 LASV/Gbagroube virus/Menekre virus/Mopeia virus/Mobala virus/Ippy virus/Merino walk virus/LCMV/Kodoko virus/Lujo virus/Mafiga mammarenavirus,Mammarenavirus,genus,Mammarenavirus lassaense,Gbagroube virus,Menekre virus,Mammarenavirus mopeiaense,Mammarenavirus praomyidis,Mammarenavirus ippyense,Mammarenavirus merinoense,Mammarenavirus choriomeningitidis,Kodoko virus,Mammarenavirus lujoense,Mafiga mammarenavirus
@@ -159,8 +159,8 @@ LASV/Mozambique virus/LCMV,Mammarenavirus,genus,Mammarenavirus lassaense,Mammare
 LCMV,Mammarenavirus choriomeningitidis,species,Mammarenavirus choriomeningitidis,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "LCMV, Pachinde virus, Tacaribe virus, LASV, Ippy virus, Mobala virus, Mopeia virus",Mammarenavirus,genus,Mammarenavirus choriomeningitidis,Pichinde virus,Mammarenavirus tacaribeense,Mammarenavirus lassaense,Mammarenavirus ippyense,Mammarenavirus praomyidis,Mammarenavirus mopeiaense,NA,NA,NA,NA
 LCMV/Junin/Tamiami,Mammarenavirus,genus,Mammarenavirus choriomeningitidis,Mammarenavirus juninense,Mammarenavirus tamiamiense,NA,NA,NA,NA,NA,NA,NA,NA
-LECV,Lechiguanas virus,species,Lechiguanas virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-LSCV,Limestone Canyon virus,species,Limestone Canyon virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+LECV,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+LSCV,Orthohantavirus montanoense,species,Orthohantavirus montanoense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Laguna Negra Virus,Orthohantavirus negraense,species,Orthohantavirus negraense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Laguna Negra virus,Orthohantavirus negraense,species,Orthohantavirus negraense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Laguna Negra virus.,Orthohantavirus negraense,species,Orthohantavirus negraense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -169,11 +169,11 @@ Lassa mammarenaviridae,Mammarenavirus lassaense,species,Mammarenavirus lassaense
 Lassa mammarenavirus,Mammarenavirus lassaense,species,Mammarenavirus lassaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Lassavirus,Mammarenavirus lassaense,species,Mammarenavirus lassaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Latino mammarenavirus,Mammarenavirus latinum,species,Mammarenavirus latinum,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Lechiguanas Virus,Lechiguanas virus,species,Lechiguanas virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lechiguanas Virus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Leptospira spp.,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Leptospriosa interrogans,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Limestone Canyon Virus,Limestone Canyon virus,species,Limestone Canyon virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Limestone Canyon virus,Limestone Canyon virus,species,Limestone Canyon virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Limestone Canyon Virus,Orthohantavirus montanoense,species,Orthohantavirus montanoense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Limestone Canyon virus,Orthohantavirus montanoense,species,Orthohantavirus montanoense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Ljungan virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Lohja virus,Lohja virus,species,Lohja virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Luna Virus,Mammarenavirus lunaense,species,Mammarenavirus lunaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -184,8 +184,8 @@ Lymphocytic choriomeningitis virus,Mammarenavirus choriomeningitidis,species,Mam
 MJNV,Thottimvirus imjinense,species,Thottimvirus imjinense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 MOPV,Mammarenavirus mopeiaense,species,Mammarenavirus mopeiaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 MPRV,Middle Pease River virus,species,Middle Pease River virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Maciel hantavirus,Maciel virus,species,Maciel virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Maciel virus,Maciel virus,species,Maciel virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Maciel hantavirus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Maciel virus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Malacky Virus,Malacky virus,species,Malacky virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Mammarenaviridae,Mammarenavirus,genus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Mammarenavirus bearense,Mammarenavirus bearense,species,Mammarenavirus bearense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -210,12 +210,12 @@ Mopeia Virus,Mammarenavirus mopeiaense,species,Mammarenavirus mopeiaense,NA,NA,N
 Mopeia mammarenavirus,Mammarenavirus mopeiaense,species,Mammarenavirus mopeiaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Morogoro arenavirus,Morogoro mammarenavirus,species,Morogoro mammarenavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Morogoro virus,Morogoro mammarenavirus,species,Morogoro mammarenavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Muju Virus,Muju virus,species,Muju virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Muju virus,Muju virus,species,Muju virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Muju Virus,Orthohantavirus puumalaense,species,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Muju virus,Orthohantavirus puumalaense,species,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Muleshoe Virus,Muleshoe hantavirus,species,Muleshoe hantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 N/A,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Necocli virus,Orthohantavirus necocliense,species,Orthohantavirus necocliense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-New York Virus,New York hantavirus,species,New York hantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+New York Virus,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Ngerengere mammarenavirus,Ngerengere mammarenavirus,species,Ngerengere mammarenavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 North American arenavirus,Mammarenavirus whitewaterense,species,Mammarenavirus whitewaterense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Nova Virus (NVAV),Mobatvirus novaense,species,Mobatvirus novaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -223,8 +223,8 @@ Oliveros Virus,Mammarenavirus oliverosense,species,Mammarenavirus oliverosense,N
 Oran virus,Oran virus,species,Oran virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Orthohantavirus,Orthohantavirus,genus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Orthohantavirus,Orthohantavirus,genus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Orthohantavirus andasense (Lechiguanas),Lechiguanas virus,species,Lechiguanas virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Orthohantavirus andasense (Pergamino),Pergamino virus,species,Pergamino virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Orthohantavirus andasense (Lechiguanas),Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Orthohantavirus andasense (Pergamino),Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Orthohantavirus andesense,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Orthohantavirus asikkalaense,Orthohantavirus asikkalaense,species,Orthohantavirus asikkalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Orthohantavirus bayoui,Orthohantavirus bayoui,species,Orthohantavirus bayoui,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -240,7 +240,7 @@ Orthohantavirus rockportense,Orthohantavirus rockportense,species,Orthohantaviru
 Orthohantavirus sangassouense,Orthohantavirus sangassouense,species,Orthohantavirus sangassouense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Orthohantavirus seewisense,Orthohantavirus seewisense,species,Orthohantavirus seewisense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Orthohantavirus seoulense,Orthohantavirus seoulense,species,Orthohantavirus seoulense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Orthohantavirus sinnombrense,Orthohantavirus sinnombrense,species,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Orthohantavirus sinnombrense,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Orthohantavirus tatenalense,Orthohantavirus tatenalense,species,Orthohantavirus tatenalense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Orthohantavirus tigrayense,Orthohantavirus tigrayense,species,Orthohantavirus tigrayense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Orthohantavirus tulaense,Orthohantavirus tulaense,species,Orthohantavirus tulaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -250,15 +250,15 @@ PUUV (BAWA strain),Orthohantavirus puumalaense,species,Orthohantavirus puumalaen
 PUUV (SOT strain),Orthohantavirus puumalaense,species,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 PUUV (VRA strain),Orthohantavirus puumalaense,species,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 PUUV+SEOV,Orthohantavirus,genus,Orthohantavirus puumalaense,Orthohantavirus seoulense,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"PUUV, TULV, SNV, ANDV",Orthohantavirus,genus,Orthohantavirus puumalaense,Orthohantavirus tulaense,Orthohantavirus sinnombrense,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA
+"PUUV, TULV, SNV, ANDV",Orthohantavirus,genus,Orthohantavirus puumalaense,Orthohantavirus tulaense,Orthohantavirus sinnombreense,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA
 PUUV/DOBV,Orthohantavirus,genus,Orthohantavirus puumalaense,Orthohantavirus dobravaense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 PUUV/HTNV,Orthohantavirus,genus,Orthohantavirus puumalaense,Orthohantavirus hantanense,NA,NA,NA,NA,NA,NA,NA,NA,NA
-PUUV/SAAV,Orthohantavirus,genus,Orthohantavirus puumalaense,Kurkino virus,NA,NA,NA,NA,NA,NA,NA,NA,NA
-PUUV/SNV,Orthohantavirus,genus,Orthohantavirus puumalaense,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+PUUV/SAAV,Orthohantavirus,genus,Orthohantavirus puumalaense,Orthohantavirus dobravaense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+PUUV/SNV,Orthohantavirus,genus,Orthohantavirus puumalaense,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 PUUV/TULV,Orthohantavirus,genus,Orthohantavirus puumalaense,Orthohantavirus tulaense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Patawa virus,Patawa virus,species,Patawa virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Pergamino Virus,Pergamino virus,species,Pergamino virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Pergamino virus,Pergamino virus,species,Pergamino virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pergamino Virus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pergamino virus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Pinhal virus,Pinhal virus,species,Pinhal virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Pirital virus,Pirital virus,species,Pirital virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Poliovirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -283,11 +283,11 @@ Puumala orthohantavirus (JA6557KTF159),Orthohantavirus puumalaense,species,Ortho
 Puumala orthohantavirus (UA1818B74),Orthohantavirus puumalaense,species,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Puumala orthohantavirus Hokkaido strain,Orthohantavirus puumalaense,species,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Puumala virus,Orthohantavirus puumalaense,species,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Puumala virus/Saaremaa virus,Orthohantavirus,genus,Orthohantavirus puumalaense,Kurkino virus,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Puumala virus/Saaremaa virus,Orthohantavirus,genus,Orthohantavirus puumalaense,Orthohantavirus dobravaense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Rat hepatitits E virus,Rocahepevirus ratti,species,Rocahepevirus ratti,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Rio Mamore Virus,Rio Mamore hantavirus,species,Rio Mamore hantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Rio Mamore hantavirus,Rio Mamore hantavirus,species,Rio Mamore hantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Rio Mamore virus,Rio Mamore hantavirus,species,Rio Mamore hantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rio Mamore Virus,Orthohantavirus mamorense,species,Orthohantavirus mamorense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rio Mamore hantavirus,Orthohantavirus mamorense,species,Orthohantavirus mamorense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rio Mamore virus,Orthohantavirus mamorense,species,Orthohantavirus mamorense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 RtAa-HV/SD2016,Orthohantavirus,genus,RtAa-HV/SD2016,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 RtAp-HV/JL2014,Orthohantavirus,genus,RtAp-HV/JL2014,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 RtCe-HV/NX2015,Orthohantavirus,genus,RtCe-HV/NX2015,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -306,20 +306,20 @@ RtRn-AreV/YN2014,Orthohantavirus,genus,RtRn-AreV/YN2014,NA,NA,NA,NA,NA,NA,NA,NA,
 RtRn-AreV/ZJ2016,Orthohantavirus,genus,RtRn-AreV/ZJ2016,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 RtRn-HV/GD2015,Orthohantavirus,genus,RtRn-HV/GD2015,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Rusne orthohantavirus,Rusne orthohantavirus,species,Rusne orthohantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Río Mamoré virus,Rio Mamore hantavirus,species,Rio Mamore hantavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-SAAV,Kurkino virus,species,Kurkino virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Río Mamoré virus,Orthohantavirus mamorense,species,Orthohantavirus mamorense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+SAAV,Orthohantavirus dobravaense,species,Orthohantavirus dobravaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 SEOV,Orthohantavirus seoulense,species,Orthohantavirus seoulense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 SEOV (Tchoupitoulas Variant),Orthohantavirus seoulense,species,Orthohantavirus seoulense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 SEOV/DOBV/PUUV,Orthohantavirus,genus,Orthohantavirus seoulense,Orthohantavirus dobravaense,Orthohantavirus puumalaense,NA,NA,NA,NA,NA,NA,NA,NA
 SEOV/HTNV,Orthohantavirus,genus,Orthohantavirus seoulense,Orthohantavirus hantanense,NA,NA,NA,NA,NA,NA,NA,NA,NA
-SNV,Orthohantavirus sinnombrense,species,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-SNV-Antigen,Orthohantavirus sinnombrense,species,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-SNV/ELMCV/LCV/BCCV/NYV,Orthohantavirus,genus,Orthohantavirus sinnombrense,Orthohantavirus moroense,Limestone Canyon virus,New York hantavirus,NA,NA,NA,NA,NA,NA,NA
-SNV/Hantavirus,Orthohantavirus,genus,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-SNV/MTNV,Orthohantavirus,genus,Orthohantavirus sinnombrense,Orthohantavirus montanoense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+SNV,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+SNV-Antigen,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+SNV/ELMCV/LCV/BCCV/NYV,Orthohantavirus,genus,Orthohantavirus sinnombreense,Orthohantavirus moroense,Orthohantavirus montanoense,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA
+SNV/Hantavirus,Orthohantavirus,genus,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+SNV/MTNV,Orthohantavirus,genus,Orthohantavirus sinnombreense,Orthohantavirus montanoense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 SOEV,Orthohantavirus seoulense,species,Orthohantavirus seoulense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 SWSV,Orthohantavirus seewisense,species,Orthohantavirus seewisense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Saaremaa orthohantavirus,Kurkino virus,species,Kurkino virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Saaremaa orthohantavirus,Orthohantavirus dobravaense,species,Orthohantavirus dobravaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Sangoussou virus,Orthohantavirus sangassouense,species,Orthohantavirus sangassouense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Seewis Virus,Orthohantavirus seewisense,species,Orthohantavirus seewisense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Seewis orhtohantavirus,Orthohantavirus seewisense,species,Orthohantavirus seewisense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -330,16 +330,16 @@ Seoul hantavirus,Orthohantavirus seoulense,species,Orthohantavirus seoulense,NA,
 Seoul orthohantavirus,Orthohantavirus seoulense,species,Orthohantavirus seoulense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Seoul virus,Orthohantavirus seoulense,species,Orthohantavirus seoulense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Seoul-like,Orthohantavirus,genus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Serang virus,Serang virus,species,Serang virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Serang virus,Orthohantavirus thailandense,species,Orthohantavirus thailandense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Shrew-HV/SX2014,Orthohantavirus,genus,Shrew-HV/SX2014,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Shrew-HV/Tibet2014,Orthohantavirus,genus,Shrew-HV/Tibet2014,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Sin Nombre Orthohantavirus,Orthohantavirus sinnombrense,species,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Sin Nombre Virus,Orthohantavirus sinnombrense,species,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Sin Nombre hantavirus,Orthohantavirus sinnombrense,species,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Sin Nombre orthohantavirus,Orthohantavirus sinnombrense,species,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Sin Nombre virus,Orthohantavirus sinnombrense,species,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sin Nombre Orthohantavirus,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sin Nombre Virus,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sin Nombre hantavirus,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sin Nombre orthohantavirus,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sin Nombre virus,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Songea mammarenavirus,Songea mammarenavirus,species,Songea mammarenavirus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Sweetwater Canyon Virus,Orthohantavirus sinnombrense,species,Orthohantavirus sinnombrense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sweetwater Canyon Virus,Orthohantavirus sinnombreense,species,Orthohantavirus sinnombreense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 THAIV,Orthohantavirus thailandense,species,Orthohantavirus thailandense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 THAIV (Thailand Virus),Orthohantavirus thailandense,species,Orthohantavirus thailandense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 TPMV,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -358,23 +358,23 @@ Thailand orthohantavirus Anjo strain,Orthohantavirus thailandense,species,Orthoh
 Thottapalayam Virus,Thottimvirus thottapalayamense,species,Thottimvirus thottapalayamense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Thottapalayam virus,Thottimvirus thottapalayamense,species,Thottimvirus thottapalayamense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Tigray Orthohantavirus,Orthohantavirus tigrayense,species,Orthohantavirus tigrayense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Topografov Virus,Topografov virus,species,Topografov virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Topografov Virus,Orthohantavirus khabarovskense,species,Orthohantavirus khabarovskense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Tula Virus,Orthohantavirus tulaense,species,Orthohantavirus tulaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Tula Virus Antigen,Orthohantavirus tulaense,species,Orthohantavirus tulaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Tula orthohantavirus,Orthohantavirus tulaense,species,Orthohantavirus tulaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Tula orthohantavirus (Moravia strain),Orthohantavirus tulaense,species,Orthohantavirus tulaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Tula orthohantavirus (Thuringia strain),Orthohantavirus tulaense,species,Orthohantavirus tulaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Tula virus,Orthohantavirus tulaense,species,Orthohantavirus tulaense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Tunari Virus,Tunari virus,species,Tunari virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Vladivostock virus,Vladivostok virus,species,Vladivostok virus,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Tunari Virus,Orthohantavirus andesense,species,Orthohantavirus andesense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Vladivostock virus,Orthohantavirus khabarovskense,species,Orthohantavirus khabarovskense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 WENV,Mammarenavirus wenzhouense,species,Mammarenavirus wenzhouense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-WWA and AMA,Orthohantavirus,genus,Mammarenavirus whitewaterense,Mammarenavirus amapariense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+WWA and AMA,Mammarenavirus,genus,Mammarenavirus whitewaterense,Mammarenavirus amapariense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 WWAV,Mammarenavirus whitewaterense,species,Mammarenavirus whitewaterense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-WWAV/AMAV,Orthohantavirus,genus,Mammarenavirus whitewaterense,Mammarenavirus amapariense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+WWAV/AMAV,Mammarenavirus,genus,Mammarenavirus whitewaterense,Mammarenavirus amapariense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Wenzhou Virus,Mammarenavirus wenzhouense,species,Mammarenavirus wenzhouense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Wenzhou virus,Mammarenavirus wenzhouense,species,Mammarenavirus wenzhouense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Whitewater Arroyo Virus,Mammarenavirus whitewaterense,species,Mammarenavirus whitewaterense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-Whitewater Arroyo Virus/Amapari Virus,Orthohantavirus,genus,Mammarenavirus whitewaterense,Mammarenavirus amapariense,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Whitewater Arroyo Virus/Amapari Virus,Mammarenavirus,genus,Mammarenavirus whitewaterense,Mammarenavirus amapariense,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Whitewater Arroyo mammarenavirus,Mammarenavirus whitewaterense,species,Mammarenavirus whitewaterense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Whitewater Arroyo virus,Mammarenavirus whitewaterense,species,Mammarenavirus whitewaterense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Whitewater arroyo Virus (WWA),Mammarenavirus whitewaterense,species,Mammarenavirus whitewaterense,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA

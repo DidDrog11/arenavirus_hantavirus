@@ -27,7 +27,7 @@ n_rodent_records <- combined_data$host %>%
 n_rodents_sampled <- sum(combined_data$host$individualCount, na.rm = TRUE)
 
 distinct_locations <- combined_data$host %>%
-  distinct(decimalLatitude, decimalLongitude) %>%
+  distinct(decimalLatitude, decimalLongitude, eventDate) %>%
   drop_na() %>%
   nrow()
 
@@ -49,7 +49,6 @@ n_path_host_sequences <- combined_data$sequences %>%
 n_host_sequences <- combined_data$sequences %>%
   filter(sequenceType == "Host") %>%
   filter(!is.na(associated_pathogen_record_id) | !is.na(associated_rodent_record_id))
-
 
 combined_data$descriptive %>%
   ungroup() %>%
@@ -317,10 +316,8 @@ study_countries <- combined_data$host %>%
   summarise(n = n())
 
 study_map <- ggplot() + 
+  geom_sf(data = st_as_sf(world_shapefile)) +
   geom_sf(data = st_as_sf(world_shapefile) %>%
-            st_transform(crs = st_crs("+proj=aeqd +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs"))) +
-  geom_sf(data = st_as_sf(world_shapefile) %>%
-            st_transform(crs = st_crs("+proj=aeqd +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs")) %>%
             left_join(study_countries, by = c("GID_0" = "iso3")) %>%
             drop_na(n), aes(fill = n)) +
   scale_fill_viridis_c() +
@@ -330,6 +327,25 @@ study_map <- ggplot() +
        fill = "Number of publications")
 
 save_plot(study_map, filename = here("output", "study_map.png"), base_width = 8, base_height = 8)
+
+
+# Harmonising data --------------------------------------------------------
+nrow(rodent_names)
+n_species <- combined_data$host %>%
+  ungroup() %>%
+  drop_na(species) %>%
+  distinct(species)
+n_genera <- combined_data$host %>%
+  ungroup() %>%
+  drop_na(genus) %>%
+  distinct(genus)
+
+nrow(virus_mapping)
+n_viruses <- combined_data$pathogen %>%
+  ungroup() %>%
+  filter(taxonomic_level == "species") %>%
+  distinct(virus_clean)
+
 
 # H-P associations in data ------------------------------------------------
 library(ggrepel)
@@ -374,9 +390,6 @@ write_csv(subset_hp_rr, here("data", "data_outputs", "prevalence.csv"))
 
 # Continue HP -------------------------------------------------------------
 
-
-
-
 subset_hp$virus_clean <- fct_rev(fct_infreq(subset_hp$virus_clean))
 subset_hp$host_species <- fct_rev(fct_infreq(subset_hp$host_species))
 
@@ -390,22 +403,67 @@ labelled_hanta <- subset_hp %>%
 
 hp_simple <- subset_hp %>%
   filter(str_detect(family, "Hanta|Arena")) %>%
-  filter(n_positive >= 1) %>%
-  group_by(virus_clean, family) %>%
-  summarise(n_species = length(unique(host_species)),
-            n_assayed = sum(n_assayed, na.rm = TRUE)) %>%
-  ggplot() +
-  geom_point(aes(x = n_species, y = virus_clean, colour = log(n_assayed))) +
-  geom_segment(aes(x = 0, xend = n_species, y = virus_clean, yend = virus_clean, colour = log(n_assayed)),
-               linewidth = 1) +
-  scale_colour_viridis_c(direction = -1) +
-  facet_grid(~family, scales = "free") +
-  labs(y = element_blank(),
-       x = "Number of species",
-       colour = "N samples assayed (log10)") +
-  theme_minimal()
+  filter(n_positive >= 1)
 
-save_plot(hp_simple, filename = here("output", "simple_hp.png"), base_width = 8, base_height = 8, bg = "transparent")
+acute_species <- hp_simple %>%
+  filter(assay_clean == "Acute") %>%
+  group_by(virus_clean, family) %>%
+  summarise(acute_species = list(unique(host_species)),
+            n_acute_species = n_distinct(host_species),
+            n_acute_assayed = sum(n_assayed, na.rm = TRUE),
+            .groups = "drop")
+
+prior_species <- hp_simple %>%
+  filter(assay_clean == "Prior") %>%
+  left_join(acute_species %>% select(virus_clean, acute_species), by = "virus_clean") %>%
+  rowwise() %>%
+  filter(is.null(acute_species) || !(host_species %in% acute_species)) %>%
+  ungroup() %>%
+  group_by(virus_clean, family) %>%
+  summarise(n_prior_species = n_distinct(host_species),
+            n_prior_assayed = sum(n_assayed, na.rm = TRUE),
+            .groups = "drop")
+
+hp_summary <- acute_species %>%
+  full_join(prior_species, by = c("virus_clean", "family")) %>%
+  mutate(
+    n_acute_species = replace_na(n_acute_species, 0),
+    n_prior_species = replace_na(n_prior_species, 0),
+    n_acute_assayed = replace_na(n_acute_assayed, 0),
+    n_prior_assayed = replace_na(n_prior_assayed, 0),
+    total_species = n_acute_species + n_prior_species,
+    total_assayed = n_acute_assayed + n_prior_assayed
+  )
+
+hp_plots <- hp_summary %>%
+  group_by(family) %>%
+  group_split() %>%
+  lapply(function(df) {
+    ggplot(df) +
+      # Acute segment
+      geom_segment(aes(x = 0, xend = n_acute_species, y = virus_clean, yend = virus_clean, colour = log10(total_assayed)),
+                   linewidth = 1.2, alpha = 1) +
+      # Prior extension
+      geom_segment(aes(x = n_acute_species, xend = total_species, y = virus_clean, yend = virus_clean, colour = log10(total_assayed)),
+                   linewidth = 1.2, alpha = 0.4) +
+  # Acute point (fully opaque)      
+      geom_point(aes(x = n_acute_species, y = virus_clean, colour = log10(total_assayed)),
+               size = 3, alpha = 1) +
+      # Prior point (transparent)
+      geom_point(aes(x = total_species, y = virus_clean, colour = log10(total_assayed)),
+                 size = 3, alpha = 0.4) +
+      scale_colour_viridis_c(name = "N samples assayed (log10)", direction = -1) +
+      labs(x = "Number of host species with evidence of infection",
+           y = NULL) +
+      theme_minimal(base_size = 11) +
+      theme(panel.grid.major.y = element_blank(),
+            panel.grid.minor.y = element_blank(),
+            legend.position = "bottom",
+            legend.direction = "horizontal",
+            legend.box = "horizontal")
+    })
+
+save_plot(plot_grid(plotlist = hp_plots, ncol = 2), filename = here("output", "simple_hp.png"), base_width = 12, base_height = 8, bg = "transparent")
 
 hp_simple_acute <- subset_hp %>%
   filter(str_detect(family, "Hanta|Arena")) %>%
@@ -605,7 +663,8 @@ for(i in 1:length(unique(hp_2_points$sci_name))){
 
 # Sequences ---------------------------------------------------------------
 
-combined_data$sequences %>%
+save_plot(
+  combined_data$sequences %>%
   filter(sequenceType == "Pathogen") %>%
   filter(!str_detect(virus_clean, "Aza")) %>%
   distinct(accession_number, virus_clean) %>%
@@ -613,18 +672,26 @@ combined_data$sequences %>%
   summarise(n = n()) %>%
   arrange(-n) %>%
   mutate(virus_clean = fct_inorder(virus_clean)) %>%
-  # Reverse the order of virus_clean to make labels match reversed stacking
   mutate(virus_clean_rev = fct_rev(virus_clean)) %>%
-  # Calculate cumulative sum for each reversed level to position the label
   mutate(cumsum_n = cumsum(n)) %>%
-  ggplot(aes(x = 1, y = n, fill = virus_clean_rev, alpha = n)) +  # Reverse the fill aesthetic to stack correctly
-  geom_col(position = "stack") +  # Create stacked bars
-  geom_label(aes(label = n, y = cumsum_n - n / 2), fill = "white") +  # Place labels in the middle of each segment
-  scale_fill_viridis_d(direction = -1) +  # Use a discrete color scale
+  ggplot(aes(x = 1, y = n, fill = virus_clean_rev, alpha = n)) +
+  geom_col(position = "stack") +
+  geom_label(aes(label = n, y = cumsum_n - n / 2), fill = "white") +
+  scale_fill_viridis_d(direction = -1) +
   scale_alpha_continuous(range = c(0.3, 1)) +
-  guides(fill = guide_legend(),
-         label = "none",
-         text = "none") +
+  guides(
+    fill = guide_legend(),    # keep this
+    alpha = "none"            # remove alpha legend
+  ) +
+  labs(x = NULL, y = NULL, fill = "Virus name") +
   theme_minimal() +
-  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.text.y = element_blank())
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.text.y = element_blank(),
+    legend.text = element_text(size = 8), 
+    legend.title = element_text(size = 9),
+    legend.key.size = unit(0.4, "cm")     
+  ),
+  filename = here("output", "sequences_available.png"), base_height = 8, base_width = 12)
 

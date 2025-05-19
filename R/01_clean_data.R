@@ -835,6 +835,9 @@ pathogen_uid <- tibble(source = c(rep("v2", times = nrow(combined_data_v2$pathog
   mutate(n = n())
 
 table(id_count = pathogen_uid$n)
+# manually recode but has been updated in grant_v3
+levels(combined_data_v3$pathogen$pathogen_record_id) <- c(levels(combined_data_v3$pathogen$pathogen_record_id), "grant_3038")
+combined_data_v3$pathogen$pathogen_record_id[combined_data_v3$pathogen$pathogen_record_id == "grant_2409"] <- c("grant_2409", "grant_3038")
 
 # v2 pathogen processing --------------------------------------------------
 
@@ -954,7 +957,11 @@ clean_sequences_v3 <- bind_rows(pathogen_sequences_v3,
 clean_sequences <- bind_rows(clean_sequences_v2,
                              clean_sequences_v3)
 
-
+# Several Accessions are entered more than once
+table(clean_sequences %>%
+        group_by(accession_number) %>%
+        summarise(n = n()) %>%
+        pull(n))
 # Add extraction descriptives ---------------------------------------------
 group_descriptives <- c("study_id", "full_text_id", "identifiedBy", "datasetName", "publication_year", "data",
                         "sampling_effort", "data_access", "linked_manuscripts", "data_extractor", "data_checker",
