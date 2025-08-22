@@ -150,48 +150,7 @@ The raw data abstracted from the literature is processed through a sequential, m
 
 A core principle of this pipeline is that the metadata from the original published manuscripts is treated as the primary source of truth, especially for high-resolution spatio-temporal and host-pathogen linkage information. The pipeline is designed to use this rich, manuscript-derived data to enrich and provide context for the corresponding sequence data, whose metadata on public repositories like GenBank is often less complete.
 
-graph TD
-    subgraph "Input Sources"
-        direction LR
-        GS(("Google Sheets"))
-        API(("External APIs <br> GBIF & NCBI"))
-    end
-
-    subgraph "Data Storage Folders"
-        direction LR
-        style Raw fill:#f9f,stroke:#333,stroke-width:2px
-        style Match fill:#ccf,stroke:#333,stroke-width:2px
-        style Clean fill:#cfc,stroke:#333,stroke-width:2px
-        style Final fill:#f96,stroke:#333,stroke-width:2px
-        Raw["fa:fa-folder data/raw_data"]
-        Match["fa:fa-folder data/matching"]
-        Clean["fa:fa-folder data/data_cleaning"]
-        Final["fa:fa-folder data/database"]
-    end
-
-    subgraph "Processing Modules (R Scripts)"
-        S0["<b>00_load_data.R</b><br>Acquire Raw Data"]
-        S1["<b>Module 1 (01-02_*)</b><br>Clean Citations & Descriptives"]
-        S2["<b>Module 2 (03_*)</b><br>Process Host Data<br>(Taxonomy, Spatial, Temporal)"]
-        S3["<b>Module 3 (04_*)</b><br>Process Pathogen Data"]
-        S4["<b>Module 4 (05_*)</b><br>Process Sequence Data"]
-        S5["<b>Module 5 (06-07_*)</b><br>QA Report & Finalize Database"]
-    end
-
-    %% Define the flow of data
-    GS --> S0 --> Raw
-    Raw --> S1 --> Clean
-    Clean -- intermediate file --> S2
-    S2 -- reads/writes --> Match
-    API -- enriches --> S2
-    S2 --> Clean
-    Clean -- intermediate file --> S3
-    API -- enriches --> S3
-    S3 --> Clean
-    Clean -- intermediate file --> S4
-    API -- enriches --> S4
-    S4 --> Clean
-    Clean -- intermediate file --> S5 --> Final
+![A flow chart describing the cleaning and processing pipeline](project_organisation.png)
 
 # Pipeline Scripts
 
