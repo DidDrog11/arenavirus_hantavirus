@@ -358,8 +358,8 @@ create_prevalence_plot <- function(family_name) {
 plot_arena_prev <- create_prevalence_plot("Arenaviridae")
 plot_hanta_prev <- create_prevalence_plot("Hantaviridae")
 
-ggsave(here("output", "plot_arena_prev.png"), plot = plot_arena_prev, width = 20, height = 10, dpi = 300)
-ggsave(here("output", "plot_hanta_prev.png"), plot = plot_hanta_prev, width = 20, height = 10, dpi = 300)
+ggsave(here("output", "plot_arena_prev.png"), plot = plot_arena_prev, width = 20, height = 10, dpi = 300, bg = "white")
+ggsave(here("output", "plot_hanta_prev.png"), plot = plot_hanta_prev, width = 20, height = 10, dpi = 300, bg = "white")
 ```
 
 ## 3. Geographically Stratified Sampling Effort
@@ -566,8 +566,8 @@ arena_temporal_plot <- ggplot(temporal_data %>%
   theme(legend.position = "bottom")
 
 # Save and display the plot
-ggsave(here("output", "hanta_temporal_plot.png"), plot = hanta_temporal_plot, width = 10, height = 6, dpi = 300)
-ggsave(here("output", "arena_temporal_plot.png"), plot = arena_temporal_plot, width = 10, height = 6, dpi = 300)
+ggsave(here("output", "hanta_temporal_plot.png"), plot = hanta_temporal_plot, width = 10, height = 6, dpi = 300, bg = "white")
+ggsave(here("output", "arena_temporal_plot.png"), plot = arena_temporal_plot, width = 10, height = 6, dpi = 300, bg = "white")
 temporal_plot
 ```
 

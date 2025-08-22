@@ -41,3 +41,16 @@ vignettes/*.pdf
 #Mac nonsense
 .DS_Store
 /data/.DS_Store
+
+#Intermediate data products
+/data/data_cleaning
+/data/data_to_extract
+/data/iucn
+/data/ncbi_virus
+/data/gadm
+/data/gadm_hierarchy
+/data/tmp
+/data/data_outputs
+/data/misc
+/data/clean_data
+/data/raw_data
