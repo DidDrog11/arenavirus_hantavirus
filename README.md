@@ -197,22 +197,22 @@ graph TD
 
 The pipeline is executed by running the following scripts in numerical order. Each script performs a distinct task, saving its output to be used as the input for the next script.     
 
-+  00_load_data.R: Data Acquisition & Environment Setup. This script loads all required R packages. It downloads the raw v2 and v3 data from their respective Google Sheets, performs initial ID standardization (e.g., ensuring study_id is unique across extractors), and saves local copies to the data/raw_data/ directory. This ensures the rest of the pipeline can run on a stable, local version of the data. It also downloads world administrative boundary shapefiles for later use.
-+  01_01_clean_citations.R: Citation & Study Metadata Consolidation. This script combines the citation information from the v2 and v3 data sources into a single master table of all publications reviewed for the project. It also creates several quality control tables that categorize studies based on their extraction status (e.g., single_extractions, multiple_extractions, excluded).
-+  02_01_clean_descriptives.R: Standardization of Study-Level Descriptive Data. This script focuses on the "descriptive" sheets, cleaning and standardizing key study-level metadata such as publication year, sampling effort terminology, data access levels, and data resolution.
-+  03_01_clean_rodent.R: Initial Host Data Quality Control. A preliminary QC step that consolidates the v2 and v3 host data and performs checks for the uniqueness of host record IDs.
-+  03_02_create_taxa_matching_host.R: Host Taxonomy Standardization (Manual Rules & GBIF API). This is a major taxonomic cleaning step. It extracts all unique host species and genus names, applies a large set of manual cleaning rules to correct misspellings and synonyms, and then queries the Global Biodiversity Information Facility (GBIF) API using the taxize package to resolve names to a standardized taxonomic hierarchy. Results are cached to prevent redundant API calls on subsequent runs.
-+  03_03_clean_rodent_taxa.R: Application of Standardized Host Taxonomy. This script takes the manually cleaned names and the GBIF taxonomic lookup tables generated in the previous step and joins them to the main host dataset, adding standardized columns for species, genus, family, etc.
-+  03_04_clean_coords.R: Host Spatial Data Cleaning & Validation. This script cleans and validates all geographic coordinates. It standardizes country names, converts them to ISO codes, and then performs a spatial validation to ensure each coordinate pair falls within its stated country's boundary, flagging any mismatches.
-+  03_05_clean_locality.R (Areal Taxonomy): Areal Taxonomy Enrichment (GADM). This script enriches the spatial data by downloading administrative boundary shapefiles from the GADM database and performing a spatial join to add the corresponding ADM1, ADM2, and ADM3 regions (e.g., province, county) for each host record.
-+  03_05_clean_rodent_temporal.R (Temporal Cleaning): Host Temporal Data Cleaning. A complex script dedicated to parsing the eventDate column. It handles dozens of different date and date-range formats (e.g., YYYY-MM-DD, Month YYYY, YYYY-YYYY) to produce standardized start_date and end_date columns for every record.
-+  03_07_clean_trapping_effort.R: Trapping Effort Standardization. Parses the free-text trapEffort fields to extract numeric trap-night data where available and categorizes the type of effort reported.
-+  03_08_impute_nondetections.R: Imputation of Non-Detections. An important epidemiological step. For studies that report clear sampling effort, this script creates "zero-count" (non-detection) records for host species that were known to be present in the overall study but were not detected at a specific site or session. This provides true absence data for ecological modeling.
-+  04_01_clean_pathogen.R: Pathogen Data Consolidation and Standardization. This script mirrors the host cleaning process for the pathogen data. It consolidates raw v2 and v3 data, applies a manual dictionary to clean virus names, queries the NCBI Taxonomy database for a standardized hierarchy, standardizes assay terminology (e.g., 'PCR', 'Serology'), and validates the numeric tested and positive counts.
-+  05_01_clean_sequences.R: Initial Sequence Data Consolidation & Linkage. Consolidates the raw sequence tables, creates unique IDs, links sequence records to their corresponding host and pathogen records, and creates flags to identify any taxonomic mismatches between the GenBank record and the manuscript-derived data.
-+  05_02_enrich_sequence_data.R: Sequence Metadata Enrichment & Cleaning. This script uses the robust fetch_accession_data function to query the NCBI API in batches for all unique accession numbers. It downloads and parses rich metadata for each sequence. It then performs a final cleaning pass on the newly downloaded data, including standardizing country names from the geo_loc_name field. This script also contains the call to download the full FASTA sequences.
-+  06_01_generate_qa_report.qmd: Final Data Quality Assurance Report. A Quarto script that generates a comprehensive HTML report summarizing the final dataset's dimensions, completeness, consistency, and distributions. It serves as a final validation of the entire pipeline.
-+  07_01_finalize_database.R: Final Database Assembly and Formatting. The last script in the pipeline. It takes all cleaned tables and applies a final polish, enforcing consistent snake_case column names and a logical, thematic column order. The output is the final, analysis-ready database object.
++  `00_load_data.R`: Data Acquisition & Environment Setup. This script loads all required R packages. It downloads the raw v2 and v3 data from their respective Google Sheets, performs initial ID standardization (e.g., ensuring study_id is unique across extractors), and saves local copies to the data/raw_data/ directory. This ensures the rest of the pipeline can run on a stable, local version of the data. It also downloads world administrative boundary shapefiles for later use.
++  `01_01_clean_citations.R`: Citation & Study Metadata Consolidation. This script combines the citation information from the v2 and v3 data sources into a single master table of all publications reviewed for the project. It also creates several quality control tables that categorize studies based on their extraction status (e.g., single_extractions, multiple_extractions, excluded).
++  `02_01_clean_descriptives.R`: Standardization of Study-Level Descriptive Data. This script focuses on the "descriptive" sheets, cleaning and standardizing key study-level metadata such as publication year, sampling effort terminology, data access levels, and data resolution.
++  `03_01_clean_rodent.R`: Initial Host Data Quality Control. A preliminary QC step that consolidates the v2 and v3 host data and performs checks for the uniqueness of host record IDs.
++  `03_02_create_taxa_matching_host.R`: Host Taxonomy Standardization (Manual Rules & GBIF API). This is a major taxonomic cleaning step. It extracts all unique host species and genus names, applies a large set of manual cleaning rules to correct misspellings and synonyms, and then queries the Global Biodiversity Information Facility (GBIF) API using the taxize package to resolve names to a standardized taxonomic hierarchy. Results are cached to prevent redundant API calls on subsequent runs.
++  `03_03_clean_rodent_taxa.R`: Application of Standardized Host Taxonomy. This script takes the manually cleaned names and the GBIF taxonomic lookup tables generated in the previous step and joins them to the main host dataset, adding standardized columns for species, genus, family, etc.
++  `03_04_clean_coords.R`: Host Spatial Data Cleaning & Validation. This script cleans and validates all geographic coordinates. It standardizes country names, converts them to ISO codes, and then performs a spatial validation to ensure each coordinate pair falls within its stated country's boundary, flagging any mismatches.
++  `03_05_clean_locality.R (Areal Taxonomy)`: Areal Taxonomy Enrichment (GADM). This script enriches the spatial data by downloading administrative boundary shapefiles from the GADM database and performing a spatial join to add the corresponding ADM1, ADM2, and ADM3 regions (e.g., province, county) for each host record.
++  `03_05_clean_rodent_temporal.R (Temporal Cleaning)`: Host Temporal Data Cleaning. A complex script dedicated to parsing the eventDate column. It handles dozens of different date and date-range formats (e.g., YYYY-MM-DD, Month YYYY, YYYY-YYYY) to produce standardized start_date and end_date columns for every record.
++  `03_07_clean_trapping_effort.R`: Trapping Effort Standardization. Parses the free-text trapEffort fields to extract numeric trap-night data where available and categorizes the type of effort reported.
++  `03_08_impute_nondetections.R`: Imputation of Non-Detections. An important epidemiological step. For studies that report clear sampling effort, this script creates "zero-count" (non-detection) records for host species that were known to be present in the overall study but were not detected at a specific site or session. This provides true absence data for ecological modeling.
++  `04_01_clean_pathogen.R`: Pathogen Data Consolidation and Standardization. This script mirrors the host cleaning process for the pathogen data. It consolidates raw v2 and v3 data, applies a manual dictionary to clean virus names, queries the NCBI Taxonomy database for a standardized hierarchy, standardizes assay terminology (e.g., 'PCR', 'Serology'), and validates the numeric tested and positive counts.
++  `05_01_clean_sequences.R`: Initial Sequence Data Consolidation & Linkage. Consolidates the raw sequence tables, creates unique IDs, links sequence records to their corresponding host and pathogen records, and creates flags to identify any taxonomic mismatches between the GenBank record and the manuscript-derived data.
++  `05_02_enrich_sequence_data.R`: Sequence Metadata Enrichment & Cleaning. This script uses the robust fetch_accession_data function to query the NCBI API in batches for all unique accession numbers. It downloads and parses rich metadata for each sequence. It then performs a final cleaning pass on the newly downloaded data, including standardizing country names from the geo_loc_name field. This script also contains the call to download the full FASTA sequences.
++  `06_01_generate_qa_report.qmd`: Final Data Quality Assurance Report. A Quarto script that generates a comprehensive HTML report summarizing the final dataset's dimensions, completeness, consistency, and distributions. It serves as a final validation of the entire pipeline.
++  `07_01_finalize_database.R`: Final Database Assembly and Formatting. The last script in the pipeline. It takes all cleaned tables and applies a final polish, enforcing consistent snake_case column names and a logical, thematic column order. The output is the final, analysis-ready database object.
 
 # Final Database Structure
 
@@ -397,9 +397,13 @@ Pathogen Taxonomic Trees
 
 These diagrams represent the known species diversity within the Arenaviridae and Hantaviridae families, based on the NCBI Taxonomy database. The tips are coloured to indicate whether a given virus species is represented by at least one record in the ArHa dataset.
 
-| Arenaviridae Taxonomy | Hantaviridae Taxonomy |
-| :---: | :---: |
-| ![Taxonomic tree of Arenaviridae species.](output/pathogen_taxonomy_Arenaviridae.png) | ![Taxonomic tree of Hantaviridae species.](output/pathogen_taxonomy_Hantaviridae.png) |
+<div class="grid" markdown>
+
+![Taxonomic tree of Arenaviridae species.](output/pathogen_taxonomy_Arenaviridae.png)
+
+![Taxonomic tree of Hantaviridae species.](output/pathogen_taxonomy_Hantaviridae.png)
+
+</div>
 
 ## Pathogen Prevalence Distributions
 
@@ -429,6 +433,6 @@ This map displays every unique sampling location in the database. The colour of 
 
 This plot shows the cumulative number of collected samples for Arenaviridae and Hantaviridae over time. The x-axis represents the earliest sample collection reported at a site within a study, providing a historical perspective on temporal trends in research effort for each virus species with more than 5,000 samples within this dataset.
 
-![Temporal trends of hantavirus sampling.](output/sampling_locations_by_virus.png)
+![Temporal trends of hantavirus sampling.](output/hanta_temporal_plot.png)
 
-![Temporal trends of arenavirus sampling.](output/sampling_locations_by_virus.png)
+![Temporal trends of arenavirus sampling.](output/arena_temporal_plot.png)
