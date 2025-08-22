@@ -153,8 +153,8 @@ A core principle of this pipeline is that the metadata from the original publish
 graph TD
     subgraph "Input Sources"
         direction LR
-        GS[("Google Sheets")]
-        API[("External APIs <br> GBIF & NCBI")]
+        GS(("Google Sheets"))
+        API(("External APIs <br> GBIF & NCBI"))
     end
 
     subgraph "Data Storage Folders"
@@ -177,7 +177,7 @@ graph TD
         S4["<b>Module 4 (05_*)</b><br>Process Sequence Data"]
         S5["<b>Module 5 (06-07_*)</b><br>QA Report & Finalize Database"]
     end
-    
+
     %% Define the flow of data
     GS --> S0 --> Raw
     Raw --> S1 --> Clean
@@ -397,13 +397,7 @@ Pathogen Taxonomic Trees
 
 These diagrams represent the known species diversity within the Arenaviridae and Hantaviridae families, based on the NCBI Taxonomy database. The tips are coloured to indicate whether a given virus species is represented by at least one record in the ArHa dataset.
 
-<div class="grid" markdown>
-
-![Taxonomic tree of Arenaviridae species.](output/pathogen_taxonomy_Arenaviridae.png)
-
-![Taxonomic tree of Hantaviridae species.](output/pathogen_taxonomy_Hantaviridae.png)
-
-</div>
+![Taxonomic trees of pathogen species](output/pathogen_phylogeny_split.png)
 
 ## Pathogen Prevalence Distributions
 
