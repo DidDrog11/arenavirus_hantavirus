@@ -1,5 +1,5 @@
 source(here::here("R", "00_load_data.R"))
-combined_data <- read_rds(here("data", "clean_data", "2025-03-05_data.rds"))
+combined_data <- read_rds(here("data", "clean_data", "2025-06-04_data.rds"))
 
 # Additional packages
 pkgs <- c(
@@ -38,6 +38,7 @@ n_pathogen_records <- combined_data$pathogen %>%
 
 n_assays <- sum(combined_data$pathogen$n_assayed, na.rm = TRUE)
 n_positive <- sum(combined_data$pathogen$n_positive, na.rm = TRUE)
+n_negative <- sum(combined_data$pathogen$n_negative, na.rm = TRUE)
 
 n_sequences <- combined_data$sequences %>%
   filter(!is.na(associated_pathogen_record_id) | !is.na(associated_rodent_record_id))
@@ -88,7 +89,7 @@ map_arena_samples <- combined_data$pathogen %>%
   scale_colour_viridis_c() +
   theme_minimal() +
   theme(title = element_text(size = 18)) +
-  labs(title = "Mammarenaviridae",
+  labs(title = "Arenaviridae",
        colour = "N assayed (log10)")
 
 save_plot(map_hanta_samples, filename = here("output", "hanta_sample_locations.png"), base_width = 14, base_height = 10)
@@ -386,7 +387,21 @@ subset_hp_rr <- unique_host %>%
          assay_clean = case_when(str_detect(assay_clean, "PCR|Culture|Sequencing") ~ "PCR, culture or sequencing",
                                  str_detect(assay_clean, "Serology") ~ "Serology"))
 
-write_csv(subset_hp_rr, here("data", "data_outputs", "prevalence.csv"))
+subset_hp_biodiv <- combined_data$pathogen %>%
+  select(virus_clean, family, taxonomic_level, assay_clean, host_species, host_genus, host_family, host_order, n_assayed, n_positive, decimalLatitude, decimalLongitude) %>%
+  filter(taxonomic_level == "species") %>%
+  filter(!is.na(host_species)) %>%
+  filter(n_assayed >= 1) %>%
+  ungroup() %>%
+  rowwise() %>%
+  mutate(virus_clean = factor(virus_clean),
+         host_species = factor(host_species),
+         prop_pos = n_positive/n_assayed,
+         assay_clean = case_when(str_detect(assay_clean, "PCR|Culture|Sequencing") ~ "PCR, culture or sequencing",
+                                 str_detect(assay_clean, "Serology") ~ "Serology"))
+
+write_csv(subset_hp_rr, here("data", "data_outputs", "prevalence_2025-06-04.csv"))
+write_csv(subset_hp_biodiv, here("data", "data_outputs", "prevalence_w_coords_2025-06-04.csv"))
 
 # Continue HP -------------------------------------------------------------
 

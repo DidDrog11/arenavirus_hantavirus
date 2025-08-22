@@ -1,0 +1,215 @@
+---
+title: "Project ArHa: Data Quality Assurance Report"
+date: "today"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    theme: cosmo
+    code-fold: true
+---
+
+This report provides a systematic quality assurance and consistency check of the final cleaned datasets from the Project ArHa data pipeline. All checks are performed on the output of the `05_02_enrich_sequence_data.R` script.
+
+```{r setup, include=FALSE}
+# This chunk sets up the report environment
+knitr::opts_chunk$set(
+  echo = TRUE, # Set to TRUE to show code, FALSE to hide
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 10,
+  fig.height = 6
+)
+
+# Load necessary libraries
+library(here)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(sf)
+library(lubridate)
+library(purrr)
+```
+
+```{r load-data}
+# Load the final cleaned data object
+combined_data <- read_rds(here("data", "data_cleaning", "05_02_output.rds"))
+
+# Extract data frames for easier access
+host_data     <- combined_data$host
+pathogen_data <- combined_data$pathogen
+sequence_data <- combined_data$sequence
+```
+
+## 1. High-Level Summary
+
+A top-level overview of the final dataset's dimensions and scope.
+
+* **Host Records:** `r scales::comma(nrow(host_data))`
+* **Pathogen Assay Records:** `r scales::comma(nrow(pathogen_data))`
+* **Sequence Records:** `r scales::comma(nrow(sequence_data))`
+* **Geographic Scope:** `r n_distinct(host_data$country_processed, na.rm = TRUE)` countries
+* **Temporal Scope:** `r format(min(host_data$start_date, na.rm = TRUE), "%Y-%m-%d")` to `r format(max(host_data$end_date, na.rm = TRUE), "%Y-%m-%d")`
+
+
+## 2. Missing Data (NA) Proportions
+
+This section identifies the proportion of missing values (`NA`) in key columns for each table. High proportions may indicate systematic issues in the raw data or opportunities for imputation.
+
+```{r missing-data-check}
+# Function to calculate and format NA proportions
+summarise_na <- function(df, df_name) {
+  df %>%
+    summarise(across(everything(), ~sum(is.na(.)) / n())) %>%
+    tidyr::pivot_longer(everything(), names_to = "Column", values_to = "NA_Proportion") %>%
+    filter(NA_Proportion > 0) %>%
+    arrange(desc(NA_Proportion)) %>%
+    mutate(Table = df_name)
+}
+
+na_summary <- bind_rows(
+  summarise_na(host_data, "Host"),
+  summarise_na(pathogen_data, "Pathogen"),
+  summarise_na(sequence_data, "Sequence")
+)
+
+kable(na_summary, digits = 3, caption = "Proportion of Missing Values in Columns with NAs")
+```
+
+## 3. Summaries of Flagged Data
+
+This section reviews the status of records that were flagged during the cleaning process.
+
+### Coordinate Quality Status
+Summary of the validation status for geographic coordinates in the `host` table.
+```{r coord-status}
+host_data %>%
+  count(coord_status, sort = TRUE) %>%
+  kable(caption = "Host Coordinate Quality Status")
+```
+
+### Sequence Resolution Status
+Summary of how many accession numbers from the raw data were successfully found and enriched via the NCBI API.
+```{r seq-status}
+sequence_data %>%
+  count(ncbi_resolved_status, sort = TRUE) %>%
+  kable(caption = "Sequence Record Resolution Status")
+```
+
+### Taxonomic Mismatches
+Summary of sequence records where the host species name reported in NCBI metadata differs from the cleaned host data.
+```{r taxa-mismatch}
+sequence_data %>%
+  count(flag_host_mismatch, name = "Host Mismatch Count") %>%
+  kable(caption = "Host Taxonomy Mismatch Flag Summary")
+```
+
+## 4. Cross-Table Consistency Checks
+
+These checks verify that data is logical and consistent *between* the cleaned tables.
+
+### Date Consistency: Host vs. Sequence
+This check identifies sequence records where the `ncbi_collection_date` falls outside the `start_date` and `end_date` range of the associated host record.
+
+```{r date-consistency}
+date_check_df <- sequence_data %>%
+  filter(!is.na(ncbi_collection_date)) %>%
+  select(associated_rodent_record_id, ncbi_collection_date) %>%
+  left_join(
+    select(host_data, rodent_record_id, start_date, end_date),
+    by = c("associated_rodent_record_id" = "rodent_record_id")
+  ) %>%
+  filter(!is.na(start_date) & !is.na(end_date)) %>%
+  mutate(
+    host_interval = interval(start_date, end_date),
+    date_is_consistent = ncbi_collection_date %within% host_interval
+  )
+
+date_inconsistencies <- date_check_df %>% filter(!date_is_consistent)
+
+kable(
+  count(date_check_df, date_is_consistent), 
+  caption = "Consistency of NCBI Collection Date with Host Record Date Range"
+)
+
+if (nrow(date_inconsistencies) > 0) {
+  knitr::kable(
+    head(date_inconsistencies), 
+    caption = "Examples of Inconsistent Dates"
+  )
+}
+```
+
+## 5. Data Distributions
+
+High-level visualizations of the geographic, temporal, and taxonomic distributions in the dataset.
+
+### Geographic Distribution of Host Records
+```{r map-dist}
+# Load a world map
+world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
+
+# Summarise points by country
+country_summary <- host_data %>%
+  filter(!is.na(country_processed)) %>%
+  count(country_processed, GID_0)
+
+world_summary <- world %>%
+  left_join(country_summary, by = c("iso_a3" = "GID_0")) %>%
+  mutate(n = if_else(is.na(n), 0L, n))
+
+# Plot the map
+ggplot(data = world_summary) +
+  geom_sf(aes(fill = log10(n + 1))) +
+  scale_fill_viridis_c(option = "plasma", name = "log10(Host Records)") +
+  theme_minimal() +
+  labs(title = "Global Distribution of Host Records")
+```
+
+### Temporal Distribution of Host Records
+```{r temporal-dist}
+host_data %>%
+  filter(!is.na(start_date)) %>%
+  mutate(year = year(start_date)) %>%
+  ggplot(aes(x = year)) +
+  geom_bar(fill = "steelblue") +
+  theme_minimal() +
+  labs(title = "Number of Host Records by Year", x = "Year", y = "Count")
+```
+
+### Top Host and Pathogen Taxa
+```{r taxa-dist}
+# Top 10 Host Genera
+p1 <- host_data %>%
+  count(resolved_genus, sort = TRUE) %>%
+  filter(!is.na(resolved_genus)) %>%
+  slice_head(n = 10) %>%
+  ggplot(aes(x = reorder(resolved_genus, n), y = n)) +
+  geom_col(fill = "darkgreen") +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = "Top 10 Most Frequent Host Genera", x = "Genus", y = "Number of Records")
+
+# Top Pathogen Families
+p2 <- pathogen_data %>%
+  count(family_clean, sort = TRUE) %>%
+  filter(!is.na(family_clean)) %>%
+  ggplot(aes(x = reorder(family_clean, n), y = n)) +
+  geom_col(fill = "firebrick") +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = "Most Frequent Pathogen Families", x = "Family", y = "Number of Assay Records")
+
+gridExtra::grid.arrange(p1, p2, ncol = 2)
+```
+
+## 6. QA Summary
+
+This report provides a snapshot of the cleaned Project ArHa database. Key takeaways are:
+
+* The dataset is comprehensive, with `r scales::comma(nrow(host_data))` host records from `r n_distinct(host_data$country_processed)` countries.
+* Data linkage appears strong, with very few (`r scales::comma(filter(sequence_data, ncbi_resolved_status == 'unresolved') %>% nrow())`) unresolved sequence accessions.
+* **Action Item:** The `r nrow(date_inconsistencies)` identified date inconsistencies between host and sequence tables should be manually reviewed.
+
+This concludes the automated QA check.

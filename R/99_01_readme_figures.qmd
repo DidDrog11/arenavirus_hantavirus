@@ -1,0 +1,573 @@
+---
+title: "Project ArHa: Descriptive Figures for README"
+author: "Analysis Pipeline"
+date: "today"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    theme: cosmo
+    code-fold: true
+    self-contained: true
+---
+
+This document generates a series of descriptive figures to summarize the taxonomic, epidemiological, and geographic scope of the final Project ArHa database.
+
+```{r setup, include=FALSE}
+# This chunk sets up the report environment
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 12,
+  fig.height = 8,
+  dpi = 300
+)
+
+# --- Load all necessary packages ---
+library(here)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(ggtree) # For phylogenies
+library(ggdist) # For half-eye plots
+library(ape)    # For phylogenetic tools
+library(taxize) # For fetching taxonomies
+library(sf)     # For spatial data
+library(terra)
+library(tidyterra)
+library(rnaturalearth) # For world maps
+library(patchwork)     # For combining plots
+library(janitor)       
+library(stringr)
+library(ggnewscale)
+library(forcats)
+
+# --- Load the final database object ---
+db_path <- here("data", "database", "Project_ArHa_database_2025-08-20.rds")
+if (!file.exists(db_path)) {
+  stop("Final database file not found. Please check the path and file name.")
+}
+arha_db <- read_rds(db_path)
+
+# --- Prepare key data subsets for analysis ---
+host_data <- arha_db$host
+pathogen_data <- arha_db$pathogen
+```
+
+## 1. Taxonomic Completeness of Sampling
+
+This section visualizes which host and pathogen species are represented in our dataset compared to a broader known diversity.
+
+### 1.1 Host Phylogeny (Rodentia & Eulipotyphla)
+
+This plot shows a phylogeny of mammal species, pruned to the orders Rodentia (rodents) and Eulipotyphla (shrews, etc.). The tips are colored to indicate their sampling status in the ArHa database.
+
+```{r host-phylogeny, eval=FALSE}
+# NOTE: This chunk is computationally intensive and requires a large download the first time.
+# It is set to `eval=FALSE` by default. Change to `eval=TRUE` to run it.
+
+create_host_phylo_plot <- function(order_name) {
+  
+  message(paste("\n--- Starting phylogeny for", order_name, "---"))
+  
+  # Step 1: Get OTT ID for the order.
+  order_info <- rotl::tnrs_match_names(order_name)
+  order_ott_id <- order_info$ott_id
+
+  # Step 2: Get the taxonomic subtree to find all descendant taxa.
+  message("Fetching taxonomic subtree...")
+  order_subtree <- rotl::taxonomy_subtree(ott_id = order_ott_id)
+  
+  # Extract and clean taxa names
+  all_taxa_names <- order_subtree$tip_label %>%
+    gsub(pattern = "_ott\\d+", replacement = "") %>%
+    gsub(pattern = "_", replacement = " ") %>%
+    unique()
+
+  # Step 3: Match taxa to OTT in batches to avoid API errors.
+  message("Matching taxa in batches to filter for approved species...")
+  
+  # Split the names into chunks of a safe size
+  name_chunks <- split(all_taxa_names, ceiling(seq_along(all_taxa_names) / 200))
+  
+  # Use purrr::map_dfr to iterate, query, and row-bind the results
+  matched_taxa_info <- purrr::map_dfr(name_chunks, ~ rotl::tnrs_match_names(names = .x))
+
+  # Step 4: Filter for valid, "approved" species names.
+  approved_species_info <- matched_taxa_info %>%
+    filter(!str_detect(flags, "barren|extinct|incertae_sedis|merged|sibling_higher|major_rank_conflict|infraspecific|hidden|not_otu|hybrid|was_container|sibling")) %>%
+    filter(!str_detect(unique_name, "cf|sp\\."))
+
+  approved_species_ott_ids <- na.omit(approved_species_info$ott_id)
+
+  # Step 5: Get the induced subtree for all approved species.
+  message("Building the induced subtree...")
+  phylo_tree <- rotl::tol_induced_subtree(ott_ids = approved_species_ott_ids)
+  
+  # Clean tip labels
+  phylo_tree$tip.label <- gsub("_ott\\d+", "", phylo_tree$tip.label)
+  phylo_tree$tip.label <- gsub("_", " ", phylo_tree$tip.label)
+
+  # Step 6: Create a data frame mapping tips to our dataset
+  host_species_in_db <- host_data %>%
+    distinct(host_record_id, host_species) %>%
+    left_join(pathogen_data %>% distinct(host_record_id, pathogen_family), by = "host_record_id") %>%
+    group_by(host_species) %>%
+    summarise(
+      has_arena = "Arenaviridae" %in% pathogen_family,
+      has_hanta = "Hantaviridae" %in% pathogen_family,
+      .groups = "drop"
+    ) %>%
+    mutate(
+      sampling_status = case_when(
+        has_arena & has_hanta ~ "Both",
+        has_arena ~ "Arenaviridae",
+        has_hanta ~ "Hantaviridae"
+      )
+    )
+
+  p <- ggtree(phylo_tree)
+  
+  tip_data <- tibble(label = phylo_tree$tip.label) %>%
+    left_join(host_species_in_db, by = c("label" = "host_species")) %>%
+    mutate(sampling_status = coalesce(sampling_status, "Not in dataset")) %>%
+    left_join(p$data %>% select(label, node), by = "label")
+
+  # Step 7: Calculate sampling status for internal nodes
+  node_data <- p$data %>%
+    filter(!isTip) %>%
+    rowwise() %>%
+    mutate(
+      descendant_tips = list(ape::extract.clade(phylo_tree, node)$tip.label),
+      descendant_status = list(tip_data %>% filter(label %in% descendant_tips) %>% pull(sampling_status))
+    ) %>%
+    ungroup() %>%
+    mutate(
+      sampling_status = purrr::map_chr(descendant_status, ~{
+        if ("Both" %in% .x) "Both"
+        else if ("Arenaviridae" %in% .x & "Hantaviridae" %in% .x) "Both"
+        else if ("Arenaviridae" %in% .x) "Arenaviridae"
+        else if ("Hantaviridae" %in% .x) "Hantaviridae"
+        else "Not in dataset"
+      })
+    ) %>%
+    select(node, sampling_status)
+    
+  # Combine tip and node data for plotting
+  full_tree_data <- tip_data %>%
+    select(node, sampling_status) %>%
+    bind_rows(node_data) %>%
+    mutate(sampling_status = factor(sampling_status, 
+                                    levels = c("Both", "Arenaviridae", "Hantaviridae", "Not in dataset"))) %>%
+    arrange(sampling_status)
+
+  # Step 8: Identify major family clades for labeling using the new logic
+  tip_genera <- tibble(
+    label = phylo_tree$tip.label,
+    genus = str_extract(phylo_tree$tip.label, "^\\w+")
+  )
+  
+  top_genera <- tip_genera %>%
+    count(genus, sort = TRUE) %>%
+    slice_head(n = 12) %>%
+    pull(genus)
+    
+  # CORRECTED LOGIC: Safely handle the output of taxize::classification
+  class_list <- taxize::classification(top_genera, db = "ncbi")
+  
+  # Filter out any elements that are not data frames
+  valid_class_list <- class_list[purrr::map_lgl(class_list, is.data.frame)]
+  
+  if (length(valid_class_list) > 0) {
+    subfamily_classification <- valid_class_list %>%
+      bind_rows(.id = "genus") %>%
+      filter(rank == "subfamily") %>%
+      select(genus, subfamily = name)
+      
+    clade_labels <- tip_genera %>%
+      left_join(subfamily_classification, by = "genus") %>%
+      filter(!is.na(subfamily)) %>%
+      group_by(subfamily) %>%
+      summarise(
+        node = ggtree::MRCA(phylo_tree, label),
+        .groups = "drop"
+      ) %>%
+       rename(clade_label_text = subfamily)
+  } else {
+    clade_labels <- tibble() # Create an empty tibble if no families are found
+    warning("Could not retrieve any family classifications for clade labels.")
+  }
+
+  # Step 9: Plot the phylogeny
+  offspring.tbl_tree_item <- utils::getFromNamespace(".offspring.tbl_tree_item", "tidytree")
+# First, create the base plot with all data joined to get the coordinates
+  p_base <- ggtree(phylo_tree, layout = "circular") %<+% full_tree_data
+  
+  # Now, extract the full data (with coordinates) and split it
+  plot_data_background <- p_base$data %>% filter(sampling_status == "Not in dataset")
+  plot_data_foreground <- p_base$data %>% filter(sampling_status != "Not in dataset")
+  
+  p_final <- p_base +
+    # Add clade labels first, mapping color to the subfamily name
+    geom_cladelab(data = clade_labels, 
+                  mapping = aes(node = node, label = clade_label_text, color = clade_label_text), 
+                  offset = 5, 
+                  barsize = 2.5, # Increased bar thickness
+                  angle = "auto", 
+                  fontsize = 3,
+                  show.legend = FALSE) +
+    scale_color_brewer(palette = "Set2", name = "Subfamily") +
+    
+    # Use ggnewscale to start a new color scale for the points
+    ggnewscale::new_scale_color() +
+    
+    # Layer 1: Plot the grey background points first, using the complete data
+    geom_point(data = plot_data_background, aes(color = sampling_status), size = 1) +
+    # Layer 2: Plot the colored data points on top
+    geom_point(data = plot_data_foreground, aes(color = sampling_status), size = 1) +
+    scale_color_manual(
+      values = c(
+        "Arenaviridae" = "blue",
+        "Hantaviridae" = "red",
+        "Both" = "purple",
+        "Not in dataset" = "grey80"
+      ),
+      name = "Sampling Status",
+      drop = FALSE
+    ) +
+    labs(title = paste("Sampling Completeness of", order_name)) +
+    theme(legend.position = "right")
+    
+  return(p_final)
+}
+
+
+# --- Generate and save the plots ---
+rodent_phylo_plot <- create_host_phylo_plot("Rodentia")
+shrew_phylo_plot <- create_host_phylo_plot("Eulipotyphla")
+
+# Display plots side-by-side
+rodent_phylo_plot + shrew_phylo_plot
+
+ggsave(here("output", "host_phylogeny_split.png"), plot = (rodent_phylo_plot + shrew_phylo_plot), width = 20, height = 10, dpi = 300)
+```
+*Note: A pre-computed phylogeny is required to run the code above. The provided code attempts to download one from the Open Tree of Life, which can be time-consuming.*
+
+### 1.2 Pathogen Phylogenies (Arenaviridae & Hantaviridae)
+This section would ideally show phylogenies for all known Arena- and Hantaviruses, with tips colored by whether they appear in our dataset. Creating these phylogenies from scratch is a major task. Here, we demonstrate the method by building a simplified taxonomic tree from the NCBI hierarchy.
+
+```{r pathogen-phylogeny}
+# Function to get a taxonomic tree and plot it
+create_pathogen_phylo_plot <- function(family_name) {
+  # Step 1: Get all species in the family from NCBI
+  ncbi_species <- taxize::downstream(family_name, db = "ncbi", downto = "species")[[1]]
+  
+  # Step 2: Get the classification hierarchy and convert to a phylo object
+  classification_data <- taxize::classification(ncbi_species$childtaxa_name, db = "ncbi")
+  phylo_tree <- taxize::class2tree(classification_data, check = FALSE)
+  
+  # Step 3: Map tips to our dataset
+  pathogen_species_in_db <- pathogen_data %>%
+    filter(pathogen_family == family_name) %>%
+    distinct(pathogen_species_cleaned)
+  
+  tip_data <- tibble(label = phylo_tree$phylo$tip.label) %>%
+    mutate(
+      in_dataset = label %in% unique(c(str_split(pathogen_species_in_db$pathogen_species_cleaned, ", ", simplify = TRUE))),
+      sampling_status = if_else(in_dataset, "In ArHa Dataset", "Not in Dataset")
+    )
+  
+  # Step 4: Plot
+  ggtree(phylo_tree$phylo) %<+% tip_data +
+    geom_tippoint(aes(color = sampling_status), size = 2) +
+    xlim(NA, 60) +
+    # Increase the offset to push labels out, making the tree more compact
+    geom_tiplab(aes(label = label), size = 4, offset = 0) + 
+    scale_color_manual(
+      values = c("In ArHa Dataset" = "firebrick", "Not in Dataset" = "grey80"),
+      name = "Sampling Status"
+    ) +
+    labs(title = paste("Taxonomic Tree of", family_name)) +
+    theme(legend.position = "bottom")
+}
+
+# Create plots for both families
+plot_arena <- create_pathogen_phylo_plot("Arenaviridae")
+plot_hanta <- create_pathogen_phylo_plot("Hantaviridae")
+
+# Combine and display
+(plot_arena | plot_hanta)
+ggsave(here("output", "pathogen_phylogeny_split.png"), plot = (plot_arena + plot_hanta), width = 20, height = 10, dpi = 300)
+```
+
+## 2. Study and Country Level Pathogen Prevalence
+
+These plots show the distribution of pathogen prevalence (`positive / tested`) for key host-pathogen pairs. Each point represents the prevalence from a single study in a single country.
+
+```{r prevalence-plots}
+# Step 1: Calculate prevalence
+prevalence_data <- pathogen_data %>%
+  # Filter out records associated with multiple NCBI pathogens for this analysis
+  filter(!stringr::str_detect(pathogen_species_ncbi, ",")) %>%
+  filter(number_tested > 0) %>%
+  left_join(host_data %>% select(host_record_id, host_species, country), by = "host_record_id") %>%
+  filter(!is.na(host_species), !is.na(pathogen_species_cleaned)) %>%
+  # Group by the unique strata: study, host, pathogen, and country
+  group_by(study_id, host_species, pathogen_species_cleaned, pathogen_family, country) %>%
+  # Sum the counts within these strata to get the correct unit of observation
+  summarise(
+    number_tested = sum(number_tested, na.rm = TRUE),
+    number_positive = sum(number_positive, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(prevalence = number_positive / number_tested) %>%
+  # Ensure no rows are dropped if prevalence is 0 but tested is > 0
+  filter(number_tested > 0)
+
+# Function to create a prevalence plot for a given virus family
+create_prevalence_plot <- function(family_name) {
+  
+  plot_prevalence_subset <- prevalence_data %>%
+    filter(pathogen_family == family_name) %>%
+    group_by(pathogen_species_cleaned) %>%
+    mutate(total_tested = sum(number_tested, na.rm = TRUE)) %>%
+    ungroup() %>%
+    arrange(total_tested) %>%
+    mutate(pathogen_species_cleaned = fct_inorder(pathogen_species_cleaned))
+  
+  ggplot(plot_prevalence_subset, aes(x = prevalence, y = pathogen_species_cleaned)) +
+    geom_boxplot(aes(weight = number_tested), fill = "lightblue") +
+    geom_point(
+      aes(size = number_tested, color = host_species),
+      position = position_jitter(height = 0.4, width = 0),
+      alpha = 0.8,
+      show.legend = FALSE
+    ) +
+    scale_x_continuous(labels = scales::percent, limits = c(0, 1)) +
+    labs(
+      title = paste(family_name, "Prevalence by Pathogen"),
+      subtitle = "Each point is a host-study-country stratum. Boxplots show the distribution of prevalences for the pathogen.",
+      x = "Prevalence (Positive / Tested)",
+      y = "Host Species"
+    ) +
+    theme_minimal()
+}
+
+# Generate and display plots
+plot_arena_prev <- create_prevalence_plot("Arenaviridae")
+plot_hanta_prev <- create_prevalence_plot("Hantaviridae")
+
+ggsave(here("output", "plot_arena_prev.png"), plot = plot_arena_prev, width = 20, height = 10, dpi = 300)
+ggsave(here("output", "plot_hanta_prev.png"), plot = plot_hanta_prev, width = 20, height = 10, dpi = 300)
+```
+
+## 3. Geographically Stratified Sampling Effort
+
+These maps visualize the spatial distribution and resolution of the sampling effort in the database.
+
+```{r spatial-plots}
+# Step 1: Prepare spatial data
+world_map <- ne_countries(scale = "medium", returnclass = "sf")
+
+# Create a distinct set of sampling points
+sampling_points <- host_data %>%
+  filter(!is.na(latitude), !is.na(longitude)) %>%
+  distinct(latitude, longitude, .keep_all = TRUE) %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
+  mutate(detections = number_of_hosts > 0)
+
+create_density_map <- function(adm_level) {
+  
+  # This function now handles ADM0, 1, 2, and 3
+  
+  if (adm_level == 0) {
+    country_summary <- host_data %>%
+      group_by(iso3c) %>%
+      summarise(n_detections = sum(number_of_hosts, na.rm = TRUE), .groups = "drop")
+    
+    map_data <- world_map %>%
+      left_join(country_summary, by = c("iso_a3" = "iso3c")) %>%
+      mutate(
+        area_1000km2 = as.numeric(st_area(.)) / 1e9, # Area in 1000s of km^2
+        density = n_detections / area_1000km2
+      )
+    
+    ggplot(data = map_data) +
+      geom_sf(aes(fill = log1p(density)), color = "white", size = 0.1) +
+      scale_fill_viridis_c(option = "magma", name = "log(Detections / 1000 km² + 1)", na.value = "grey90") +
+      labs(title = "Global Sampling Density (Country Level - ADM0)") +
+      theme_void()
+    
+  } else {
+    # Logic for higher admin levels
+    
+    # 1. Find and load all GADM shapefiles for the specified level
+    file_pattern <- paste0("_", adm_level, "\\_pk.rds$")
+    gadm_files <- list.files(here("data", "gadm"), pattern = file_pattern, full.names = TRUE, recursive = TRUE)
+    
+    if (length(gadm_files) == 0) {
+      return(ggplot() + theme_void() + labs(title = paste("No GADM files found for ADM", adm_level)))
+    }
+    
+    all_gadm_polygons <- lapply(gadm_files, terra::vect) %>%
+      tidyterra::bind_spat_rows()
+    
+    # 2. Summarize host data at the correct admin level
+    gadm_name_col <- paste0("gadm_adm", adm_level)
+    gadm_shapefile_name_col <- paste0("GID_", adm_level)
+    gadm_country_shapefile_col <- "NAME_0"
+    
+    polygon_summary <- host_data %>%
+      filter(!is.na(.data[[gadm_name_col]])) %>%
+      group_by(country, .data[[gadm_name_col]]) %>%
+      summarise(n_detections = sum(number_of_hosts, na.rm = TRUE), .groups = "drop")
+    
+    # 3. Join summary data to the shapefiles
+    if(adm_level == 1) {
+      map_data <- all_gadm_polygons %>%
+        filter(GID_1 %in% polygon_summary[["gadm_adm1"]]) %>%
+        left_join(polygon_summary, by = c("GID_1" = "gadm_adm1")) %>%
+        mutate(
+          area_1000km2 = as.numeric(expanse(.)) / 1e9,
+          density = n_detections / area_1000km2
+        )
+    } else if(adm_level == 2) {
+      map_data <- all_gadm_polygons %>%
+        filter(GID_2 %in% polygon_summary[["gadm_adm2"]]) %>%
+        left_join(polygon_summary, by = c("GID_2" = "gadm_adm2")) %>%
+        mutate(
+          area_1000km2 = as.numeric(expanse(.)) / 1e9,
+          density = n_detections / area_1000km2
+        )
+      
+    } else {
+      
+      map_data <- all_gadm_polygons %>%
+        filter(GID_3 %in% polygon_summary[["gadm_adm3"]]) %>%
+        left_join(polygon_summary, by = c("GID_3" = "gadm_adm3")) %>%
+        mutate(
+          area_1000km2 = as.numeric(expanse(.)) / 1e9,
+          density = n_detections / area_1000km2
+        )
+      
+    }
+    
+    # 4. Create the plot
+    ggplot() +
+      geom_sf(data = world_map, fill = "grey90", color = "white", size = 0.2) +
+      geom_sf(data = map_data, aes(fill = log1p(density)), color = "white", size = 0.05) +
+      scale_fill_viridis_c(option = "magma", name = "log(Detections / 1000 km² + 1)") +
+      labs(title = paste("Global Sampling Density (Admin Level", adm_level, ")")) +
+      theme_void()
+  }
+}
+
+# Create the maps
+level_0 <- create_density_map(0) # Country level
+level_1 <- create_density_map(1) # ADM1 level
+level_2 <- create_density_map(2) # ADM2 level
+level_3 <- create_density_map(3) # ADM3 level
+
+ggsave(here("output", "level_0.png"), plot = level_0, width = 20, height = 20, dpi = 300)
+ggsave(here("output", "level_1.png"), plot = level_1, width = 20, height = 20, dpi = 300)
+ggsave(here("output", "level_2.png"), plot = level_2, width = 20, height = 20, dpi = 300)
+ggsave(here("output", "level_3.png"), plot = level_3, width = 20, height = 20, dpi = 300)
+
+point_summary <- host_data %>%
+  filter(number_of_hosts >= 1) %>%
+  drop_na(latitude, longitude) %>%
+  left_join(pathogen_data %>% select(host_record_id, pathogen_family), by = "host_record_id") %>%
+  group_by(latitude, longitude) %>%
+  summarise(
+    number_of_hosts = sum(number_of_hosts, na.rm = TRUE),
+    has_arena = "Arenaviridae" %in% pathogen_family,
+    has_hanta = "Hantaviridae" %in% pathogen_family,
+    .groups = "drop"
+  ) %>%
+  mutate(
+    sampling_status = case_when(
+      has_arena & has_hanta ~ "Both",
+      has_arena ~ "Arenaviridae",
+      has_hanta ~ "Hantaviridae",
+      TRUE ~ "No detections"
+    )
+  ) %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+
+point_map <- ggplot() +
+  geom_sf(data = world_map, fill = "grey95", color = "black") +
+  geom_sf(data = point_summary, aes(color = sampling_status), alpha = 0.7) +
+  scale_color_manual(
+    values = c(
+      "Arenaviridae" = "blue",
+      "Hantaviridae" = "red",
+      "Both" = "purple",
+      "No detections" = "darkgrey"
+    ),
+    name = "Virus Family Detected"
+  ) +
+  labs(title = "Sampling Locations by Virus Family Detected") +
+  theme_void()
+
+# Save the point map
+ggsave(here("output", "sampling_locations_by_virus.png"), plot = point_map, width = 12, height = 7, dpi = 300)
+```
+
+## 4. Temporal Trends in Sampling Effort
+
+This section visualizes the accumulation of research effort over time.
+
+```{r temporal-trends}
+# Step 1: Prepare the data
+temporal_data <- pathogen_data %>%
+  left_join(host_data %>% select(host_record_id, start_date), by = "host_record_id") %>%
+  filter(!is.na(start_date)) %>%
+  filter(!is.na(pathogen_species_cleaned)) %>%
+  filter(!str_detect(pathogen_species_cleaned, ",")) %>%
+  group_by(pathogen_species_cleaned, pathogen_family, start_date) %>%
+  summarise(number_tested = sum(number_tested, na.rm = TRUE),
+            number_tested = replace_na(number_tested, 0),
+            .groups = "drop") %>%
+  # Calculate the cumulative sum
+  group_by(pathogen_species_cleaned, pathogen_family) %>%
+  arrange(start_date) %>%
+  mutate(cumulative_sampling = cumsum(number_tested))
+
+# Step 2: Create the plot
+hanta_temporal_plot <- ggplot(temporal_data %>%
+                                filter(pathogen_family == "Hantaviridae") %>%
+                                filter(max(cumulative_sampling) >= 5000), aes(x = start_date, y = cumulative_sampling, colour = pathogen_species_cleaned)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_y_continuous(labels = scales::label_comma()) +
+  labs(
+    title = "Cumulative Sampling Effort Over Time: Hantaviridae",
+    x = "Year of Sample Collection",
+    y = "Cumulative Number of Hosts Tested",
+    colour = "Pathogen species"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+arena_temporal_plot <- ggplot(temporal_data %>%
+                                filter(pathogen_family == "Arenaviridae") %>%
+                                filter(max(cumulative_sampling) >= 5000), aes(x = start_date, y = cumulative_sampling, colour = pathogen_species_cleaned)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_y_continuous(labels = scales::label_comma()) +
+  labs(
+    title = "Cumulative Sampling Effort Over Time: Arenaviridae",
+    x = "Year of Sample Collection",
+    y = "Cumulative Number of Hosts Tested",
+    colour = "Pathogen species"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# Save and display the plot
+ggsave(here("output", "hanta_temporal_plot.png"), plot = hanta_temporal_plot, width = 10, height = 6, dpi = 300)
+ggsave(here("output", "arena_temporal_plot.png"), plot = arena_temporal_plot, width = 10, height = 6, dpi = 300)
+temporal_plot
+```
+

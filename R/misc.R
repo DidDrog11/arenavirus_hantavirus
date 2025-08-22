@@ -1260,3 +1260,114 @@ ft_586_pathogen <- ft_586 %>%
 
 write.table(ft_586_pathogen,
             here("data", "data_to_extract", "ft_586_seq.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+
+
+# ft_725 ------------------------------------------------------------------
+
+ft_725 <- read_csv(here("data", "data_to_extract", "ft_725_sampling.csv"))
+
+ft_725_path_seq <- readLines(here("data", "data_to_extract", "viral_sequences_ft_725.txt"))
+ft_725_host_seq <- readLines(here("data", "data_to_extract", "host_sequences_ft_725.txt"))
+
+# path matching
+record_starts <- which(str_detect(ft_725_path_seq, "^LOCUS"))
+record_ends <- c(record_starts[-1] - 1, length(ft_725_path_seq))
+
+extract_genbank_metadata <- function(record_lines) {
+  text <- paste(record_lines, collapse = "\n")
+  
+  tibble(
+    accession = str_match(text, "ACCESSION\\s+(\\S+)")[,2],
+    virus_name = str_match(text, "SOURCE\\s+(.*)")[,2],
+    host_name = str_match(text, "/host=\"([^\"]+)\"")[,2],
+    strain = str_match(text, "/strain=\"([^\"]+)\"")[,2],
+    location = str_match(text, "/geo_loc_name=\"([^\"]+)\"")[,2],
+    lat_lon = str_match(text, "/lat_lon=\"([^\"]+)\"")[,2],
+    collection_date = str_match(text, "/collection_date=\"([^\"]+)\"")[,2]
+  )
+}
+
+metadata_list <- map2(record_starts, record_ends, function(start, end) {
+  extract_genbank_metadata(ft_725_path_seq[start:end])
+})
+
+viral_metadata <- bind_rows(metadata_list)
+
+viral_metadata_clean <- viral_metadata %>%
+  mutate(
+    virus_name_std = case_when(
+      str_detect(virus_name, regex("gairoense", ignore_case = TRUE)) ~ "Gairo virus",
+      str_detect(virus_name, regex("luna", ignore_case = TRUE)) ~ "Luna virus",
+      str_detect(virus_name, regex("moro", ignore_case = TRUE)) ~ "Morogoro virus",
+      TRUE ~ virus_name
+    ),
+    locality = location %>%
+      str_remove("^Tanzania:\\s*") %>%
+      str_extract("^[^/]+") %>%
+      str_trim(),
+    collection_year = year(parse_date_time(collection_date, orders = c("ymd", "Y", "Ymd", "my", "dmy", "B Y"))),
+    accession = str_trim(accession),
+    decimalLat = -abs(round(as.numeric(str_split(lat_lon, " ", simplify = TRUE)[, 1]), 3)),
+    decimalLon = round(as.numeric(str_split(lat_lon, " ", simplify = TRUE)[, 3]), 3)
+  )
+
+# host matching
+record_starts <- which(str_detect(ft_725_host_seq, "^LOCUS"))
+record_ends <- c(record_starts[-1] - 1, length(ft_725_host_seq))
+
+
+host_metadata_list <- map2(record_starts, record_ends, function(start, end) {
+  extract_genbank_metadata(ft_725_host_seq[start:end])
+})
+
+host_metadata <- bind_rows(host_metadata_list)
+
+host_metadata_clean <- host_metadata %>%
+  mutate(
+    host_name_std = case_when(
+      str_detect(virus_name, regex("Mastomys", ignore_case = TRUE)) ~ "Mastomys natalensis",
+      TRUE ~ virus_name
+    ),
+    locality = location %>%
+      str_remove("^Tanzania:\\s*") %>%
+      str_extract("^[^/]+") %>%
+      str_trim(),
+    accession = str_trim(accession)
+  ) %>%
+  select(accession, host_name_std, locality)
+
+
+ft_725_clean <- ft_725 %>%
+  mutate(
+    event_year = as.numeric(str_sub(event_date, 1, 4)),
+    locality = str_trim(locality),
+    pathogen_species = str_trim(pathogen_species)
+  )
+
+# Some duplication, can be matched on coordinates or dates at data entry
+joined_path_data <- ft_725_clean %>%
+  left_join(viral_metadata_clean,
+            by = c("locality", "pathogen_species" = "virus_name_std", "event_year" = "collection_year")) %>%
+  drop_na(accession) %>%
+  select(pathogen_id, rodent_id, pathogen_species, locality, event_date, accession)%>%
+  group_by(accession) %>%
+  slice(1)
+
+# Inspect unmatched records
+non_joined <- viral_metadata_clean %>%
+  filter(!accession %in% joined_data$accession)
+
+write.table(joined_path_sequences,
+            here("data", "data_to_extract", "ft_725_seq.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
+
+joined_host_sequences <- ft_725_clean %>%
+  distinct(rodent_id, host_species, locality, event_year) %>%
+  left_join(host_metadata_clean,
+            by = c("locality", "host_species" = "host_name_std")) %>%
+  drop_na(accession) %>%
+  group_by(accession) %>%
+  slice(1)
+
+write.table(joined_host_sequences,
+            here("data", "data_to_extract", "ft_725_host_seq.txt"), quote = FALSE, row.names = FALSE, sep = "\t")
