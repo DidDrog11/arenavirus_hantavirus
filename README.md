@@ -1,6 +1,6 @@
 # Synthesising Arena- and Hantavirus data from rodents to understand current known host distributions and viral pathogens
 
-David Simons and Steph Seifert
+David Simons, Ricardo Rivero, and Steph Seifert
 
 Rodents are global hosts of zoonotic pathogens and potential hosts of novel pathogens of epidemic potential. Existing efforts to catalogue host-pathogen associations in these species are limited by global datasets which lack temporal and geographic specificity. Current research is hindered by spatial-, host taxa- and temporal biases within these datasets that are challenging to quantify. Recent work within the Verena consortium has synthesised publicly available data on Alpha- and Beta-coronaviruses in bats which provides a template for this work to be expanded to rodents. In this proposal, I outline a project to expand on a database produced during my PhD studies on rodent-pathogen associations in West Africa to a global scale and incorporating additional virus-host features which will support future hypothesis-testing. The database produced will provide a novel and accessible resource to explore a range of questions at a global scale about rodents and their pathogens. The produced data will be deposited within the Global Biodiversity Information Facility to support wider re-use as they continue to expand their GBIF health programme.
 
