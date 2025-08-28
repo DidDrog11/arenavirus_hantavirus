@@ -54,3 +54,6 @@ vignettes/*.pdf
 /data/misc
 /data/clean_data
 /data/raw_data
+/data/test_data
+*.pyc
+gbif_cache.sqlite
