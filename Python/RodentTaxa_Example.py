@@ -14,7 +14,7 @@ tables = pipeline.list_tables(rds)
 print("Tables:", tables)
 
 # 2) Extract one table to CSV (UTF-8)
-out_csv = pipeline.extract_table(rds, "descriptives",
+out_csv = pipeline.extract_table(rds, "pathogen",
                                  pipeline.root / "data/test_data/paper_data.csv")
 print("CSV written:", out_csv)
 

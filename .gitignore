@@ -57,3 +57,4 @@ vignettes/*.pdf
 /data/test_data
 *.pyc
 gbif_cache.sqlite
+/data/ncbi_virus
