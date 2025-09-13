@@ -16,7 +16,7 @@ library(here)
 #| label: abstract
 #| include: false
 
-data <- read_rds(here("data", "database", "Project_ArHa_database_2025-08-20.rds"))
+data <- read_rds(here("data", "database", "Project_ArHa_database_2025-08-25.rds"))
 
 included_studies <- data$descriptives
 n_included_studies <- included_studies |>
@@ -148,6 +148,65 @@ Key extracted variables included: publication metadata, sampling effort, host sp
     + Sampling Effort: We included the total number of individuals tested for each host species as a node-level covariate (nodecov) to control for sampling bias.
     + Ecological Traits: We tested the significance of host traits as predictors of infection. Key covariates included geographic range size and a categorical variable for synanthropy (commensal vs. wild species).|
  +Objective: The primary goal of the ERGM analysis was to determine if ecological traits of a host species significantly predict its likelihood of being a host for a given virus, after accounting for the fact that some species are much more heavily sampled than others.
+
+# Results
+
+## Description of the Dataset
+
+Summary of the total number of unique studies, sampling sites, and years represented.
+
+Overview of the number of host species sampled and their distribution across families and genera.
+
+Summary of the number and diversity of viruses tested, detected, and sequenced.
+
+## The Surveillance Landscape: Quantified Biases
+
+### Taxonomic Biases in Host and Pathogen Surveillance
+
+To formally test the drivers of these observed biases, we fitted a series of nested Generalized Additive Models (GAMs) predicting the total number of pathogen samples collected for each host species. On our main dataset of 2,123 species with complete trait data, a model including host biological traits and geography explained 47.3% of the deviance in sampling effort. Both host geographic range size (GAM, edf=3.44, p<2e-16) and adult body mass (GAM, edf=5.88, p<2e-16) were highly significant, non-linear predictors. After accounting for these biological traits, the apparent sampling bias towards the Neotropic and Afrotropic realms was no longer statistically significant (p > 0.1), while persistent, strong positive effects remained for the Palearctic (p < 0.001) and Nearctic (p < 2e-05) realms.
+
+In a focused sub-analysis on the 355 species with available synanthropy data, a species' propensity to live near humans was the most powerful predictor of sampling intensity. Species classified as Occasionally Synanthropic (p < 2e-14) or Totally Synanthropic (p < 2e-05) were associated with a dramatic and highly significant increase in sampling effort. In this final, comprehensive model, the inclusion of synanthropy attenuated most other effects, with only the Nearctic and Indomalayan realms retaining a significant independent association with sampling effort.
+
+Our analysis reveals a profound taxonomic bias in global surveillance efforts. Of the [e.g., 3,457] known extant species of rodents and shrews, only [e.g., 745 (21.5%)] were found to have been sampled for either arenaviruses or hantaviruses in our systematic review. The sampling effort is highly concentrated in a few families, such as Muridae and Cricetidae, while many other families remain completely unsampled (Fig. X, Circular family plots). Similarly, pathogen surveillance is concentrated on a small number of well-known zoonotic species, such as Sin Nombre orthohantavirus and Lassa mammarenavirus, while many other known viral species have been tested for far less frequently (Fig. Y, Pathogen sampling bar chart).
+
+To formally test the drivers of these observed biases, we fitted a series of nested Generalized Additive Models (GAMs) predicting the total number of pathogen samples collected for each host species. On our primary analytic dataset of 2,123 species with complete trait data, a model including host biological traits and geography explained 47.3% of the deviance in sampling effort. Both host geographic range size (GAM, edf=3.44, p<2e-16) and adult body mass (GAM, edf=5.88, p<2e-16) were highly significant, non-linear predictors. After accounting for these biological traits, the apparent sampling bias towards the Neotropic and Afrotropic realms was no longer statistically significant (p > 0.1), while persistent, strong positive effects remained for the Palearctic (p < 0.001) and Nearctic (p < 2e-05) realms.
+
+In a focused sub-analysis on a secondary analytic dataset (the 355 species with available synanthropy data), a species' propensity to live near humans was the most powerful predictor of sampling intensity. Species classified as Occasionally Synanthropic (p < 2e-14) or Totally Synanthropic (p < 2e-05) were associated with a substantial increase in sampling effort. In this final, comprehensive model, the inclusion of synanthropy attenuated most other effects, with only the Nearctic and Indomalayan realms retaining a significant independent association with sampling effort.
+
+### Gaps in Genetic Data Representativeness
+
+Beyond simple sampling, we found significant gaps between the number of animals sampled and the availability of public genetic data. Geographically, surveillance is heavily concentrated in a few key regions, with [e.g., North America and Europe] showing a high proportion of sampled hosts having associated sequences. In contrast, vast regions in [e.g., Central Africa and Southeast Asia], despite having documented sampling efforts, are "genetic cold spots" with a very low proportion of sequenced samples (Fig. Z, Bivariate map). This disparity is also evident at the taxonomic level. Certain well-studied host species, such as [e.g., Peromyscus maniculatus or Myodes glareolus], have a high proportion of their sampled populations represented by genetic data. However, many other heavily sampled species, including [e.g., Mastomys natalensis], have a disproportionately low number of associated sequences relative to the thousands of individuals that have been sampled (Fig. W, Taxonomic representativeness plot).
+
+## Geographic and Temporal Gaps
+
+[Placeholder for Results] Presentation of maps and statistical results highlighting major geographic regions where known hosts exist but sampling is absent. Results of the correlation between sampling effort and socio-economic factors.
+
+[Placeholder for Results] Presentation of plots showing trends in sampling effort and detected diversity over time, highlighting periods of intensified research.
+
+## Host-Pathogen Network Structures
+
+[Placeholder for Results] Visualization and description of the Arenaviridae and Hantaviridae networks.
+
+[Placeholder for Results] Results of the quantitative comparison of the two network structures.
+
+[Placeholder for Results] Identification of keystone host and pathogen taxa.
+
+# Discussion
+Our synthesis reveals a global surveillance landscape for rodent-borne viruses that is highly fragmented and biased across taxonomic, geographic, and temporal dimensions. Surveillance is concentrated in specific taxa, regions, and time periods, leaving vast "known unknowns."
+
+An Evidence-Based Roadmap for Future Surveillance:
+
+Synthesize the taxonomic, geographic, and temporal gap analyses to provide a clear, actionable "roadmap."
+
+Explicitly list the top host genera, geographic regions, and under-studied time periods that represent the most critical priorities for future surveillance efforts.
+
+Ecological Insights from Network Analysis: Discuss the implications of the observed network structures. For example, do the differences between the Arena- and Hantavirus networks suggest different evolutionary strategies or transmission dynamics?
+
+Limitations: Acknowledge limitations of the systematic review process (e.g., publication bias, language limitations, inability to capture all "grey literature").
+
+Conclusion: This work provides both a valuable, novel data resource and a quantitative framework for understanding the landscape of zoonotic virus surveillance. By identifying
+
+---
 
 # Results
 

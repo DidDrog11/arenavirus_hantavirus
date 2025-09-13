@@ -12,6 +12,8 @@
 library(here)
 library(countrycode)
 library(data.table)
+library(ggplot2)
+library(patchwork)
 library(readr)
 library(readxl)
 library(dplyr)
@@ -20,7 +22,7 @@ library(stringr)
 library(taxize)
 library(terra)
 library(tidyterra)
-library(tidyr)
+library(tidyverse)
 library(traitdata)
 library(mgcv) # For GAMs
 
@@ -78,7 +80,6 @@ try({
 }, silent = TRUE)
 
 # b) Host Trait Data (EltonTraits)
-# This should have columns like 'scientificName', 'adult_body_mass_g', 'range_size_km2', etc.
 try({
   if(update_external == TRUE) {
     data("elton_mammals")
@@ -128,8 +129,7 @@ try({
 }, silent = TRUE)
 
 iucn_range_sizes <- as.data.frame(iucn_subset) %>%
-  as_tibble() %>%
-  rename(scientific_name = scientific)
+  as_tibble()
 
 # d) Rodent synanthropy
 if(update_external == TRUE) {
@@ -169,17 +169,21 @@ if(update_external == TRUE) {
   
   resolved_ids_df <- data.table::rbindlist(valid_classifications, idcol = "query") %>%
     as_tibble() %>%
-    filter(rank == "species")
+    filter(rank %in% c("species", "genus", "family")) %>%
+    pivot_wider(
+      id_cols = query,
+      names_from = rank,
+      values_from = c(name, id),
+      names_sep = "_"
+    )
   
   unresolved <- host_traits$scientific_name[!host_traits$scientific_name %in% resolved_ids_df$query]
-  
-  ---
   
   unresolved <- tibble(unresolved_names = unresolved,
                        unresolved_gbif = NA)
   
   # Loop through each unresolved name
-  for (i in 1:length(unresolved$unresolved_names)) {
+  for (i in 131:length(unresolved$unresolved_names)) {
     
     message(paste("\n--- Resolving:", i, "---"))
     
@@ -201,15 +205,27 @@ if(update_external == TRUE) {
   
   unresolved_ids_df <- data.table::rbindlist(valid_classifications, idcol = "query") %>%
     as_tibble() %>%
-    filter(rank == "species")
+    filter(rank %in% c("species", "genus", "family")) %>%
+    pivot_wider(
+      id_cols = query,
+      names_from = rank,
+      values_from = c(name, id),
+      names_sep = "_"
+    )
   
   gbif_harmonised <- bind_rows(resolved_ids_df, unresolved_ids_df) %>%
     arrange(query) %>%
-    distinct()
+    distinct() %>%
+    rename(gbif_species = name_species,
+           gbif_genus = name_genus,
+           gbif_family = name_family,
+           species_gbifid = id_species,
+           genus_gbifid = id_genus,
+           family_gbifid = id_family)
   
   host_traits <- host_traits %>%
-    left_join(gbif_harmonised %>%
-                rename(scientific_name = query, resolved_name = name, gbif_id = id), by = "scientific_name")
+    left_join(gbif_harmonised, by = c("scientific_name" = "query")) %>%
+    distinct()
   
   write_rds(host_traits, here("data", "external", "harmonised_species.rds"))
   
@@ -220,8 +236,36 @@ if(update_external == TRUE) {
 }
 
 # --- 3. Host Bias Analysis ---
+# Helper function for calculating the mean, returning NA for all-NA input
+safe_mean <- function(x) {
+  if (all(is.na(x))) {
+    return(NA_real_)
+  } else {
+    return(mean(x, na.rm = TRUE))
+  }
+}
 
-host_traits <- host_traits %>%
+# Helper function for calculating the max, returning NA for all-NA input
+safe_max <- function(x) {
+  if (all(is.na(x))) {
+    return(NA_real_)
+  } else {
+    return(max(x, na.rm = TRUE))
+  }
+}
+
+# Helper function for calculating the mode (most common value), returning NA for all-NA input
+safe_mode <- function(x) {
+  x_clean <- stats::na.omit(x)
+  if (length(x_clean) == 0) {
+    return(NA_character_)
+  } else {
+    ux <- unique(x_clean)
+    return(ux[which.max(tabulate(match(x_clean, ux)))])
+  }
+}
+
+host_traits_cleaned <- host_traits %>%
   mutate(iucn_status = case_when(str_detect(iucn_status, "EX") ~ "Extinct",
                                  str_detect(iucn_status, "EW") ~ "Extinct in the wild",
                                  str_detect(iucn_status, "CR") ~ "Critically endangered",
@@ -233,26 +277,55 @@ host_traits <- host_traits %>%
                                  str_detect(iucn_status, "NE") ~ "Not evaluated",
                                  TRUE ~ NA),
          iucn_status = factor(iucn_status, levels = c("Extinct", "Extinct in the wild", "Critically endangered", "Endangered", "Vulnerable", "Near threatened", "Least concern", "Data deficient", "Not evaluated")),
-         synanthropy = factor(synanthropy, levels = c("TS", "TS, NA", "O", "N, O", "N"))) %>%
-  filter(!is.na(gbif_id)) %>%
-  group_by(gbif_id) %>%
+         synanthropy = factor(synanthropy, levels = c("TS", "TS, NA", "O", "N, O", "N")),
+         species = case_when(scientific_name == gbif_species ~ gbif_species,
+                             scientific_name != gbif_species ~ gbif_species,
+                             is.na(scientific_name) ~ NA),
+         species_match = case_when(scientific_name == gbif_species ~ TRUE,
+                                   scientific_name != gbif_species ~ FALSE,
+                                   TRUE ~ NA),
+         family = case_when(family == gbif_family ~ gbif_family,
+                            family != gbif_family ~ gbif_family,
+                            is.na(family) ~ NA),
+         family_match = case_when(family == gbif_family ~ TRUE,
+                                     family != gbif_family ~ FALSE,
+                                     is.na(family) | is.na(gbif_family) ~ NA),
+         genus = case_when(genus == gbif_genus ~ gbif_genus,
+                           genus != gbif_genus ~ gbif_genus,
+                            is.na(genus) ~ NA),
+         genus_match = case_when(genus == gbif_genus ~ TRUE,
+                                 genus != gbif_genus ~ FALSE,
+                                  is.na(genus) | is.na(gbif_genus) ~ NA)
+         ) %>%
+  filter(!is.na(species_gbifid)) %>%
+  group_by(species_gbifid, genus_gbifid, family_gbifid) %>%
+  mutate(n = n()) %>%
   summarise(
-    # Keep the first scientific name as the representative for the group
-    scientific_name = paste(scientific_name, collapse = ", "),
-    # Take the mean for continuous traits, ignoring NAs
-    adult_body_mass_g = mean(adult_body_mass_g, na.rm = TRUE),
-    range_size_km2 = mean(range_size_km2, na.rm = TRUE),
-    s_index = mean(s_index, na.rm = TRUE),
-    # For categorical traits, take the most common value (mode)
-    iucn_status = names(which.max(table(iucn_status))),
-    synanthropy = names(which.max(table(synanthropy))),
-    nocturnal = max(nocturnal, na.rm = TRUE),
-    crepuscular = max(crepuscular, na.rm = TRUE),
-    diurnal = max(diurnal, na.rm = TRUE),
+    n = unique(n),
+    # Keep all original scientific names that were aggregated
+    synonym_names = paste(unique(scientific_name), collapse = ", "),
+    scientific_name = first(species),
+    genus = first(genus),
+    family = first(family),
+    order = first(order),
+    # Use helpers for aggregation
+    adult_body_mass_g = safe_mean(adult_body_mass_g),
+    range_size_km2 = safe_mean(range_size_km2),
+    s_index = safe_mean(s_index),
+    iucn_status = safe_mode(iucn_status),
+    synanthropy = safe_mode(synanthropy),
+    nocturnal = safe_max(nocturnal),
+    crepuscular = safe_max(crepuscular),
+    diurnal = safe_max(diurnal),
+    # Combine unique biogeographic realms
     biogeographic_realm = paste(unique(na.omit(biogeographic_realm)), collapse = "|"),
     .groups = "drop"
-  )
-
+  ) %>%
+  mutate(synanthropy = case_when(str_detect(synanthropy, "TS") ~ "Totally Synanthropic",
+                                 synanthropy == "O" ~ "Occasionally Synanthropic",
+                                 synanthropy == "N" ~ "Not Synanthropic",
+                                 TRUE ~ NA)) %>%
+  arrange(scientific_name)
 
 # 3.1. Create a summary table of sampling effort per host species
 host_sampling_summary <- host_data %>%
@@ -275,21 +348,70 @@ host_sampling_summary <- host_data %>%
 
 # 3.2. Compare sampled species to the comprehensive checklist
 sampled_species <- unique(host_sampling_summary$gbif_id)
-sampled_in_checklist <- host_traits %>%
-  filter(gbif_id %in% sampled_species)
+sampled_in_checklist <- host_traits_cleaned %>%
+  filter(species_gbifid %in% sampled_species)
 missing_from_sampling <- host_traits %>%
-  filter(!gbif_id %in% sampled_species)
+  filter(!species_gbifid %in% sampled_species)
 
-comparison_data <- host_traits %>%
-  drop_na(gbif_id) %>%
-  mutate(sampling_status = if_else(gbif_id %in% sampled_in_checklist$gbif_id, "Sampled", "Not Sampled"))
+comparison_data <- host_traits_cleaned %>%
+  drop_na(species_gbifid) %>%
+  mutate(sampling_status = if_else(species_gbifid %in% sampled_in_checklist$species_gbifid, "Sampled", "Not Sampled"))
 
 # a) Taxonomic Comparison (by Family)
 family_comparison <- comparison_data %>%
-  count(family, sampling_status) %>%
+  drop_na(family) %>%
+  count(order, family, sampling_status) %>%
   pivot_wider(names_from = sampling_status, values_from = n, values_fill = 0) %>%
   mutate(proportion_sampled = Sampled / (Sampled + `Not Sampled`)) %>%
   arrange(desc(proportion_sampled))
+
+plot_data_long <- family_comparison %>%
+  mutate(total_species = Sampled + `Not Sampled`) %>%
+  mutate(family_label = forcats::fct_reorder2(
+    paste0(family, " (n=", total_species, ")"), 
+    order, 
+    -total_species
+  )) %>%
+  select(family_label, order, Sampled, `Not Sampled`, proportion_sampled) %>%
+  tidyr::pivot_longer(
+    cols = c(Sampled, `Not Sampled`),
+    names_to = "sampling_status",
+    values_to = "count"
+  ) %>%
+  mutate(
+    sampling_status = factor(sampling_status, levels = c("Not Sampled", "Sampled")),
+    proportion_sampled = if_else(sampling_status == "Not Sampled", NA_real_, proportion_sampled)
+  ) %>%
+  arrange(family_label, sampling_status)
+
+p_combined <- ggplot(plot_data_long, aes(x = family_label, y = count, fill = proportion_sampled)) +
+  geom_col(color = "white") + 
+  coord_polar() +
+  scale_y_log10() +
+  facet_wrap(~ order, scales = "free_x") +
+  scale_fill_viridis_c(
+    name = "Proportion Sampled",
+    labels = scales::percent,
+    limits = c(0, 1),
+    na.value = "grey80" # This colors the "Not Sampled" bars grey
+  ) +
+  labs(
+    title = "Taxonomic Sampling Bias by Family and Order",
+    x = NULL,
+    y = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    strip.background = element_rect(fill = "grey90", color = "grey90"),
+    strip.text = element_text(face = "bold", size = 12),
+    axis.text.y = element_blank(),
+    plot.margin = margin(1, 1, 1, 1, "cm")
+  )
+
+ggsave(here("output", "analysis_1","family_bias_circular_stacked_plot.png"), 
+       plot = p_combined, width = 20, height = 10, dpi = 300)
 
 # b) Biogeographic Realm Comparison
 realm_comparison <- comparison_data %>%
@@ -300,6 +422,50 @@ realm_comparison <- comparison_data %>%
   pivot_wider(names_from = sampling_status, values_from = n, values_fill = 0) %>%
   mutate(proportion_sampled = Sampled / (Sampled + `Not Sampled`)) %>%
   arrange(desc(proportion_sampled))
+
+realm_plot_data_long <- realm_comparison %>%
+  mutate(
+    total_species = Sampled + `Not Sampled`,
+    realm_label = forcats::fct_reorder(paste0(biogeographic_realm, " (n=", total_species, ")"), -total_species)
+  ) %>%
+  select(realm_label, Sampled, `Not Sampled`, proportion_sampled) %>%
+  tidyr::pivot_longer(
+    cols = c(Sampled, `Not Sampled`),
+    names_to = "sampling_status",
+    values_to = "count"
+  ) %>%
+  mutate(
+    sampling_status = factor(sampling_status, levels = c("Not Sampled", "Sampled")),
+    proportion_sampled = if_else(sampling_status == "Not Sampled", NA_real_, proportion_sampled)
+  ) %>%
+  arrange(realm_label, sampling_status)
+
+# Create the final plot
+realm_bias_plot <- ggplot(realm_plot_data_long, aes(x = realm_label, y = count, fill = proportion_sampled)) +
+  geom_col(color = "white") + 
+  coord_polar() +
+  scale_y_log10() +
+  scale_fill_viridis_c(
+    name = "Proportion Sampled",
+    labels = scales::percent,
+    limits = c(0, 1),
+    na.value = "grey80"
+  ) +
+  labs(
+    title = "Geographic Sampling Bias by Biogeographic Realm",
+    x = NULL,
+    y = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    axis.text.x = element_text(vjust = 3.5, size = 10),
+    axis.text.y = element_blank()
+  )
+
+ggsave(here("output", "analysis_1","realm_bias_circular_stacked_plot.png"), 
+       plot = realm_bias_plot, width = 15, height = 15, dpi = 300)
 
 # c) IUCN Status Comparison (Visualization)
 iucn_plot <- comparison_data %>%
@@ -317,6 +483,9 @@ iucn_plot <- comparison_data %>%
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+ggsave(here("output", "analysis_1","iucn_sampling.png"), 
+       plot = iucn_plot, width = 15, height = 15, dpi = 300)
+
 # 3.3. Fit a GAM to test predictors of sampling intensity
 # Create the base analytical dataset
 analysis_data_base <- comparison_data %>%
@@ -332,45 +501,218 @@ analysis_data_base <- comparison_data %>%
     synanthropy_status = as.factor(synanthropy)
   )  %>%
   left_join(host_sampling_summary %>%
-              select(gbif_id, n_studies, n_pathogen_samples, n_positive_samples), by = "gbif_id") %>%
+              select(gbif_id, n_studies, n_pathogen_samples, n_positive_samples), by = c("species_gbifid" = "gbif_id")) %>%
   filter(iucn_status != "Extinct") %>%
   mutate(biogeographic_realm = as.character(biogeographic_realm)) %>%
   separate_rows(biogeographic_realm, sep = "\\|") %>%
   filter(biogeographic_realm != "") %>%
-  distinct(scientific_name, gbif_id, n_pathogen_samples, adult_body_mass_g, range_size_km2, 
-           synanthropy_status, activity_pattern, foraging_stratum, biogeographic_realm) %>%
+  distinct(scientific_name, species_gbifid, n_pathogen_samples, adult_body_mass_g, range_size_km2, 
+           synanthropy_status, activity_pattern, biogeographic_realm) %>%
   mutate(value = 1) %>%
   pivot_wider(
-    id_cols = c(scientific_name, gbif_id, n_pathogen_samples, adult_body_mass_g, range_size_km2, synanthropy_status, activity_pattern, foraging_stratum),
+    id_cols = c(scientific_name, species_gbifid, n_pathogen_samples, adult_body_mass_g, range_size_km2, synanthropy_status, activity_pattern),
     names_from = biogeographic_realm,
     values_from = value,
     values_fill = 0
   ) %>%
+  mutate(n_pathogen_samples = replace_na(n_pathogen_samples, 0)) %>%
   clean_names()
 
 realm_predictors <- names(analysis_data_base)[names(analysis_data_base) %in% tolower(levels(comprehensive_checklist$biogeographic_realm))]
 
+# GAMS on full dataset
+
+# 3.3.1 Realms
 model_1_formula <- as.formula(paste("n_pathogen_samples ~", paste(realm_predictors, collapse = " + ")))
-model_1_data <- analysis_data_base %>% select(n_pathogen_samples, all_of(realm_predictors))
+full_data <- analysis_data_base %>% filter(!is.na(range_size_km2) &
+                                             !is.na(adult_body_mass_g) &
+                                             range_size_km2 > 0 & 
+                                             adult_body_mass_g > 0 &
+                                             !is.na(activity_pattern))
+gam_model_1 <- gam(model_1_formula, data = full_data, family = nb())
+
+summary(gam_model_1)
+
+# 3.3.2 Realms and range size
+model_2_formula <- as.formula(paste("n_pathogen_samples ~ s(log10(range_size_km2), k = 64) +", paste(realm_predictors, collapse = " + ")))
+
+gam_model_2 <- gam(model_2_formula, data = full_data, family = nb())
+
+summary(gam_model_2)
+
+# 3.3.3 Realms, range size and body mass
+model_3_formula <- as.formula(paste("n_pathogen_samples ~ s(log10(range_size_km2), k = 64) + s(log10(adult_body_mass_g), k = 32) +", paste(realm_predictors, collapse = " + ")))
+
+gam_model_3 <- gam(model_3_formula, data = full_data, family = nb())
+
+summary(gam_model_3)
+
+# 3.3.4 Realms, range size, body mass and activity
+model_4_formula <- as.formula(paste("n_pathogen_samples ~ s(log10(range_size_km2), k = 64) + s(log10(adult_body_mass_g), k = 32) + activity_pattern +", paste(realm_predictors, collapse = " + ")))
+
+gam_model_4 <- gam(model_4_formula, data = full_data, family = nb())
+
+summary(gam_model_4)
+
+# 3.3.5 Model comparison
+tibble(model = c(deparse1(model_1_formula),
+                 deparse1(model_2_formula),
+                 deparse1(model_3_formula),
+                 deparse1(model_4_formula)),
+       AIC = c(AIC(gam_model_1),
+               AIC(gam_model_2),
+               AIC(gam_model_3),
+               AIC(gam_model_4)))
+
+# GAM on dataset with synanthropy
+# 3.3.6 Realms
+data_subset <- analysis_data_base %>% filter(!is.na(range_size_km2) &
+                                               !is.na(adult_body_mass_g) &
+                                               range_size_km2 > 0 & 
+                                               adult_body_mass_g > 0 &
+                                               !is.na(activity_pattern) &
+                                               !is.na(synanthropy_status))
+gam_model_5 <- gam(model_1_formula, data = data_subset, family = nb())
+
+summary(gam_model_5)
+
+# 3.3.7 Realms and range size
+gam_model_6 <- gam(model_2_formula, data = data_subset, family = nb())
+
+summary(gam_model_6)
+
+# 3.3.8 Realms, range size and body mass
+gam_model_7 <- gam(model_3_formula, data = data_subset, family = nb())
+
+summary(gam_model_7)
+
+# 3.3.9 Realms, range size, body mass and activity
+gam_model_8 <- gam(model_4_formula, data = data_subset, family = nb())
+
+summary(gam_model_8)
+
+# 3.3.10 Realms, range size, body mass, activity and synanthropy status
+model_9_formula <- as.formula(paste("n_pathogen_samples ~ s(log10(range_size_km2), k = 64) + s(log10(adult_body_mass_g), k = 32) + activity_pattern + synanthropy_status +",
+                                    paste(realm_predictors, collapse = " + ")))
+gam_model_9 <- gam(model_9_formula, data = data_subset, family = nb())
+
+summary(gam_model_9)
+
+# 3.3.11 Model comparison
+tibble(model = c(deparse1(model_1_formula),
+                 deparse1(model_2_formula),
+                 deparse1(model_3_formula),
+                 deparse1(model_4_formula),
+                 deparse1(model_9_formula)),
+       AIC = c(AIC(gam_model_5),
+               AIC(gam_model_6),
+               AIC(gam_model_7),
+               AIC(gam_model_8),
+               AIC(gam_model_9)))
 
 # --- 4. Pathogen Bias Analysis ---
 
 # 4.1. Create a summary table of detection frequency per virus species
 pathogen_detection_summary <- pathogen_data %>%
+  filter(pathogen_family %in% c("Arenaviridae", "Hantaviridae")) %>%
+  filter(!str_detect(pathogen_species_cleaned, ",")) %>%
   group_by(pathogen_species_cleaned, pathogen_family) %>%
   summarise(
-    n_positive_records = n(),
-    n_hosts_tested_on = n_distinct(host_record_id),
-    n_studies_detected_in = n_distinct(study_id),
+    n_positive = sum(number_positive, na.rm = TRUE),
+    n_tested = sum(number_tested, na.rm = TRUE),
+    n_studies = n_distinct(study_id),
     .groups = "drop"
   ) %>%
-  arrange(desc(n_positive_records))
+  arrange(desc(n_tested), desc(n_positive)) %>%
+  mutate(pathogen_species_cleaned = fct_rev(fct_inorder(pathogen_species_cleaned)))
 
-write_csv(pathogen_detection_summary, here("R", "analysis_1", "outputs", "pathogen_detection_summary.csv"))
+arha_pathogen_summary <- ggplot(pathogen_detection_summary) +
+  geom_col(aes(y = pathogen_species_cleaned, x = n_tested, fill = n_studies)) +
+  facet_wrap(~ pathogen_family, scales = "free_y") +
+  scale_x_log10(labels = scales::label_log()) +
+  scale_fill_viridis_c() +
+  theme(legend.position = "bottom") +
+  labs(y = "Pathogen",
+       x = "Number of samples tested",
+       fill = "Number of included studies") +
+  theme_bw()
 
-# 4.2. Analyze co-detection frequency (number of viruses tested per host record)
+ggsave(here("output", "analysis_1","arha_pathogen_sampling.png"), 
+       plot = arha_pathogen_summary, width = 15, height = 15, dpi = 300)
+
+# 4.2. Analyze sampling effort of different pathogens within a species
 co_detection_summary <- pathogen_data %>%
-  group_by(host_record_id) %>%
+  filter(pathogen_family %in% c("Arenaviridae", "Hantaviridae")) %>%
+  left_join(host_data %>% select(host_record_id, host_species), by = "host_record_id") %>%
+  drop_na(host_species) %>%
+  drop_na(pathogen_species_cleaned) %>%
+  drop_na(ncbi_id) %>%
+  # Separate rows with multiple comma-separated pathogens
+  separate_rows(pathogen_species_cleaned, sep = ", ") %>%
+  # Now, group and summarize the testing effort for each unique pair
+  group_by(host_species, pathogen_species_cleaned, pathogen_family) %>%
+  summarise(
+    number_tested = sum(number_tested, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  filter(number_tested > 0)
+
+# Pivot the data into a wide host x pathogen matrix
+surveillance_matrix <- co_detection_summary %>%
+  pivot_wider(
+    id_cols = host_species,
+    names_from = pathogen_species_cleaned,
+    values_from = number_tested,
+    values_fill = 0
+  )
+
+# Separate the host names from the numeric data for clustering
+host_names <- surveillance_matrix$host_species
+numeric_matrix <- as.matrix(surveillance_matrix[, -1])
+rownames(numeric_matrix) <- host_names
+
+# Perform hierarchical clustering on both hosts (rows) and pathogens (columns)
+host_clustering <- hclust(dist(numeric_matrix))
+pathogen_clustering <- hclust(dist(t(numeric_matrix)))
+
+# Get the ordered labels from the clustering results
+ordered_hosts <- rownames(numeric_matrix)[host_clustering$order]
+ordered_pathogens <- colnames(numeric_matrix)[pathogen_clustering$order]
+
+# Convert the matrix back to a long format for ggplot
+heatmap_data <- co_detection_summary %>%
+  mutate(
+    host_species = factor(host_species, levels = ordered_hosts),
+    pathogen_species_cleaned = factor(pathogen_species_cleaned, levels = ordered_pathogens)
+  )
+
+co_surveillance_heatmap <- ggplot(heatmap_data, aes(x = pathogen_species_cleaned, y = host_species, fill = log1p(number_tested))) +
+  geom_tile(color = "white", linewidth = 0.1) +
+  scale_fill_viridis_c(option = "magma", name = "log(N Tested + 1)") +
+  facet_wrap(~ pathogen_family, scales = "free") +
+  labs(
+    title = "Co-surveillance Landscape of Arenaviruses and Hantaviruses",
+    subtitle = "Hosts (y-axis) and pathogens (x-axis) are clustered by sampling similarity",
+    x = "Pathogen Species",
+    y = "Host Species"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 8),
+    axis.text.y = element_text(size = 8),
+    panel.grid = element_blank(),
+    legend.position = "bottom"
+  )
+
+co_detection_summary <- pathogen_data %>%
+  filter(pathogen_family %in% c("Arenaviridae", "Hantaviridae")) %>%
+  left_join(host_data, by = c("host_record_id")) %>%
+  select(pathogen_record_id, host_record_id, pathogen_species_cleaned, pathogen_species_ncbi, ncbi_id, assay,
+         number_tested, number_positive, host_species, host_genus, gbif_id) %>%
+  drop_na(host_species, host_genus, gbif_id, pathogen_species_cleaned, pathogen_species_ncbi) %>%
+  group_by(host_species, host_genus, gbif_id, pathogen_species_cleaned, pathogen_species_ncbi, ncbi_id) %>%
+  summarise(number_tested = sum(number_tested, na.rm = TRUE),
+            number_positive = sum(number_positive, na.rm = TRUE))
   summarise(n_viruses_tested = n_distinct(pathogen_species_cleaned), .groups = "drop")
 
 # Plot the distribution
