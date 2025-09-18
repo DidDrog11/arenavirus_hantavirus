@@ -12,7 +12,7 @@ combined_data_v3 <- read_rds(here("data", "raw_data", paste0(analysis_date, "_v3
 pathogen_data_v2 <- combined_data_v2$pathogen
 pathogen_data_v3 <- combined_data_v3$pathogen
 
-# Load the currently cleaned data from 03_08_impute_nondetections.R
+# Load the currently cleaned data from 03_07
 combined_data <- read_rds(here("data", "data_cleaning", "03_07_output.rds"))
 host_data <- combined_data$host
 

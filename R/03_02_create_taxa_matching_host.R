@@ -293,7 +293,12 @@ if (file.exists(species_names_file)) {
                   filter(rank == "species") %>%
                   select(query, species_id = id),
                 by = "query") %>%
-      arrange(kingdom, phylum, class, order, family, genus, species, species_id) %>%
+      left_join(rbind(resolve_species) %>%
+                  filter(rank == "genus") %>%
+                  select(query, genus_id = id) %>%
+                  distinct(),
+                by = "query") %>%
+      arrange(kingdom, phylum, class, order, family, genus, genus_id, species, species_id) %>%
       drop_na(species)
     species_names <- tibble(cleaned_rodent_names = unique(rodent_names$cleaned_rodent_names[rodent_names$species_level == TRUE]),
                             query = as.character(gbif_species)) %>%
@@ -301,9 +306,10 @@ if (file.exists(species_names_file)) {
       right_join(rodent_names,
                  by = "cleaned_rodent_names") %>%
       left_join(species_hierarchy %>%
-                  distinct(species, query, genus, family, order, class, species_id), by = c("query")) %>%
+                  distinct(species, query, genus, family, order, class, species_id, genus_id), by = c("query")) %>%
       rename("resolved_name" = species,
-             "gbif_id" = species_id)
+             "gbif_id" = species_id,
+             "gbif_genus_id" = genus_id)
     write_rds(species_names, species_names_file)
     write_rds(species_hierarchy, here("data", "matching", "gbif_species_hierarchy.rds"))
   } 

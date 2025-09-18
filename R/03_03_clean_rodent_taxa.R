@@ -39,7 +39,7 @@ clean_and_join_rodent_data <- function(raw_host_df) {
   final_df <- cleaned_df %>%
     # Join species data
     left_join(species_names %>%
-                select(rodent_names, resolved_species = resolved_name, resolved_genus = genus, resolved_family = family, resolved_order = order, resolved_class = class, gbif_id),
+                select(rodent_names, resolved_species = resolved_name, resolved_genus = genus, resolved_family = family, resolved_order = order, resolved_class = class, gbif_id, gbif_genus_id),
               by = c("extracted_name" = "rodent_names")) %>%
     rename(gbif_id_species = gbif_id,
            resolved_species_species = resolved_species,
@@ -69,7 +69,9 @@ clean_and_join_rodent_data <- function(raw_host_df) {
     
     # Step 3: Consolidate the GBIF-resolved taxonomic information
     mutate(
-      gbif_id = coalesce(gbif_id_species, gbif_id_genus, gbif_id_higher),
+      gbif_id = coalesce(gbif_id_species, gbif_genus_id, gbif_id_genus, gbif_id_higher),
+      species_gbif_id = gbif_id_species,
+      genus_gbif_id = coalesce(gbif_genus_id , gbif_id_genus),
       resolved_species = resolved_species_species,
       resolved_genus = coalesce(resolved_genus_species, resolved_genus_genus, resolved_genus_higher),
       resolved_family = coalesce(resolved_family_species, resolved_family_genus, resolved_family_higher),
@@ -86,7 +88,7 @@ clean_and_join_rodent_data <- function(raw_host_df) {
     ) %>%
     
     # Final selection and reordering of columns
-    select(rodent_record_id, study_id, eventDate, resolved_species, resolved_genus, resolved_family, resolved_order, resolved_class, gbif_id, taxon_rank, extracted_name_raw = extracted_name, extracted_genus_raw = genus_clean,
+    select(rodent_record_id, study_id, eventDate, resolved_species, resolved_genus, resolved_family, resolved_order, resolved_class, gbif_id, species_gbif_id, genus_gbif_id, taxon_rank, extracted_name_raw = extracted_name, extracted_genus_raw = genus_clean,
            locality, country, verbatimLocality, coordinate_resolution, decimalLatitude, decimalLongitude, individualCount, trapEffort, trapEffortResolution)
   
   return(final_df)

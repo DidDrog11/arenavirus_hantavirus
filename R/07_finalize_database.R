@@ -110,6 +110,7 @@ host_final <- combined_data$host %>%
     taxon_rank, gbif_id,
     # Geography (Cleaned)
     country, iso3c, latitude, longitude, coord_status,
+    dist_from_expected, coordinate_resolution_processed,
     gadm_country, gadm_adm1, gadm_adm2, gadm_adm3,
     # Temporal (Cleaned)
     start_date, end_date, temporal_resolution,
