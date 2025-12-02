@@ -355,3 +355,55 @@ cumulative_effort <- ggplot(a, aes(x = latest_year, y = cum_assayed, colour = co
   )
 
 save_plot(filename = here("misc", "sampling_effort.png"), plot = cumulative_effort, base_width = 7, base_height = 5)
+
+
+# Data for Lassa Ecology Paper --------------------------------------------
+arha_data <- read_rds(here("data", "database", "Project_ArHa_database_2025-09-25.rds"))
+
+pathogen_data <- arha_data$pathogen |>
+  filter(str_detect(pathogen_species_ncbi, "Mammarenavirus lassaense")) |>
+  filter(number_positive >= 1) |>
+  filter(taxonomic_level == "species") |>
+  select(pathogen_record_id, host_record_id, pathogen_species_cleaned, pathogen_species_ncbi, assay, number_tested, number_positive, pathogen_species_original, assay_raw)
+
+host_data <- arha_data$host |>
+  filter(host_record_id %in% pathogen_data$host_record_id) |>
+  select(host_record_id, study_id, host_species, host_genus, gadm_country, number_of_hosts, host_species_original)
+
+citations <- arha_data$descriptives |>
+  filter(study_id %in% host_data$study_id) |>
+  select(study_id, full_text_id) |>
+  left_join(arha_data$citations |>
+              select(full_text_id, doi, author, publication_year, title, publication_title))
+
+combined_lassa_positives <- host_data |>
+  left_join(pathogen_data) |>
+  left_join(citations) |>
+  filter(full_text_id != "ft_783") # data incorrectly entered, tested not positive
+
+manual_addition_acute <- tibble(host_species = "Mus baoulei",
+                                host_genus = "Mus",
+                                gadm_country = "Benin",
+                                number_tested = 14,
+                                number_positive = 3,
+                                assay = "PCR",
+                                doi = "https://wwwnc.cdc.gov/eid/article/25/10/18-0523_article",
+                                author = "Anges Yadouleton, Achaz Agolinou, Fodé Kourouma, Raoul Saizonou, Meike Pahlmann, Sonia Kossou Bedié, Honoré Bankolé, Beate Becker-Ziaja, Fernand Gbaguidi, Anke Thielebein, N’Faly Magassouba, Sophie Duraffour, Jean-Pierre Baptiste, Stephan Günther, and Elisabeth Fichet-Calvet",
+                                publication_year = 2019,
+                                title = "Lassa Virus in Pygmy Mice, Benin, 2016–2017",
+                                publication_title = "Emerging Infectious Diseases")
+
+acute_lassa_positives <- combined_lassa_positives |>
+  bind_rows(manual_addition_acute) |>
+  filter(str_detect(assay, "Virus Culture|PCR|Sequencing")) |> 
+  distinct(host_species, host_genus, gadm_country, number_tested, number_positive, pathogen_species_ncbi, assay, full_text_id, doi, author, publication_year, title, publication_title) |> 
+  arrange(host_species, number_positive)
+
+write_csv(acute_lassa_positives, here("data", "data_outputs", "supplementary_table_2A.csv"))
+
+serology_lassa_positives <- combined_lassa_positives |>
+  filter(!str_detect(assay, "Virus Culture|PCR|Sequencing")) |> 
+  distinct(host_species, host_genus, gadm_country, number_tested, number_positive, pathogen_species_ncbi, assay, full_text_id, doi, author, publication_year, title, publication_title) |> 
+  arrange(host_species, number_positive)
+
+write_csv(serology_lassa_positives, here("data", "data_outputs", "supplementary_table_2B.csv"))

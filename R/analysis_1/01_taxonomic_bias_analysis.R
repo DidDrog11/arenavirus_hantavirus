@@ -27,10 +27,10 @@ library(traitdata)
 library(mgcv) # For GAMs
 
 # Update external data
-update_external = TRUE
+update_external = FALSE
 
 # Load the final database object
-db_path <- here("data", "database", "Project_ArHa_database_2025-08-25.rds") # <-- Update this date
+db_path <- here("data", "database", "Project_ArHa_database_2025-09-25.rds") # <-- Update this date
 arha_db <- read_rds(db_path)
 host_data <- arha_db$host
 pathogen_data <- arha_db$pathogen
@@ -120,9 +120,10 @@ try({
       project(mollweide_crs) %>%
       mutate(range_size_km2 = expanse(.) / 1e6) %>%
       select(scientific_name = sci_name,
+             origin = origin,
              range_size_km2)
     
-    writeVector(iucn_subset, here("data", "external", "iucn_subset.shp")) 
+    writeVector(iucn_subset, here("data", "external", "iucn_subset.shp"), overwrite = TRUE) 
   } else {
     iucn_subset <- vect(here("data", "external", "iucn_subset.shp"))
   }
@@ -143,7 +144,7 @@ if(update_external == TRUE) {
               synanthropy = paste(unique(synanthropy), collapse = ", "),
               .groups = "drop")
   
-  write_rds(synanthropy_combined, here("data", "external", "synanthropy.rds"))
+  write_rds(synanthropy, here("data", "external", "synanthropy.rds"))
   
 } else {
   
@@ -158,7 +159,8 @@ if(update_external == TRUE) {
     select(-country_distribution) %>%
     full_join(elton_traits, by = "scientific_name") %>%
     full_join(iucn_range_sizes, by = "scientific_name") %>%
-    full_join(synanthropy, by = "scientific_name")
+    full_join(synanthropy, by = "scientific_name") %>%
+    distinct()
   
   resolved_ids <- taxize::get_gbifid(sort(unique(host_traits$scientific_name)), ask = FALSE)
   
@@ -180,7 +182,9 @@ if(update_external == TRUE) {
   unresolved <- host_traits$scientific_name[!host_traits$scientific_name %in% resolved_ids_df$query]
   
   unresolved <- tibble(unresolved_names = unresolved,
-                       unresolved_gbif = NA)
+                       unresolved_gbif = NA) %>%
+    distinct() %>%
+    arrange(unresolved_names)
   
   # Loop through each unresolved name
   for (i in 131:length(unresolved$unresolved_names)) {
@@ -326,6 +330,8 @@ host_traits_cleaned <- host_traits %>%
                                  synanthropy == "N" ~ "Not Synanthropic",
                                  TRUE ~ NA)) %>%
   arrange(scientific_name)
+
+write_rds(host_traits_cleaned, here("data", "external", "host_traits_cleaned.rds"))
 
 # 3.1. Create a summary table of sampling effort per host species
 host_sampling_summary <- host_data %>%
@@ -554,6 +560,8 @@ gam_model_4 <- gam(model_4_formula, data = full_data, family = nb())
 
 summary(gam_model_4)
 
+write_rds(gam_model_4, here("output", "analysis_1", "models", "sampling_intensity_full_dataset.rds"))
+
 # 3.3.5 Model comparison
 tibble(model = c(deparse1(model_1_formula),
                  deparse1(model_2_formula),
@@ -598,6 +606,8 @@ gam_model_9 <- gam(model_9_formula, data = data_subset, family = nb())
 
 summary(gam_model_9)
 
+write_rds(gam_model_9, here("output", "analysis_1", "models", "sampling_intensity_dataset_subset.rds"))
+
 # 3.3.11 Model comparison
 tibble(model = c(deparse1(model_1_formula),
                  deparse1(model_2_formula),
@@ -641,6 +651,33 @@ ggsave(here("output", "analysis_1","arha_pathogen_sampling.png"),
        plot = arha_pathogen_summary, width = 15, height = 15, dpi = 300)
 
 # 4.2. Analyze sampling effort of different pathogens within a species
+pathogens_tested_per_host <- pathogen_data %>%
+  left_join(host_data %>% select(host_record_id, host_species), by = "host_record_id") %>%
+  filter(!is.na(host_species), !is.na(pathogen_species_cleaned)) %>%
+  separate_rows(pathogen_species_cleaned, sep = ",\\s*")
+
+surveillance_breadth_summary <- pathogens_tested_per_host %>%
+  group_by(host_species) %>%
+  summarise(n_viruses_tested = n_distinct(pathogen_species_cleaned), .groups = "drop") %>%
+  arrange(desc(n_viruses_tested))
+
+surveillance_breadth_plot <- surveillance_breadth_summary %>%
+  count(n_viruses_tested) %>%
+  ggplot(aes(x = n_viruses_tested, y = n)) +
+  geom_col(fill = "steelblue") +
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+  labs(
+    title = "Distribution of Surveillance Breadth",
+    x = "Number of Unique Virus Species Tested For (per host species)",
+    y = "Count of Host Species"
+  ) +
+  theme_minimal()
+
+ggsave(here("output", "analysis_1", "surveillance_breadth_plot.png"), 
+       plot = surveillance_breadth_plot, width = 8, height = 6)
+
+# 4.3 Co-detection
+
 co_detection_summary <- pathogen_data %>%
   filter(pathogen_family %in% c("Arenaviridae", "Hantaviridae")) %>%
   left_join(host_data %>% select(host_record_id, host_species), by = "host_record_id") %>%
@@ -712,7 +749,7 @@ co_detection_summary <- pathogen_data %>%
   drop_na(host_species, host_genus, gbif_id, pathogen_species_cleaned, pathogen_species_ncbi) %>%
   group_by(host_species, host_genus, gbif_id, pathogen_species_cleaned, pathogen_species_ncbi, ncbi_id) %>%
   summarise(number_tested = sum(number_tested, na.rm = TRUE),
-            number_positive = sum(number_positive, na.rm = TRUE))
+            number_positive = sum(number_positive, na.rm = TRUE)) %>%
   summarise(n_viruses_tested = n_distinct(pathogen_species_cleaned), .groups = "drop")
 
 # Plot the distribution

@@ -193,6 +193,12 @@ for (country_code in names(gadm_spat_list)) {
   }
 }
 
+adm2_list <- map(gadm_hierarchy_spat_list, ~ .x[["adm2"]])
+adm2_list_clean <- compact(adm2_list)
+gadm_adm2_combined <- vect(adm2_list_clean)
+output_path <- here("data", "gadm", "gadm_adm2_combined.shp")
+writeVector(gadm_adm2_combined, output_path, overwrite = TRUE)
+
 # Prepare and Perform Spatial Join ----------------------------------------
 # Add the adm_level_num column to the spatial_id table
 spatial_id <- spatial_id %>%

@@ -62,8 +62,6 @@ if (nrow(ncbi_metadata) > 0) {
 }
 
 # --- Step 4: Download Sequences to FASTA File ---
-
-# Source the new function
 source(here("R", "download_sequences.R"))
 
 # Get the list of accession numbers that were successfully found

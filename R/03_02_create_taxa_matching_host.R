@@ -282,8 +282,8 @@ if (file.exists(species_names_file)) {
   } else {
     message("New species found. Updating GBIF species dictionary.")
     # Run the GBIF API calls
-    gbif_species <- get_gbifid(unique(rodent_names$cleaned_rodent_names[rodent_names$species_level == TRUE]), rank = "species")
-    resolve_species <- classification(gbif_species, db = "gbif", return_id = TRUE)
+    #gbif_species <- get_gbifid(unique(rodent_names$cleaned_rodent_names[rodent_names$species_level == TRUE]), rank = "species")
+    resolve_species <- classification(get_gbifid(unique(rodent_names$cleaned_rodent_names[rodent_names$species_level == TRUE]), rank = "species"), db = "gbif", return_id = TRUE)
     species_hierarchy <- rbind(resolve_species) %>% 
       group_by(query) %>% 
       distinct() %>% 
@@ -301,7 +301,7 @@ if (file.exists(species_names_file)) {
       arrange(kingdom, phylum, class, order, family, genus, genus_id, species, species_id) %>%
       drop_na(species)
     species_names <- tibble(cleaned_rodent_names = unique(rodent_names$cleaned_rodent_names[rodent_names$species_level == TRUE]),
-                            query = as.character(gbif_species)) %>%
+                            query = as.character(names(resolve_species))) %>%
       # match to raw data names
       right_join(rodent_names,
                  by = "cleaned_rodent_names") %>%
@@ -348,6 +348,8 @@ if (file.exists(species_names_file)) {
 # Some species names remain unmatched
 # Need to think about the processes to incorporate or rename these
 unmatched_species_names <- species_names %>%
+  bind_rows(rodent_names) %>%
+  distinct(cleaned_rodent_names, rodent_names, .keep_all = TRUE) %>%
   filter(species_level == TRUE) %>%
   filter(is.na(gbif_id)) %>%
   pull(rodent_names)
@@ -370,7 +372,9 @@ if (file.exists(genus_names_file) && file.exists(genus_hierarchy_file)) {
     message("New genera found. Updating GBIF genus dictionary.")
     
     # Identify genera already resolved from the species hierarchy
-    resolved_genera_from_species <- unique(gbif_species_hierarchy_old$genus)
+    resolved_genera_from_species <- unique(species_names %>%
+                                             drop_na(genus) %>%
+                                             pull(genus))
     
     # Filter the manual genus list to only include those that are not yet resolved
     genera_to_match <- rodent_genus %>%
@@ -382,14 +386,14 @@ if (file.exists(genus_names_file) && file.exists(genus_hierarchy_file)) {
     # Perform the API call only on the new genera
     if (length(genera_to_match) > 0) {
       gbif_genus <- get_gbifid(genera_to_match, rank = "genus")
-      resolve_genus <- classification(gbif_genus, db = "gbif")
+      resolve_genus <- classification(get_gbifid(genera_to_match, rank = "genus"), db = "gbif")
       
-      new_genus_hierarchy <- bind_rows(resolve_genus) %>%
+      new_genus_hierarchy <- rbind(resolve_genus) %>%
         group_by(query) %>%
         distinct() %>%
         ungroup() %>%
         pivot_wider(id_cols = "query", names_from = rank, values_from = name) %>%
-        left_join(bind_rows(resolve_genus) %>%
+        left_join(rbind(resolve_genus) %>%
                     group_by(query) %>%
                     distinct() %>%
                     summarise(gbif_id = id[which.max(rank == "genus")]), by = "query") %>%
@@ -398,8 +402,7 @@ if (file.exists(genus_names_file) && file.exists(genus_hierarchy_file)) {
       
       new_genus_names <- tibble(
         cleaned_rodent_genus = genera_to_match,
-        query = as.character(gbif_genus)
-      ) %>%
+        query = as.character(gbif_genus)) %>%
         left_join(new_genus_hierarchy %>%
                     distinct(genus, query, family, order, class, gbif_id), by = "query")
       
@@ -496,7 +499,7 @@ if (file.exists(higher_taxa_table_file) && length(higher_taxa_to_match) == 0) {
   
   # GBIF API calls
   gbif_higher <- get_gbifid(unique(higher_taxa_manual$clean_higher_taxa))
-  resolve_higher <- classification(gbif_higher, db = "gbif")
+  resolve_higher <- classification(get_gbifid(unique(higher_taxa_manual$clean_higher_taxa)), db = "gbif")
   
   higher_hierarchy <- rbind(resolve_higher) %>%
     group_by(query) %>%
@@ -507,7 +510,7 @@ if (file.exists(higher_taxa_table_file) && length(higher_taxa_to_match) == 0) {
   
   higher_taxa_table <- tibble(
     clean_higher_taxa = unique(higher_taxa_manual$clean_higher_taxa),
-    query = as.character(gbif_higher)
+    query = as.character(names(resolve_higher))
   ) %>%
     left_join(higher_hierarchy, by = "query") %>%
     left_join(higher_taxa_manual, by = "clean_higher_taxa") %>%

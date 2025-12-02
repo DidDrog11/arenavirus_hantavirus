@@ -22,7 +22,7 @@ library(ggnewscale)
 library(forcats)
 
 # Load the final database object
-db_path <- here("data", "database", "Project_ArHa_database_2025-08-25.rds")
+db_path <- here("data", "database", "Project_ArHa_database_2025-09-25.rds")
 arha_db <- read_rds(db_path)
 host_data <- arha_db$host
 pathogen_data <- arha_db$pathogen
@@ -69,6 +69,10 @@ sequences_per_country_stratified <- bind_rows(sequences_missing_country, sequenc
 
 geo_rep_data <- hosts_per_country %>%
   left_join(sequences_per_country_stratified, by = c("country", "iso3c")) %>%
+  group_by(iso3c) %>%
+  summarise(total_hosts_sampled = sum(total_hosts_sampled),
+            n_records_Host = sum(n_records_Host),
+            n_records_Pathogen = sum(n_records_Pathogen)) %>%
   mutate(
     # Coalesce NA counts to 0
     n_records_Host = coalesce(n_records_Host, 0L),
@@ -81,11 +85,12 @@ geo_rep_data <- hosts_per_country %>%
     prop_pathogen_sequenced = case_when(prop_pathogen_sequenced >= 1 ~ 1,
                                         TRUE ~ prop_pathogen_sequenced)
   )
+  
 
 # Join with a world map shapefile
 world_map <- ne_countries(scale = "medium", returnclass = "sf")
-map_data <- vect(world_map) %>%
-  left_join(geo_rep_data, by = c("iso_a3" = "iso3c"))
+map_data <- world_map %>%
+  left_join(geo_rep_data, by = c("adm0_a3" = "iso3c"))
 
 # Create a helper function to avoid repeating plot code
 create_binned_map <- function(map_df, fill_var, title) {
@@ -332,63 +337,53 @@ host_taxo_rep_plot <- ggplot(taxo_rep_data_host, aes(y = host_species)) +
 ggsave(here("output", "analysis_1", "host_taxonomic_representativeness_plot.png"), plot = host_taxo_rep_plot, width = 10, height = 8)
 
 # --- 3.5. Visualize PATHOGEN Taxonomic Representativeness ---
+# Denominator: Total PCR-positive individuals for each pathogen
 pcr_positives_per_pathogen <- pathogen_data %>%
-  filter(pathogen_family %in% c("Hantaviridae", "Arenaviridae")) %>%
+  filter(stringr::str_detect(assay, "PCR|Culture|Sequencing"), number_positive > 0) %>%
   filter(taxonomic_level == "species") %>%
-  filter(stringr::str_detect(assay, "PCR|Culture|Sequencing")) %>%
-  filter(number_positive > 0) %>%
-  group_by(pathogen_species_cleaned) %>%
+  group_by(pathogen_species_cleaned, pathogen_family) %>%
   summarise(
     total_pcr_positives = sum(number_positive, na.rm = TRUE),
     .groups = "drop"
   )
 
+# Numerator: Total number of unique sequences for each pathogen
 sequences_per_pathogen <- sequence_data %>%
   filter(sequence_type == "Pathogen") %>%
-  group_by(pathogen, pathogen_species_clean) %>%
-  mutate(match_1 = case_when(!is.na(pathogen) & pathogen %in% detections_per_pathogen$pathogen_species_cleaned ~ TRUE,
-                             TRUE ~ FALSE),
-         match_2 = case_when(!is.na(pathogen_species_clean) & pathogen_species_clean %in% detections_per_pathogen$pathogen_species_cleaned ~ TRUE,
-                             TRUE ~ FALSE),
-         pathogen_species_cleaned = case_when(match_1 == TRUE ~ pathogen,
-                                              match_2 == TRUE ~ pathogen_species_clean,
-                                              TRUE ~ NA))  %>%
-  group_by(pathogen) %>%
-  arrange(pathogen_species_cleaned) %>%
-  fill(pathogen_species_cleaned, .direction = "down") %>%
-  drop_na(pathogen_species_cleaned) %>%
-  group_by(pathogen_species_cleaned) %>%
+  left_join(pathogen_data %>% select(pathogen_record_id, pathogen_species_cleaned), by = "pathogen_record_id") %>%
+  filter(!is.na(pathogen_species_cleaned)) %>%
   count(pathogen_species_cleaned, name = "n_sequences")
 
+# Join the two summaries
 taxo_rep_data_pathogen <- pcr_positives_per_pathogen %>%
   filter(total_pcr_positives > 5) %>%
-  full_join(sequences_per_pathogen, by = "pathogen_species_cleaned") %>%
+  left_join(sequences_per_pathogen, by = "pathogen_species_cleaned") %>%
   mutate(
-    total_pcr_positives = coalesce(total_pcr_positives, 0L),
-    n_sequences = coalesce(n_sequences, 0L),
-    proportion_sequenced_raw = n_sequences / total_pcr_positives,
-    proportion_sequenced = if_else(proportion_sequenced_raw > 1, 1, proportion_sequenced_raw)
+    n_sequences = coalesce(n_sequences, 0L)
   ) %>%
   mutate(pathogen_species_cleaned = fct_reorder(pathogen_species_cleaned, total_pcr_positives))
 
-pathogen_taxo_rep_plot <- ggplot(taxo_rep_data_pathogen, aes(x = proportion_sequenced, y = pathogen_species_cleaned)) +
-  geom_col(aes(fill = total_pcr_positives), width = 0.8) +
-  geom_text(aes(label = scales::percent(proportion_sequenced, accuracy = 0.1)), 
-            hjust = -0.1, size = 3) +
-  scale_x_continuous(labels = scales::percent, limits = c(0, 1.1), expand = c(0, 0)) +
-  scale_fill_viridis_c(
-    name = "Total PCR+ Detections", 
-    trans = "log1p",
-    labels = scales::comma
+# Visualize the results using a dumbbell plot
+pathogen_taxo_rep_plot <- ggplot(taxo_rep_data_pathogen, aes(y = pathogen_species_cleaned)) +
+  geom_segment(aes(x = n_sequences, xend = total_pcr_positives, yend = pathogen_species_cleaned),
+               color = "grey", linewidth = 1) +
+  geom_point(aes(x = n_sequences, color = "Sequences"), size = 4) +
+  geom_point(aes(x = total_pcr_positives, color = "PCR+ Detections"), size = 4) +
+  scale_x_log10(labels = scales::comma) +
+  scale_color_manual(
+    name = "Metric",
+    values = c("PCR+ Detections" = "skyblue", "Sequences" = "firebrick")
   ) +
+  facet_wrap(~ pathogen_family, scales = "free_y") +
   labs(
     title = "Pathogen Genetic Data Representativeness",
-    subtitle = "Proportion of PCR-positive detections with at least one sequence in GenBank",
-    x = "Proportion of PCR+ Detections Sequenced",
+    subtitle = "Comparing PCR-positive detections to available GenBank sequences",
+    x = "Count (log scale)",
     y = "Pathogen Species"
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(legend.position = "bottom")
 
 print(pathogen_taxo_rep_plot)
-ggsave(here("output", "analysis_1", "pathogen_taxonomic_representativeness_plot.png"), 
-       plot = pathogen_taxo_rep_plot, width = 10, height = 8)
+ggsave(here("output", "analysis_1", "pathogen_taxonomic_representativenes_plot.png"), 
+       plot = pathogen_taxo_rep_plot, width = 12, height = 10, dpi = 300)

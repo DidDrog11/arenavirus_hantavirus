@@ -29,7 +29,7 @@ should_update_raw_data <- TRUE
 # Searches were run manually on 2023-08-24 on PubMed, WoS and Google Scholar
 # 2,448 citations were identified after de-duplication
 search_date <- "2023-08-24"
-analysis_date <- "2025-09-18"
+analysis_date <- "2025-12-02"
 
 # --- Configuration Section ---
 
@@ -202,7 +202,6 @@ if(should_update_raw_data) {
 # Download country shapefiles ---------------------------------------------
 
 world_shapefile <- world(path = here("data"))
-
 
 # Other settings ----------------------------------------------------------
 project_crs <- "EPSG:4326"
