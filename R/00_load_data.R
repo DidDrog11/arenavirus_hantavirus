@@ -29,7 +29,7 @@ should_update_raw_data <- TRUE
 # Searches were run manually on 2023-08-24 on PubMed, WoS and Google Scholar
 # 2,448 citations were identified after de-duplication
 search_date <- "2023-08-24"
-analysis_date <- "2025-12-02"
+analysis_date <- "2025-12-16"
 
 # --- Configuration Section ---
 
