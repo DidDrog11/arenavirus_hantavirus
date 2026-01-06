@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from ete3 import NCBITaxa
+import os
 import pandas as pd
 import re
 import unicodedata
@@ -118,7 +119,11 @@ for _, r in lut_df.iterrows():
         lookup[k] = int(r['taxid'])
 
 # Save table
-lut_df.to_csv("hantaviridae_ncbi_taxonomy_lookup.tsv", sep="\t", index=False)
+output_dir = os.path.join(os.path.dirname(__file__), "../../data/matching")
+os.makedirs(output_dir, exist_ok=True)
+output_file = os.path.join(output_dir, "hantaviridae_ncbi_taxonomy_lookup.tsv")
+
+lut_df.to_csv(output_file, sep="\t", index=False)
               
 print("rows:", len(lut_df))
 print("unique lookup keys:", len(lookup))
