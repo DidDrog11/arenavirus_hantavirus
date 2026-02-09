@@ -421,6 +421,7 @@ class HantaviridaeAssigner(BaseFamilyAssigner):
         "muleshoe hantavirus": "Unclassified Orthohantavirus",
         "rusne orthohantavirus": "Unclassified Orthohantavirus",
         "jemez springs virus": "Unclassified Orthohantavirus",
+        "orthohantavirus negraense": "Orthohantavirus mamorense",
 
     }
 
