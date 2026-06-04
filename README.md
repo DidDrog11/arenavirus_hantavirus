@@ -2,6 +2,12 @@
 
 **Latest Database Version: [Project_ArHa_database_2026-01-09](https://github.com/DidDrog11/arenavirus_hantavirus/blob/main/data/database/Project_ArHa_database_2026-01-09.rds)**
 
+**Database Outputs:**   
+1.   [Viral reservoir status in small mammals emerges as a predictable life-history trait after correcting for surveillance bias, bioRxiv](https://doi.org/10.64898/2026.06.03.729761)
+2.   [The Socio-economic Shield Limits Lassa Virus Spillover in Urban West Africa, medRxiv](https://doi.org/10.64898/2025.12.17.25342147)
+3.   [A protocol for biodiversity-informed wildlife disease surveillance, ecoevoRxiv](https://doi.org/10.32942/X21D36)
+4.   coming soon!
+
 David Simons, Ricardo Rivero, and Steph Seifert
 
 Rodents are global hosts of zoonotic pathogens and potential hosts of novel pathogens of epidemic potential. Existing efforts to catalogue host-pathogen associations in these species are limited by global datasets which lack temporal and geographic specificity. Current research is hindered by spatial-, host taxa- and temporal biases within these datasets that are challenging to quantify. Recent work within the Verena consortium has synthesised publicly available data on Alpha- and Beta-coronaviruses in bats which provides a template for this work to be expanded to rodents. In this proposal, I outline a project to expand on a database produced during my PhD studies on rodent-pathogen associations in West Africa to a global scale and incorporating additional virus-host features which will support future hypothesis-testing. The database produced will provide a novel and accessible resource to explore a range of questions at a global scale about rodents and their pathogens. The produced data will be deposited within the Global Biodiversity Information Facility to support wider re-use as they continue to expand their GBIF health programme.
