@@ -125,36 +125,46 @@ host_final <- combined_data$host %>%
 
 # --- 4. Clean the Pathogen Table ---
 message("Cleaning pathogen table...")
-pathogen_final <- combined_data$pathogen %>%
-  clean_names() %>%
+pathogen_final <- combined_data$pathogen |>
+  janitor::clean_names() |>
   rename(
     host_record_id = associated_rodent_record_id,
     pathogen_species_ncbi = ncbi_species_name,
+    pathogen_genus_ncbi = ncbi_genus,
     pathogen_species_cleaned = pathogen_name_clean,
     pathogen_species_original = pathogen_name_raw,
     pathogen_family = family_clean,
     pathogen_family_original = family,
     assay = assay_clean,
-    number_positive = number_positive
-  ) %>%
+  ) |>
   select(
     # Record IDs
     pathogen_record_id,
     host_record_id,
     study_id,
-    # Taxonomy (Cleaned)
-    pathogen_species_cleaned,
+    # Taxonomy
+    pathogen_species_cleaned,   # The Python Standardized Name
+    pathogen_species_ncbi,      # The Official NCBI Species Node (NA for ambiguous)
+    pathogen_genus_ncbi,        # The Official NCBI Genus
     pathogen_family,
     taxonomic_level,
-    pathogen_species_ncbi,
     ncbi_id,
+    taxonomy_details,           # List column with the specific details
+    
     # Assay Info
     assay,
+    
     # Test Counts
     number_tested,
     number_positive,
     number_negative,
     number_inconclusive,
+    
+    # QC Flags
+    non_integer,
+    tested_detected,
+    positive_tested,
+    
     # Raw/Source Data for Provenance
     pathogen_species_original,
     pathogen_family_original,

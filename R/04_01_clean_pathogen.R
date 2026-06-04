@@ -70,7 +70,7 @@ if (nrow(orphaned_pathogens) > 0) {
 }
 
 # --- Step 2: Create a manual virus matching dictionary ---
-virus_mapping <- read_csv(here("data", "matching", "virus_names_matching.csv"))
+virus_mapping <- read_delim(here("data", "matching", "virus_names_matching.csv"), delim = ";")
 
 viruses_missing <- pathogen_combined %>%
   drop_na(pathogen_name_raw) %>%
@@ -114,115 +114,167 @@ unique_viruses <- virus_long_unnested %>%
   distinct(matched_virus) %>%
   pull(matched_virus)
 
+
+# Match using Python script -----------------------------------------------
+# 1. Setup Paths
+dir.create(here("data", "temp"), showWarnings = FALSE)
+input_tsv  <- here("data", "temp", "taxonomy_input.tsv")
+output_tsv <- here("data", "temp", "taxonomy_output.tsv")
+script_path <- here("Python", "Taxonomy", "TaxonomyReconciler.py")
+lookup_arena <- here("data", "matching", "arenaviridae_ncbi_taxonomy_lookup.tsv")
+lookup_hanta <- here("data", "matching", "hantaviridae_ncbi_taxonomy_lookup.tsv")
+
+input_base <- virus_long_unnested |>
+  distinct(matched_virus, family_clean) |>
+  mutate(Organism_Name = str_squish(matched_virus),
+         Family = family_clean,
+         input_variant = "Original")
+
+input_cleaned <- input_base |>
+  mutate(
+    Organism_Name_Clean = Organism_Name,
+    # Map Common Names -> Scientific Binomials (ICTV format)
+    Organism_Name_Clean = case_when(
+      # Hantaviruses
+      str_detect(Organism_Name_Clean, "Sin Nombre") ~ "Orthohantavirus sinnombreense",
+      str_detect(Organism_Name_Clean, "Andes") ~ "Orthohantavirus andesense",
+      str_detect(Organism_Name_Clean, "Hantaan") ~ "Orthohantavirus hantanense",
+      str_detect(Organism_Name_Clean, "Dobrava") ~ "Orthohantavirus dobravaense",
+      str_detect(Organism_Name_Clean, "Puumala") ~ "Orthohantavirus puumalaense",
+      str_detect(Organism_Name_Clean, "Seoul") ~ "Orthohantavirus seoulense",
+      str_detect(Organism_Name_Clean, "Tula") ~ "Orthohantavirus tulaense",
+      str_detect(Organism_Name_Clean, "Black Creek") ~ "Orthohantavirus blackcreekense",
+      str_detect(Organism_Name_Clean, "Bayou") ~ "Orthohantavirus bayoui",
+      str_detect(Organism_Name_Clean, "Choclo") ~ "Orthohantavirus chocloense",
+      # Arenaviruses
+      str_detect(Organism_Name_Clean, "Lassa") ~ "Mammarenavirus lassaense",
+      str_detect(Organism_Name_Clean, "Guanarito") ~ "Mammarenavirus guanaritoense",
+      str_detect(Organism_Name_Clean, "Junin") ~ "Mammarenavirus juninense",
+      str_detect(Organism_Name_Clean, "Machupo") ~ "Mammarenavirus machupoense",
+      str_detect(Organism_Name_Clean, "Chapare") ~ "Mammarenavirus chapareense",
+      str_detect(Organism_Name_Clean, "Gairo") ~ "Mammarenavirus gairoense",
+      str_detect(Organism_Name_Clean, "Whitewater") ~ "Mammarenavirus whitewaterense",
+      str_detect(Organism_Name_Clean, "Lymphocytic|choriomeningitidis") ~ "Mammarenavirus choriomeningitidis",
+      # Fallback: Try generic Regex for others
+      TRUE ~ Organism_Name_Clean
+    ),
+    # Generic Cleanup if no specific rule matched
+    Organism_Name_Clean = if_else(Organism_Name_Clean == Organism_Name, 
+                                  Organism_Name_Clean |> 
+                                    str_replace(" virus", "") |> # Remove 'virus' to try and match the genus/species root
+                                    str_to_title(),
+                                  Organism_Name_Clean),
+    input_variant = "Scientific_Fallback") |>
+  select(matched_virus, Organism_Name = Organism_Name_Clean, Family, input_variant) |>
+  distinct()
+
+python_input_combined <- bind_rows(input_base, input_cleaned) |>
+  select(matched_virus, Organism_Name, Family, input_variant)
+
+write_tsv(python_input_combined |> select(Organism_Name, Family), input_tsv)
+message(paste("Sending", nrow(python_input_combined), "variants to Python."))
+
+cmd_args <- c(paste("python", shQuote(script_path)),
+              paste("--input", shQuote(input_tsv)),
+              paste("--output", shQuote(output_tsv)),
+              paste0("--lookup Arenaviridae=", shQuote(lookup_arena)))
+
+if (file.exists(lookup_hanta)) {
+  cmd_args <- c(cmd_args, paste0("--lookup Hantaviridae=", shQuote(lookup_hanta)))
+}
+
+exit_code <- system(paste(cmd_args, collapse = " "))
+
+python_results <- read_tsv(output_tsv, show_col_types = FALSE)
+
 # --- Step 3: Match to ICTV via NCBI ---
 ictv_ids_safe <- safely(get_ids)
 ictv_hierarchy_safe <- safely(classification)
 
-ictv_ids <- ictv_ids_safe(unique_viruses, db = "ncbi")
+names_to_query <- python_results |>
+  filter(!is.na(assigned_name)) |>
+  filter(!str_detect(assigned_name, "Unclassified")) |>
+  filter(!str_detect(assigned_name, "family_not_supported")) |>
+  distinct(assigned_name) |>
+  pull(assigned_name)
 
-if (is.null(ictv_ids$error)) {
-  # Get the full taxonomic hierarchy for each ID
-  ictv_hierarchy <- ictv_hierarchy_safe(ictv_ids$result, db = "ncbi")
-  
-  # Check for errors in the hierarchy call
-  if (is.null(ictv_hierarchy$error)) {
-    ictv_hierarchy_df <- do.call(rbind, ictv_hierarchy) %>%
-      select(query, rank, name) %>%
-      pivot_wider(names_from = rank, values_from = name, id_cols = query, values_fn = list) %>%
-      select(query, species, genus, subfamily, family) %>%
-      mutate(across(c(family, genus, any_of("species"), any_of("subfamily")), ~ map_chr(., ~ if(is.null(.x)) NA_character_ else .x[[1]]))) %>%
-      mutate(query = str_remove(query, "ncbi.")) %>%
-      # Select the hierarchy columns we care about
-      rename(ncbi_species = species) %>%
-      select(query, family, any_of("subfamily"), genus, ncbi_species)
+ictv_ids <- ictv_ids_safe(names_to_query, db = "ncbi")
+
+found_ids <- ictv_ids$result$ncbi
+valid_indices <- !is.na(found_ids)
+ids_to_classify <- found_ids[valid_indices]
+
+ictv_hierarchy <- ictv_hierarchy_safe(ids_to_classify, db = "ncbi")
+
+hierarchy_df <- do.call(rbind, ictv_hierarchy) |>
+  select(query, rank, name) |>
+  pivot_wider(names_from = rank, values_from = name, id_cols = query, values_fn = list) |>
+  mutate(across(everything(), ~ map_chr(., ~ if(is.null(.x)) NA_character_ else .x[[1]]))) |>
+  rename(ncbi_id = query, ncbi_species = species, ncbi_genus = genus, ncbi_family = family) |>
+  mutate(ncbi_id = str_remove(ncbi_id, "result.")) |>
+  select(ncbi_id, ncbi_family, any_of("subfamily"), ncbi_genus, ncbi_species)
+
+id_map <- tibble(assigned_name = names_to_query[valid_indices],
+                 ncbi_id = as.character(ids_to_classify)) |>
+  left_join(hierarchy_df, by = "ncbi_id")
+
+full_taxonomy_map <- python_results |>
+  select(Organism_Name, assigned_name, assigned_family, assignment_source) |>
+  left_join(id_map, by = "assigned_name") |>
+  mutate(ncbi_family = coalesce(ncbi_family, assigned_family))
+
+virus_mapping_final <- virus_long_unnested |>
+  mutate(Organism_Name = str_squish(matched_virus)) |> 
+  left_join(full_taxonomy_map, by = "Organism_Name")
+
+virus_mapping_flat <- virus_mapping_final |>
+  group_by(virus) |>
+  summarise(
+    # Combined Names (for reference)
+    matched_virus_list = paste(unique(matched_virus), collapse = " | "),
+    pathogen_name_clean_list = paste(unique(assigned_name), collapse = " | "),
     
-    ictv_lookup <- tibble(
-      pathogen_name_clean = unique_viruses,
-      ncbi_id = as.character(ictv_ids$result$ncbi)
-    ) %>%
-      left_join(ictv_hierarchy_df, by = c("ncbi_id" = "query")) %>%
-      select(pathogen_name_clean, ncbi_id, family, subfamily, genus, ncbi_species)
+    # Consensus Taxonomy
+    # If all matches belong to the same Family, keep it. Else NA.
+    family_clean = if(n_distinct(ncbi_family, na.rm = TRUE) == 1) first(na.omit(ncbi_family)) else NA_character_,
     
-    message("\nVirus taxonomy matching complete. Joining to main data frame.")
-  }
-}
+    # If all matches belong to the same Genus, keep it. Else NA.
+    ncbi_genus = if(n_distinct(ncbi_genus, na.rm = TRUE) == 1) first(na.omit(ncbi_genus)) else NA_character_,
+    
+    # Species is ONLY kept if all inputs map to the exact same species ID
+    ncbi_species_name = if(n_distinct(ncbi_species, na.rm = TRUE) == 1) first(na.omit(ncbi_species)) else NA_character_,
+    
+    # IDs
+    # If ambiguous, we concatenate them so we don't lose the trace
+    ncbi_id = paste(unique(na.omit(ncbi_id)), collapse = ";"),
+    
+    # Recalculate Taxonomic Level based on the Consensus above
+    taxonomic_level = case_when(!is.na(ncbi_species_name) ~ "species",
+                                !is.na(ncbi_genus) ~ "genus",
+                                !is.na(family_clean) ~ "family",
+                                TRUE ~ "unclassified"),
+    
+    # E. Nest the details
+    taxonomy_details = list(pick(everything())),
+    .groups = "drop")
 
-pathogen_unnested_with_ictv <- virus_long_unnested %>%
-  left_join(ictv_lookup, by = c("matched_virus" = "pathogen_name_clean"))
-
-nested_matches <- pathogen_unnested_with_ictv %>%
-  # Group by the columns that define a single, broad pathogen name
-  group_by(virus) %>%
-  # Nest the detailed match information into a single list-column
-  nest(nested_matches = c(virus_clean, matched_virus, ncbi_species, ncbi_id, genus, subfamily, family)) %>%
-  ungroup()
-
-# --- Step 4: Join to pathogen data ---
-
-pathogen_final <- pathogen_combined %>%
-  left_join(nested_matches, by = c("pathogen_name_raw" = "virus")) %>%
-  mutate(
-    # Use map_chr to iterate through the list-column
-    family_clean = map_chr(nested_matches, ~ {
-      # Handle NULL cases
-      if (is.null(.x) || nrow(.x) == 0) {
-        return(NA_character_)
-      }
-      # Get the unique genus name from the tibble
-      family_name <- unique(.x$family)
-      # Coalesce to handle potential NA values
-      coalesce(family_name, NA_character_)
-    }),
-    family_clean = case_when(is.na(family_clean) & str_detect(family, "hanta|Hanta") ~ "Hantaviridae",
-                             is.na(family_clean) & str_detect(family, "arena|Arena") ~ "Arenaviridae",
-                             TRUE ~ family_clean),
-    taxonomic_level = map_chr(nested_matches, ~ {
-      # Handle NULL cases
-      if (is.null(.x) || nrow(.x) == 0) {
-        return(NA_character_)
-      }
-      # If a single species has been matched it is species, otherwise set as genus or family
-      if(length(.x$ncbi_species) == 1) "species" else if(length(unique(.x$genus)) == 1) "genus" else "family"
-    }),
-    taxonomic_level = case_when(is.na(taxonomic_level) & !is.na(family_clean) ~ "family",
-                                TRUE ~ taxonomic_level),
-    pathogen_name_clean = map_chr(nested_matches, ~ {
-      # Handle NULL cases
-      if (is.null(.x) || nrow(.x) == 0) {
-        return(NA_character_)
-      }
-      # Get the unique genus name from the tibble
-      if(length(.x$matched_virus) == 1) unique(.x$matched_virus) else str_c(.x %>%
-                                                                            distinct(matched_virus) %>%
-                                                                            pull(matched_virus), collapse = ", ")
-    }),
-    ncbi_species_name = map_chr(nested_matches, ~ {
-      # Handle NULL cases
-      if (is.null(.x) || nrow(.x) == 0) {
-        return(NA_character_)
-      }
-      # Get the unique genus name from the tibble
-      if(length(.x$ncbi_species) == 1) unique(.x$ncbi_species) else str_c(.x %>%
-                                                                            distinct(ncbi_species) %>%
-                                                                            pull(ncbi_species), collapse = ", ")
-    }),
-    ncbi_id = map_chr(nested_matches, ~ {
-      # Handle NULL cases
-      if (is.null(.x) || nrow(.x) == 0) {
-        return(NA_character_)
-      }
-      # Get the unique genus name from the tibble
-      if(length(.x$ncbi_id) == 1) unique(.x$ncbi_id) else str_c(.x %>%
-                                                                  distinct(ncbi_id) %>%
-                                                                  pull(ncbi_id), collapse = ", ")
-    }),
+pathogen_final <- pathogen_combined |>
+  left_join(virus_mapping_flat, by = c("pathogen_name_raw" = "virus")) |>
+  mutate(family_clean = case_when(is.na(family_clean) & str_detect(pathogen_name_raw, regex("hanta", ignore_case=T)) ~ "Hantaviridae",
+                                  is.na(family_clean) & str_detect(pathogen_name_raw, regex("arena", ignore_case=T)) ~ "Arenaviridae",
+                                  TRUE ~ family_clean),
+         taxonomic_level = case_when(!is.na(ncbi_species_name) ~ "species",
+                                     !is.na(ncbi_genus) ~ "genus",
+                                     !is.na(family_clean) ~ "family",
+                                     TRUE ~ "unclassified"),
+    # Factor levels
     family_clean = fct(family_clean, levels = c("Arenaviridae", "Hantaviridae", "Peribunyaviridae", "Hepeviridae", "Poxviridae")),
-    taxonomic_level = fct(taxonomic_level, levels = c("species", "genus", "family"))
-    
-  ) %>%
-  select(pathogen_record_id, associated_rodent_record_id, study_id, ncbi_species_name, ncbi_id, pathogen_name_clean, pathogen_name_raw, family_clean, family, taxonomic_level, pathogen_taxonomy = nested_matches, assay_raw, number_tested, number_positive, number_inconclusive, note)
-
-# --- Step 5: Clean assay type ---
+    taxonomic_level = fct(taxonomic_level, levels = c("species", "genus", "family", "unclassified"))) |>
+  select(pathogen_record_id, associated_rodent_record_id, study_id, 
+         pathogen_name_raw, 
+         pathogen_name_clean = pathogen_name_clean_list,  
+         ncbi_species_name, ncbi_genus,  ncbi_id, family_clean, family, taxonomic_level, taxonomy_details, # The list column
+         assay_raw, number_tested, number_positive, number_inconclusive, note)
 
 pathogen_assay <- pathogen_final %>%
   mutate(
@@ -242,8 +294,6 @@ pathogen_assay <- pathogen_final %>%
     )) %>%
   relocate(assay_clean, .before = assay_raw)
 
-# --- Step 6: Match to ICTV via NCBI ---
-
 pathogen_n <- pathogen_assay %>%
   left_join(host_data %>%
               filter(rodent_record_id %in% pathogen_assay$associated_rodent_record_id) %>%
@@ -259,8 +309,6 @@ pathogen_n <- pathogen_assay %>%
   ) %>%
   relocate(number_negative, .after = number_positive) %>%
   select(-individual_count)
-
-# --- Step 7: Add to combined data and save ---
 
 combined_data$pathogen <- pathogen_n
 

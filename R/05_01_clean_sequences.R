@@ -33,7 +33,6 @@ sequence_v2_std <- sequence_data_v2 %>%
 
 sequence_v3_std <- sequence_data_v3 %>%
   drop_na(sequence_record_id) %>%
-  # v3 names are already quite close to our target standard
   select(
     sequence_record_id,
     associated_pathogen_record_id,
@@ -103,7 +102,7 @@ sequence_flagged <- sequence_clean %>%
   ) %>%
   # Join canonical pathogen species name
   left_join(pathogen_data %>%
-    select(pathogen_record_id, pathogen_species_clean = pathogen_name_clean),
+    select(pathogen_record_id, ncbi_species_name, pathogen_name_clean),
     by = c("associated_pathogen_record_id" = "pathogen_record_id")
   ) %>%
   # Create flagging columns
@@ -111,7 +110,7 @@ sequence_flagged <- sequence_clean %>%
     flag_host_mismatch =  case_when(host_species_raw == host_species_clean ~ FALSE,
                                     is.na(host_species_raw) ~ NA,
                                     TRUE ~ TRUE),
-    flag_pathogen_mismatch = case_when(pathogen_species_raw == pathogen_species_clean ~ FALSE,
+    flag_pathogen_mismatch = case_when(pathogen_species_raw == ncbi_species_name ~ FALSE,
                                        is.na(pathogen_species_raw) ~ NA,
                                        TRUE ~ TRUE)
   )
