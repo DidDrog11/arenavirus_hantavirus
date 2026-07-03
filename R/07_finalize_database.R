@@ -259,3 +259,263 @@ if (!dir.exists(here("data", "database"))) {
 
 # Save the final object
 write_rds(arha_db, final_db_path)
+
+# --- 7. Data Release: Darwin Core Mapping and Parquet Export ---
+message("Packaging for data release...")
+
+pkgs <- c("arrow", "fs", "jsonlite")
+pacman::p_load(pkgs, character.only = T)
+
+# Define target directories
+release_path <- here("data", "data_release")
+dir_create(path(release_path, "parquet"))
+dir_create(path(release_path, "csv"))
+
+event_map <- tibble(old_study_id = as.character(unique(c(descriptives_final$study_id, host_final$study_id, pathogen_final$study_id)))) |>
+  drop_na() |>
+  mutate(new_event_id = paste0("event_", sprintf("%04d", row_number())))
+
+host_map <- tibble(old_host_id = as.character(unique(host_final$host_record_id))) |>
+  drop_na() |>
+  mutate(new_host_id = paste0("host_", sprintf("%05d", row_number())))
+
+pathogen_map <- tibble(old_pathogen_id = as.character(unique(pathogen_final$pathogen_record_id))) |>
+  drop_na() |>
+  mutate(new_pathogen_id = paste0("path_", sprintf("%05d", row_number())))
+
+# Apply via Relational Joins
+citations_mapped <- citations_final |>
+  mutate(study_id = as.character(study_id)) |>
+  left_join(event_map, by = c("study_id" = "old_study_id")) |>
+  mutate(study_id = new_event_id) |>
+  select(-new_event_id)
+
+descriptives_mapped <- descriptives_final |>
+  mutate(study_id = as.character(study_id)) |>
+  left_join(event_map, by = c("study_id" = "old_study_id")) |>
+  mutate(study_id = new_event_id) |>
+  select(-new_event_id)
+
+host_mapped <- host_final |>
+  mutate(study_id = as.character(study_id), 
+         host_record_id = as.character(host_record_id)) |>
+  left_join(event_map, by = c("study_id" = "old_study_id")) |>
+  left_join(host_map, by = c("host_record_id" = "old_host_id")) |>
+  mutate(study_id = coalesce(new_event_id, study_id), 
+         host_record_id = coalesce(new_host_id, host_record_id)) |>
+  select(-new_event_id, -new_host_id)
+
+pathogen_mapped <- pathogen_final |>
+  mutate(study_id = as.character(study_id),
+         host_record_id = as.character(host_record_id),
+         pathogen_record_id = as.character(pathogen_record_id)) |>
+  left_join(event_map, by = c("study_id" = "old_study_id")) |>
+  left_join(host_map, by = c("host_record_id" = "old_host_id")) |>
+  left_join(pathogen_map, by = c("pathogen_record_id" = "old_pathogen_id")) |>
+  mutate(study_id = coalesce(new_event_id, study_id),
+         host_record_id = coalesce(new_host_id, host_record_id),
+         pathogen_record_id = coalesce(new_pathogen_id, pathogen_record_id)) |>
+  select(-new_event_id, -new_host_id, -new_pathogen_id)
+
+sequence_mapped <- sequence_final |>
+  mutate(study_id = as.character(study_id),
+         host_record_id = as.character(host_record_id),
+         pathogen_record_id = as.character(pathogen_record_id)) |>
+  left_join(event_map, by = c("study_id" = "old_study_id")) |>
+  left_join(host_map, by = c("host_record_id" = "old_host_id")) |>
+  left_join(pathogen_map, by = c("pathogen_record_id" = "old_pathogen_id")) |>
+  mutate(study_id = coalesce(new_event_id, study_id),
+         host_record_id = coalesce(new_host_id, host_record_id),
+         pathogen_record_id = coalesce(new_pathogen_id, pathogen_record_id)) |>
+  select(-new_event_id, -new_host_id, -new_pathogen_id)
+
+citations_tmp <- citations_final
+
+sampling_events <- descriptives_mapped |>
+  left_join( citations_tmp |> select( full_text_id, author, journal = publication_title, doi ), by = "full_text_id" ) |>
+  distinct() |>
+  mutate(associatedReferences = case_when(!is.na( doi ) & !is.na( publication_year ) & !is.na( journal ) & !is.na( author ) ~ paste0( author, " (", publication_year, "). ", publication_title, ". ", journal, ". DOI: ", str_trim( doi ) ),
+                                          is.na( doi ) & !is.na( publication_year ) & !is.na( journal ) & !is.na( author ) ~ paste0( author, " (", publication_year, "). ", publication_title, ". ", journal, "." ),
+                                          is.na( journal ) & !is.na( author ) & !is.na( publication_year ) & !is.na( doi ) ~ paste0( author, " (", publication_year, "). ", publication_title, ". DOI: ", str_trim( doi ) ),
+                                          is.na( journal ) & !is.na( author ) & !is.na( publication_year ) & is.na( doi ) ~ paste0( author, " (", publication_year, "). ", publication_title, "."),
+                                          !is.na( author ) & is.na( publication_year ) & !is.na( journal ) & !is.na( doi ) ~ paste0( author, publication_title, ". ", journal, ". DOI: ", str_trim( doi ) ),
+                                          !is.na( author ) & is.na( publication_year ) & !is.na( doi ) ~ paste0( author, publication_title, ". DOI: ", str_trim( doi ) ),
+                                          !is.na( author ) & is.na( publication_year ) & is.na( doi ) ~ paste0( author, publication_title, "."),
+                                          !is.na( author ) ~ paste0( author, " (", publication_year, "). ", publication_title ),
+                                          TRUE ~ publication_title)) |>
+  select(eventID = study_id,
+         associatedReferences,
+         year = publication_year,
+         samplingProtocol = sampling_effort_status,
+         sampleSizeValue = trap_nights,
+         samplingEffort = n_sessions,
+         dataAccessLevel = data_access_level,
+         dataResolution = data_resolution_clean)
+
+write_parquet(sampling_events, here("arha_app", "data", "parquet", "sampling_events.parquet"))
+write_csv(sampling_events, here("data", "data_release", "csv", "sampling_events.csv"))
+
+host_occurrences <- host_mapped |>
+  mutate(
+    host_genus = case_when(
+      !is.na(host_genus) ~ host_genus,
+      stringr::str_starts(host_species_original, "N ")  ~ "Neotoma",
+      stringr::str_starts(host_species_original, "C ")  ~ "Chaetodipus",
+      stringr::str_starts(host_species_original, "D ")  ~ "Dipodomys",
+      stringr::str_starts(host_species_original, "O ")  ~ "Onychomys",
+      stringr::str_starts(host_species_original, "P ")  ~ "Peromyscus",
+      host_species_original == "\"Social rat\""          ~ "Verbatim Extraction - Social Rat",
+      TRUE                                              ~ host_genus
+    ),
+    taxon_rank = case_when(
+      !is.na(taxon_rank) ~ taxon_rank,
+      host_genus == "Verbatim Extraction - Social Rat"  ~ "unclassified",
+      !is.na(host_genus)                                ~ "species",
+      TRUE                                              ~ taxon_rank
+    )
+  ) |>
+  mutate(
+    eventDate = case_when(
+      !is.na(start_date) & !is.na(end_date) & start_date != end_date ~ paste0(format(start_date, "%Y-%m-%d"), "/", format(end_date, "%Y-%m-%d")),
+      !is.na(start_date) ~ format(start_date, "%Y-%m-%d"),
+      TRUE ~ NA_character_
+    )
+  ) |>
+  rename(
+    occurrenceID = host_record_id,
+    eventID = study_id,
+    individualCount = number_of_hosts,
+    scientificName = host_species,
+    genus = host_genus,
+    family = host_family,
+    order = host_order,
+    class = host_class,
+    taxonRank = taxon_rank,
+    taxonID = gbif_id,
+    countryCode = iso3c,
+    decimalLatitude = latitude,
+    decimalLongitude = longitude,
+    stateProvince = gadm_adm1,
+    county = gadm_adm2,
+    municipality = gadm_adm3,
+    verbatimIdentification = host_species_original,
+    verbatimLocality = verbatim_locality_raw,
+    verbatimEventDate = event_date_raw
+  ) |>
+  select(
+    occurrenceID, eventID, scientificName, genus, family, order, class, taxonRank, taxonID,
+    individualCount, eventDate, country, countryCode, stateProvince, county, municipality,
+    decimalLatitude, decimalLongitude, verbatimIdentification, verbatimLocality, verbatimEventDate,
+    coord_status, dist_from_expected, coordinate_resolution_processed,
+    temporal_resolution, trap_nights_clean, trap_nights_status
+  )
+
+write_parquet(host_occurrences, here("arha_app", "data", "parquet", "host_occurrences.parquet"))
+write_csv(host_occurrences, here("data", "data_release", "csv", "host_occurrences.csv"))
+
+# Pathogen to DwC Extended MeasurementOrFact
+pathogen_mof <- pathogen_mapped |>
+  # Harmonise missing classifications using historical family entries
+  mutate(
+    pathogen_family_fixed = case_when(
+      !is.na(pathogen_family) ~ pathogen_family,
+      pathogen_family_original %in% c("Arenaviridae", "Mammarenaviridae") ~ "Arenaviridae",
+      pathogen_family_original == "Hantaviridae"                           ~ "Hantaviridae",
+      TRUE                                                                 ~ pathogen_family
+    ),
+    pathogen_genus_fixed = case_when(
+      !is.na(pathogen_genus_ncbi) ~ pathogen_genus_ncbi,
+      pathogen_family_original == "Mammarenavirus"                         ~ "Mammarenavirus",
+      TRUE                                                                 ~ pathogen_genus_ncbi
+    ),
+    taxonomic_level_fixed = case_when(
+      !is.na(taxonomic_level) ~ taxonomic_level,
+      pathogen_family_original %in% c("Arenaviridae", "Hantaviridae", "Mammarenaviridae") ~ "family",
+      pathogen_family_original == "Mammarenavirus"                                        ~ "genus",
+      pathogen_family_original == "Bacterial"                                             ~ "unclassified",
+      TRUE                                                                                ~ taxonomic_level
+    )
+  ) |>
+  # Construct final release fields
+  mutate(
+    taxonomy_details_json = sapply(taxonomy_details, function(x) {
+      if(is.null(x) || length(x) == 0) return(NA_character_)
+      jsonlite::toJSON(x, auto_unbox = TRUE) 
+    }),
+    measurementType = paste(pathogen_species_cleaned, "detection"),
+    measurementRemarks = paste0(
+      "Number tested: ", number_tested,
+      " | Verbatim pathogen: ", pathogen_species_original, 
+      " | Verbatim assay: ", assay_raw,
+      " | Notes: ", note
+    )
+  ) |>
+  rename(
+    measurementID = pathogen_record_id,
+    occurrenceID = host_record_id,
+    eventID = study_id,
+    measurementMethod = assay,
+    measurementValue = number_positive,
+    scientificName_pathogen = pathogen_species_ncbi,
+    genus_pathogen = pathogen_genus_fixed,
+    family_pathogen = pathogen_family_fixed,
+    taxonRank_pathogen = taxonomic_level_fixed,
+    taxonID_pathogen = ncbi_id,
+    dynamicProperties = taxonomy_details_json
+  ) |>
+  select(
+    measurementID, occurrenceID, eventID, measurementType, measurementValue,
+    measurementMethod, measurementRemarks, scientificName_pathogen, genus_pathogen,
+    family_pathogen, taxonRank_pathogen, taxonID_pathogen, dynamicProperties,
+    number_tested, number_negative, number_inconclusive, tested_detected,
+    positive_tested, pathogen_species_cleaned, pathogen_family_original
+  )
+
+write_parquet(pathogen_mof, here("arha_app", "data", "parquet", "pathogen_mof.parquet"))
+write_csv(pathogen_mof, here("data", "data_release", "csv", "pathogen_mof.csv"))
+
+# Create a clean, padded ID for the sequences
+sequence_clean <- sequence_mapped |>
+  mutate(clean_seq_id = paste0("seq_", sprintf("%05d", row_number())),
+         # Convert accession to a resolvable URI
+         ncbi_uri = paste0("https://www.ncbi.nlm.nih.gov/nuccore/", accession_primary))
+
+# Build Host -> Sequence relationships
+seq_rel_host <- sequence_clean |>
+  filter(!is.na(host_record_id)) |>
+  select(resourceRelationshipID = clean_seq_id,
+         resourceID = host_record_id,
+         relatedResourceID = ncbi_uri,
+         sequence_type,
+         gene_name,
+         query_accession,
+         accession_primary) |>
+  mutate(relationshipOfResource = "host has sequence")
+
+# Build Pathogen -> Sequence relationships
+seq_rel_pathogen <- sequence_clean |>
+  filter(!is.na(pathogen_record_id)) |>
+  select(resourceRelationshipID = clean_seq_id,
+         resourceID = pathogen_record_id,
+         relatedResourceID = ncbi_uri,
+         sequence_type,
+         gene_name,
+         query_accession,
+         accession_primary) |>
+  mutate(relationshipOfResource = "pathogen has sequence")
+
+# Bind them to single DwC extension table
+resource_relationships <- bind_rows(seq_rel_host, seq_rel_pathogen) |>
+  select(resourceRelationshipID,
+         resourceID,
+         relatedResourceID,
+         relationshipOfResource,
+         # Internal App fields
+         sequence_type,
+         gene_name,
+         query_accession,
+         accession_primary)
+
+# Save the Resource Relationship Extension
+write_parquet(resource_relationships, here("arha_app", "data", "parquet", "resource_relationships.parquet"))
+write_csv(resource_relationships, here("data", "data_release", "csv", "resource_relationships.csv"))
