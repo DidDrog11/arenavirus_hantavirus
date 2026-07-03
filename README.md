@@ -2,6 +2,8 @@
 
 **Latest Database Version: [Project_ArHa_database_2026-01-09](https://github.com/DidDrog11/arenavirus_hantavirus/blob/main/data/database/Project_ArHa_database_2026-01-09.rds)**
 
+**Accompanying RShiny App: [ArHa_Database_Explorer](https://diddrog11.shinyapps.io/ArHa_Database_Explorer/)**
+
 **Database Outputs:**   
 1.   [Viral reservoir status in small mammals emerges as a predictable life-history trait after correcting for surveillance bias, bioRxiv](https://doi.org/10.64898/2026.06.03.729761)
 2.   [The Socio-economic Shield Limits Lassa Virus Spillover in Urban West Africa, Epidemiology and Infection](https://doi.org/10.1017/s0950268826101824)
