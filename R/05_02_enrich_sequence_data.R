@@ -62,19 +62,19 @@ if (nrow(ncbi_metadata) > 0) {
 }
 
 # --- Step 4: Download Sequences to FASTA File ---
-source(here("R", "download_sequences.R"))
-
-# Get the list of accession numbers that were successfully found
-resolved_accessions <- sequence_enriched %>%
-  filter(ncbi_resolved_status == "resolved") %>%
-  pull(ncbi_accession_version)
-
-# Define the output path
-fasta_output_path <- here("data", "data_cleaning", "project_arha_sequences.fasta")
-
-# Call the function to download the sequences
-download_sequences_as_fasta(accession_vec = resolved_accessions, 
-                            output_file = fasta_output_path)
+# source(here("R", "download_sequences.R"))
+# 
+# # Get the list of accession numbers that were successfully found
+# resolved_accessions <- sequence_enriched %>%
+#   filter(ncbi_resolved_status == "resolved") %>%
+#   pull(ncbi_accession_version)
+# 
+# # Define the output path
+# fasta_output_path <- here("data", "data_cleaning", "project_arha_sequences.fasta")
+# 
+# # Call the function to download the sequences
+# download_sequences_as_fasta(accession_vec = resolved_accessions, 
+#                             output_file = fasta_output_path)
 
 # --- Step 5: Finalize and Save ---
 
@@ -111,13 +111,12 @@ combined_data$sequence <- sequence_enriched %>%
                                    TRUE ~ pathogen_species_clean)
   ) %>%
   select(sequence_record_id, associated_rodent_record_id, associated_pathogen_record_id, study_id, accession_number, ncbi_resolved_status, sequence_type = sequenceType,
-         host_species_raw, host_species_clean, flag_host_mismatch, ncbi_host,
-         pathogen_species_raw, pathogen_species_clean, flag_pathogen_mismatch, ncbi_pathogen,
+         host_species_clean, ncbi_host,
+         pathogen_species_clean, ncbi_pathogen,
          ncbi_accession_primary, ncbi_accession_version, ncbi_seq_length, ncbi_strandedness, ncbi_molecule_type,
          ncbi_definition, ncbi_isolate, ncbi_gene_name, ncbi_protein_name,
          ncbi_country_raw, ncbi_country_clean, ncbi_iso3, ncbi_locality,
-         ncbi_collection_date = ncbi_collection_date_clean, ncbi_create_date, ncbi_update_date
-         )
+         ncbi_collection_date = ncbi_collection_date_clean, ncbi_create_date, ncbi_update_date)
 
 # Save the updated combined_data object
 write_rds(combined_data, here("data", "data_cleaning", "05_02_output.rds"))

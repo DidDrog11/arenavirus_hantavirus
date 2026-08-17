@@ -12,10 +12,13 @@ mod_dashboard_ui <- function(id) {
   ns <- NS(id)
   tagList(
     
-    # Publications Summary Table (Open by default)
     accordion(
-      open = "pubs", 
-      accordion_panel(title = "Publications Summary", value = "pubs", icon = icon("book"), DTOutput(ns("table_pubs")))
+      open = "pubs",
+      accordion_panel(
+        title = "Publications Summary", value = "pubs", icon = icon("book"),
+        uiOutput(ns("pubs_summary")),
+        DTOutput(ns("table_pubs"))
+      )
     ),
     tags$br(),
     
@@ -51,6 +54,11 @@ mod_dashboard_server <- function(id, filtered_data) {
       req(nrow(df) > 0)
       df <- df |> mutate(extracted_doi = str_extract(associatedReferences, "(?i)doi:\\s*(10\\.\\S+)"), clean_doi = str_remove(extracted_doi, "(?i)doi:\\s*"), safe_ref = str_replace_all(associatedReferences, "\"", "&quot;"), Reference = if_else(!is.na(clean_doi), paste0("<span title=\"", safe_ref, "\" style=\"cursor: help; border-bottom: 1px dotted #999;\">", str_trunc(associatedReferences, 45), "</span> <br><a href='https://doi.org/", clean_doi, "' target='_blank' style='font-size: 0.85em;'><i class='fa fa-external-link'></i> View Source</a>"), paste0("<span title=\"", safe_ref, "\" style=\"cursor: help; border-bottom: 1px dotted #999;\">", str_trunc(associatedReferences, 55), "</span>"))) |> select(Reference, n_records, n_host_genera, n_host_species, n_path_species, n_individuals_tested, n_assays) |> arrange(desc(n_records))
       datatable(df, escape = FALSE, rownames = FALSE, options = list(paging = FALSE, scrollY = "250px", scrollX = TRUE, scrollCollapse = TRUE, dom = 't'), colnames = c("Publication / Reference", "Records", "Host Genera", "Host Species", "Pathogen Species", "Indiv. Tested", "Indiv. Positive"))
+    })
+    
+    output$pubs_summary <- renderUI({
+      req(filtered_data())
+      tags$p(build_publications_summary(filtered_data), class = "lead mb-3")
     })
     
     # Temporal Sampling Effort

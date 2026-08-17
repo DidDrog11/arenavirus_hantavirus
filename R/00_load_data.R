@@ -24,12 +24,12 @@ pkgs <- c(
 pacman::p_load(pkgs, character.only = T)
 
 # Set to TRUE to force a fresh download, FALSE to load from the latest saved file.
-should_update_raw_data <- FALSE
+should_update_raw_data <- TRUE
 
 # Searches were run manually on 2023-08-24 on PubMed, WoS and Google Scholar
 # 2,448 citations were identified after de-duplication
 search_date <- "2023-08-24"
-analysis_date <- "2025-12-16"
+analysis_date <- "2026-08-14"
 
 # --- Configuration Section ---
 

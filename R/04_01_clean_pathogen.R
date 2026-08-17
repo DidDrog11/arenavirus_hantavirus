@@ -54,19 +54,39 @@ pathogen_data_v3_clean <- pathogen_data_v3 %>%
   )
 
 # Combine the two cleaned data frames
-pathogen_combined <- bind_rows(pathogen_data_v2_clean, pathogen_data_v3_clean)
+pathogen_combined <- bind_rows(pathogen_data_v2_clean, pathogen_data_v3_clean) %>%
+  # Records whose host key was constructed from a missing ID arrive as the
+  # literal string "<extractor>_NA". These look like valid foreign keys but
+  # resolve to nothing, so downstream joins fail silently rather than visibly.
+  # Recode to true NA so the missingness is explicit.
+  mutate(associated_rodent_record_id = if_else(
+    str_detect(associated_rodent_record_id, "_NA$"),
+    NA_character_,
+    associated_rodent_record_id
+  ))
 
 # --- QC Step: Check for orphaned pathogen records ---
+# Two distinct failure modes, reported separately:
+#  (a) no host key at all -- assay data that cannot be assigned to a host
+#      record (e.g. samples pooled across countries). Expected and retained.
+#  (b) a populated key that resolves to nothing -- a genuine referential
+#      integrity failure indicating host records were lost upstream.
+no_host_key <- pathogen_combined %>%
+  filter(is.na(associated_rodent_record_id))
 
-# Find associated_rodent_record_ids that do not exist in the host table
 orphaned_pathogens <- pathogen_combined %>%
+  filter(!is.na(associated_rodent_record_id)) %>%
   anti_join(host_data, by = c("associated_rodent_record_id" = "rodent_record_id"))
 
+message(paste("\nPathogen records with no host key (expected, retained):", nrow(no_host_key)))
+print(no_host_key %>% count(study_id, sort = TRUE))
+
 if (nrow(orphaned_pathogens) > 0) {
-  message(paste("\nWARNING:", nrow(orphaned_pathogens), "pathogen records have no corresponding host record."))
-  print(orphaned_pathogens)
+  message(paste("WARNING:", nrow(orphaned_pathogens),
+                "pathogen records reference a host record that does not exist."))
+  print(orphaned_pathogens %>% count(study_id, sort = TRUE))
 } else {
-  message("\nAll pathogen records successfully matched to a host record.")
+  message("All keyed pathogen records successfully matched to a host record.")
 }
 
 # --- Step 2: Create a manual virus matching dictionary ---
@@ -274,7 +294,7 @@ pathogen_final <- pathogen_combined |>
          pathogen_name_raw, 
          pathogen_name_clean = pathogen_name_clean_list,  
          ncbi_species_name, ncbi_genus,  ncbi_id, family_clean, family, taxonomic_level, taxonomy_details, # The list column
-         assay_raw, number_tested, number_positive, number_inconclusive, note)
+         assay_raw, number_tested, number_positive, number_negative, number_inconclusive, note)
 
 pathogen_assay <- pathogen_final %>%
   mutate(
@@ -304,11 +324,18 @@ pathogen_n <- pathogen_assay %>%
       (number_positive %% 1 != 0 & !is.na(number_positive)),
     tested_detected = number_tested > individual_count,
     positive_tested = number_positive > number_tested,
-    number_negative = case_when(number_tested >= number_positive ~ number_tested - number_positive,
-                                TRUE ~ NA_real_)
+    number_negative = coalesce(
+      number_negative,
+      case_when(number_tested >= number_positive ~ number_tested - number_positive - coalesce(number_inconclusive, 0),
+                TRUE ~ NA_real_)
+    )
   ) %>%
   relocate(number_negative, .after = number_positive) %>%
   select(-individual_count)
+
+message(paste("\nPathogen records with non-integer counts:", sum(pathogen_n$non_integer, na.rm = TRUE)))
+message(paste("Pathogen records where tested > individual_count:", sum(pathogen_n$tested_detected, na.rm = TRUE)))
+message(paste("Pathogen records where positive > tested:", sum(pathogen_n$positive_tested, na.rm = TRUE)))
 
 combined_data$pathogen <- pathogen_n
 

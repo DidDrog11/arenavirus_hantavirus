@@ -151,7 +151,7 @@ imputed_non_detections_df <- bind_rows(all_imputed_records) %>%
   mutate(rodent_record_id = fct(paste0("imputed_", row_number())),
          detection_status = "imputed")
 
-# Finalize the original data by adding a detection status flag
+# Finalise the original data by adding a detection status flag
 cleaned_host_final <- combined_data$host %>%
   mutate(detection_status = "reported") %>%
   # Combine with the imputed data
@@ -167,6 +167,6 @@ cleaned_host_final <- combined_data$host %>%
   relocate("detection_status", .before = individual_count) %>%
   relocate(contains("trap_"), .after = individual_count)
     
-# --- Finalize and Save ---
+# --- Finalise and Save ---
 combined_data$host <- cleaned_host_final
 write_rds(combined_data, here::here("data", "data_cleaning", "03_08_output.rds"))

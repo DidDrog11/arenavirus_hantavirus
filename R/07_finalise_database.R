@@ -1,4 +1,4 @@
-# Project ArHa: 07_01_finalize_database.R
+# Project ArHa: 07_finalise_database.R
 #
 # Purpose: This is the final script in the cleaning pipeline. It takes the fully
 # processed data objects and applies a final layer of polish to ensure all
@@ -8,10 +8,41 @@
 
 combined_data <- read_rds(here("data", "data_cleaning", "05_02_output.rds"))
 
+# --- Drop non-canonical extractions ---------------------------------------
+# Applied here so all three tables are filtered consistently and no orphaned
+# foreign keys are created.
+es    <- combined_data$extraction_status
+canon <- es |> filter(is_canonical) |> pull(study_id)
+
+drop_noncanonical <- function(df, label) {
+  sid <- as.character(df$study_id)
+  # keep canonical rows, and anything with no extraction record at all
+  keep <- sid %in% canon | !sid %in% es$study_id
+  message(label, ": dropped ", sum(!keep), " of ", nrow(df), " records")
+  df[keep, ]
+}
+combined_data$host        <- drop_noncanonical(combined_data$host,        "host")
+combined_data$pathogen    <- drop_noncanonical(combined_data$pathogen,    "pathogen")
+combined_data$sequence    <- drop_noncanonical(combined_data$sequence,    "sequence")
+combined_data$descriptives_cleaned <- drop_noncanonical(combined_data$descriptives_cleaned, "descriptives")
+
+n_2208 <- sum(lubridate::year(combined_data$host$end_date) == 2208, na.rm = TRUE)
+if (n_2208 > 0) {
+  message("Patched ", n_2208, " host record(s) with end_date year 2208 -> corrected by -200 years.")
+  combined_data$host <- combined_data$host |>
+    mutate(
+      end_date = if_else(!is.na(end_date) & lubridate::year(end_date) == 2208,
+                         end_date - lubridate::years(200),
+                         end_date)
+    )
+} else {
+  message("No 2208 end_date records found -- source fix already applied, patch skipped.")
+}
+
 # --- 1. Clean the Citations Table ---
 message("Cleaning citations table...")
 citations_final <- combined_data$citations$all_citations %>%
-  # Standardize names to snake_case
+  # Standardizs names to snake_case
   clean_names() %>%
   # Rename for clarity and consistency
   rename(
@@ -198,8 +229,6 @@ sequence_final <- combined_data$sequence %>%
     collection_date = ncbi_collection_date,
     gene_name = ncbi_gene_name,
     protein_name = ncbi_protein_name,
-    host_species_original = host_species_raw,
-    pathogen_species_original = pathogen_species_raw,
     query_accession = accession_number
   ) %>%
   select(
@@ -233,9 +262,8 @@ sequence_final <- combined_data$sequence %>%
     collection_date,
     create_date,
     update_date,
-    # Original raw data for provenance
-    host_species_original, host_species_clean,
-    pathogen_species_original, pathogen_species_clean
+    host_species_clean,
+    pathogen_species_clean
   )
 
 # --- 6. Assemble Final Database Object and Save ---
@@ -271,7 +299,11 @@ release_path <- here("data", "data_release")
 dir_create(path(release_path, "parquet"))
 dir_create(path(release_path, "csv"))
 
-event_map <- tibble(old_study_id = as.character(unique(c(descriptives_final$study_id, host_final$study_id, pathogen_final$study_id)))) |>
+event_map <- tibble(old_study_id = unique(c(
+  as.character(descriptives_final$study_id),
+  as.character(host_final$study_id),
+  as.character(pathogen_final$study_id)
+))) |>
   drop_na() |>
   mutate(new_event_id = paste0("event_", sprintf("%04d", row_number())))
 
@@ -331,26 +363,39 @@ sequence_mapped <- sequence_final |>
 
 citations_tmp <- citations_final
 
-sampling_events <- descriptives_mapped |>
-  left_join( citations_tmp |> select( full_text_id, author, journal = publication_title, doi ), by = "full_text_id" ) |>
+sampling_events_meta <- descriptives_mapped |>
+  left_join(citations_tmp |> select(full_text_id, author, journal = publication_title, doi),
+            by = "full_text_id") |>
   distinct() |>
-  mutate(associatedReferences = case_when(!is.na( doi ) & !is.na( publication_year ) & !is.na( journal ) & !is.na( author ) ~ paste0( author, " (", publication_year, "). ", publication_title, ". ", journal, ". DOI: ", str_trim( doi ) ),
-                                          is.na( doi ) & !is.na( publication_year ) & !is.na( journal ) & !is.na( author ) ~ paste0( author, " (", publication_year, "). ", publication_title, ". ", journal, "." ),
-                                          is.na( journal ) & !is.na( author ) & !is.na( publication_year ) & !is.na( doi ) ~ paste0( author, " (", publication_year, "). ", publication_title, ". DOI: ", str_trim( doi ) ),
-                                          is.na( journal ) & !is.na( author ) & !is.na( publication_year ) & is.na( doi ) ~ paste0( author, " (", publication_year, "). ", publication_title, "."),
-                                          !is.na( author ) & is.na( publication_year ) & !is.na( journal ) & !is.na( doi ) ~ paste0( author, publication_title, ". ", journal, ". DOI: ", str_trim( doi ) ),
-                                          !is.na( author ) & is.na( publication_year ) & !is.na( doi ) ~ paste0( author, publication_title, ". DOI: ", str_trim( doi ) ),
-                                          !is.na( author ) & is.na( publication_year ) & is.na( doi ) ~ paste0( author, publication_title, "."),
-                                          !is.na( author ) ~ paste0( author, " (", publication_year, "). ", publication_title ),
-                                          TRUE ~ publication_title)) |>
-  select(eventID = study_id,
-         associatedReferences,
-         year = publication_year,
-         samplingProtocol = sampling_effort_status,
-         sampleSizeValue = trap_nights,
-         samplingEffort = n_sessions,
-         dataAccessLevel = data_access_level,
+  mutate(
+    author_year = case_when(
+      !is.na(author) & !is.na(publication_year) ~ paste0(author, " (", publication_year, ")"),
+      !is.na(author) ~ author,
+      TRUE ~ NA_character_
+    ),
+    doi_part = if_else(!is.na(doi), paste0("DOI: ", str_trim(doi)), NA_character_),
+    associatedReferences = pmap_chr(
+      list(author_year, publication_title, journal, doi_part),
+      function(a, t, j, d) {
+        parts <- c(a, t, j, d)
+        parts <- parts[!is.na(parts) & parts != ""]
+        if (length(parts) == 0) return(NA_character_)
+        paste0(paste(parts, collapse = ". "), ".")
+      }
+    )
+  ) |>
+  select(eventID = study_id, associatedReferences, year = publication_year,
+         samplingProtocol = sampling_effort_status, sampleSizeValue = trap_nights,
+         samplingEffort = n_sessions, dataAccessLevel = data_access_level,
          dataResolution = data_resolution_clean)
+
+sampling_events <- event_map |>
+  select(eventID = new_event_id) |>
+  left_join(sampling_events_meta, by = "eventID") |>
+  distinct(eventID, .keep_all = TRUE)
+
+stopifnot(nrow(sampling_events) == nrow(event_map),
+          !any(duplicated(sampling_events$eventID)))
 
 write_parquet(sampling_events, here("arha_app", "data", "parquet", "sampling_events.parquet"))
 write_csv(sampling_events, here("data", "data_release", "csv", "sampling_events.csv"))

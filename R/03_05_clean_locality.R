@@ -1,12 +1,10 @@
 # Project ArHa: Locality and Areal Taxonomy
-# 0_05_clean_locality.R
+# 03_05_clean_locality.R
 # Purpose: This script standardizes locality names and enriches all records with
 # a full administrative hierarchy (ADM1, ADM2, ADM3) based on their coordinates.
-# It also performs a geocoding step for records with missing coordinates.
 
 # Load the combined data from the previous script
 combined_data <- read_rds(here("data", "data_cleaning", "03_04_output.rds"))
-
 
 # Step 1: Harmonise Coordinate Resolution ---------------------------------
 
@@ -52,9 +50,7 @@ cleaning_coord_res$spatial_id = group_indices(cleaning_coord_res)
 spatial_id <- cleaning_coord_res %>%
   distinct(study_id, locality_raw, decimalLatitude, decimalLongitude, NAME_0, GID_0, coordinate_resolution_clean, spatial_id)
 
-
 # Step 2: Identify and Download GADM Files --------------------------------
-
 # Create a list of unique countries and the max admin level needed for each
 gadm_levels_needed <- cleaning_coord_res %>%
   ungroup() %>%
@@ -124,83 +120,7 @@ gadm_levels_obtained <- tibble(
   })
 )
 
-# --- Step 2: Dissolve polygons to create a full administrative hierarchy ---
-#
-# This step creates a nested list of SpatVector objects for each administrative level.
-gadm_hierarchy_spat_list <- list()
-
-# Iterate over each country in the GADM list
-# This will download and add them to gadm_heirarchy_spat_list
-# If they are already downloaded they will be read in
-for (country_code in names(gadm_spat_list)) {
-  
-  max_level_obj <- gadm_spat_list[[country_code]]
-  max_level_num <- max(as.numeric(str_extract(names(gadm_spat_list[[country_code]]), "\\d+")), na.rm = TRUE)
-  
-  if (max_level_num == 3) {
-    # Keep ADM3
-    message(paste("Processing ADM3 level for", country_code))
-    gadm_adm3 <- max_level_obj
-    gadm_hierarchy_spat_list[[country_code]][["adm3"]] <- gadm_adm3
-    
-    # Dissolve to ADM2
-    message(paste("Downloading ADM2 for", country_code))
-    gadm_adm2 <- gadm(country = country_code, level = "2", path = gadm_files_path, version = "4.1")
-    gadm_hierarchy_spat_list[[country_code]][["adm2"]] <- gadm_adm2
-    
-    # Dissolve to ADM1
-    message(paste("Downloading ADM1 for", country_code))
-    gadm_adm1 <- gadm(country = country_code, level = "1", path = gadm_files_path, version = "4.1")
-    gadm_hierarchy_spat_list[[country_code]][["adm1"]] <- gadm_adm1
-    
-    # Dissolve to ADM0
-    message(paste("Downloading ADM0 for", country_code))
-    gadm_adm0 <- gadm(country = country_code, level = "0", path = gadm_files_path, version = "4.1")
-    gadm_hierarchy_spat_list[[country_code]][["adm0"]] <- gadm_adm0
-    
-  } else if (max_level_num == 2) {
-    # Keep ADM2
-    message(paste("Processing ADM2 level for", country_code))
-    gadm_adm2 <-  max_level_obj
-    gadm_hierarchy_spat_list[[country_code]][["adm2"]] <- gadm_adm2
-    
-    # Dissolve to ADM1
-    message(paste("Downloading ADM1 for", country_code))
-    gadm_adm1 <- gadm(country = country_code, level = "1", path = gadm_files_path, version = "4.1")
-    gadm_hierarchy_spat_list[[country_code]][["adm1"]] <- gadm_adm1
-    
-    # Dissolve to ADM0
-    message(paste("Downloading ADM0 for", country_code))
-    gadm_adm0 <- gadm(country = country_code, level = "0", path = gadm_files_path, version = "4.1")
-    gadm_hierarchy_spat_list[[country_code]][["adm0"]] <- gadm_adm0
-    
-  } else if (max_level_num == 1) {
-    # Keep ADM1
-    message(paste("Processing ADM1 for", country_code))
-    gadm_adm1 <-  max_level_obj
-    gadm_hierarchy_spat_list[[country_code]][["adm1"]] <- gadm_adm1
-    
-    # Dissolve to ADM0
-    message(paste("Downloading ADM0 for", country_code))
-    gadm_adm0 <- gadm(country = country_code, level = "0", path = gadm_files_path, version = "4.1")
-    gadm_hierarchy_spat_list[[country_code]][["adm0"]] <- gadm_adm0
-    
-  } else if (max_level_num == 0) {
-    # Keep ADM0
-    message(paste("Processing ADM0 level for", country_code))
-    gadm_adm0 <-  max_level_obj
-    gadm_hierarchy_spat_list[[country_code]][["adm0"]] <- gadm_adm0
-  }
-}
-
-adm2_list <- map(gadm_hierarchy_spat_list, ~ .x[["adm2"]])
-adm2_list_clean <- compact(adm2_list)
-gadm_adm2_combined <- vect(adm2_list_clean)
-output_path <- here("data", "gadm", "gadm_adm2_combined.shp")
-writeVector(gadm_adm2_combined, output_path, overwrite = TRUE)
-
-# Prepare and Perform Spatial Join ----------------------------------------
-# Add the adm_level_num column to the spatial_id table
+# --- Perform spatial join using each country's single GADM file ---
 spatial_id <- spatial_id %>%
   mutate(
     adm_level_num = case_when(
@@ -211,69 +131,60 @@ spatial_id <- spatial_id %>%
       coordinate_resolution_clean == "town" ~ 3,
       coordinate_resolution_clean == "village" ~ 3,
       coordinate_resolution_clean == "site" ~ 3,
-      coordinate_resolution_clean == "study_area" ~ 1,
+      coordinate_resolution_clean == "study_area" ~ 3,
       coordinate_resolution_clean == "country" ~ 0,
       TRUE ~ 0
     )
   ) %>%
   left_join(gadm_levels_obtained, by = "GID_0") %>%
-  # Use coalesce to find the correct administrative level
   mutate(
-    adm_level_num = if_else(adm_level_num > levels, levels, adm_level_num) # Cap at the highest available level
+    adm_level_num = if_else(adm_level_num > levels, levels, adm_level_num)
   ) %>%
-  select(-levels) # Remove the temporary column
+  select(-levels)
 
-# Separate records that have coordinates from those that don't
 points_with_coords <- spatial_id %>%
   filter(!is.na(decimalLatitude) & !is.na(decimalLongitude))
 
 points_without_coords <- spatial_id %>%
   filter(is.na(decimalLatitude) | is.na(decimalLongitude))
 
-
-# --- Step 3: Perform spatial join for each unique GADM level per country ---
-
-# Create a list of data frames, one for each country/adm_level combination
+# One extract call per country -- not per country/level combination
 groups_to_join <- points_with_coords %>%
   filter(adm_level_num > 0) %>%
-  group_by(GID_0, adm_level_num) %>%
+  group_by(GID_0) %>%
   group_split()
 
 adm_join_results <- map(groups_to_join, function(group) {
   
   country_code <- unique(group$GID_0)
-  adm_level <- unique(group$adm_level_num)
-  adm_level_name <- paste0("adm", adm_level)
+  gadm_spat <- gadm_spat_list[[country_code]]
+  if (is.null(gadm_spat)) return(NULL)
   
-  # Check if the SpatVector object exists in the list
-  if (!is.null(gadm_hierarchy_spat_list[[country_code]][[adm_level_name]])) {
-    gadm_spat <- gadm_hierarchy_spat_list[[country_code]][[adm_level_name]]
-    
-    points_vect <- vect(group, geom = c("decimalLongitude", "decimalLatitude"), crs = "EPSG:4326")
-    
-    adm_extracted <- terra::extract(gadm_spat, points_vect) %>%
-      select(starts_with("GID_"), starts_with("NAME_"))
-    
-    results <- group %>%
-      bind_cols(adm_extracted %>%
-                  select(-GID_0)) %>%
-      select(any_of(c(
-        "spatial_id",
-        "study_id",
-        "locality_raw",
-        "decimalLatitude", "decimalLongitude",
-        "NAME_0", "GID_0", "coordinate_resolution_clean", "adm_level_num",
-        "adm1_name" = "GID_1", "adm1_id" = "NAME_1",
-        "adm2_name" = "GID_2", "adm2_id" = "NAME_2",
-        "adm3_name" = "GID_3", "adm3_id" = "NAME_3"
-      )))
-    
-    return(results)
+  points_vect <- vect(group, geom = c("decimalLongitude", "decimalLatitude"), crs = "EPSG:4326")
+  
+  adm_extracted <- terra::extract(gadm_spat, points_vect) %>%
+    select(starts_with("GID_"), starts_with("NAME_"))
+  
+  # Ensure all three levels exist as columns even for countries whose file
+  # doesn't reach that deep, so bind_cols stays consistent across countries
+  for (col in c("GID_1", "NAME_1", "GID_2", "NAME_2", "GID_3", "NAME_3")) {
+    if (!col %in% names(adm_extracted)) adm_extracted[[col]] <- NA_character_
   }
+  
+  group %>%
+    bind_cols(adm_extracted %>% select(-any_of(c("GID_0", "NAME_0")))) %>%
+    rename(adm1_name = GID_1, adm1_id = NAME_1,
+           adm2_name = GID_2, adm2_id = NAME_2,
+           adm3_name = GID_3, adm3_id = NAME_3) %>%
+    select(any_of(c(
+      "spatial_id", "study_id", "locality_raw",
+      "decimalLatitude", "decimalLongitude",
+      "NAME_0", "GID_0", "coordinate_resolution_clean", "adm_level_num",
+      "adm1_name", "adm1_id", "adm2_name", "adm2_id", "adm3_name", "adm3_id"
+    )))
 })
 
 adm_joined_combined <- do.call(bind_rows, adm_join_results) %>%
-  # Ensure the join key is unique
   distinct(spatial_id, .keep_all = TRUE)
 
 host_data <- cleaning_coord_res %>%

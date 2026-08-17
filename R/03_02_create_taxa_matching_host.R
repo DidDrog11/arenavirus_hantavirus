@@ -1,13 +1,26 @@
 # Project ArHa: Create Manual Taxonomic Matching Tables
 # 03_02_create_taxa_matching_host.R
+#
 # Purpose: This script loads the raw rodent data, identifies all unique
 # scientific names and genera, and applies a set of manual cleaning rules
 # to create standardized lookup tables.
-# 
+#
+# CACHING BEHAVIOUR:
+#   - API caches store only the name -> GBIF query id mapping and the resulting
+#     hierarchy. The derived *_names tables are rebuilt from those caches on
+#     every run, so edits to the manual matching rules take effect immediately
+#     without re-querying GBIF.
+#   - Cache freshness is decided by setdiff() Only genuinely new names are sent to GBIF, so
+#     interactive disambiguation is not re-triggered for names already resolved.
+#   - get_gbifid() is called ONCE per block. The previous version called it a
+#     second time inside classification(), doubling both API traffic and the
+#     number of interactive prompts.
+#   - Names that resolved to NA are retained in the cache so they are not
+#     retried on every run. Delete the relevant cache file to force a refresh
+#     if the GBIF backbone is updated.
 
 combined_data_v2 <- read_rds(here::here("data", "raw_data", paste0(analysis_date, "_v2_data.rds")))
 combined_data_v3 <- read_rds(here::here("data", "raw_data", paste0(analysis_date, "_v3_data.rds")))
-
 
 # Clean Rodent Species ----------------------------------------------------
 
@@ -37,7 +50,7 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                          str_detect(rodent_names, "A\\.? toba") ~ "Akodon toba",
                          str_detect(rodent_names, "A\\.? varius") ~ "Akodon varius",
                          str_detect(rodent_names, "A\\.? scherman") ~ "Arvicola scherman",
-                         str_detect(rodent_names, "B\\.? taylori") ~ "Baimoys taylori",
+                         str_detect(rodent_names, "B\\.? taylori") ~ "Baiomys taylori",
                          str_detect(rodent_names, "Bolomys lasiururs") ~ "Bolomys lasiurus",
                          str_detect(rodent_names, "B\\.? obscurus|B obscurus") ~ "Necromys obscurus",
                          str_detect(rodent_names, "\"Yellow-breasted rat\"") ~ "Rattus flavipectus",
@@ -152,11 +165,10 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                          str_detect(rodent_names, "P\\.? megalops") ~ "Peromyscus megalops",
                          str_detect(rodent_names, "P\\.? melanophrys") ~ "Peromyscus melanophrys",
                          str_detect(rodent_names, "P\\.? melanotis") ~ "Peromyscus melanotis",
-                         str_detect(rodent_names, "P\\.? maniculatus|P\\.? manicultas|Peromyscus maniculatus bairdii|Permyscus maniculatus|Peromuscus maniculatus|	
-Peromycus manicalatus|P maiculatus|P maniculatis") ~ "Peromyscus maniculatus",
+                         str_detect(rodent_names, "P\\.? maniculatus|P\\.? manicultas|Peromyscus maniculatus bairdii|Permyscus maniculatus|Peromuscus maniculatus|Peromycus manicalatus|P maiculatus|P maniculatis") ~ "Peromyscus maniculatus",
                          str_detect(rodent_names, "Peromyscus banderanus|P\\.? mexicanus") ~ "Peromyscus mexicanus",
                          str_detect(rodent_names, "Peromyscus evides") ~ "Peromyscus aztecus",
-                         str_detect(rodent_names, "Peromyscus eremicus") ~ "Peromycus eremicus",
+                         str_detect(rodent_names, "Peromycus eremicus") ~ "Peromyscus eremicus",
                          str_detect(rodent_names, "P\\.? truei|Pinyon mouse") ~ "Peromyscus truei",
                          str_detect(rodent_names, "P\\.? californicus|Peromycus californicus|Peromyscus calofornicus|Peromysucs californicus") ~ "Peromyscus californicus",
                          str_detect(rodent_names, "Peromyscus leucopus noveboracensis") ~ "Peromyscus leucopus",
@@ -225,7 +237,6 @@ rodent_names$species_level[rodent_names$rodent_names == "Gerbilliscus taborae"] 
 
 
 # Clean Rodent Genera -----------------------------------------------------
-
 rodent_genus <- tibble(rodent_genus = c(str_split(unique(rodent_names$cleaned_rodent_names), " ", simplify = TRUE)[, 1], str_to_sentence(unique(combined_data_v2$rodent$genus))),
                        species_level = FALSE) %>%
   distinct() %>%
@@ -238,7 +249,7 @@ rodent_genus <- tibble(rodent_genus = c(str_split(unique(rodent_names$cleaned_ro
                                           str_detect(rodent_genus, "Bucepattersonius") ~ "Brucepattersonius",
                                           str_detect(rodent_genus, "Caomys") ~ "Calomys",
                                           str_detect(rodent_genus, "Cerradiomys") ~ "Cerradomys",
-                                          str_detect(rodent_genus, "Chaetodipus") ~ "Chaeotdipus",
+                                          str_detect(rodent_genus, "Chaeotdipus") ~ "Chaetodipus",
                                           str_detect(rodent_genus, "Cletherionomys") ~ "Clethrionomys",
                                           str_detect(rodent_genus, "Corcidura") ~ "Crocidura",
                                           str_detect(rodent_genus, "Lopuromys") ~ "Lophuromys",
@@ -272,77 +283,78 @@ write_rds(rodent_genus, here("data", "matching", "rodent_genus_manual.rds"))
 
 # Match to GBIF Species Taxa ----------------------------------------------
 
-# Check if the GBIF dictionary needs to be updated
-species_names_file <- here("data", "matching", "gbif_species_names.rds")
-if (file.exists(species_names_file)) {
-  gbif_species_names_old <- read_rds(species_names_file)
-  if (length(unique(gbif_species_names_old$cleaned_rodent_names)) == length(unique(rodent_names$cleaned_rodent_names))) {
-    message("GBIF species dictionary is up-to-date. Skipping API call.")
-    species_names <- gbif_species_names_old
-  } else {
-    message("New species found. Updating GBIF species dictionary.")
-    # Run the GBIF API calls
-    #gbif_species <- get_gbifid(unique(rodent_names$cleaned_rodent_names[rodent_names$species_level == TRUE]), rank = "species")
-    resolve_species <- classification(get_gbifid(unique(rodent_names$cleaned_rodent_names[rodent_names$species_level == TRUE]), rank = "species"), db = "gbif", return_id = TRUE)
-    species_hierarchy <- rbind(resolve_species) %>% 
-      group_by(query) %>% 
-      distinct() %>% 
-      ungroup() %>% 
-      pivot_wider(id_cols = "query", names_from = rank, values_from = name) %>% 
-      left_join(rbind(resolve_species) %>%
-                  filter(rank == "species") %>%
-                  select(query, species_id = id),
-                by = "query") %>%
-      left_join(rbind(resolve_species) %>%
-                  filter(rank == "genus") %>%
-                  select(query, genus_id = id) %>%
-                  distinct(),
-                by = "query") %>%
-      arrange(kingdom, phylum, class, order, family, genus, genus_id, species, species_id) %>%
-      drop_na(species)
-    species_names <- tibble(cleaned_rodent_names = unique(rodent_names$cleaned_rodent_names[rodent_names$species_level == TRUE]),
-                            query = as.character(names(resolve_species))) %>%
-      # match to raw data names
-      right_join(rodent_names,
-                 by = "cleaned_rodent_names") %>%
-      left_join(species_hierarchy %>%
-                  distinct(species, query, genus, family, order, class, species_id, genus_id), by = c("query")) %>%
-      rename("resolved_name" = species,
-             "gbif_id" = species_id,
-             "gbif_genus_id" = genus_id)
-    write_rds(species_names, species_names_file)
-    write_rds(species_hierarchy, here("data", "matching", "gbif_species_hierarchy.rds"))
-  } 
-  } else {
-  message("GBIF species dictionary not found. Creating new dictionary.")
-  # Run the GBIF API calls
-  gbif_species <- get_gbifid(unique(rodent_names$cleaned_rodent_names[rodent_names$species_level == TRUE]), rank = "species")
+species_lookup_file    <- here("data", "matching", "gbif_species_lookup.rds")
+species_hierarchy_file <- here("data", "matching", "gbif_species_hierarchy.rds")
+species_names_file     <- here("data", "matching", "gbif_species_names.rds")
+
+species_to_match <- unique(rodent_names$cleaned_rodent_names[rodent_names$species_level == TRUE])
+
+# Cache holds ONLY the API result (cleaned name -> GBIF query id). The derived
+# species_names table is rebuilt below on every run.
+species_lookup <- if (file.exists(species_lookup_file)) {
+  read_rds(species_lookup_file)
+} else {
+  tibble(cleaned_rodent_names = character(), query = character())
+}
+
+species_hierarchy <- if (file.exists(species_hierarchy_file)) {
+  read_rds(species_hierarchy_file)
+} else {
+  NULL
+}
+
+# Content-based check. Names already attempted are never retried -- including
+# those that resolved to NA -- so interactive prompts do not recur.
+new_species <- setdiff(species_to_match, species_lookup$cleaned_rodent_names)
+
+if (length(new_species) == 0) {
+  message("GBIF species dictionary up to date (", length(species_to_match), " names cached). Skipping API call.")
+} else {
+  message("Resolving ", length(new_species), " new species name(s) via GBIF...")
+  
+  gbif_species    <- get_gbifid(new_species, rank = "species")   # called ONCE
   resolve_species <- classification(gbif_species, db = "gbif", return_id = TRUE)
-  species_hierarchy <- rbind(resolve_species) %>% 
-    group_by(query) %>% 
-    distinct() %>% 
-    ungroup() %>% 
-    pivot_wider(id_cols = "query", names_from = rank, values_from = name) %>% 
+  
+  new_species_hierarchy <- rbind(resolve_species) %>%
+    group_by(query) %>%
+    distinct() %>%
+    ungroup() %>%
+    pivot_wider(id_cols = "query", names_from = rank, values_from = name) %>%
     left_join(rbind(resolve_species) %>%
                 filter(rank == "species") %>%
                 select(query, species_id = id),
               by = "query") %>%
-    arrange(kingdom, phylum, class, order, family, genus, species, species_id) %>%
+    left_join(rbind(resolve_species) %>%
+                filter(rank == "genus") %>%
+                select(query, genus_id = id) %>%
+                distinct(),
+              by = "query") %>%
+    arrange(kingdom, phylum, class, order, family, genus, genus_id, species, species_id) %>%
     drop_na(species)
-  species_names <- tibble(cleaned_rodent_names = unique(rodent_names$cleaned_rodent_names[rodent_names$species_level == TRUE]),
-                          query = as.character(gbif_species)) %>%
-    # match to raw data names
-    right_join(rodent_names,
-               by = "cleaned_rodent_names") %>%
-    left_join(species_hierarchy %>%
-                distinct(species, query, genus, family, order, class, species_id), by = c("query")) %>%
-    rename("resolved_name" = species,
-           "gbif_id" = species_id)
   
-  # Save the new files
-  write_rds(species_names, species_names_file)
-  write_rds(species_hierarchy, here("data", "matching", "gbif_species_hierarchy.rds"))
-  }
+  species_lookup <- bind_rows(
+    species_lookup,
+    tibble(cleaned_rodent_names = new_species, query = as.character(gbif_species))
+  ) %>%
+    distinct(cleaned_rodent_names, .keep_all = TRUE)
+  
+  species_hierarchy <- bind_rows(species_hierarchy, new_species_hierarchy) %>% distinct()
+  
+  write_rds(species_lookup, species_lookup_file)
+  write_rds(species_hierarchy, species_hierarchy_file)
+}
+
+# Derived on every run so edits to the manual rules take effect without re-querying
+species_names <- species_lookup %>%
+  right_join(rodent_names, by = "cleaned_rodent_names") %>%
+  left_join(species_hierarchy %>%
+              distinct(species, query, genus, family, order, class, species_id, genus_id),
+            by = "query") %>%
+  rename("resolved_name" = species,
+         "gbif_id" = species_id,
+         "gbif_genus_id" = genus_id)
+
+write_rds(species_names, species_names_file)
 
 
 # Some species names remain unmatched
@@ -354,107 +366,76 @@ unmatched_species_names <- species_names %>%
   filter(is.na(gbif_id)) %>%
   pull(rodent_names)
 
+
 # Match to GBIF Genus Taxa ------------------------------------------------
-
-genus_names_file <- here("data", "matching", "gbif_genus_names.rds")
+genus_lookup_file    <- here("data", "matching", "gbif_genus_lookup.rds")
 genus_hierarchy_file <- here("data", "matching", "gbif_genus_hierarchy.rds")
+genus_names_file     <- here("data", "matching", "gbif_genus_names.rds")
 
-if (file.exists(genus_names_file) && file.exists(genus_hierarchy_file)) {
-  gbif_genus_names_old <- read_rds(genus_names_file)
-  gbif_genus_hierarchy_old <- read_rds(genus_hierarchy_file)
-  
-  # Check if the manual list of genera has expanded
-  if (length(unique(gbif_genus_names_old$cleaned_rodent_genus)) == length(unique(rodent_genus$cleaned_rodent_genus))) {
-    message("GBIF genus dictionary is up-to-date. Skipping API call.")
-    genus_names <- gbif_genus_names_old
-    genus_hierarchy <- gbif_genus_hierarchy_old
-  } else {
-    message("New genera found. Updating GBIF genus dictionary.")
-    
-    # Identify genera already resolved from the species hierarchy
-    resolved_genera_from_species <- unique(species_names %>%
-                                             drop_na(genus) %>%
-                                             pull(genus))
-    
-    # Filter the manual genus list to only include those that are not yet resolved
-    genera_to_match <- rodent_genus %>%
-      filter(!str_detect(rodent_genus, "sp\\.$|sp\\.?$|spp\\.?$|species")) %>% # Exclude ambiguous names
-      distinct(cleaned_rodent_genus) %>%
-      filter(!cleaned_rodent_genus %in% resolved_genera_from_species) %>%
-      pull(cleaned_rodent_genus)
-    
-    # Perform the API call only on the new genera
-    if (length(genera_to_match) > 0) {
-      gbif_genus <- get_gbifid(genera_to_match, rank = "genus")
-      resolve_genus <- classification(get_gbifid(genera_to_match, rank = "genus"), db = "gbif")
-      
-      new_genus_hierarchy <- rbind(resolve_genus) %>%
-        group_by(query) %>%
-        distinct() %>%
-        ungroup() %>%
-        pivot_wider(id_cols = "query", names_from = rank, values_from = name) %>%
-        left_join(rbind(resolve_genus) %>%
-                    group_by(query) %>%
-                    distinct() %>%
-                    summarise(gbif_id = id[which.max(rank == "genus")]), by = "query") %>%
-        arrange(kingdom, phylum, class, order, family, genus) %>%
-        drop_na(genus)
-      
-      new_genus_names <- tibble(
-        cleaned_rodent_genus = genera_to_match,
-        query = as.character(gbif_genus)) %>%
-        left_join(new_genus_hierarchy %>%
-                    distinct(genus, query, family, order, class, gbif_id), by = "query")
-      
-      # Combine old and new genus data
-      genus_hierarchy <- bind_rows(gbif_genus_hierarchy_old, new_genus_hierarchy)
-      genus_names <- bind_rows(gbif_genus_names_old, new_genus_names)
-      
-    } else {
-      # No new genera to match, so keep the old data
-      genus_hierarchy <- gbif_genus_hierarchy_old
-      genus_names <- gbif_genus_names_old
-    }
-    
-    # Save the updated files
-    write_rds(genus_names, genus_names_file)
-    write_rds(genus_hierarchy, genus_hierarchy_file)
-  }
+genus_lookup <- if (file.exists(genus_lookup_file)) {
+  read_rds(genus_lookup_file)
 } else {
-  message("GBIF genus dictionary not found. Creating new dictionary.")
-  genera_to_match <- rodent_genus %>%
-    filter(!str_detect(rodent_genus, "\"Social")) %>%
-    distinct(cleaned_rodent_genus) %>%
-    arrange() %>%
-    pull()
+  tibble(cleaned_rodent_genus = character(), query = character())
+}
+
+genus_hierarchy <- if (file.exists(genus_hierarchy_file)) {
+  read_rds(genus_hierarchy_file)
+} else {
+  NULL
+}
+
+# All genera are queried and cached, including those that also appear in the
+# species hierarchy -- genus-only records (e.g. "Peromyscus sp.") join on this
+# table and would otherwise be left unresolved.
+genera_to_match <- rodent_genus %>%
+  filter(!str_detect(rodent_genus, "sp\\.$|sp\\.?$|spp\\.?$|species")) %>%
+  filter(!str_detect(rodent_genus, "\"Social")) %>%
+  distinct(cleaned_rodent_genus) %>%
+  pull(cleaned_rodent_genus)
+
+new_genera <- setdiff(genera_to_match, genus_lookup$cleaned_rodent_genus)
+
+if (length(new_genera) == 0) {
+  message("GBIF genus dictionary up to date (", length(genera_to_match), " genera cached). Skipping API call.")
+} else {
+  message("Resolving ", length(new_genera), " new genus name(s) via GBIF...")
   
-  gbif_genus <- get_gbifid(genera_to_match, rank = "genus")
+  gbif_genus    <- get_gbifid(new_genera, rank = "genus")   # called ONCE
   resolve_genus <- classification(gbif_genus, db = "gbif")
-  genus_hierarchy <- rbind(resolve_genus) %>%
+  
+  new_genus_hierarchy <- rbind(resolve_genus) %>%
     group_by(query) %>%
-    distinct() %>% 
-    ungroup() %>% 
-    pivot_wider(id_cols = "query", names_from = rank, values_from = name) %>% 
-    left_join(rbind(resolve_genus) %>% 
-                group_by(query) %>% 
+    distinct() %>%
+    ungroup() %>%
+    pivot_wider(id_cols = "query", names_from = rank, values_from = name) %>%
+    left_join(rbind(resolve_genus) %>%
+                group_by(query) %>%
                 distinct() %>%
-                summarise(gbif_id = id[which.max(rank == "genus")]), by = "query") %>% 
+                summarise(gbif_id = id[which.max(rank == "genus")]), by = "query") %>%
     arrange(kingdom, phylum, class, order, family, genus) %>%
     drop_na(genus)
   
-  genus_names <- tibble(cleaned_rodent_genus = genera_to_match,
-                        query = as.character(gbif_genus)) %>%
-    right_join(rodent_genus,
-               by = "cleaned_rodent_genus") %>%
-    left_join(genus_hierarchy %>%
-                distinct(genus, query, family, order, class, gbif_id), by = c("query")) %>%
-    distinct(rodent_genus, genus, .keep_all = TRUE)
+  genus_lookup <- bind_rows(
+    genus_lookup,
+    tibble(cleaned_rodent_genus = new_genera, query = as.character(gbif_genus))
+  ) %>%
+    distinct(cleaned_rodent_genus, .keep_all = TRUE)
   
-  # Save the new files
-  write_rds(genus_names, genus_names_file)
+  genus_hierarchy <- bind_rows(genus_hierarchy, new_genus_hierarchy) %>% distinct()
+  
+  write_rds(genus_lookup, genus_lookup_file)
   write_rds(genus_hierarchy, genus_hierarchy_file)
 }
 
+# Derived every run. Keeps the `rodent_genus` column that 03_03 joins on.
+genus_names <- genus_lookup %>%
+  right_join(rodent_genus, by = "cleaned_rodent_genus") %>%
+  left_join(genus_hierarchy %>%
+              distinct(genus, query, family, order, class, gbif_id),
+            by = "query") %>%
+  distinct(rodent_genus, genus, .keep_all = TRUE)
+
+write_rds(genus_names, genus_names_file)
 
 # Match to Higher GBIF Taxa -----------------------------------------------
 # Step 1: Find all names from the manual list that were not matched at the species level.
@@ -472,14 +453,26 @@ unmatched_at_genus_level <- unmatched_at_species_level %>%
 higher_taxa_to_match <- unique(unmatched_at_genus_level$cleaned_rodent_names)
 
 higher_taxa_table_file <- here("data", "matching", "gbif_higher_taxa.rds")
-if (file.exists(higher_taxa_table_file) && length(higher_taxa_to_match) == 0) {
-  message("GBIF higher taxa dictionary is up-to-date. Skipping API call.")
-  higher_taxa_table <- read_rds(higher_taxa_table_file)
+
+higher_taxa_table <- if (file.exists(higher_taxa_table_file)) {
+  read_rds(higher_taxa_table_file)
 } else {
-  message("New higher taxa found. Updating GBIF higher taxa dictionary.")
+  NULL
+}
+
+# Compare against what is CACHED, not against zero. Higher taxa such as
+# Rodentia, Muridae and Mammalia are unresolvable at species and genus level by
+# design, so higher_taxa_to_match is never empty
+already_cached_higher <- if (is.null(higher_taxa_table)) character(0) else unique(higher_taxa_table$extracted_name)
+new_higher_taxa       <- setdiff(higher_taxa_to_match, already_cached_higher)
+
+if (length(new_higher_taxa) == 0) {
+  message("GBIF higher taxa dictionary up to date (", length(higher_taxa_to_match), " names cached). Skipping API call.")
+} else {
+  message("Resolving ", length(new_higher_taxa), " new higher taxon name(s) via GBIF...")
   
   # Manual cleaning for higher taxa
-  higher_taxa_manual <- tibble(scientificName = higher_taxa_to_match) %>%
+  higher_taxa_manual <- tibble(scientificName = new_higher_taxa) %>%
     mutate(clean_higher_taxa = case_when(
       # Rodentia and its variants
       str_detect(tolower(scientificName), "rodentia|rodentia sp.|social rat|unknown") ~ "Rodentia",
@@ -497,9 +490,10 @@ if (file.exists(higher_taxa_table_file) && length(higher_taxa_to_match) == 0) {
       TRUE ~ scientificName
     ))
   
-  # GBIF API calls
-  gbif_higher <- get_gbifid(unique(higher_taxa_manual$clean_higher_taxa))
-  resolve_higher <- classification(get_gbifid(unique(higher_taxa_manual$clean_higher_taxa)), db = "gbif")
+  clean_higher_new <- unique(higher_taxa_manual$clean_higher_taxa)
+  
+  gbif_higher    <- get_gbifid(clean_higher_new)   # called ONCE
+  resolve_higher <- classification(gbif_higher, db = "gbif")
   
   higher_hierarchy <- rbind(resolve_higher) %>%
     group_by(query) %>%
@@ -508,15 +502,15 @@ if (file.exists(higher_taxa_table_file) && length(higher_taxa_to_match) == 0) {
     pivot_wider(id_cols = "query", names_from = rank, values_from = name) %>%
     mutate(gbif_id = as.integer(query))
   
-  higher_taxa_table <- tibble(
-    clean_higher_taxa = unique(higher_taxa_manual$clean_higher_taxa),
-    query = as.character(names(resolve_higher))
+  new_higher_taxa_table <- tibble(
+    clean_higher_taxa = clean_higher_new,
+    query = as.character(gbif_higher)
   ) %>%
     left_join(higher_hierarchy, by = "query") %>%
     left_join(higher_taxa_manual, by = "clean_higher_taxa") %>%
     rename("extracted_name" = "scientificName")
   
-  # Save the new file
+  higher_taxa_table <- bind_rows(higher_taxa_table, new_higher_taxa_table) %>% distinct()
+  
   write_rds(higher_taxa_table, higher_taxa_table_file)
 }
-

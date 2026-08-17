@@ -26,7 +26,8 @@ mod_filters_ui <- function(id) {
         "Pathogen Filters",
         mod_facets_ui(ns("path_counts")),
         selectizeInput(ns("pathogen_family"), "Family", choices = NULL, multiple = TRUE),
-        selectizeInput(ns("pathogen"), "Species", choices = NULL, multiple = TRUE)
+        selectizeInput(ns("pathogen"), "Species", choices = NULL, multiple = TRUE),
+        selectizeInput(ns("modality"), "Diagnostic Modality", choices = NULL, multiple = TRUE)
       )
     ),
     actionButton(ns("reset"), "Reset Filters", class = "btn-secondary mt-3 w-100")
@@ -46,11 +47,12 @@ mod_filters_server <- function(id, tbl_events, tbl_hosts, tbl_pathogens) {
     
     # Pre-fetch possible values
     all_vals <- list(
-      country = tbl_hosts |> filter(!is.na(country)) |> distinct(country) |> pull() |> sort(),
-      genus   = tbl_hosts |> filter(!is.na(genus)) |> distinct(genus) |> pull() |> sort(),
-      species = tbl_hosts |> filter(!is.na(scientificName)) |> distinct(scientificName) |> pull() |> sort(),
-      fam     = tbl_pathogens |> filter(!is.na(family_pathogen)) |> distinct(family_pathogen) |> pull() |> sort(),
-      path    = tbl_pathogens |> filter(!is.na(scientificName_pathogen)) |> distinct(scientificName_pathogen) |> pull() |> sort()
+      country  = tbl_hosts |> filter(!is.na(country)) |> distinct(country) |> pull() |> sort(),
+      genus    = tbl_hosts |> filter(!is.na(genus)) |> distinct(genus) |> pull() |> sort(),
+      species  = tbl_hosts |> filter(!is.na(scientificName)) |> distinct(scientificName) |> pull() |> sort(),
+      fam      = tbl_pathogens |> filter(!is.na(family_pathogen)) |> distinct(family_pathogen) |> pull() |> sort(),
+      path     = tbl_pathogens |> filter(!is.na(scientificName_pathogen)) |> distinct(scientificName_pathogen) |> pull() |> sort(),
+      modality = tbl_pathogens |> filter(!is.na(measurementMethod)) |> distinct(measurementMethod) |> pull() |> sort()
     )
     
     # Populate UI choices
@@ -60,12 +62,14 @@ mod_filters_server <- function(id, tbl_events, tbl_hosts, tbl_pathogens) {
       updateSelectizeInput(session, "host_species", choices = all_vals$species)
       updateSelectizeInput(session, "pathogen_family", choices = all_vals$fam)
       updateSelectizeInput(session, "pathogen", choices = all_vals$path)
+      updateSelectizeInput(session, "modality", choices = all_vals$modality)
     })
     
-    # Reactive inputs
+    # Reactive inputs (year included so facet counts and filtered_data() both
+    # apply it via the same apply_filters() helper -- see utils.R)
     curr_inputs <- reactive({
       list(country = input$country, genus = input$host_genus, species = input$host_species, 
-           fam = input$pathogen_family, path = input$pathogen)
+           fam = input$pathogen_family, path = input$pathogen, modality = input$modality, year = input$year)
     })
     
     # Facet data pipeline
@@ -95,18 +99,10 @@ mod_filters_server <- function(id, tbl_events, tbl_hosts, tbl_pathogens) {
     mod_facets_server("host_counts", host_facet_data, title_text = "Top Host Species:")
     mod_facets_server("path_counts", path_facet_data, title_text = "Top Pathogens:")
     
-    # Final query
+    # Final query -- same apply_filters() helper used for the facet counts
+    # above, so the two can never disagree about which records are "active".
     filtered_data <- reactive({
-      final_query <- base_join()
-      
-      if (length(input$country) > 0)        final_query <- final_query |> filter(country %in% !!input$country)
-      if (length(input$host_genus) > 0)     final_query <- final_query |> filter(genus %in% !!input$host_genus)
-      if (length(input$host_species) > 0)   final_query <- final_query |> filter(scientificName %in% !!input$host_species)
-      if (length(input$pathogen_family) > 0) final_query <- final_query |> filter(family_pathogen %in% !!input$pathogen_family)
-      if (length(input$pathogen) > 0)       final_query <- final_query |> filter(scientificName_pathogen %in% !!input$pathogen)
-      if (!is.null(input$year))             final_query <- final_query |> filter(year >= !!input$year[1] & year <= !!input$year[2])
-      
-      return(final_query)
+      apply_filters(base_join(), curr_inputs())
     })
     
     # Reset button
@@ -116,6 +112,7 @@ mod_filters_server <- function(id, tbl_events, tbl_hosts, tbl_pathogens) {
       updateSelectizeInput(session, "host_species", selected = character(0))
       updateSelectizeInput(session, "pathogen_family", selected = character(0))
       updateSelectizeInput(session, "pathogen", selected = character(0))
+      updateSelectizeInput(session, "modality", selected = character(0))
       years <- tbl_events |> filter(!is.na(year)) |> distinct(year) |> pull()
       if (length(years) > 0) updateSliderInput(session, "year", value = c(min(years), max(years)))
     })

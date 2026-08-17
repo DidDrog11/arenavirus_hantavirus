@@ -127,10 +127,10 @@ descriptives_v3 <- combined_data_v3$descriptive
 # 1. Join with master citation list to get publication year, author, and title
 descriptives_v3_cleaned <- descriptives_v3 %>%
   left_join(
+    # From 01_01_clean_citations.R
     combined_data$citations$all_citations %>% dplyr::select(
       full_text_id, `Publication Year`, Author, Title),
-    # It's good practice to specify relationship to silence the warning if duplicates are expected
-    by = "full_text_id", relationship = "many-to-many"
+      by = "full_text_id", relationship = "many-to-many"
   ) %>%
   
   # 2. Standardize columns from the join
@@ -292,6 +292,41 @@ descriptives_v3_cleaned <- descriptives_v3 %>%
     -Title, -author_first_last_raw, -first_author_only
   )
 
+# --- Canonical extraction selection ---------------------------------------
+# A publication may be extracted more than once for cross-checking. Only one
+# extraction can be canonical, otherwise the same sampling appears twice in
+# host/pathogen/sequence. Preference: "david" extraction, then the later
+# (higher-numbered, v3) one; explicit overrides where that rule picks the
+# weaker record.
+sid_ft <- bind_rows(
+  descriptives_v2 |> select(study_id, full_text_id),
+  descriptives_v3 |> select(study_id, full_text_id)
+) |>
+  mutate(across(everything(), as.character)) |>
+  drop_na(full_text_id) |>
+  distinct()
+
+overrides <- c(
+  ft_652 = "grant_35",   # more detail than grant_242
+  ft_395 = "grant_2"     # preferred over ana_395
+)
+
+canonical_extractions <- sid_ft |>
+  mutate(extractor = str_extract(study_id, "^[a-z]+"),
+         num       = as.integer(str_extract(study_id, "\\d+$"))) |>
+  group_by(full_text_id) |>
+  arrange(extractor != "david", desc(num), .by_group = TRUE) |>
+  summarise(canonical_study_id = first(study_id), .groups = "drop") |>
+  mutate(canonical_study_id = coalesce(overrides[full_text_id], canonical_study_id))
+
+extraction_status <- sid_ft |>
+  left_join(canonical_extractions, by = "full_text_id") |>
+  mutate(is_canonical = study_id == canonical_study_id)
+
+message("Publications with >1 extraction: ",
+        sum(count(sid_ft, full_text_id)$n > 1),
+        " | non-canonical study_ids dropped: ", sum(!extraction_status$is_canonical))
+
 
 # Combined Descriptives ---------------------------------------------------
 
@@ -305,17 +340,16 @@ descriptives_v2_cleaned <- descriptives_v2_cleaned %>%
 
 # --- Combine the cleaned data frames ---
 descriptives_final <- bind_rows(descriptives_v3_cleaned, descriptives_v2_cleaned) %>%
-  distinct(full_text_id, .keep_all = TRUE) %>%
-  mutate(
-    full_text_id = factor(
-      full_text_id, 
-      levels = levels(combined_data$citations$all_citations$full_text_id)
-    )
-  ) %>%
+  mutate(study_id = as.character(study_id)) %>%
+  semi_join(canonical_extractions, by = c("study_id" = "canonical_study_id")) %>%
+  distinct(study_id, .keep_all = TRUE) %>%
+  mutate(full_text_id = factor(full_text_id,
+                               levels = levels(combined_data$citations$all_citations$full_text_id))) %>%
   arrange(full_text_id, study_id)
 
-# Finalize the combined list of dataframes
+# Finalizs the combined list of dataframes
 combined_data <- read_rds(here("data", "data_cleaning", "01_01_output.rds"))
 combined_data$descriptives_cleaned <- descriptives_final
+combined_data$extraction_status    <- extraction_status   # carried forward to 07_01
 
 write_rds(combined_data, here("data", "data_cleaning", "02_01_output.rds"))

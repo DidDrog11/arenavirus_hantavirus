@@ -66,7 +66,12 @@ mod_genetic_map_server <- function(id, filtered_data, tbl_sequences) {
       m |> addCircleMarkers(
         data = df, lng = ~decimalLongitude, lat = ~decimalLatitude, radius = 6,
         fillColor = ~pal(coalesce(sequence_type, "Unknown")), fillOpacity = 0.8, color = "white", weight = 1,
-        clusterOptions = markerClusterOptions(maxClusterRadius = 40, spiderfyOnMaxZoom = TRUE),
+        clusterOptions = markerClusterOptions(
+          maxClusterRadius = 40, 
+          spiderfyOnMaxZoom = TRUE,
+          disableClusteringAtZoom = 12,
+          spiderfyDistanceMultiplier = 1.5
+        ),
         popup = ~paste0("<div style='font-family: sans-serif; font-size: 13px; max-width: 300px;'>",
                         "<strong style='color: #2c3e50; font-size: 15px;'>", coalesce(accession_primary, "Unknown Accession"), "</strong><br>",
                         "<span style='color: white; background-color: ", ifelse(sequence_type == "Pathogen", "#c0392b", "#2980b9"), "; padding: 2px 6px; border-radius: 4px; font-size: 11px;'>", sequence_type, " Sequence</span><hr style='margin: 5px 0;'>",

@@ -19,10 +19,12 @@ mod_table_ui <- function(id) {
           col_widths = c(9, 3), 
           layout_columns(
             fill = FALSE,
-            value_box(title = "Total Records", value = textOutput(ns("metric_total")), showcase = icon("database"), theme = "primary"),
-            value_box(title = "Precise Spatial", value = textOutput(ns("metric_spatial")), showcase = icon("location-crosshairs"), theme = "success", tags$p("Resolved to 'site' level", class = "mb-0", style = "font-size: 0.8em;")),
-            value_box(title = "Precise Temporal", value = textOutput(ns("metric_temporal")), showcase = icon("calendar-day"), theme = "info", tags$p("Resolved to specific day(s)", class = "mb-0", style = "font-size: 0.8em;")),
-            value_box(title = "Species-Level ID", value = textOutput(ns("metric_taxa")), showcase = icon("dna"), theme = "warning", tags$p("Host identified to species", class = "mb-0", style = "font-size: 0.8em;"))
+            value_box(title = "Studies", value = textOutput(ns("metric_studies")), showcase = icon("book"), theme = "secondary", tags$p("Source publications", class = "mb-0", style = "font-size: 0.8em;")),
+            value_box(title = "Host Records", value = textOutput(ns("metric_hosts")), showcase = icon("database"), theme = "primary", tags$p("Rows may be pooled cohorts", class = "mb-0", style = "font-size: 0.8em;")),
+            value_box(title = "Assay Records", value = textOutput(ns("metric_assays")), showcase = icon("vial"), theme = "danger", tags$p("Diagnostic tests performed", class = "mb-0", style = "font-size: 0.8em;")),
+            value_box(title = "Precise Spatial", value = textOutput(ns("metric_spatial")), showcase = icon("location-crosshairs"), theme = "success", tags$p("Host records at 'site' level", class = "mb-0", style = "font-size: 0.8em;")),
+            value_box(title = "Precise Temporal", value = textOutput(ns("metric_temporal")), showcase = icon("calendar-day"), theme = "info", tags$p("Host records at specific day(s)", class = "mb-0", style = "font-size: 0.8em;")),
+            value_box(title = "Species-Level ID", value = textOutput(ns("metric_taxa")), showcase = icon("dna"), theme = "warning", tags$p("Host records resolved to species", class = "mb-0", style = "font-size: 0.8em;"))
           ),
           card(
             class = "border-0 shadow-none bg-light h-100",
@@ -46,25 +48,50 @@ mod_table_ui <- function(id) {
 }
 
 # --- Server ---
-mod_table_server <- function(id, filtered_data) {
+mod_table_server <- function(id, filtered_data, tbl_events, tbl_hosts, tbl_pathogens, tbl_sequences) {
   moduleServer(id, function(input, output, session) {
     
-    # Calculate summary metrics
+    # Calculate summary metrics.
+    #
+    # IMPORTANT: filtered_data() is the JOINED table (events x hosts x
+    # pathogens), so a host assayed 10 times appears in 10 rows. Coordinate
+    # resolution, temporal resolution and taxon rank are all host-level
+    # attributes living in host_occurrences -- computing their percentages
+    # directly on the joined table would weight each host by its number of
+    # assays, inflating or deflating the figures depending on which hosts
+    # happened to be tested most often. We therefore de-duplicate to distinct
+    # occurrenceID first, so the denominator is host records as the labels claim.
     observe({
-      metrics <- filtered_data() |> 
+      q <- filtered_data()
+      
+      host_metrics <- q |> 
+        filter(!is.na(occurrenceID)) |> 
+        distinct(occurrenceID, coordinate_resolution_processed, temporal_resolution, taxonRank) |> 
         summarise(
-          total = n(),
+          n_hosts        = n(),
           precise_coords = sum(as.integer(coordinate_resolution_processed == "site"), na.rm = TRUE),
-          precise_time = sum(as.integer(temporal_resolution %in% c("full_date", "day_range_resolution")), na.rm = TRUE),
-          species_id = sum(as.integer(taxonRank == "species"), na.rm = TRUE)
+          precise_time   = sum(as.integer(temporal_resolution %in% c("full_date", "day_range_resolution")), na.rm = TRUE),
+          species_id     = sum(as.integer(taxonRank == "species"), na.rm = TRUE)
         ) |> 
         collect()
       
-      output$metric_total <- renderText({ formatC(metrics$total, format = "d", big.mark = ",") })
-      calc_pct <- function(count, total) { if(total > 0) paste0(formatC(count, format = "d", big.mark = ","), " (", round((count/total)*100, 1), "%)") else "0 (0%)" }
-      output$metric_spatial <- renderText({ calc_pct(metrics$precise_coords, metrics$total) })
-      output$metric_temporal <- renderText({ calc_pct(metrics$precise_time, metrics$total) })
-      output$metric_taxa <- renderText({ calc_pct(metrics$species_id, metrics$total) })
+      tbl_counts <- q |> 
+        summarise(
+          n_studies = n_distinct(eventID),
+          n_assays  = n_distinct(measurementID)
+        ) |> 
+        collect()
+      
+      calc_pct <- function(count, total) {
+        if (isTRUE(total > 0)) paste0(formatC(count, format = "d", big.mark = ","), " (", round((count / total) * 100, 1), "%)") else "0 (0%)"
+      }
+      
+      output$metric_studies  <- renderText({ formatC(tbl_counts$n_studies, format = "d", big.mark = ",") })
+      output$metric_hosts    <- renderText({ formatC(host_metrics$n_hosts, format = "d", big.mark = ",") })
+      output$metric_assays   <- renderText({ formatC(tbl_counts$n_assays, format = "d", big.mark = ",") })
+      output$metric_spatial  <- renderText({ calc_pct(host_metrics$precise_coords, host_metrics$n_hosts) })
+      output$metric_temporal <- renderText({ calc_pct(host_metrics$precise_time, host_metrics$n_hosts) })
+      output$metric_taxa     <- renderText({ calc_pct(host_metrics$species_id, host_metrics$n_hosts) })
     })
     
     # Render preview
@@ -114,9 +141,15 @@ mod_table_server <- function(id, filtered_data) {
         filter(resourceID %in% local(keys$occurrenceID) | resourceID %in% local(keys$measurementID)) |> 
         collect()
       
-      # Setup temporary directory
-      tmp_dir <- tempdir()
-      fs <- c("events", "hosts", "pathogens", "sequences")
+      # Setup a unique temporary directory for this export. tempdir() alone is
+      # shared by the whole R process, so concurrent exports from different
+      # sessions would otherwise write to the same filenames and clobber each
+      # other mid-write.
+      tmp_dir <- file.path(tempdir(), paste0("arha_export_", format(Sys.time(), "%Y%m%d%H%M%OS3"), "_", sample.int(1e6, 1)))
+      dir.create(tmp_dir)
+      on.exit(unlink(tmp_dir, recursive = TRUE), add = TRUE)
+      
+      fs <- c("sampling_events", "host_occurrences", "pathogen_mof", "resource_relationships")
       ext <- paste0(".", format)
       file_paths <- file.path(tmp_dir, paste0(fs, ext))
       readme_path <- file.path(tmp_dir, "README.txt")
@@ -146,15 +179,15 @@ mod_table_server <- function(id, filtered_data) {
         "1. PRIMARY CITATION\n",
         "[Placeholder: Authors] (2026). The ArHa Database... DOI: [TBD]\n\n",
         "2. CONSTITUENT CITATIONS\n",
-        "The citations for the specific records in this export are preserved in the `associatedReferences` column of the `events` table.\n",
+        "The citations for the specific records in this export are preserved in the `associatedReferences` column of the `sampling_events` table.\n",
         "Extract them in R using:\n",
-        "events |> dplyr::filter(!is.na(associatedReferences)) |> dplyr::distinct(associatedReferences) |> dplyr::pull()\n\n",
+        "sampling_events |> dplyr::filter(!is.na(associatedReferences)) |> dplyr::distinct(associatedReferences) |> dplyr::pull()\n\n",
         
         "========================================\n",
         "DATA DICTIONARY\n",
         "========================================\n",
         "This Darwin Core-compliant archive contains four relational tables linked by ID fields.\n\n",
-        "1. events", ext, "\n",
+        "1. sampling_events", ext, "\n",
         "   - eventID: Primary manuscript identifier.\n",
         "   - associatedReferences: Full citation for primary manuscript. \n",
         "   - year: Publication year of primary manuscript. \n",
@@ -163,9 +196,9 @@ mod_table_server <- function(id, filtered_data) {
         "   - samplingEffort: Number of sampling sessions. \n",
         "   - dataAccessLevel: Whether individual level, summary level or an unspecified level of data is available. \n",
         "   - dataResolution: What level of data is included in the records from this study in the dataset. (e.g., study level, site-session). \n\n",
-        "2. hosts", ext, "\n",
-        "   - occurrenceID: Primary host identifier. Links to resourceID in sequences table.\n",
-        "   - eventID: Foreign key linking to the events table.\n",
+        "2. host_occurrences", ext, "\n",
+        "   - occurrenceID: Primary host identifier. Links to resourceID in resource_relationships table.\n",
+        "   - eventID: Foreign key linking to the sampling_events table.\n",
         "   - scientificName: Resolved species name (if available). \n",
         "   - genus: Resolved genus name (if available). \n",
         "   - family: Resolved family name (if available). \n",
@@ -191,10 +224,10 @@ mod_table_server <- function(id, filtered_data) {
         "   - temporal_resolution: Temporal resolution of the record (e.g., full_date, publication_derived, year_only). \n",
         "   - trap_nights_clean: The number of trap nights of effort associated with this record. \n",
         "   - trap_nights_status: Descriptor of the information for trapping effort e.g., nights, trapnight_reported, not_reported. \n\n",
-        "3. pathogens", ext, "\n",
-        "   - measurementID: Primary assay/pathogen identifier. Links to resourceID in sequences table.\n",
-        "   - occurrenceID: Foreign key linking to the hosts table.\n",
-        "   - eventID: Foreign key linking to the events table.\n",
+        "3. pathogen_mof", ext, "\n",
+        "   - measurementID: Primary assay/pathogen identifier. Links to resourceID in resource_relationships table.\n",
+        "   - occurrenceID: Foreign key linking to the host_occurrences table.\n",
+        "   - eventID: Foreign key linking to the sampling_events table.\n",
         "   - measurementType: Pathogens being detected in the reported assay.\n",
         "   - measurementValue: Number of individuals testing positive in the assay.\n",
         "   - measurementMethod: Method for detection in the assay.\n",
@@ -205,16 +238,16 @@ mod_table_server <- function(id, filtered_data) {
         "   - taxonRank_pathogen: The taxon rank of the harmonised pathogen name.\n",
         "   - taxonID_pathogen: NCBI ID of the harmonised pathogen name.\n",
         "   - dynamicProperties: Nested column containing additional information on the pathogen taxonomy as applicable.\n",
-        "   - number_tested: Number of individuals assayed in this record.\n",
+        "   - number_tested: Number of individuals assayed in this record. A value of 0 is meaningful and indicates that no individuals from the corresponding host record were screened by this assay -- either because no animals were detected (individualCount = 0), or because the study screened only a subset of the species it captured. Records with number_tested = 0 must be excluded from prevalence calculations, as they carry no denominator.\n",
         "   - number_negative: Number of individuals assayed in this record found to be negative for the pathogen.\n",
         "   - number_inconclusive: Number of individuals assayed with inconclusive assay results in this record.\n",
-        "   - tested_detected: Binary QC column indicating whether the number reported as tested is greater than the number of reported positive assays.\n",
-        "   - positive_tested: Binary QC column indicating whether the number reported as positive is greater than the number of reported individuals assayed.\n",
+        "   - tested_detected: Binary QC column flagging records where the number reported as tested exceeds the number of individuals detected in the corresponding host record (i.e. more animals assayed than were recorded as captured).\n",
+        "   - positive_tested: Binary QC column flagging records where the number reported as positive exceeds the number of individuals assayed.\n",
         "   - pathogen_species_cleaned: Pathogen name prior to harmonisation to NCBI.\n",
         "   - pathogen_family_original: Pathogen family name reported in the primary manuscript.\n\n",
-        "4. sequences", ext, "\n",
+        "4. resource_relationships", ext, "\n",
         "   - resourceRelationshipID: Primary sequence relationship identifier.\n",
-        "   - resourceID: Foreign key linking to occurrenceID in the hosts table or measurementID in the pathogen table.\n",
+        "   - resourceID: Foreign key linking to occurrenceID in the host_occurrences table or measurementID in the pathogen_mof table.\n",
         "   - relatedResourceID: URL associated with the accession of the record on NCBI GenBank.\n",
         "   - relationshipOfResource: Whether this record is a host associated sequence or pathogen associated.\n",
         "   - sequence_type: Whether this record is a host associated sequence or pathogen associated.\n",

@@ -21,7 +21,7 @@ mod_facets_server <- function(id, facet_data_reactive, title_text = "Items:") {
         tags$div(
           style = "max-height: 150px; overflow-y: auto; margin-bottom: 10px; padding-right: 5px;",
           tags$ul(class = "list-unstyled ms-2 mb-0 text-muted", 
-                  lapply(1:nrow(df), function(i) {
+                  lapply(seq_len(nrow(df)), function(i) {
                     tags$li(tags$small(paste0(df[[col_name]][i], " (", df$n[i], ")")))
                   })
           )

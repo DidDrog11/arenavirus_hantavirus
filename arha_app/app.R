@@ -2,6 +2,7 @@
 library(shiny)
 library(bslib)
 library(dplyr)
+library(dbplyr)
 
 # Source the Database Engine (DuckDB)
 source("R/db_prep.R")
@@ -15,7 +16,6 @@ source("R/mod_dashboard.R")
 source("R/mod_map.R")
 source("R/mod_table.R")
 source("R/mod_genetic_map.R")
-
 
 # UI ----------------------------------------------------------------------
 ui <- page_navbar(
@@ -96,16 +96,18 @@ server <- function(input, output, session) {
   # Initialise Visualisation Modules
   mod_dashboard_server("dashboard", filtered_query)
   
-  mod_map_server("spatial-explorer", filtered_query)
+  mod_map_server("spatial-explorer", filtered_query, tbl_sequences)
   
   mod_genetic_map_server("genetic_map", filtered_query, tbl_sequences)
   
   # Initialise Data Export Module
-  mod_table_server("data", filtered_query)
-  
-  session$onSessionEnded(function() {
-    message("Disconnecting DuckDB...")
-    DBI::dbDisconnect(con, shutdown = TRUE)})
+  mod_table_server("data", filtered_query, tbl_events, tbl_hosts, tbl_pathogens, tbl_sequences)
 }
+
+# Disconnect the shared DuckDB connection once when the whole app process stops
+onStop(function() {
+  message("Disconnecting DuckDB...")
+  DBI::dbDisconnect(con, shutdown = TRUE)
+})
 
 shinyApp(ui, server)

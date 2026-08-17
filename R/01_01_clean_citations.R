@@ -29,7 +29,7 @@ all_citations <- combined_data_v3$inclusion_full_text %>%
 
 
 # 2. Consolidate descriptive metadata from v2 and v3.
-# This prioritizes the newer v3 data and combines it with non-overlapping v2 data.
+# This prioritises the newer v3 data and combines it with non-overlapping v2 data.
 descriptives_consolidated <- combined_data_v3$descriptive %>%
   bind_rows(combined_data_v2$descriptive %>%
               filter(!full_text_id %in% combined_data_v3$descriptive)) %>%
@@ -55,7 +55,7 @@ extractions <- all_citations %>%
   ungroup() %>%
   mutate(is_duplicated = n_records > 1)
 
-# 4. Categorize the extracted data for quality control and reporting.
+# 4. Categorise the extracted data for quality control and reporting.
 # These tables help assess the completeness of the review and flag issues.
 multiple_extractions <- extractions %>%
   filter(n_records > 1)
@@ -74,7 +74,7 @@ excluded <- all_citations %>%
   select(full_text_id, decision, reason) %>%
   left_join(all_citations, by = c("full_text_id", "decision", "reason"))
 
-# 5. Finalize the consolidated data list.
+# 5. Finalise the consolidated data list.
 # This list contains all the processed tables from this script.
 combined_data$citations <- list(
   all_citations = all_citations,
