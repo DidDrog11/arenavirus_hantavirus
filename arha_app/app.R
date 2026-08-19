@@ -23,8 +23,7 @@ ui <- page_navbar(
   id = "main_nav",
   theme = bs_theme(version = 5, preset = "flatly"),
   fillable = TRUE,
-  
-  # Global Sidebar - Initialised as closed
+  footer = app_footer_ui(),
   sidebar = sidebar(
     id = "global_sidebar", 
     width = 300, 
@@ -35,12 +34,13 @@ ui <- page_navbar(
       mod_filters_ui("global_filters"))),
   
   # Home / Landing Page
-  nav_panel(
-    title = "Home", 
-    value = "home",
-    icon = icon("house"),
-    mod_home_ui("home")
-  ),
+nav_panel(
+  title = "Home", 
+  value = "home",
+  icon = icon("house"),
+  fillable = FALSE,
+  mod_home_ui("home")
+),
   
   # Dashboard
   nav_panel(

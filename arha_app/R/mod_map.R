@@ -56,11 +56,12 @@ mod_map_server <- function(id, filtered_data, tbl_sequences) {
       base <- filtered_data() |> 
         filter(!is.na(decimalLatitude), !is.na(decimalLongitude)) |> 
         select(occurrenceID, measurementID, eventID,
-               scientificName, genus, 
-               scientificName_pathogen, genus_pathogen, family_pathogen, 
-               measurementRemarks, pathogen_species_cleaned, 
-               year, eventDate, country, decimalLatitude, decimalLongitude, 
-               measurementValue, number_tested) |> 
+         scientificName, genus, 
+         scientificName_pathogen, genus_pathogen, family_pathogen, 
+         measurementRemarks, pathogen_species_cleaned, 
+         year, eventDate, country, decimalLatitude, decimalLongitude, 
+         measurementValue, number_tested,
+         associatedReferences)  |> 
         collect() |> 
         mutate(positivity_status = if_else(measurementValue > 0, "Positive Detection", "Negative/No Detection"),
                verbatim_raw = trimws(str_remove(str_extract(measurementRemarks, "Verbatim pathogen: [^|]+"), "Verbatim pathogen: ")),

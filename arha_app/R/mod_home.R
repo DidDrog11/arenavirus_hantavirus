@@ -59,19 +59,20 @@ mod_home_ui <- function(id) {
           )
         )
       )
-    ),
-    
-    tags$div(
-      class = "mt-4 pt-3 border-top d-flex flex-wrap justify-content-between text-muted",
-      style = "font-size: 0.85em;",
-      tags$div(tags$b("Literature search current to: "), DB_SEARCH_DATE),
-      tags$div(tags$b("Database compiled: "), DB_COMPILED_DATE),
-      tags$div(tags$b("Archive: "), tags$a(href = paste0("https://doi.org/", DB_ZENODO_DOI), target = "_blank", DB_ZENODO_DOI)),
-      tags$div(tags$b("App version: "), APP_VERSION)
     )
   )
 }
 
+app_footer_ui <- function() {
+  tags$div(
+    class = "d-flex flex-wrap justify-content-between text-muted px-3 py-2 border-top",
+    style = "font-size: 0.8em;",
+    tags$div(tags$b("Literature search current to: "), DB_SEARCH_DATE),
+    tags$div(tags$b("Database compiled: "), DB_COMPILED_DATE),
+    tags$div(tags$b("Archive: "), tags$a(href = paste0("https://doi.org/", DB_ZENODO_DOI), target = "_blank", DB_ZENODO_DOI)),
+    tags$div(tags$b("App version: "), APP_VERSION)
+  )
+}
 
 # --- Server ---
 mod_home_server <- function(id) {
