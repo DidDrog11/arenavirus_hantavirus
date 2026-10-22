@@ -16,7 +16,13 @@ cleaning_coord_res <- combined_data$host %>%
       str_detect(tolower(coordinate_resolution), "verbatim|exact|given|stated|reported|madeira") ~ "site",
       str_detect(coordinate_resolution, "\\d+(km|m)") ~ "site",
       str_detect(tolower(coordinate_resolution), "average|estimated|locality|location") ~ "adm3",
-      
+      # Before the administrative rules, which would read these as adm1 via "region"
+      str_detect(tolower(coordinate_resolution), "study region|4 corner") ~ "study_area",
+      str_detect(tolower(coordinate_resolution), "peri-urban region") ~ "site",
+      # Only grant_253 (Gligic 1988): trapping around houses, fields and forests
+      # of the towns of Fojnica and Cacak; points are the town centres
+      str_detect(tolower(coordinate_resolution), "stated regions") ~ "adm3",
+
       # Administrative units
       str_detect(tolower(coordinate_resolution), "municipality|parish|island|prefecture|subdistrict") ~ "adm3",
       str_detect(tolower(coordinate_resolution), "county|district|commune|department|banner") ~ "adm2",
@@ -29,8 +35,8 @@ cleaning_coord_res <- combined_data$host %>%
       
       # Human settlement types
       str_detect(tolower(coordinate_resolution), "village|settlement|fishing village|community|rural") ~ "village",
-      str_detect(tolower(coordinate_resolution), "town|center") ~ "town",
-      str_detect(tolower(coordinate_resolution), "city|metropolitan|alexandria|djibouti|urban|airport|neighborhood|neighbourhood|complex|port") ~ "city",
+      str_detect(tolower(coordinate_resolution), "town|center|neighborhood|neighbourhood") ~ "town",
+      str_detect(tolower(coordinate_resolution), "city|metropolitan|alexandria|djibouti|urban|airport|complex|port") ~ "city",
       
       # Study-specific or ambiguous terms
       str_detect(tolower(coordinate_resolution), "study|surveillance|4 corner|basin|area|domain") ~ "study_area",
@@ -173,9 +179,9 @@ adm_join_results <- map(groups_to_join, function(group) {
   
   group %>%
     bind_cols(adm_extracted %>% select(-any_of(c("GID_0", "NAME_0")))) %>%
-    rename(adm1_name = GID_1, adm1_id = NAME_1,
-           adm2_name = GID_2, adm2_id = NAME_2,
-           adm3_name = GID_3, adm3_id = NAME_3) %>%
+    rename(adm1_id = GID_1, adm1_name = NAME_1,
+           adm2_id = GID_2, adm2_name = NAME_2,
+           adm3_id = GID_3, adm3_name = NAME_3) %>%
     select(any_of(c(
       "spatial_id", "study_id", "locality_raw",
       "decimalLatitude", "decimalLongitude",

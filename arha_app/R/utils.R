@@ -29,7 +29,7 @@ apply_filters <- function(data, inputs, spec = filter_spec, exclude_col = NULL, 
     }
   }
   if (apply_year && !is.null(inputs$year)) {
-    q <- q |> filter(year >= !!inputs$year[1] & year <= !!inputs$year[2])
+    q <- q |> filter(publication_year >= !!inputs$year[1] & publication_year <= !!inputs$year[2])
   }
   q
 }
@@ -86,7 +86,7 @@ build_publications_summary <- function(filtered_data) {
   else paste0(yr_range[1], "\u2013", yr_range[2])
   
   glue::glue(
-    "{format(n_studies, big.mark=',')} {pl(n_studies,'study')}, in {n_countries} {pl(n_countries,'country')} ",
+    "{format(n_studies, big.mark=',')} {pl(n_studies,'study','studies')}, in {n_countries} {pl(n_countries,'country','countries')} ",
     "conducted between {year_txt}. Trapping occurred at {format(n_sites, big.mark=',')} site-session ",
     "{pl(n_sites,'location')}, detecting {format(n_individuals, big.mark=',')} individuals across {n_species} species. ",
     "Sampling of these individuals for {n_pathogens} pathogens returned {format(n_positive, big.mark=',')} positive results."

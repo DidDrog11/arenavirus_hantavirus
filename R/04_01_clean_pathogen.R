@@ -6,8 +6,8 @@
 
 # Load the raw data from 00_load_data.R
 # e.g., combined_data_v2, combined_data_v3
-combined_data_v2 <- read_rds(here("data", "raw_data", paste0(analysis_date, "_v2_data.rds")))
-combined_data_v3 <- read_rds(here("data", "raw_data", paste0(analysis_date, "_v3_data.rds")))
+combined_data_v2 <- read_rds(here("data", "raw_data", paste0(analysis_date, "_v2_data_corrected.rds")))
+combined_data_v3 <- read_rds(here("data", "raw_data", paste0(analysis_date, "_v3_data_corrected.rds")))
 
 pathogen_data_v2 <- combined_data_v2$pathogen
 pathogen_data_v3 <- combined_data_v3$pathogen
@@ -194,7 +194,11 @@ python_input_combined <- bind_rows(input_base, input_cleaned) |>
 write_tsv(python_input_combined |> select(Organism_Name, Family), input_tsv)
 message(paste("Sending", nrow(python_input_combined), "variants to Python."))
 
-cmd_args <- c(paste("python", shQuote(script_path)),
+# Python command: plain "python" by default (the PC); set ARHA_PYTHON where
+# python is not installed, e.g. "uv run --with pandas python" on the laptop
+python_cmd <- Sys.getenv("ARHA_PYTHON", "python")
+
+cmd_args <- c(paste(python_cmd, shQuote(script_path)),
               paste("--input", shQuote(input_tsv)),
               paste("--output", shQuote(output_tsv)),
               paste0("--lookup Arenaviridae=", shQuote(lookup_arena)))
@@ -204,6 +208,8 @@ if (file.exists(lookup_hanta)) {
 }
 
 exit_code <- system(paste(cmd_args, collapse = " "))
+# Stop rather than read a taxonomy_output.tsv left over from an earlier run
+if (exit_code != 0) stop("TaxonomyReconciler.py failed (exit code ", exit_code, "); check the Python command (ARHA_PYTHON)")
 
 python_results <- read_tsv(output_tsv, show_col_types = FALSE)
 
@@ -301,16 +307,22 @@ pathogen_assay <- pathogen_final %>%
     assay_clean = fct(case_when(
       # High-priority: Culture (most definitive evidence)
       str_detect(tolower(assay_raw), "culture|viral culture") ~ "Virus Culture",
+      # Positives reported as serology and/or PCR combined (e.g. Escutenaire 2000,
+      # 2002); before PCR so they are not read as direct detection
+      str_detect(tolower(assay_raw), "pooled") ~ "Serology and/or PCR",
       # High-priority: PCR and sequencing (direct evidence)
       str_detect(tolower(assay_raw), "pcr|rt-pcr") ~ "PCR",
       str_detect(tolower(assay_raw), "sequencing|illumina") ~ "Sequencing",
+      # Viral antigen detected in tissue (e.g. lung antigen ELISA or IFA); before
+      # serology, which detects antibody
+      str_detect(tolower(assay_raw), "antigen") ~ "Antigen",
       # Mid-priority: Serology and related methods (indirect evidence)
       str_detect(tolower(assay_raw), "serology|elisa|elsia|antibody|antigen|ifa|eia|immuno|frnt|hdp|igg|complement") ~ "Serology",
       str_detect(tolower(assay_raw), "western blot|immunoblot|ib") ~ "Western Blot",
       # Low-priority: Other and missing
       str_detect(tolower(assay_raw), "rapid field test") ~ "Other",
       TRUE ~ "Missing"
-    ), levels = c("Virus Culture", "PCR", "Sequencing", "Serology", "Western Blot", "Other", "Missing")
+    ), levels = c("Virus Culture", "PCR", "Sequencing", "Antigen", "Serology and/or PCR", "Serology", "Western Blot", "Other", "Missing")
     )) %>%
   relocate(assay_clean, .before = assay_raw)
 

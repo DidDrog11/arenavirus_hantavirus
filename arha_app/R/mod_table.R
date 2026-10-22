@@ -12,19 +12,22 @@ mod_table_ui <- function(id) {
   ns <- NS(id)
   tagList(
     card(
-      class = "mb-3",
+      class = "mb-3", fill = FALSE,
       card_header(icon("server"), " Dataset Export & Quality Metrics", class = "bg-dark text-white"),
       card_body(
+        fillable = FALSE,
         layout_columns(
           col_widths = c(9, 3), 
-          layout_columns(
-            fill = FALSE,
-            value_box(title = "Studies", value = textOutput(ns("metric_studies")), showcase = icon("book"), theme = "secondary", tags$p("Source publications", class = "mb-0", style = "font-size: 0.8em;")),
-            value_box(title = "Host Records", value = textOutput(ns("metric_hosts")), showcase = icon("database"), theme = "primary", tags$p("Rows may be pooled cohorts", class = "mb-0", style = "font-size: 0.8em;")),
-            value_box(title = "Assay Records", value = textOutput(ns("metric_assays")), showcase = icon("vial"), theme = "danger", tags$p("Diagnostic tests performed", class = "mb-0", style = "font-size: 0.8em;")),
-            value_box(title = "Precise Spatial", value = textOutput(ns("metric_spatial")), showcase = icon("location-crosshairs"), theme = "success", tags$p("Host records at 'site' level", class = "mb-0", style = "font-size: 0.8em;")),
-            value_box(title = "Precise Temporal", value = textOutput(ns("metric_temporal")), showcase = icon("calendar-day"), theme = "info", tags$p("Host records at specific day(s)", class = "mb-0", style = "font-size: 0.8em;")),
-            value_box(title = "Species-Level ID", value = textOutput(ns("metric_taxa")), showcase = icon("dna"), theme = "warning", tags$p("Host records resolved to species", class = "mb-0", style = "font-size: 0.8em;"))
+          # Boxes wrap below ~190px each; the icon sits top right so the value
+          # has the full box width, and percentages go on the line below
+          layout_column_wrap(
+            width = "190px", fill = FALSE,
+            value_box(title = "Studies", value = textOutput(ns("metric_studies")), showcase = icon("book"), showcase_layout = "top right", theme = "secondary", tags$p("Source publications", class = "mb-0", style = "font-size: 0.8em;")),
+            value_box(title = "Host Records", value = textOutput(ns("metric_hosts")), showcase = icon("database"), showcase_layout = "top right", theme = "primary", tags$p("Rows may be pooled cohorts", class = "mb-0", style = "font-size: 0.8em;")),
+            value_box(title = "Assay Records", value = textOutput(ns("metric_assays")), showcase = icon("vial"), showcase_layout = "top right", theme = "danger", tags$p("Diagnostic tests performed", class = "mb-0", style = "font-size: 0.8em;")),
+            value_box(title = "Precise Spatial", value = textOutput(ns("metric_spatial")), showcase = icon("location-crosshairs"), showcase_layout = "top right", theme = "success", tags$p(textOutput(ns("pct_spatial"), inline = TRUE), " of host records at 'site' level", class = "mb-0", style = "font-size: 0.8em;")),
+            value_box(title = "Precise Temporal", value = textOutput(ns("metric_temporal")), showcase = icon("calendar-day"), showcase_layout = "top right", theme = "info", tags$p(textOutput(ns("pct_temporal"), inline = TRUE), " of host records at specific day(s)", class = "mb-0", style = "font-size: 0.8em;")),
+            value_box(title = "Species-Level ID", value = textOutput(ns("metric_taxa")), showcase = icon("dna"), showcase_layout = "top right", theme = "warning", tags$p(textOutput(ns("pct_taxa"), inline = TRUE), " of host records resolved to species", class = "mb-0", style = "font-size: 0.8em;"))
           ),
           card(
             class = "border-0 shadow-none bg-light h-100",
@@ -82,16 +85,18 @@ mod_table_server <- function(id, filtered_data, tbl_events, tbl_hosts, tbl_patho
         ) |> 
         collect()
       
-      calc_pct <- function(count, total) {
-        if (isTRUE(total > 0)) paste0(formatC(count, format = "d", big.mark = ","), " (", round((count / total) * 100, 1), "%)") else "0 (0%)"
-      }
-      
-      output$metric_studies  <- renderText({ formatC(tbl_counts$n_studies, format = "d", big.mark = ",") })
-      output$metric_hosts    <- renderText({ formatC(host_metrics$n_hosts, format = "d", big.mark = ",") })
-      output$metric_assays   <- renderText({ formatC(tbl_counts$n_assays, format = "d", big.mark = ",") })
-      output$metric_spatial  <- renderText({ calc_pct(host_metrics$precise_coords, host_metrics$n_hosts) })
-      output$metric_temporal <- renderText({ calc_pct(host_metrics$precise_time, host_metrics$n_hosts) })
-      output$metric_taxa     <- renderText({ calc_pct(host_metrics$species_id, host_metrics$n_hosts) })
+      fmt_n <- function(count) formatC(count, format = "d", big.mark = ",")
+      calc_pct <- function(count, total) if (isTRUE(total > 0)) paste0(round((count / total) * 100, 1), "%") else "0%"
+
+      output$metric_studies  <- renderText({ fmt_n(tbl_counts$n_studies) })
+      output$metric_hosts    <- renderText({ fmt_n(host_metrics$n_hosts) })
+      output$metric_assays   <- renderText({ fmt_n(tbl_counts$n_assays) })
+      output$metric_spatial  <- renderText({ fmt_n(host_metrics$precise_coords) })
+      output$metric_temporal <- renderText({ fmt_n(host_metrics$precise_time) })
+      output$metric_taxa     <- renderText({ fmt_n(host_metrics$species_id) })
+      output$pct_spatial     <- renderText({ calc_pct(host_metrics$precise_coords, host_metrics$n_hosts) })
+      output$pct_temporal    <- renderText({ calc_pct(host_metrics$precise_time, host_metrics$n_hosts) })
+      output$pct_taxa        <- renderText({ calc_pct(host_metrics$species_id, host_metrics$n_hosts) })
     })
     
     # Render preview
@@ -101,7 +106,7 @@ mod_table_server <- function(id, filtered_data, tbl_events, tbl_hosts, tbl_patho
       
       df_preview <- filtered_data() |> 
         head(1000) |> 
-        select(occurrenceID, measurementID, eventID, year, eventDate, country, 
+        select(occurrenceID, measurementID, eventID, publication_year, eventDate, country, 
                scientificName, genus, scientificName_pathogen, genus_pathogen, family_pathogen, 
                measurementRemarks, pathogen_species_cleaned, measurementMethod, measurementValue, number_tested,
                decimalLatitude, decimalLongitude, coordinate_resolution_processed, temporal_resolution) |> 
@@ -113,7 +118,7 @@ mod_table_server <- function(id, filtered_data, tbl_events, tbl_hosts, tbl_patho
                fam_path_clean = if_else(family_pathogen %in% c("NA", ""), NA_character_, family_pathogen),
                cleaned_path_clean = if_else(pathogen_species_cleaned %in% c("NA", ""), NA_character_, pathogen_species_cleaned),
                Display_Pathogen = coalesce(sci_path_clean, gen_path_clean, fam_path_clean, verbatim_pathogen, cleaned_path_clean, "Not Specified")) |> 
-        select(occurrenceID, measurementID, eventID, year, eventDate, country, 
+        select(occurrenceID, measurementID, eventID, publication_year, eventDate, country, 
                scientificName, genus, Display_Pathogen, measurementMethod, measurementValue, number_tested,
                decimalLatitude, decimalLongitude, coordinate_resolution_processed, temporal_resolution)
       
@@ -177,7 +182,8 @@ mod_table_server <- function(id, filtered_data, tbl_events, tbl_hosts, tbl_patho
         "========================================\n",
         "When utilising this dataset, please cite both the primary ArHa database and the original constituent studies.\n\n",
         "1. PRIMARY CITATION\n",
-        "[Placeholder: Authors] (2026). The ArHa Database... DOI: [TBD]\n\n",
+        "Simons D, Rivero R, Rickard G, Martinez-Checa A, Gordon H, Redding DW, Seifert SN (2026). ArHa: A globally standardised, ",
+        "relational database of arenavirus and hantavirus sampling in wild small mammal populations. Zenodo. https://doi.org/", DB_ZENODO_DOI, "\n\n",
         "2. CONSTITUENT CITATIONS\n",
         "The citations for the specific records in this export are preserved in the `associatedReferences` column of the `sampling_events` table.\n",
         "Extract them in R using:\n",
@@ -190,7 +196,7 @@ mod_table_server <- function(id, filtered_data, tbl_events, tbl_hosts, tbl_patho
         "1. sampling_events", ext, "\n",
         "   - eventID: Primary manuscript identifier.\n",
         "   - associatedReferences: Full citation for primary manuscript. \n",
-        "   - year: Publication year of primary manuscript. \n",
+        "   - publication_year: Publication year of primary manuscript. \n",
         "   - samplingProtocol: Sampling effort reported in primary manuscript. Trap nights - The number of trap nights is reported, Time period - The sampling period is reported, Sessions - The number of sampling sessions is reported, Unspecified - An alternative measure of effort is reported, Not reported - No measure of effort is reported.\n",
         "   - sampleSizeValue: Measure of effort associated with samplingProtocol e.g., Trap nights\n",
         "   - samplingEffort: Number of sampling sessions. \n",
@@ -210,9 +216,10 @@ mod_table_server <- function(id, filtered_data, tbl_events, tbl_hosts, tbl_patho
         "   - eventDate: Period in which the record was detected. \n",
         "   - country: Country name(s) associated with the record. \n",
         "   - countryCode: ISO3C code(s) associated with the record. \n",
-        "   - stateProvince: Administrative level 1 code(s) associated with the record. \n",
-        "   - county: Administrative level 2 code(s) associated with the record. \n",
-        "   - municipality: Administrative level 3 code(s) associated with the record. \n",
+        "   - stateProvince: Administrative level 1 name (GADM 4.1) associated with the record. \n",
+        "   - county: Administrative level 2 name (GADM 4.1) associated with the record. \n",
+        "   - municipality: Administrative level 3 name (GADM 4.1) associated with the record. \n",
+        "   - higherGeographyID: GADM 4.1 GID of the finest administrative unit associated with the record. \n",
         "   - decimalLatitude: Latitude of the record, decimal degrees. \n",
         "   - decimalLongitude: Longitude of the record, decimal degrees. \n",
         "   - verbatimIdentification: Reported detection in primary manuscript prior to harmonisation to GBIF. \n",

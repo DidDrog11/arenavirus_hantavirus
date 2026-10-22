@@ -1,0 +1,11 @@
+sequence_record_id,sequenceType,associated_pathogen_record_id,associated_rodent_record_id,study_id,associatedTaxa,scientificName,accession_number,method,note,date_sampled,sample_location
+david_97701,Pathogen,david_97603,david_97502,david_186,Akodon montensis,Jabora Virus,FJ409558,,"Carried from david_151, where it was linked to the 10027 row; the paper does not list accessions by specimen; study_id david_186 (david_151 merged into david_186)",,
+david_97702,Pathogen,david_97605,david_97503,david_186,Akodon montensis,Araucaria Virus,FJ409559,,"Carried from david_151, where it was linked to the 10028 row; the paper does not list accessions by specimen; study_id david_186 (david_151 merged into david_186)",,
+david_97703,Pathogen,david_97612,david_97509,david_186,Oxymycterus judex,Araucaria Virus,FJ409557,,Carried from david_151 (specimen 10056); study_id david_186 (david_151 merged into david_186),,
+david_97704,Pathogen,david_97612,david_97509,david_186,Oxymycterus judex,Araucaria Virus,FJ409560,,Carried from david_151 (specimen 10056); study_id david_186 (david_151 merged into david_186),,
+david_97705,Pathogen,david_97615,david_97512,david_186,Akodon serrensis,Jabora Virus,HQ337904,,12460: HQ337904 (Fig. 2 legend); December 2009,,
+david_97706,Pathogen,david_97622,david_97519,david_186,Akodon montensis,Jabora Virus,JN252311,,13651: JN252311 (Fig. 2 legend),,
+david_97707,Pathogen,david_97622,david_97519,david_186,Akodon montensis,Jabora Virus,JN252313,,13635: JN252313 (Fig. 2 legend); the sheet had it on the Jaguariaiva A. montensis row,,
+david_97708,Pathogen,david_97622,david_97519,david_186,Akodon montensis,Jabora Virus,JN252310,,13663: JN252310 (Fig. 2 legend); missing from the sheet,,
+david_97709,Pathogen,david_97626,david_97525,david_186,Akodon paranaensis,Araucaria Virus,JN252309,,13636: JN252309 (Fig. 3 legend),,
+david_97710,Pathogen,david_46962,david_37355,david_186,Akodon montensis,Jabora Virus,JN252312,,10299: JN252312 (Fig. 2 legend); A. montensis from Jaguariaiva (p.376). The sheet had it on the General Carneiro A. paranaensis row,,

@@ -1,12 +1,19 @@
 # Project ArHa: Clean Rodent Spatial Data
 # 03_04_clean_coords.R
 # Purpose: This script performs initial cleaning and validation of rodent spatial data.
-# It checks for illogical coordinates, standardizes country names, and performs
-# a spatial join to validate that coordinates fall within the reported country.
+# It checks for illogical coordinates, standardizes country names, and validates that
+# coordinates fall within the reported country, using the full-resolution GADM 4.1
+# outline of that country. Points outside it that were checked against the source
+# paper and kept are listed in data/corrections/coordinate_reviews.csv.
 
 combined_data <- read_rds(here("data", "data_cleaning", "03_03_output.rds"))
 
 # --- Helper Functions ---
+
+# Key for matching a record to coordinate_reviews.csv: study, stated country and coordinate to 5 dp
+coordinate_key <- function(study_id, iso3c, lat, lon) {
+  paste(study_id, iso3c, sprintf("%.5f", as.numeric(lat)), sprintf("%.5f", as.numeric(lon)))
+}
 
 # Custom function to check if a point falls within one of several country boundaries
 check_multiple_countries <- function(lat, lon, iso3_list, world_shapefile) {
@@ -96,64 +103,41 @@ clean_spatial_data <- function(raw_host_df, world_shapefile) {
         map_chr(~ paste0(na.omit(.x), collapse = ", "))
     )
   
-  # B. Validate single-country studies
-  single_countries_vect <- vect(single_countries_subset, geom = c("decimalLongitude", "decimalLatitude"), crs = "EPSG:4326")
-  country_mapping_single <- terra::extract(world_shapefile, single_countries_vect) %>%
-    cbind(spatial_id = single_countries_vect$spatial_id)
-  
-  single_countries_checked <- single_countries_subset %>%
-    left_join(as_tibble(country_mapping_single), by = c("spatial_id")) %>%
-    mutate(
-      country_match_status = fct(case_when(
-        is.na(GID_0) ~ "point_not_in_matched_boundary",
-        iso3_code_processed == GID_0 ~ "match",
-        TRUE ~ "mismatch"
-      ), levels = c("match", "mismatch", "point_not_in_matched_boundary")))
-  
-  # C. Add a distance-to-border check only for mismatched/no-match records
-  mismatched_points <- single_countries_checked %>%
-    filter(country_match_status %in% c("mismatch", "point_not_in_matched_boundary"))
-  
-  if (nrow(mismatched_points) > 0) {
-    
-    #Check if point is in a different country
-    mismatched_points_vect <- mismatched_points %>%
-      drop_na(decimalLongitude, decimalLatitude) %>%
-      vect(geom = c("decimalLongitude", "decimalLatitude"), crs = "EPSG:4326")
-    
-    other_countries <- terra::extract(world_shapefile, mismatched_points_vect) %>%
-      cbind(spatial_id = mismatched_points %>% drop_na(decimalLongitude, decimalLatitude) %>% pull(spatial_id))
-    
-    mismatched_points$dist_from_expected_border <- NA_real_
-    
-    for(i in 1:nrow(mismatched_points_vect)) {
-      
-      mismatched_points$dist_from_expected_border[i] = as.numeric(terra::distance(mismatched_points_vect[i, ], world_shapefile[world_shapefile$GID_0 == mismatched_points_vect[i, ]$iso3_code_processed], unit = "km"))
-      
+  # B. Validate single-country studies against the full-resolution GADM 4.1 outline of the
+  # stated country (the files 03_05 uses). The coarse world map put many coastal and island
+  # points outside their country; it is now used only to name the country a point falls in.
+  single_countries_checked <- single_countries_subset |>
+    filter(!is.na(spatial_id)) |>
+    mutate(inside_country = NA, dist_from_expected_border = NA_real_)
+
+  for (iso in unique(single_countries_checked$iso3_code_processed)) {
+    country_outline <- gadm(country = iso, level = 0, path = here("data"), version = "4.1")
+    if (is.null(country_outline)) stop("No GADM 4.1 outline for ", iso)
+    rows <- which(single_countries_checked$iso3_code_processed == iso)
+    points <- vect(single_countries_checked[rows, ], geom = c("decimalLongitude", "decimalLatitude"), crs = "EPSG:4326")
+    single_countries_checked$inside_country[rows] <- relate(points, country_outline, "intersects")[, 1]
+
+    # C. Distance to the stated country's border, for points outside it
+    for (k in which(!single_countries_checked$inside_country[rows])) {
+      single_countries_checked$dist_from_expected_border[rows[k]] <- min(distance(points[k], country_outline, unit = "km"))
     }
-    
-    mismatched_points <- mismatched_points %>%
-      mutate(dist_from_expected = case_when(dist_from_expected_border <= 50 ~ "less than 50km",
-                                            dist_from_expected_border >50 ~ "greater than 50km",
-                                            TRUE ~ "not calculated"),
-             NAME_0 = case_when(dist_from_expected_border <= 50 ~ country_processed,
-                                  dist_from_expected_border >50 & !is.na(NAME_0) ~ NAME_0,
-                                  TRUE ~ country_processed),
-             GID_0 = case_when(dist_from_expected_border <= 50 ~ iso3_code_processed,
-                                    dist_from_expected_border >50 & !is.na(GID_0) ~ GID_0,
-                                    TRUE ~ iso3_code_processed)) %>%
-      select(rodent_record_id, study_id, spatial_id, GID_0, NAME_0, country_match_status, dist_from_expected)
-    
-    single_countries_checked <- single_countries_checked %>%
-      filter(!spatial_id %in% mismatched_points$spatial_id) %>%
-      bind_rows(mismatched_points) %>%
-      arrange(spatial_id)
-      
-  } else {
-    single_countries_checked <- single_countries_checked %>%
-      mutate(dist_to_border_km = NA_real_, border_status = NA_character_)
-  } 
-  
+  }
+
+  # The country each outside point falls in on the world map (NA at sea)
+  outside <- which(!single_countries_checked$inside_country)
+  single_countries_checked$point_GID_0 <- NA_character_
+  single_countries_checked$point_NAME_0 <- NA_character_
+  if (length(outside) > 0) {
+    in_world <- terra::extract(world_shapefile, vect(single_countries_checked[outside, ], geom = c("decimalLongitude", "decimalLatitude"), crs = "EPSG:4326"))
+    stopifnot(nrow(in_world) == length(outside))
+    single_countries_checked$point_GID_0[outside] <- in_world$GID_0
+    single_countries_checked$point_NAME_0[outside] <- in_world$NAME_0
+  }
+
+  single_countries_checked <- single_countries_checked |>
+    mutate(dist_from_expected = case_when(dist_from_expected_border <= 50 ~ "less than 50km",
+                                          dist_from_expected_border > 50 ~ "greater than 50km"))
+
   # D. Validate multi-country studies using the helper function
   multiple_countries_checked <- multiple_countries_subset %>%
     rowwise() %>%
@@ -170,14 +154,32 @@ clean_spatial_data <- function(raw_host_df, world_shapefile) {
   
   # E. Combine the results of all checks
   unique_coords_final <- bind_rows(
-    single_countries_checked %>% select(spatial_id, country_match_status, dist_from_expected, GID_0, NAME_0),
+    single_countries_checked |> select(spatial_id, inside_country, dist_from_expected_border, dist_from_expected, point_GID_0, point_NAME_0),
     multiple_countries_checked %>% mutate(dist_from_expected = NA_character_) %>% select(spatial_id, country_match_status, dist_from_expected)
-  ) %>% 
+  ) %>%
     distinct(spatial_id, .keep_all = TRUE)
-  
-  # Step 5: Join the results back to the original full data frame
+
+  # Step 5: Join the results back to the original full data frame and apply the reviews.
+  # A point outside its stated country is "reviewed" if it is a confirmed, accepted row of
+  # coordinate_reviews.csv, otherwise "mismatch". Only unreviewed points more than 50 km out
+  # take the country they fall in as GID_0/NAME_0, which sets their admin units in 03_05.
   final_df <- cleaned_df %>%
-    left_join(unique_coords_final, by = c("spatial_id" = "spatial_id")) %>%
+    left_join(unique_coords_final, by = c("spatial_id" = "spatial_id")) |>
+    mutate(
+      review_key = coordinate_key(study_id, iso3_code_processed, decimalLatitude, decimalLongitude),
+      country_match_status = case_when(
+        !is.na(country_match_status) ~ as.character(country_match_status), # multi-country records
+        is.na(inside_country) ~ NA_character_,
+        inside_country ~ "match",
+        review_key %in% accepted_reviews$review_key ~ "reviewed",
+        TRUE ~ "mismatch"),
+      far_unreviewed = country_match_status == "mismatch" & dist_from_expected_border > 50 & !is.na(point_GID_0),
+      GID_0 = case_when(is.na(iso3_code_processed) ~ NA_character_,
+                        far_unreviewed ~ point_GID_0,
+                        TRUE ~ iso3_code_processed),
+      NAME_0 = case_when(is.na(iso3_code_processed) ~ NA_character_,
+                         far_unreviewed ~ point_NAME_0,
+                         TRUE ~ coalesce(world_shapefile$NAME_0[match(iso3_code_processed, world_shapefile$GID_0)], country_processed))) %>%
     select(
       # Core IDs
       rodent_record_id, study_id, 
@@ -209,6 +211,14 @@ clean_spatial_data <- function(raw_host_df, world_shapefile) {
 }
 
 
+# --- Coordinate Reviews ---
+# Points outside their stated country that were checked against the source paper. Rows with
+# outcome "accepted" and confirmed = TRUE are marked as reviewed instead of being flagged again;
+# "corrected" rows record points fixed in field_corrections.csv and are not used here.
+coordinate_reviews <- read_csv(here("data", "corrections", "coordinate_reviews.csv"), col_types = cols(.default = col_character())) |>
+  mutate(review_key = coordinate_key(study_id, iso3c, decimalLatitude, decimalLongitude))
+accepted_reviews <- coordinate_reviews |> filter(outcome == "accepted", confirmed == "TRUE")
+
 # --- Apply Cleaning Function to Host Data ---
 # Run the function on the combined data set
 combined_data$host <- combined_data$host %>% clean_spatial_data(world_shapefile)
@@ -226,13 +236,34 @@ summary_spatial <- combined_data$host %>%
     .groups = "drop"
   )
 
-mismatched_records <- combined_data$host %>%
-  filter(country_match_status %in% c("mismatch", "no_country_boundary")) %>%
-  select(rodent_record_id, study_id, country_raw, country_match_status, dist_from_expected)
+# Points outside their stated country that are not on the confirmed review list: check these
+# against the source paper, then correct them or add them to coordinate_reviews.csv. Repeat
+# extractions that 07 drops (not canonical in 02_01) are left out, as they are never released.
+noncanonical_ids <- combined_data$extraction_status |> filter(!is_canonical) |> pull(study_id)
+unreviewed_points <- combined_data$host |>
+  filter(country_match_status == "mismatch", !is.na(iso3_code_processed), !study_id %in% noncanonical_ids) |>
+  count(study_id, country_processed, decimalLatitude, decimalLongitude, dist_from_expected, name = "n_records")
+
+# Unconfirmed review rows that match a point outside its country (dry run), and confirmed rows
+# that no longer match one (the coordinate or country has since changed)
+outside_keys <- combined_data$host |>
+  filter(country_match_status %in% c("reviewed", "mismatch")) |>
+  mutate(review_key = coordinate_key(study_id, iso3_code_processed, decimalLatitude, decimalLongitude)) |>
+  pull(review_key) |> unique()
+pending_reviews <- coordinate_reviews |> filter(outcome == "accepted", confirmed != "TRUE", review_key %in% outside_keys)
+stale_reviews <- accepted_reviews |> filter(!review_key %in% outside_keys)
 
 cat("\n--- Spatial Cleaning Summary Report ---\n")
 cat(paste("Total records processed:", nrow(combined_data$host), "\n\n"))
 cat("Coordinate Status:\n")
 print(summary_spatial)
-cat("\nRecords with mismatched coordinates (mismatch or no_country_boundary):\n")
-print(mismatched_records)
+cat("\nCountry check (GADM 4.1):\n")
+print(count(combined_data$host, country_match_status))
+cat("\nPoints outside their stated country and not reviewed:\n")
+print(unreviewed_points, n = Inf)
+cat("\nDRY RUN: unconfirmed reviews matching a point outside its country:\n")
+print(pending_reviews |> select(study_id, iso3c, decimalLatitude, decimalLongitude, reason), n = Inf)
+if (nrow(stale_reviews) > 0) {
+  warning(nrow(stale_reviews), " confirmed coordinate reviews no longer match a point outside its country: ",
+          paste(stale_reviews$review_key, collapse = "; "), call. = FALSE)
+}

@@ -6,7 +6,7 @@
 # The output of this script is the final, distributable database object.
 # 
 
-combined_data <- read_rds(here("data", "data_cleaning", "05_02_output.rds"))
+combined_data <- read_rds(here("data", "data_cleaning", "05_03_output.rds"))
 
 # --- Drop non-canonical extractions ---------------------------------------
 # Applied here so all three tables are filtered consistently and no orphaned
@@ -103,7 +103,11 @@ descriptives_final <- combined_data$descriptives_cleaned %>%
     data_resolution_raw,
     # Provenance
     notes,
-    data_checker
+    data_checker,
+    # Cross-study duplicates (05_03_resolve_duplicates.R)
+    duplicate_group,
+    duplicate_role,
+    event_remarks
   )
 
 # --- 3. Clean the Host Table ---
@@ -129,7 +133,10 @@ host_final <- combined_data$host %>%
     gadm_country = name_0,
     gadm_adm1 = adm1_name,
     gadm_adm2 = adm2_name,
-    gadm_adm3 = adm3_name
+    gadm_adm3 = adm3_name,
+    gadm_adm1_id = adm1_id,
+    gadm_adm2_id = adm2_id,
+    gadm_adm3_id = adm3_id
   ) %>%
   # Reorder columns thematically
   select(
@@ -143,6 +150,7 @@ host_final <- combined_data$host %>%
     country, iso3c, latitude, longitude, coord_status,
     dist_from_expected, coordinate_resolution_processed,
     gadm_country, gadm_adm1, gadm_adm2, gadm_adm3,
+    gadm_adm1_id, gadm_adm2_id, gadm_adm3_id,
     # Temporal (Cleaned)
     start_date, end_date, temporal_resolution,
     # Sampling Effort
@@ -299,6 +307,9 @@ release_path <- here("data", "data_release")
 dir_create(path(release_path, "parquet"))
 dir_create(path(release_path, "csv"))
 
+# Compile date, shown in the app footer
+jsonlite::write_json(list(compiled = format(Sys.Date())), here("arha_app", "data", "release_info.json"), auto_unbox = TRUE)
+
 event_map <- tibble(old_study_id = unique(c(
   as.character(descriptives_final$study_id),
   as.character(host_final$study_id),
@@ -384,10 +395,11 @@ sampling_events_meta <- descriptives_mapped |>
       }
     )
   ) |>
-  select(eventID = study_id, associatedReferences, year = publication_year,
+  select(eventID = study_id, associatedReferences, publication_year,
          samplingProtocol = sampling_effort_status, sampleSizeValue = trap_nights,
          samplingEffort = n_sessions, dataAccessLevel = data_access_level,
-         dataResolution = data_resolution_clean)
+         dataResolution = data_resolution_clean,
+         duplicate_group, duplicate_role, eventRemarks = event_remarks)
 
 sampling_events <- event_map |>
   select(eventID = new_event_id) |>
@@ -398,7 +410,15 @@ stopifnot(nrow(sampling_events) == nrow(event_map),
           !any(duplicated(sampling_events$eventID)))
 
 write_parquet(sampling_events, here("arha_app", "data", "parquet", "sampling_events.parquet"))
+write_parquet(sampling_events, path(release_path, "parquet", "sampling_events.parquet"))
 write_csv(sampling_events, here("data", "data_release", "csv", "sampling_events.csv"))
+
+# Luis et al. 2018 reports monthly minimum numbers known alive and infected
+# (MNA/MNI) per grid, not animals handled and tested. individualCount and
+# number_tested keep the values; the Darwin Core quantity type and measurement
+# unit say what they are.
+mna_studies <- c("david_79")
+mna_events  <- event_map$new_event_id[event_map$old_study_id %in% mna_studies]
 
 host_occurrences <- host_mapped |>
   mutate(
@@ -447,15 +467,21 @@ host_occurrences <- host_mapped |>
     verbatimLocality = verbatim_locality_raw,
     verbatimEventDate = event_date_raw
   ) |>
+  mutate(organismQuantity = individualCount,
+         organismQuantityType = if_else(eventID %in% mna_events, "minimum number known alive", "individuals"),
+         # GADM 4.1 GID of the finest administrative unit the record was matched to
+         higherGeographyID = coalesce(gadm_adm3_id, gadm_adm2_id, gadm_adm1_id)) |>
   select(
     occurrenceID, eventID, scientificName, genus, family, order, class, taxonRank, taxonID,
-    individualCount, eventDate, country, countryCode, stateProvince, county, municipality,
+    individualCount, organismQuantity, organismQuantityType, eventDate, country, countryCode, stateProvince, county, municipality,
+    higherGeographyID,
     decimalLatitude, decimalLongitude, verbatimIdentification, verbatimLocality, verbatimEventDate,
     coord_status, dist_from_expected, coordinate_resolution_processed,
     temporal_resolution, trap_nights_clean, trap_nights_status
   )
 
 write_parquet(host_occurrences, here("arha_app", "data", "parquet", "host_occurrences.parquet"))
+write_parquet(host_occurrences, path(release_path, "parquet", "host_occurrences.parquet"))
 write_csv(host_occurrences, here("data", "data_release", "csv", "host_occurrences.csv"))
 
 # Pathogen to DwC Extended MeasurementOrFact
@@ -487,7 +513,9 @@ pathogen_mof <- pathogen_mapped |>
       if(is.null(x) || length(x) == 0) return(NA_character_)
       jsonlite::toJSON(x, auto_unbox = TRUE) 
     }),
-    measurementType = paste(pathogen_species_cleaned, "detection"),
+    # Finest pathogen name available; many records name only the family
+    measurementType = paste(coalesce(pathogen_species_cleaned, pathogen_genus_fixed, pathogen_family_fixed, "Unidentified pathogen"),
+                            "detection"),
     measurementRemarks = paste0(
       "Number tested: ", number_tested,
       " | Verbatim pathogen: ", pathogen_species_original, 
@@ -508,8 +536,9 @@ pathogen_mof <- pathogen_mapped |>
     taxonID_pathogen = ncbi_id,
     dynamicProperties = taxonomy_details_json
   ) |>
+  mutate(measurementUnit = if_else(eventID %in% mna_events, "minimum number known infected", "individuals")) |>
   select(
-    measurementID, occurrenceID, eventID, measurementType, measurementValue,
+    measurementID, occurrenceID, eventID, measurementType, measurementValue, measurementUnit,
     measurementMethod, measurementRemarks, scientificName_pathogen, genus_pathogen,
     family_pathogen, taxonRank_pathogen, taxonID_pathogen, dynamicProperties,
     number_tested, number_negative, number_inconclusive, tested_detected,
@@ -517,13 +546,15 @@ pathogen_mof <- pathogen_mapped |>
   )
 
 write_parquet(pathogen_mof, here("arha_app", "data", "parquet", "pathogen_mof.parquet"))
+write_parquet(pathogen_mof, path(release_path, "parquet", "pathogen_mof.parquet"))
 write_csv(pathogen_mof, here("data", "data_release", "csv", "pathogen_mof.csv"))
 
 # Create a clean, padded ID for the sequences
 sequence_clean <- sequence_mapped |>
   mutate(clean_seq_id = paste0("seq_", sprintf("%05d", row_number())),
-         # Convert accession to a resolvable URI
-         ncbi_uri = paste0("https://www.ncbi.nlm.nih.gov/nuccore/", accession_primary))
+         # Convert accession to a resolvable URI; where NCBI did not resolve it, use the
+         # accession as reported in the paper
+         ncbi_uri = paste0("https://www.ncbi.nlm.nih.gov/nuccore/", coalesce(accession_primary, query_accession)))
 
 # Build Host -> Sequence relationships
 seq_rel_host <- sequence_clean |>
@@ -535,7 +566,8 @@ seq_rel_host <- sequence_clean |>
          gene_name,
          query_accession,
          accession_primary) |>
-  mutate(relationshipOfResource = "host has sequence")
+  mutate(resourceRelationshipID = paste0(resourceRelationshipID, "_host"),
+         relationshipOfResource = "host has sequence")
 
 # Build Pathogen -> Sequence relationships
 seq_rel_pathogen <- sequence_clean |>
@@ -547,7 +579,8 @@ seq_rel_pathogen <- sequence_clean |>
          gene_name,
          query_accession,
          accession_primary) |>
-  mutate(relationshipOfResource = "pathogen has sequence")
+  mutate(resourceRelationshipID = paste0(resourceRelationshipID, "_pathogen"),
+         relationshipOfResource = "pathogen has sequence")
 
 # Bind them to single DwC extension table
 resource_relationships <- bind_rows(seq_rel_host, seq_rel_pathogen) |>
@@ -563,4 +596,21 @@ resource_relationships <- bind_rows(seq_rel_host, seq_rel_pathogen) |>
 
 # Save the Resource Relationship Extension
 write_parquet(resource_relationships, here("arha_app", "data", "parquet", "resource_relationships.parquet"))
+write_parquet(resource_relationships, path(release_path, "parquet", "resource_relationships.parquet"))
 write_csv(resource_relationships, here("data", "data_release", "csv", "resource_relationships.csv"))
+
+# Every released column must be described in the data dictionary, and the dictionary must
+# describe nothing that is not released
+data_dictionary <- read_csv(path(release_path, "data_dictionary.csv"), col_types = cols(.default = col_character()))
+released_fields <- bind_rows(
+  tibble(table = "sampling_events", field = names(sampling_events)),
+  tibble(table = "host_occurrences", field = names(host_occurrences)),
+  tibble(table = "pathogen_mof", field = names(pathogen_mof)),
+  tibble(table = "resource_relationships", field = names(resource_relationships)))
+undocumented <- anti_join(released_fields, data_dictionary, by = c("table", "field"))
+not_released <- anti_join(data_dictionary, released_fields, by = c("table", "field"))
+if (nrow(undocumented) > 0 || nrow(not_released) > 0) {
+  stop("data_dictionary.csv is out of step with the release. Undocumented: ",
+       paste(undocumented$table, undocumented$field, sep = ".", collapse = ", "),
+       ". Not released: ", paste(not_released$table, not_released$field, sep = ".", collapse = ", "))
+}

@@ -1,8 +1,8 @@
 # 05_01_clean_sequences.R
 # Load the raw data from 00_load_data.R
 # e.g., combined_data_v2, combined_data_v3
-combined_data_v2 <- read_rds(here("data", "raw_data", paste0(analysis_date, "_v2_data.rds")))
-combined_data_v3 <- read_rds(here("data", "raw_data", paste0(analysis_date, "_v3_data.rds")))
+combined_data_v2 <- read_rds(here("data", "raw_data", paste0(analysis_date, "_v2_data_corrected.rds")))
+combined_data_v3 <- read_rds(here("data", "raw_data", paste0(analysis_date, "_v3_data_corrected.rds")))
 
 sequence_data_v2 <- combined_data_v2$sequences
 sequence_data_v3 <- combined_data_v3$sequences

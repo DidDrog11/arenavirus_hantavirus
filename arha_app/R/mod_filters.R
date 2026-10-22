@@ -113,7 +113,7 @@ mod_filters_server <- function(id, tbl_events, tbl_hosts, tbl_pathogens) {
       updateSelectizeInput(session, "pathogen_family", selected = character(0))
       updateSelectizeInput(session, "pathogen", selected = character(0))
       updateSelectizeInput(session, "modality", selected = character(0))
-      years <- tbl_events |> filter(!is.na(year)) |> distinct(year) |> pull()
+      years <- tbl_events |> filter(!is.na(publication_year)) |> distinct(publication_year) |> pull()
       if (length(years) > 0) updateSliderInput(session, "year", value = c(min(years), max(years)))
     })
     

@@ -63,7 +63,7 @@ mod_dashboard_server <- function(id, filtered_data) {
     
     # Temporal Sampling Effort
     output$plot_time <- renderPlotly({
-      df <- filtered_data() |> filter(!is.na(year), !is.na(scientificName)) |> group_by(year, scientificName) |> summarise(n_records = n(), n_detections = sum(measurementValue, na.rm = TRUE), .groups = 'drop') |> arrange(year, desc(n_records)) |> collect()
+      df <- filtered_data() |> filter(!is.na(publication_year), !is.na(scientificName)) |> group_by(year = publication_year, scientificName) |> summarise(n_records = n(), n_detections = sum(measurementValue, na.rm = TRUE), .groups = 'drop') |> arrange(year, desc(n_records)) |> collect()
       req(nrow(df) > 0)
       n_species <- length(unique(df$scientificName))
       dynamic_palette <- grDevices::colorRampPalette(RColorBrewer::brewer.pal(min(12, max(3, n_species)), "Paired"))(n_species)

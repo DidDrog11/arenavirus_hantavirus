@@ -1,0 +1,37 @@
+"study_id","iso3c","decimalLatitude","decimalLongitude","n_records","outcome","reason","source","confirmed"
+"ana_278","AUT",48.73583,16.33818,4,"accepted","The paper's coordinate for site L2; in Austria per OSM, 0.06 km inside Czechia per GADM 4.1.","Schmidt 2014 (ft_278) PDF p.3, Table 1 footnote b",TRUE
+"ana_278","AUT",48.73685,16.33875,4,"accepted","The paper's coordinate for site L1; in Austria per OSM, 0.04 km inside Czechia per GADM 4.1.","Schmidt 2014 (ft_278) PDF p.3, Table 1 footnote b",TRUE
+"david_10","CHL",-41.532,-71.831,10,"accepted","The paper's coordinate for Paso El León, a pass on the Chile-Argentina border; 1.1 km on the Argentine side.","Torres-Pérez F 2019 (ft_m_5) PDF p.19, Appendix A",TRUE
+"david_103","KOR",33.24,126.56,1,"accepted","City-level point for Seogwipo, Jeju, 0.07 km from the GADM coastline.","Lee 2020 (ft_114) PDF p.2 Methods; p.4 Table 1",TRUE
+"david_103","KOR",37.849,126.387,1,"accepted","County-level point in the Han River estuary just north of Ganghwa County; kept as is.","Lee 2020 (ft_114) PDF p.2 Methods; p.3 Fig. 1; p.4 table",TRUE
+"david_104","JPN",26.5,128,7,"accepted","Rounded prefecture point for Okinawa, 0.5 km offshore; the paper gives no coordinates.","Kikuchi 2020 (ft_115) ft_115_supp_1.xlsx, Supplemental Table 1",TRUE
+"david_212","TWN",22.439,120.473,3,"accepted","Point in Donggang (Tongkong) on the Dapeng Bay lagoon shore, 4.2 km from the fishing port; 0.01 km into the lagoon as GADM draws the shore.","Chin 2000 (ft_374) PDF p.3 Fig. 1; p.5 Table I",TRUE
+"david_212","TWN",22.613,120.279,5,"accepted","Port-level point (Wikipedia's Port of Kaohsiung coordinate) at the Penglai piers, 0.3 km from the GADM coastline.","Chin 2000 (ft_374) PDF p.2 Methods; p.3 Fig. 1; p.5 Table I",TRUE
+"david_212","TWN",24.295,120.491,4,"accepted","Port-level point in the water area of the Port of Taichung, 2.1 km from the GADM coastline.","Chin 2000 (ft_374) PDF p.2 Methods; p.5 Table I",TRUE
+"david_212","TWN",24.85,120.92,7,"accepted","On land at Nanliao, Hsinchu; 0.2 km outside GADM because of coastline precision.","Chin 2000 (ft_374) PDF p.4 Results; p.5 Table I",TRUE
+"david_217","GBR",54.208,-5.89,3,"accepted","County-level point on the seafront at Newcastle, County Down, 0.04 km from the GADM coastline.","McCaughey 1996 (ft_381) PDF p.1 Summary; p.2 Methods",TRUE
+"david_226","JPN",35.01,138.5,2,"accepted","City-level point for Shimizu Port, 0.15 km from the GADM coastline.","Ma 1995 (ft_390) PDF p.1 Summary; p.4 Table I",TRUE
+"david_231","CHN",22.3,114.2,1,"accepted","City-level point rounded to 0.1°, in Victoria Harbour, Hong Kong.","LeDuc 1986 (ft_401) PDF p.3, table",TRUE
+"david_262","MEX",21.5,-105.25,4,"accepted","Half-degree regional point 1.5 km off the San Blas coast.","Milazzo 2010 (ft_197) PDF p.9",TRUE
+"david_269","CHN",41.45225,128.23456,4,"accepted","Corrected point (see field_corrections.csv) on the Yalu bank at Changbai, 0.3 km outside GADM 4.1 China at the river border.","Yan 2013 (ft_287) PDF p.1, Materials and methods 1",TRUE
+"david_326","CHN",48.3613,134.8138,9,"accepted","Island-level coordinate for Bolshoy Ussuriysky (Heixiazi) Island; the paper sampled the Chinese part. GADM 4.1 puts the whole island in Russia.","Wang 2014 (ft_566) PDF p.1 Abstract; p.2 section 2.1",TRUE
+"david_338","FIN",69.0167,20.7667,3,"accepted","Village-level point for Kilpisjärvi, 1.1 km inside Sweden; kept as is.","Ling 2014 (ft_567) ft_567_supp PDF p.2",TRUE
+"david_35","CHN",16.6667,112.3333,5,"accepted","Paracel (Xisha) Islands, administered by China; archipelago centre at sea. GADM 4.1 codes the Paracels as a separate unit (XPI).","Wang 2022 (ft_27) PDF p.3 Methods; p.5 Table 1",TRUE
+"david_35","CHN",16.831,112.3386,15,"accepted","Yongxing (Woody) Island, Paracel Islands, administered by China. GADM 4.1 codes the Paracels as a separate unit (XPI).","Wang 2022 (ft_27) PDF p.3 Methods; p.5 Table 1",TRUE
+"david_378","IDN",-5.7,106.583,1,"accepted","Centre point for the Kepulauan Seribu archipelago, at sea 1.1 km from the nearest GADM island.","Okumura 2007 (ft_837) PDF p.3",TRUE
+"david_54","CHN",48.3611,134.8284,6,"accepted","Island-level coordinate for Bolshoy Ussuriysky (Heixiazi) Island; the paper sampled the Chinese part. GADM 4.1 puts the whole island in Russia.","Lu 2017 (ft_46) PDF p.2, Study site and Fig. 1",TRUE
+"grant_174","SWE",63.54,20.5,1,"accepted","Centre of the paper's study-area box (63°20'-63°45'N, 20-21°E, coast of Västerbotten), 13.7 km offshore.","Olsson 2003 (ft_488) PDF p.3, Methods",TRUE
+"grant_231","CHL",-31.9085,-71.5076,1,"accepted","Site at Los Vilos, 0.11 km from the GADM coastline.","Medina 2009 (ft_610) PDF p.3, Table 2",TRUE
+"grant_231","CHL",-30.6693,-71.7064,2,"accepted","Point on the coast of Bosque Fray Jorge National Park, 0.03 km from the GADM coastline.","Medina 2009 (ft_610) PDF p.3, Table 2",TRUE
+"grant_238","CHL",-40.93923,-73.86415,3,"accepted","Site at Bahía San Pedro, 0.02 km from the GADM coastline.","Murúa 2003 (ft_640) PDF p.2 Methods; p.3 Tabla 1",TRUE
+"harry_723","URY",-34.033333,-53.533333,14,"accepted","The paper's coordinate, rounded to the minute, at Punta del Diablo; 0.2 km from the GADM coastline.","Cabrera 2023 (ft_723) PDF p.3, Table 1",TRUE
+"david_169","USA",39.289,-74.615,1,"corrected","Longitude slip (-74.615 for -76.615) placed Baltimore in the Atlantic.","Childs 1989 (ft_264) PDF p.2 Methods",TRUE
+"david_269","CHN",41.278,128.144,4,"corrected","The paper's degrees-minutes-seconds coordinate had been read as decimals, placing the point in North Korea.","Yan 2013 (ft_287) PDF p.1, Materials and methods 1 (Chinese original ft_287); English translation ft_287_en p.1",TRUE
+"david_271","FRA",44.75,8.529,1,"corrected","Point was Cassine, Italy; the site is La Cassine, Vendresse, in the French Ardennes.","Guivier 2011 (ft_299) PDF p.2 Methods; p.3 Fig. 1; p.6 Table 1",TRUE
+"david_371","PRY",7.767,-80.283,1,"corrected","Country was Paraguay; the site is Las Tablas, Panama.","Nelson 2010 (ft_821) PDF p.2, Materials and methods",TRUE
+"grant_166","CHN",24.465357,118.433621,6,"corrected","Country was China; Kinmen County is administered by Taiwan.","Wu 2007 (ft_475) PDF p.3 Materials and methods; p.6-7 Discussion",TRUE
+"grant_166","CHN",26.162724,119.950001,5,"corrected","Country was China; Lienchiang County (Matsu) is administered by Taiwan.","Wu 2007 (ft_475) PDF p.3 Materials and methods; p.6-7 Discussion",TRUE
+"grant_266","SWE",58.710556,17.522222,1,"corrected","Point was on the Södermanland coast; moved to Enånger village.","Fevola 2017 (ft_745) PDF p.4 Table 1; p.3 Fig. 1",TRUE
+"grant_266","FIN",65.813056,24.119722,1,"corrected","Country was Finland; Haparanda is in Sweden.","Fevola 2017 (ft_745) PDF p.2 Methods; p.3 Fig. 1; p.4 Table 1",TRUE
+"grant_278","GIN",12.299444,-8.774722,7,"corrected","Country was Guinea; Massakoroma is in Mali.","Fichet-Calvet E 2014 (ft_m_10) PDF p.2, Methods and Fig. 1",TRUE
+"harry_642","HRV",44.052893,16.561462,21,"corrected","Country was Croatia; the coordinate and the trap locality Crni bunari are in Bosnia and Herzegovina.","Ledina 2002 (ft_642) PDF p.2, Patients and Methods, Small Mammals",TRUE

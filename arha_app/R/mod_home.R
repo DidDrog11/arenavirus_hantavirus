@@ -4,12 +4,13 @@ library(bslib)
 # Version constants — update these on each release.
 # APP_VERSION:       semantic version of the Explorer application itself.
 # DB_SEARCH_DATE:    literature search cutoff date.
-# DB_COMPILED_DATE:  date the current Parquet files were produced by the pipeline.
-# DB_ZENODO_DOI:     permanent DOI for the archived release on Zenodo.
+# DB_COMPILED_DATE:  date the current Parquet files were produced by the pipeline,
+#                    read from data/release_info.json (written by 07_finalise_database.R).
+# DB_ZENODO_DOI:     Zenodo concept DOI, which always resolves to the latest release.
 APP_VERSION      <- "1.0.0"
 DB_SEARCH_DATE   <- "24 August 2023"
-DB_COMPILED_DATE <- "14 August 2026"
-DB_ZENODO_DOI    <- "[PLACEHOLDER — insert DOI]"
+DB_COMPILED_DATE <- format(as.Date(jsonlite::read_json("data/release_info.json")$compiled), "%d %B %Y")
+DB_ZENODO_DOI    <- "10.5281/zenodo.21978982"
 
 # --- UI ---
 mod_home_ui <- function(id) {

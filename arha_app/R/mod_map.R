@@ -59,7 +59,7 @@ mod_map_server <- function(id, filtered_data, tbl_sequences) {
          scientificName, genus, 
          scientificName_pathogen, genus_pathogen, family_pathogen, 
          measurementRemarks, pathogen_species_cleaned, 
-         year, eventDate, country, decimalLatitude, decimalLongitude, 
+         publication_year, eventDate, country, decimalLatitude, decimalLongitude, 
          measurementValue, number_tested,
          associatedReferences)  |> 
         collect() |> 
@@ -173,7 +173,7 @@ mod_map_server <- function(id, filtered_data, tbl_sequences) {
             "<strong style='color: #2c3e50; font-size: 15px;'>", coalesce(scientificName, "Not Specified"), "</strong><br>",
             "<em>(", coalesce(genus, "Not Specified"), ")</em><hr style='margin: 5px 0;'>",
             "<b>Event:</b> ", coalesce(eventID, "NA"), " ", event_link, "<br>",
-            "<b>Date / Year:</b> ", coalesce(eventDate, as.character(year), "Not Specified"), "<br>",
+            "<b>Date / Year:</b> ", coalesce(eventDate, as.character(publication_year), "Not Specified"), "<br>",
             "<b>Pathogen Tested:</b> ", display_pathogen, "<br>", 
             "<b>Test Result:</b> <span style='color: ", ifelse(positivity_status == "Positive Detection", "red", "black"), ";'>", positivity_status, "</span><br>",
             "<b>Number Tested:</b> ", coalesce(number_tested, 0), "<br>",

@@ -19,8 +19,8 @@
 #     retried on every run. Delete the relevant cache file to force a refresh
 #     if the GBIF backbone is updated.
 
-combined_data_v2 <- read_rds(here::here("data", "raw_data", paste0(analysis_date, "_v2_data.rds")))
-combined_data_v3 <- read_rds(here::here("data", "raw_data", paste0(analysis_date, "_v3_data.rds")))
+combined_data_v2 <- read_rds(here::here("data", "raw_data", paste0(analysis_date, "_v2_data_corrected.rds")))
+combined_data_v3 <- read_rds(here::here("data", "raw_data", paste0(analysis_date, "_v3_data_corrected.rds")))
 
 # Clean Rodent Species ----------------------------------------------------
 
@@ -29,6 +29,19 @@ rodent_names <- tibble(rodent_names = str_to_sentence(str_squish(sort(c(unique(c
                        # Some spelling mistakes are too far for fuzzy matching so these are also being corrected
                        # Remove cf. from species matching, will retain the uncertainty in the extracted name
                        cleaned_rodent_names = case_when(
+                         # One extraction of ft_648 (grant_281) gives the genus only as an initial; the
+                         # full names are in the paper's text. Anchored so no other name is caught.
+                         str_detect(rodent_names, "^C eremicus$") ~ "Chaetodipus eremicus",
+                         str_detect(rodent_names, "^C hispidis$") ~ "Chaetodipus hispidus",
+                         str_detect(rodent_names, "^C intermedius$") ~ "Chaetodipus intermedius",
+                         str_detect(rodent_names, "^D merriami$") ~ "Dipodomys merriami",
+                         str_detect(rodent_names, "^D ordii$") ~ "Dipodomys ordii",
+                         str_detect(rodent_names, "^D spectabilis$") ~ "Dipodomys spectabilis",
+                         str_detect(rodent_names, "^N albuginea$") ~ "Neotoma albigula",
+                         str_detect(rodent_names, "^O arenicola$") ~ "Onychomys arenicola",
+                         str_detect(rodent_names, "^P eremicus$") ~ "Peromyscus eremicus",
+                         str_detect(rodent_names, "^P flavescens$") ~ "Perognathus flavescens",
+                         str_detect(rodent_names, "^P flavus$") ~ "Perognathus flavus",
                          str_detect(rodent_names, "\"Oriental vole\"") ~ "Eothenomys eleusis",
                          str_detect(rodent_names, "\"Asian house shrew\"|Asian house shrew") ~ "Suncus murinus",
                          str_detect(rodent_names, "Abrothrix longipilus|A longipilis|Abrotrix longipilis") ~ "Abrothrix longipilis",
@@ -252,11 +265,12 @@ rodent_genus <- tibble(rodent_genus = c(str_split(unique(rodent_names$cleaned_ro
                                           str_detect(rodent_genus, "Chaeotdipus") ~ "Chaetodipus",
                                           str_detect(rodent_genus, "Cletherionomys") ~ "Clethrionomys",
                                           str_detect(rodent_genus, "Corcidura") ~ "Crocidura",
+                                          str_detect(rodent_genus, "Dsymus") ~ "Dasymys",
                                           str_detect(rodent_genus, "Lopuromys") ~ "Lophuromys",
                                           str_detect(rodent_genus, "Serengetimys") ~ "Mastomys",
                                           str_detect(rodent_genus, "Maxomus") ~ "Maxomys",
                                           str_detect(rodent_genus, "Monodelphys") ~ "Monodelphis",
-                                          str_detect(rodent_genus, "Mictorus") ~ "Microtus",
+                                          str_detect(rodent_genus, "Mictorus|Microtis") ~ "Microtus",
                                           str_detect(rodent_genus, "Mydoes") ~ "Myodes",
                                           str_detect(rodent_genus, "Ochromyscus") ~ "Myomyscus",
                                           str_detect(rodent_genus, "Neotomas") ~ "Neotoma",
@@ -272,7 +286,11 @@ rodent_genus <- tibble(rodent_genus = c(str_split(unique(rodent_names$cleaned_ro
                                           str_detect(rodent_genus, "Suneus") ~ "Suncus",
                                           str_detect(rodent_genus, "Zygogontomys") ~ "Zygodontomys",
                                           TRUE ~ rodent_genus)) %>%
-  distinct()
+  distinct() |>
+  # Families, subfamilies and the old order Insectivora are not genera. Sent to GBIF as
+  # genera they matched a bat (Murinae -> Murina) and a fungus (Insectivora); they are
+  # resolved in the higher-taxa step instead.
+  filter(!str_detect(cleaned_rodent_genus, "(idae|inae)$"), cleaned_rodent_genus != "Insectivora")
 
 
 # Write Dictionaries ------------------------------------------------------
@@ -313,8 +331,14 @@ if (length(new_species) == 0) {
   message("Resolving ", length(new_species), " new species name(s) via GBIF...")
   
   gbif_species    <- get_gbifid(new_species, rank = "species")   # called ONCE
+
+  # If none of the new names resolved there is no hierarchy to add, but the
+  # attempt is still cached below so the names are not queried again
+  if (all(is.na(gbif_species))) {
+    new_species_hierarchy <- NULL
+  } else {
   resolve_species <- classification(gbif_species, db = "gbif", return_id = TRUE)
-  
+
   new_species_hierarchy <- rbind(resolve_species) %>%
     group_by(query) %>%
     distinct() %>%
@@ -331,7 +355,8 @@ if (length(new_species) == 0) {
               by = "query") %>%
     arrange(kingdom, phylum, class, order, family, genus, genus_id, species, species_id) %>%
     drop_na(species)
-  
+  }
+
   species_lookup <- bind_rows(
     species_lookup,
     tibble(cleaned_rodent_names = new_species, query = as.character(gbif_species))
@@ -484,6 +509,9 @@ if (length(new_higher_taxa) == 0) {
       str_detect(scientificName, "Didelphimorphia") ~ "Didelphimorphia",
       str_detect(scientificName, "Dipodidae") ~ "Dipodidae",
       str_detect(scientificName, "Ochotonidae") ~ "Ochotonidae",
+      # The GBIF backbone has no Eulipotyphla (shrews and hedgehogs sit in Soricomorpha and
+      # Erinaceomorpha), so the old order Insectivora can only be placed at class level
+      str_detect(scientificName, "Insectivora") ~ "Mammalia",
       # Mammalia and other general categories
       str_detect(scientificName, "Other") ~ "Mammalia",
       # Fallback to the original name for any remaining specific taxa

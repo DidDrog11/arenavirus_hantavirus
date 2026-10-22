@@ -37,7 +37,7 @@ mod_genetic_map_server <- function(id, filtered_data, tbl_sequences) {
       
       base_spatial <- filtered_data() |> 
         filter(!is.na(decimalLatitude), !is.na(decimalLongitude)) |> 
-        select(occurrenceID, measurementID, eventID, scientificName, scientificName_pathogen, year, country, decimalLatitude, decimalLongitude, associatedReferences) |> 
+        select(occurrenceID, measurementID, eventID, scientificName, scientificName_pathogen, publication_year, country, decimalLatitude, decimalLongitude, associatedReferences) |> 
         collect()
       
       seqs <- tbl_sequences |> collect()

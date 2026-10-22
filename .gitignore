@@ -58,3 +58,9 @@ vignettes/*.pdf
 *.pyc
 gbif_cache.sqlite
 /data/ncbi_virus
+
+# Claude Code instructions (not tracked; copied over SSH)
+CLAUDE.md
+
+# Duplicate review: collaborator material and copies of source articles (not for the public repo)
+/data/duplicate_check/

@@ -1,102 +1,135 @@
 if (!require("pacman")) install.packages("pacman")
 
-pkgs <- c("here", "tidyverse", "DiagrammeR", "DiagrammeRsvg", "rsvg")
+pkgs <- c("here", "tidyverse", "DiagrammeR", "DiagrammeRsvg", "rsvg", "arrow")
 
 pacman::p_load(pkgs, character.only = T)
 
-# Load the consolidated citation data
-combined_data <- read_rds(here("data", "data_cleaning", "01_01_output.rds"))
+analysis_date <- "2026-10-20" # as in 00_load_data.R
 
-# 1. Calculate PRISMA flow values
-# 2448 is derived from the manual de-duplication comment in 00_load_data.R
-n_identified <- 2448 
-n_sought <- nrow(combined_data$citations$all_citations)
-n_excluded_ta <- n_identified - n_sought
+# 1. Search and title/abstract screening, from the published protocol (Simons et al. 2025,
+# PRISMA figure): PubMed and Web of Science searched on 2023-10-16
+n_database    <- 4020 # records identified through database searching
+n_other       <- 11   # records identified from other sources at that time
+n_deduplicated <- 2755 # records after de-duplication (all screened)
+n_excluded_ta <- 1838 # records excluded at title and abstract
+n_from_screening <- n_deduplicated - n_excluded_ta
 
-# 'no_extractions' represents papers that were sought but neither excluded nor extracted
-n_not_retrieved <- nrow(combined_data$citations$no_extractions)
-n_assessed <- n_sought - n_not_retrieved
-n_excluded_ft <- nrow(combined_data$citations$excluded)
-n_included <- length(unique(combined_data$citations$extractions$full_text_id))
+# 2. Full-text stage, from the inclusion sheet (one row per report sought) and the extractions.
+# Papers added by hand from reference lists have IDs starting "ft_m_"; those beyond the 11 in
+# the protocol were added after screening.
+inclusion <- read_rds(here("data", "raw_data", paste0(analysis_date, "_v3_data_corrected.rds")))$inclusion_full_text
+extraction_status <- read_rds(here("data", "data_cleaning", "02_01_output.rds"))$extraction_status
+sampling_events <- read_parquet(here("data", "data_release", "parquet", "sampling_events.parquet"))
 
-# 2. Dynamically format full-text exclusion reasons
-# Clean and standardize exclusion reasons
-combined_data$citations$excluded <- combined_data$citations$excluded |>
+# A report marked processed but never extracted was assessed and excluded, with no reason recorded;
+# one never processed was not assessed
+inclusion <- inclusion |>
+  mutate(status = case_when(
+    full_text_id %in% extraction_status$full_text_id ~ "extracted",
+    str_detect(coalesce(decision, ""), regex("^Exclude", ignore_case = TRUE)) ~ "excluded",
+    tolower(coalesce(processed, "")) == "y" ~ "excluded",
+    TRUE ~ "not assessed"))
+
+n_sought        <- nrow(inclusion)
+n_added_later   <- n_sought - n_from_screening
+stopifnot(n_added_later == sum(str_detect(inclusion$full_text_id, "^ft_m_"), na.rm = TRUE) - n_other)
+n_not_assessed  <- sum(inclusion$status == "not assessed")
+n_excluded_ft   <- sum(inclusion$status == "excluded")
+n_extracted     <- sum(inclusion$status == "extracted")
+# Whole studies removed in 05_03 as repeats of data in another included paper, or not primary data
+n_in_release    <- nrow(sampling_events)
+n_removed_after <- n_extracted - n_in_release
+
+# 3. Full-text exclusion reasons, cleaned and standardised
+excluded <- inclusion |>
+  filter(status == "excluded") |>
   mutate(
     reason_clean = case_when(
       # 1. Full text / Abstract only
       str_detect(tolower(reason), "unable|abstract|conference") ~ "Full text unavailable / Abstract only",
-      
+
       # 2. Experimental / Captive
       str_detect(tolower(reason), "experimental|colony|captive|laboratory|not wild") ~ "Experimental or captive study",
-      
+
       # 3. Duplicate / Data previously published
       str_detect(tolower(reason), "elsewhere|duplicate|reanalysis|linked") ~ "Data previously published",
-      
+
       # 4. Unextractable format
       str_detect(tolower(reason), "graphical|extract|individual level|species level|underlying data") ~ "Unextractable data format",
-      
+
       # 5. No target pathogen (Prioritised over 'no host' to catch "no rodent associated pathogen")
       str_detect(tolower(reason), "pathogen|hanta|aren|tick") ~ "No target pathogen",
-      
+
       # 6. No target host / No field sampling
       str_detect(tolower(reason), "human|owl|rodent|capture|sampling") ~ "No target host / No field sampling",
-      
+
       # 7. No primary data
       str_detect(tolower(reason), "review|meta-analysis|letter|nomenclature|modelling|no data|testing") ~ "No primary data (e.g., review, modelling)",
-      
-      # Catch-all (should be empty based on your current data)
-      TRUE ~ "Other"
+
+      # Reason missing or not matched
+      TRUE ~ "Other / not recorded"
     )
   )
 
-# 2. Dynamically format full-text exclusion reasons (Updated to use reason_clean)
-exclusion_reasons <- combined_data$citations$excluded |> 
-  count(reason_clean) |> 
-  drop_na() |> 
-  arrange(desc(n)) |> 
-  mutate(label = paste0(reason_clean, " (n = ", n, ")")) |> 
-  pull(label) |> 
+exclusion_reasons <- excluded |>
+  count(reason_clean) |>
+  arrange(desc(n)) |>
+  mutate(label = paste0(reason_clean, " (n = ", n, ")")) |>
+  pull(label) |>
   paste(collapse = "\n")
 
-# 3. Construct the Graphviz DOT syntax
+fmt <- function(n) format(n, big.mark = ",")
+
+# 4. Construct the Graphviz DOT syntax
 prisma_dot <- paste0('
   digraph PRISMA {
     graph [layout = dot, rankdir = TB]
-    node [shape = box, style = rounded, fontname = Helvetica, margin = 0.2]
-    edge [fontname = Helvetica]
+    node [shape = box, style = rounded, fontname = Arial, fontsize = 12, margin = "0.3,0.15"]
+    edge [fontname = Arial]
 
-    identified [label = "Records identified from databases\n(n = ', n_identified, ')"]
-    screened [label = "Records screened\n(n = ', n_identified, ')"]
-    excluded_ta [label = "Records excluded at title/abstract\n(n = ', n_excluded_ta, ')"]
-    sought [label = "Reports sought for retrieval\n(n = ', n_sought, ')"]
-    not_retrieved [label = "Reports not retrieved\n(n = ', n_not_retrieved, ')"]
-    assessed [label = "Reports assessed for eligibility\n(n = ', n_assessed, ')"]
-    excluded_ft [label = "Reports excluded:\n', exclusion_reasons, '"]
-    included [label = "Studies included in review\n(n = ', n_included, ')"]
+    database [label = "Records identified from databases\n(n = ', fmt(n_database), ')"]
+    other [label = "Records identified from other sources\n(n = ', fmt(n_other), ')"]
+    deduplicated [label = "Records after de-duplication\n(n = ', fmt(n_deduplicated), ')"]
+    screened [label = "Records screened\n(n = ', fmt(n_deduplicated), ')"]
+    excluded_ta [label = "Records excluded at title/abstract\n(n = ', fmt(n_excluded_ta), ')"]
+    added_later [label = "Reports added later\nfrom reference lists\n(n = ', fmt(n_added_later), ')"]
+    sought [label = "Reports sought for full-text assessment\n(n = ', fmt(n_sought), ')"]
+    not_assessed [label = "Reports not assessed\n(n = ', fmt(n_not_assessed), ')"]
+    assessed [label = "Reports assessed for eligibility\n(n = ', fmt(n_sought - n_not_assessed), ')"]
+    excluded_ft [label = "Reports excluded (n = ', fmt(n_excluded_ft), '):\n', exclusion_reasons, '"]
+    extracted [label = "Reports from which data were extracted\n(n = ', fmt(n_extracted), ')"]
+    removed_after [label = "Removed after extraction: data repeated\nfrom another included report,\nor not primary data (n = ', fmt(n_removed_after), ')"]
+    included [label = "Studies in ArHa\n(n = ', fmt(n_in_release), ')"]
 
-    # Define the vertical flow
-    identified -> screened
-    screened -> sought
-    sought -> assessed
-    assessed -> included
+    # Vertical flow
+    database -> deduplicated
+    other -> deduplicated
+    deduplicated -> screened
+    screened -> sought [weight = 10]
+    added_later -> sought
+    sought -> assessed [weight = 10]
+    assessed -> extracted [weight = 10]
+    extracted -> included [weight = 10]
 
-    # Define the horizontal exclusions
+    # Horizontal exclusions
     screened -> excluded_ta
-    sought -> not_retrieved
+    sought -> not_assessed
     assessed -> excluded_ft
+    extracted -> removed_after
 
-    # Force horizontal alignment for exclusion boxes
+    # Force horizontal alignment
+    {rank = same; database; other}
     {rank = same; screened; excluded_ta}
-    {rank = same; sought; not_retrieved}
+    {rank = same; added_later; sought; not_assessed}
     {rank = same; assessed; excluded_ft}
+    {rank = same; extracted; removed_after}
   }
 ')
 
-# 4. Render and export
+# 5. Render and export
 dir.create(here("output", "figures"), showWarnings = FALSE, recursive = TRUE)
 
-grViz(prisma_dot) |> 
-  export_svg() |> 
-  charToRaw() |> 
+grViz(prisma_dot) |>
+  export_svg() |>
+  charToRaw() |>
   rsvg_png(here("output", "figures", "supplementary_figure_s1.png"))

@@ -3,8 +3,8 @@
 # Purpose: This script takes the raw rodent data and joins it with pre-built
 # taxonomic lookup tables (from manual cleaning and GBIF).
 
-combined_data_v2 <- read_rds(here::here("data", "raw_data", paste0(analysis_date, "_v2_data.rds")))
-combined_data_v3 <- read_rds(here::here("data", "raw_data", paste0(analysis_date, "_v3_data.rds")))
+combined_data_v2 <- read_rds(here::here("data", "raw_data", paste0(analysis_date, "_v2_data_corrected.rds")))
+combined_data_v3 <- read_rds(here::here("data", "raw_data", paste0(analysis_date, "_v3_data_corrected.rds")))
 
 # Load the taxonomic lookup tables
 rodent_names <- read_rds(here("data", "matching", "rodent_names_manual.rds"))
@@ -66,7 +66,18 @@ clean_and_join_rodent_data <- function(raw_host_df) {
            resolved_order_higher = resolved_order,
            resolved_family_higher = resolved_family,
            resolved_genus_higher = resolved_genus) %>%
-    
+
+    # A GBIF match outside Mammalia is a homonym of the host name (the grass Lagurus,
+    # the orchid Microtis), never the host itself, so it is not used
+    mutate(
+      genus_match_is_mammal  = resolved_class_genus %in% c("Mammalia", NA),
+      higher_match_is_mammal = resolved_class_higher %in% c("Mammalia", NA),
+      across(c(gbif_id_genus, resolved_genus_genus, resolved_family_genus, resolved_order_genus, resolved_class_genus),
+             ~ if_else(genus_match_is_mammal, .x, NA)),
+      across(c(gbif_id_higher, resolved_genus_higher, resolved_family_higher, resolved_order_higher, resolved_class_higher),
+             ~ if_else(higher_match_is_mammal, .x, NA))
+    ) %>%
+
     # Step 3: Consolidate the GBIF-resolved taxonomic information
     mutate(
       gbif_id = coalesce(gbif_id_species, gbif_genus_id, gbif_id_genus, gbif_id_higher),

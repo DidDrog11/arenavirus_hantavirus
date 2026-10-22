@@ -1,11 +1,70 @@
 cff-version: 1.2.0
+message: "If you use ArHa, please cite the dataset using the DOI below, and the accompanying data paper."
+type: dataset
+title: "ArHa: a globally standardised, relational database of arenavirus and hantavirus sampling in wild small mammal populations"
 authors:
-- family-names: "Simons"
-  given-names: "David"
-  orcid: "https://orcid.org/0000-0001-9655-1656"
-- family-names: "Seifert"
-  given-names: "Stephanie N"
-  orcid: "https://orcid.org/0000-0002-4397-6156"
-title: "ArHa: Arenavirus and Hantavirus sampling in small mammals."
-version: 0.2
-url: "https://github.com/DidDrog11/arenavirus_hantavirus"
+  - family-names: "Simons"
+    given-names: "David"
+    orcid: "https://orcid.org/0000-0001-9655-1656"
+    affiliation: "Department of Anthropology, Pennsylvania State University"
+  - family-names: "Rivero"
+    given-names: "Ricardo"
+    affiliation: "Paul G. Allen School of Global Health, Washington State University"
+  - family-names: "Rickard"
+    given-names: "Grant"
+    orcid: "https://orcid.org/0009-0005-4620-5911"
+    affiliation: "Paul G. Allen School of Global Health, Washington State University"
+  - family-names: "Martinez-Checa"
+    given-names: "Ana"
+    orcid: "https://orcid.org/0009-0003-4263-444X"
+    affiliation: "Science Department, Natural History Museum, London"
+  - family-names: "Gordon"
+    given-names: "Harry"
+    affiliation: "School of Biological Sciences, University of East Anglia"
+  - family-names: "Milne"
+    given-names: "Gregory C."
+    orcid: "https://orcid.org/0000-0002-9594-3321"
+    affiliation: "Science Department, Natural History Museum, London"
+  - family-names: "Redding"
+    given-names: "David W."
+    orcid: "https://orcid.org/0000-0001-8615-1798"
+    affiliation: "Science Department, Natural History Museum, London"
+  - family-names: "Seifert"
+    given-names: "Stephanie N."
+    orcid: "https://orcid.org/0000-0002-4397-6156"
+    affiliation: "Paul G. Allen School of Global Health, Washington State University"
+doi: "10.5281/zenodo.21978982"
+license: CC0-1.0
+repository-code: "https://github.com/DidDrog11/arenavirus_hantavirus"
+url: "https://diddrog11.shinyapps.io/arenavirus_hantavirus_app/"
+keywords:
+  - Arenaviridae
+  - Hantaviridae
+  - rodents
+  - wildlife disease surveillance
+  - Darwin Core
+references:
+  - type: article
+    title: "Protocol to produce a systematic Arenavirus and Hantavirus host-pathogen database: Project ArHa"
+    authors:
+      - family-names: "Simons"
+        given-names: "David"
+      - family-names: "Rivero"
+        given-names: "Ricardo"
+      - family-names: "Martinez-Checa Guiote"
+        given-names: "Ana"
+      - family-names: "Gordon"
+        given-names: "Harry Luke Mackenzie"
+      - family-names: "Milne"
+        given-names: "Gregory C."
+      - family-names: "Rickard"
+        given-names: "Grant"
+      - family-names: "Redding"
+        given-names: "David W."
+      - family-names: "Seifert"
+        given-names: "Stephanie N."
+    journal: "Wellcome Open Research"
+    year: 2025
+    volume: 10
+    start: 227
+    doi: "10.12688/wellcomeopenres.24037.2"

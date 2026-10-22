@@ -1,0 +1,40 @@
+case,action,study_id,host_records,pathogen_records,sequence_records
+klein_oguinn_pool,drop records,david_147,8,8,0
+klein_oguinn_aa,drop records,david_7,2,2,11
+klein_oguinn_move,move records,david_7,16,16,0
+yashina_abramov,drop records,grant_259,30,30,0
+luis_douglass,drop records,ricardo_2,6,6,0
+luis_calisher,drop records,david_263,2,2,0
+holsomback_pilot,drop records,ana_316,6,6,0
+drewes_jeske,drop records,david_21,26,104,0
+drewes_kalpokai,drop records,ana_110,1,2,0
+ahlm_1997,drop records,david_258,2,2,0
+escutenaire_96_98,drop records,david_163,36,36,0
+escutenaire_s99,drop records,david_210,4,4,0
+kallio_tagliapietra,drop records,david_246,1,1,0
+fichet_calvet_2007_2014,merge host records,grant_277,16,16,0
+nitatpattana_2000_hanta_arena,merge host records,grant_35,27,27,0
+oliveira,move sequences,david_334,0,0,5
+oliveira,move sequences,david_334,0,0,4
+klein_oguinn,annotate study,david_147,0,0,0
+klein_oguinn,drop study,david_7,0,0,0
+seijo_twice,drop study,grant_31,1,2,0
+kozuch_twice,drop study,grant_270,1,1,0
+arai_twice,drop study,grant_126,21,21,0
+bennett_twice,drop study,grant_36,5,5,0
+jakab_twice,drop study,grant_129,3,3,3
+olsson_2002,drop study,grant_32,1,1,0
+salazar_review,drop study,grant_189,1,1,0
+adesina_in_oyeyiola,drop study,grant_276,10,10,0
+torres_2004,drop study,david_197,200,200,0
+blasdell_2016,drop study,harry_144,68,68,0
+fulhorst_is_tesh,drop study,ana_375,30,30,0
+hjelle_1996,drop study,david_374,3,4,0
+raboni_2009,drop study,david_151,0,0,0
+zou_zhang,link as duplicate group,david_257,0,0,0
+zou_zhang,link as duplicate group,david_277,0,0,0
+oliveira,drop study,david_353,16,32,0
+luis_madhav,link as duplicate group,david_79,0,0,0
+luis_madhav,link as duplicate group,david_157,0,0,0
+mills_1991_1992,link as duplicate group,grant_111,0,0,0
+mills_1991_1992,link as duplicate group,grant_252,0,0,0

@@ -34,7 +34,7 @@ library(purrr)
 
 ```{r load-data}
 # Load the final cleaned data object
-combined_data <- read_rds(here("data", "data_cleaning", "05_02_output.rds"))
+combined_data <- read_rds(here("data", "data_cleaning", "05_03_output.rds"))
 
 # Extract data frames for easier access
 host_data     <- combined_data$host
@@ -98,11 +98,31 @@ sequence_data %>%
 ```
 
 ### Taxonomic Mismatches
-Summary of sequence records where the host species name reported in NCBI metadata differs from the cleaned host data.
+Summary of sequence records where the host or pathogen name reported in NCBI metadata differs from the cleaned ArHa name. Names are compared as text, ignoring case, so a difference can be a synonym, a subspecies or a change in virus nomenclature rather than an error.
 ```{r taxa-mismatch}
-sequence_data %>%
-  count(flag_host_mismatch, name = "Host Mismatch Count") %>%
-  kable(caption = "Host Taxonomy Mismatch Flag Summary")
+compare_names <- function(arha, ncbi) {
+  case_when(is.na(arha) | is.na(ncbi) ~ "Name missing",
+            tolower(trimws(arha)) == tolower(trimws(ncbi)) ~ "Match",
+            TRUE ~ "Differs")
+}
+
+taxa_check <- sequence_data %>%
+  mutate(host_check = compare_names(host_species_clean, ncbi_host),
+         pathogen_check = compare_names(pathogen_species_clean, ncbi_pathogen))
+
+taxa_check %>%
+  count(sequence_type, host_check, name = "n") %>%
+  kable(caption = "Host name: ArHa vs NCBI")
+
+taxa_check %>%
+  count(sequence_type, pathogen_check, name = "n") %>%
+  kable(caption = "Pathogen name: ArHa vs NCBI")
+
+taxa_check %>%
+  filter(host_check == "Differs") %>%
+  count(host_species_clean, ncbi_host, sort = TRUE) %>%
+  head(20) %>%
+  kable(caption = "Most frequent host name differences (top 20)")
 ```
 
 ## 4. Cross-Table Consistency Checks
