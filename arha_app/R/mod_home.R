@@ -8,7 +8,7 @@ library(bslib)
 #                    read from data/release_info.json (written by 07_finalise_database.R).
 # DB_ZENODO_DOI:     Zenodo concept DOI, which always resolves to the latest release.
 APP_VERSION      <- "1.0.0"
-DB_SEARCH_DATE   <- "24 August 2023"
+DB_SEARCH_DATE   <- "16 October 2023"
 DB_COMPILED_DATE <- format(as.Date(jsonlite::read_json("data/release_info.json")$compiled), "%d %B %Y")
 DB_ZENODO_DOI    <- "10.5281/zenodo.21978982"
 

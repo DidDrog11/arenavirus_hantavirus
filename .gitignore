@@ -64,3 +64,6 @@ CLAUDE.md
 
 # Duplicate review: collaborator material and copies of source articles (not for the public repo)
 /data/duplicate_check/
+
+# Zenodo upload bundles, built by R/99_03_zenodo_bundle.R (deposited on Zenodo, not in git)
+/data/data_release/zenodo/

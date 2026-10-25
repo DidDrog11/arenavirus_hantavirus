@@ -21,9 +21,10 @@ The scripts in `R/` run in numbered order, from `00_load_data.R` to `08_build_dw
 ## Outputs using ArHa
 
 1. [Viral reservoir status in small mammals emerges as a predictable life-history trait after correcting for surveillance bias, bioRxiv](https://doi.org/10.64898/2026.06.03.729761)
-2. [Molecular and ecological determinants of effective reassortment in orthohantaviruses](https://doi.org/10.64898/2026.06.10.731004)
-3. [The Socio-economic Shield Limits Lassa Virus Spillover in Urban West Africa, Epidemiology and Infection](https://doi.org/10.1017/s0950268826101824)
-4. [A protocol for biodiversity-informed wildlife disease surveillance, ecoevoRxiv](https://doi.org/10.32942/X21D36)
+2. [Molecular and ecological determinants of effective reassortment in orthohantaviruses, bioRxiv](https://doi.org/10.64898/2026.06.10.731004)
+3. [Open ecological, genomic and digital behavioural data resolve the 2026 MV Hondius Andes virus outbreak to the southern-Andean reservoir zone, medRxiv](https://doi.org/10.64898/2026.09.28.26364179)
+4. [The Socio-economic Shield Limits Lassa Virus Spillover in Urban West Africa, Epidemiology and Infection](https://doi.org/10.1017/s0950268826101824)
+5. [A protocol for biodiversity-informed wildlife disease surveillance, PLOS Ecosystems](https://doi.org/10.1371/journal.pesy.0000023)
 
 ## Citation and licence
 

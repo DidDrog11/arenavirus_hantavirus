@@ -62,14 +62,16 @@ build_publications_summary <- function(filtered_data) {
   
   host_level <- q |>
     filter(!is.na(occurrenceID)) |>
-    distinct(occurrenceID, eventID, country, decimalLatitude, decimalLongitude,
+    distinct(occurrenceID, eventID, country, countryCode, decimalLatitude, decimalLongitude,
              eventDate, scientificName, individualCount) |>
     collect()
-  
+
   path_level  <- q |> filter(!is.na(measurementID)) |> collect()
-  
+
   n_studies     <- n_distinct(c(host_level$eventID, path_level$eventID))
-  n_countries   <- n_distinct(host_level$country, na.rm = TRUE)
+  # Countries by ISO code, as in the data paper; records spanning several countries or in a
+  # former country (e.g. Czechoslovakia) have no code and are not counted as extra countries
+  n_countries   <- n_distinct(host_level$countryCode, na.rm = TRUE)
   n_sites       <- host_level |> distinct(decimalLatitude, decimalLongitude, eventDate) |> nrow()
   n_individuals <- sum(host_level$individualCount, na.rm = TRUE)
   n_species     <- n_distinct(host_level$scientificName[host_level$individualCount > 0], na.rm = TRUE)

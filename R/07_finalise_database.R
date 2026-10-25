@@ -318,6 +318,14 @@ event_map <- tibble(old_study_id = unique(c(
   drop_na() |>
   mutate(new_event_id = paste0("event_", sprintf("%04d", row_number())))
 
+# A study with a descriptive row but no host or assay records holds no data (the data were
+# requested from the authors, are held in an external database, or were never entered), so it
+# is left out of the release. Filtered after numbering so that the other eventIDs do not move.
+studies_with_records <- unique(c(as.character(host_final$study_id), as.character(pathogen_final$study_id)))
+message("Studies with no host or assay records, left out of the release: ",
+        paste(setdiff(event_map$old_study_id, studies_with_records), collapse = ", "))
+event_map <- event_map |> filter(old_study_id %in% studies_with_records)
+
 host_map <- tibble(old_host_id = as.character(unique(host_final$host_record_id))) |>
   drop_na() |>
   mutate(new_host_id = paste0("host_", sprintf("%05d", row_number())))
@@ -406,8 +414,11 @@ sampling_events <- event_map |>
   left_join(sampling_events_meta, by = "eventID") |>
   distinct(eventID, .keep_all = TRUE)
 
+# The app's year filter drops studies with no publication year, so every study needs one
+# for the app and the paper to report the same number of studies
 stopifnot(nrow(sampling_events) == nrow(event_map),
-          !any(duplicated(sampling_events$eventID)))
+          !any(duplicated(sampling_events$eventID)),
+          !anyNA(sampling_events$publication_year))
 
 write_parquet(sampling_events, here("arha_app", "data", "parquet", "sampling_events.parquet"))
 write_parquet(sampling_events, path(release_path, "parquet", "sampling_events.parquet"))

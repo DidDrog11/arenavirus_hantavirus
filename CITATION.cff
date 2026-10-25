@@ -34,6 +34,8 @@ authors:
     orcid: "https://orcid.org/0000-0002-4397-6156"
     affiliation: "Paul G. Allen School of Global Health, Washington State University"
 doi: "10.5281/zenodo.21978982"
+version: "v1.2"
+date-released: "2026-10-25"
 license: CC0-1.0
 repository-code: "https://github.com/DidDrog11/arenavirus_hantavirus"
 url: "https://diddrog11.shinyapps.io/arenavirus_hantavirus_app/"
